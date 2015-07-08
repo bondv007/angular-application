@@ -1,0 +1,45 @@
+<mm-row>
+  <mm-radiobutton mm-model="lookups.panelFrequencies" mm-selected="ad.panelsSettings.defaultPanelFrequency"
+                  mm-edit-multiple="isMultiple != undefined && isMultiple.indexOf('defaultPanelFrequency') != -1"
+                  mm-caption="Panel Frequency"
+                  mm-is-vertical="true"
+                  mm-visible="true"
+                  mm-layout-type="custom"
+                  mm-custom-control-width="100"
+                  mm-label-width="{{labelWidth2}}"
+                  mm-change="panelFrequencyClick()"
+                  mm-disable="controlStatus.panelFreqency"
+                  mm-edit-multiple="isMultiple != undefined && isMultiple.indexOf('panelFrequency') != -1"
+                  mm-error="PanelFrequenciesError.text"></mm-radiobutton>
+  <div style="padding-top: 24px;display: inline-block">
+    <mm-drop-down mm-data-model="lookups.expandTimes" mm-model="ad.panelsSettings.panelFrequencyTimes"
+                  mm-show-label="false"
+                  mm-label-width="0"
+                  mm-layout-type="custom"
+                  mm-custom-control-width="50"
+                  mm-disable="!ad.panelsSettings.isPanelFrequencyEnabled"
+                  mm-layout-type="medium" mm-label-width=''
+                  mm-edit-multiple="isMultiple != undefined && isMultiple.indexOf('panelFrequencyTimes') != -1"
+                  mm-error="panelFrequencyTimesError.text"></mm-drop-down>
+    <mm-label mm-model="'times per'"
+              mm-layout-type="custom"
+              mm-custom-control-width="70"
+              mm-show-label="false"
+              mm-label-width="0"></mm-label>
+    <mm-drop-down mm-data-model="lookups.defaultPanelFrequencies" mm-model="ad.panelsSettings.panelFrequency"
+                  mm-edit-multiple="isMultiple != undefined && isMultiple.indexOf('panelFrequency') != -1"
+                  mm-caption=""
+                  mm-layout-type="custom"
+                  mm-custom-control-width="125"
+                  mm-show-label="false"
+                  mm-label-width="0"
+                  mm-disable="!ad.panelsSettings.isPanelFrequencyEnabled"
+                  mm-edit-multiple="isMultiple != undefined && isMultiple.indexOf('panelFrequency') != -1"
+                  mm-error="panelFrequencyTimesError.text"></mm-drop-down>
+    <mm-label mm-model="'for a unique user'"
+              mm-layout-type="custom"
+              mm-custom-control-width="120"
+              mm-show-label="false"
+              mm-label-width="0"></mm-label>
+  </div>
+</mm-row>

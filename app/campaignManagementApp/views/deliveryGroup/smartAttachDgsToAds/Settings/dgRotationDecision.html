@@ -1,0 +1,36 @@
+<div ng-switch on="ad.rotationSetting.type">
+
+	<!--EvenDistribution-->
+	<div ng-switch-when="EvenDistribution">
+		<div class="adEvenDistributionRotation">
+			{{Weight | T}} {{ ad.rotationSetting.weight | number: 2}}%
+		</div>
+	</div>
+
+	<!--Weighted-->
+	<div ng-switch-when="Weighted">
+		<div class="adWeightedRotation">
+			<div class="adWeightedRotation">
+				<span class="adWeightedRotationLabel mm-control-label" ng-bind="'Weight' | T"></span>
+				<input type="number" class="WeightedRotationTB" ng-change="onWeightedChange(ad)"
+							 ng-model="ad.rotationSetting.weight"/>
+				<span class="adWeightedRotationLabel mm-control-label" ng-bind="'%'"></span>
+			</div>
+		</div>
+		<mm-error-div error-text="ad.rotationSetting.adWeightError.text"></mm-error-div>
+	</div>
+
+	<!--Timebase-->
+	<div ng-switch-when="TimeBased">
+		<time-base-rotation></time-base-rotation>
+	</div>
+
+	<!--Default EvenDistribution-->
+	<div ng-switch-default>
+		<div class="adEvenDistributionRotation">
+			{{Weight | T}} {{ ad.rotationSetting.weight | number: 2}}%
+		</div>
+	</div>
+
+</div>
+

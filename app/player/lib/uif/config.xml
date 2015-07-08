@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<config>
+	<backgroundAlpha></backgroundAlpha>
+	<backgroundColor>0x000000</backgroundColor>
+	<bwDetectProgressiveURL></bwDetectProgressiveURL>
+	<bwDetectStreamingServer></bwDetectStreamingServer>
+	<cachebusterList></cachebusterList>
+	<companionDeliverType>xml</companionDeliverType>
+	<companionJSFunction>instreamPlayer.views.as3PlayerView._onCompanion</companionJSFunction>
+	<countdownBarAlpha>0.7</countdownBarAlpha>
+	<countdownBarBackColor>#000000</countdownBarBackColor>
+	<countdownBarPosition>top</countdownBarPosition>
+	<countdownEnabled>true</countdownEnabled>
+	<countdownText>Your content will begin in [time] seconds</countdownText>
+	<countdownTextColor>#FFA100</countdownTextColor>
+	<countdownTextFormat></countdownTextFormat>
+	<errorPopup></errorPopup>
+	<guiBorderRadius></guiBorderRadius>
+	<guiBorderWidth></guiBorderWidth>
+	<integration_date></integration_date>
+	<midrollVideoLength>20</midrollVideoLength>
+	<nonLinearCloseButtonPosition></nonLinearCloseButtonPosition>
+	<nonLinearCloseButtonURL></nonLinearCloseButtonURL>
+	<overlayDelay>2</overlayDelay>
+    <nonLinearMaxLength>9999</nonLinearMaxLength>
+	<playerContentHeight></playerContentHeight>
+	<playerContentWidth></playerContentWidth>
+	<playerContentX></playerContentX>
+	<playerContentY></playerContentY>
+	<positionVAST></positionVAST>
+	<preferredDeliveryMethod></preferredDeliveryMethod>
+	<qualityFirst></qualityFirst>
+	<scaleEW></scaleEW>
+	<scaleVAST></scaleVAST>
+	<version></version>
+	<vpaidHAlign></vpaidHAlign>
+	<vpaidVAlign></vpaidVAlign>
+	<jsTrackingFunctionName>instreamPlayer.views.as3PlayerView._onTrack</jsTrackingFunctionName>
+</config>

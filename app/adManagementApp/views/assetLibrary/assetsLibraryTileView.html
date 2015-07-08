@@ -1,0 +1,32 @@
+<div ng-class="{'search-section':commonModel.isSearchView}" class="inner-container tile-container">
+  <div class="set-center-align" infinite-scroll="scrollBottomEvent()" infinite-scroll-distance="1"
+       infinite-scroll-immediate-check="false"
+       infinite-scroll-disabled="gettingData"
+       infinite-scroll-parent="true">
+    <!--Folder section starts here-->
+    <ul class="ads-tiles single-adds folders-section sub-folders"  ng-if="!commonModel.isSearchView"
+        ng-include="'adManagementApp/views/assetLibrary/assetsLibraryFoldersTileView.html'"></ul>
+    <div class="clear" ng-if="commonModel.filteredFolders.length>0 && !commonModel.isSearchView"> &nbsp</div>
+    <!--Folder section ends here-->
+    <!--tiles section starts here-->
+    <ul class="ads-tiles single-adds"
+        ng-include="'adManagementApp/views/assetLibrary/assetsLibraryTilesTileView.html'"></ul>
+    <!--tiles section ends here-->
+    <div ng-if="commonModel.filteredAssets.length==0 && commonModel.filteredFolders.length==0 && !showGridView && !commonModel.showCentralSpinner" class="centralColumnResizePosition" ng-include="'adManagementApp/views/assetLibrary/assetsLibraryEmptyDiv.html'"></div>
+    <div ng-if="!showGridView && commonModel.showCentralSpinner" ng-include="'infra/central/views/centralSpinner.html'"></div>
+  </div>
+</div>
+
+
+<style>
+  #mmMain{
+    -webkit-touch-callout: none;
+    -webkit-user-select: none; /* Webkit */
+    -moz-user-select: none;    /* Firefox */
+    -ms-user-select: none;     /* IE 10  */
+
+    /* Currently not supported in Opera but will be soon */
+    -o-user-select: none;
+    user-select: none;
+  }
+</style>

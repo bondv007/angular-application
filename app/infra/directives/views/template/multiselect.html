@@ -1,0 +1,78 @@
+<!--<div ng-if="isControlVisible() || !$parent.mmIsEditMode || (!!$parent.mmError && $parent.mmError !='' ) && !mmDisable"-->
+        <!--ng-class="{'errorInput':mmError != null && mmError != '',-->
+                            <!--'button-frame': !isVisible,-->
+                            <!--'button-frame-open': isVisible,-->
+                            <!--'button-frame-hover': buttonHover,-->
+                            <!--'button-frame-hover-open': buttonHoverOpen,-->
+                            <!--'button-frame-disabled': mmDisable}"-->
+        <!--ng-mouseenter="setHover(true);"-->
+        <!--ng-mouseleave="setHover(false);changeControlVisibility(false);"-->
+        <!--class="button-frame {{mmControlClass}}"-->
+        <!--style="margin-right: 10px;cursor: context-menu; position: relative; {{mmControlWidth}}"-->
+        <!--ng-click="toggleSelect(); ">-->
+  <!--<span class="button-label mm-ellipsis {{mmControlClass}} {{labelClass}}"-->
+        <!--style="padding-right: 40px; {{mmControlWidth}}">{{mmModelText | T}}</span>-->
+  <!--<div ng-class="{'button-down': !isVisible, 'button-up': isVisible}"></div>-->
+  <!--<div class="button-separator"></div>-->
+  <!--<div ng-if="isVisible" class="bottom-separator"></div>-->
+  <!--<div class="wrapper {{mmControlClass}}"-->
+       <!--style="{{mmControlWidth}}"-->
+       <!--ng-if="isVisible">-->
+    <!--<div ng-if="mmShowSearchBox && !mmShowAddNew"-->
+         <!--class="search-frame">-->
+      <!--<div ng-class="{'search-box-icon': clear, 'search-box-clear-icon': !clear}"-->
+           <!--ng-click="clear = true; searchBox.text = ''; filterDataModel()"-->
+           <!--ng-init="clear = true"></div>-->
+      <!--<input class="search-box"-->
+             <!--type="text"-->
+             <!--ng-click="preventClick($event)"-->
+             <!--ng-model="searchBox.text"-->
+             <!--ng-change="clear = searchBox.text.length == 0; filterDataModel()"/>-->
+    <!--</div>-->
+    <!--<div ng-if="mmShowSearchBox && mmShowAddNew"-->
+         <!--class="search-frame">-->
+      <!--<div class="search-box-add-new">-->
+        <!--<div ng-class="{'search-box-icon-add-new': clear, 'search-box-clear-icon': !clear}"-->
+             <!--ng-click="clear = true; searchBox.text = ''; filterDataModel()"-->
+             <!--ng-init="clear = true"></div>-->
+        <!--<input class="search-box"-->
+               <!--type="text"-->
+               <!--style="width: 100%"-->
+               <!--ng-click="preventClick($event)"-->
+               <!--ng-model="searchBox.text"-->
+               <!--ng-change="clear = searchBox.text.length == 0; filterDataModel()"/>-->
+      <!--</div>-->
+      <!--<div class="add-new-search-frame">-->
+        <!--<span class="add-new-link-search-frame" data-ng-click="createNewEntityModal();">{{'Add New' | T}}</span>-->
+      <!--</div>-->
+    <!--</div>-->
+    <!--<div ng-if="mmShowAddNew && !mmShowSearchBox"-->
+         <!--class="add-new">-->
+      <!--<span class="add-new-link" data-ng-click="createNewEntityModal();">{{'Add New' | T}}</span>-->
+    <!--</div>-->
+    <!--<ul ng-style="{'min-height': minHeight}"-->
+        <!--ng-mouseenter="isInUl=true"-->
+        <!--ng-mouseout="isInUl=false">-->
+      <!--<scroller scroller-repeater="c in filtered"-->
+                <!--item-height="30"-->
+                <!--class="scroller-items"-->
+                <!--ng-class="{'with-search-box': mmShowSearchBox,-->
+                          <!--'with-add-new': !mmShowSearchBox && mmShowAddNew}">-->
+        <!--<li ng-click="toggleCheck(c[mmOptionId], c[mmOptionName]);itemSelected(c[mmOptionId]);preventClick($event)"-->
+            <!--ng-class="{'selected-item': mmModel.indexOf(c[mmOptionId]) !== -1 && !mmIsMultiSelect, 'li-hover': liHover &&  !mmIsMultiSelect}"-->
+            <!--ng-mouseenter="liHover = true"-->
+            <!--ng-mouseleave="liHover = false">-->
+          <!--<div class="mm_checkbox"-->
+               <!--ng-class="{'mm-checkbox-hover': liHover}"-->
+               <!--mm-tool-tip="{{mmTextTooltip | T}}"-->
+               <!--ng-click="onClick()">-->
+            <!--<span ng-class="{'selectedCB': isChecked(c[mmOptionId], c[mmOptionName])}"></span>-->
+          <!--</div>-->
+          <!--<span class="mm-nowrap item-label"-->
+                <!--style="padding-right: 25px;"-->
+                <!--title="{{c[mmOptionName]}}">{{c[mmOptionName]}}</span>-->
+        <!--</li>-->
+      <!--</scroller>-->
+    <!--</ul>-->
+  <!--</div>-->
+<!--</div>-->

@@ -1,0 +1,43 @@
+<mm-label mm-caption="{{mmCaption}}" mm-show-label="{{mmShouldShowLabel}}"
+									mm-layout-class="{{mmLabelClass}}" mm-is-required="{{mmIsRequired}}"></mm-label>
+
+<div class="{{mmControlClass}}" >
+		<span  ng-class="(mmError?'error':(mmLocalIsDirty?'dirty':'regular'))" tooltip-popup-delay="500" tooltip-placement="bottom" tooltip="{{mmError}}" />
+			<span ng-show="!isOpen" ng-click="isOpen=!isOpen" style="cursor: pointer;">
+				<span ng-show="isRange">
+					<span ng-show="isRange && mmModel.startDate == undefined">Enter Start Date</span>
+					<span ng-show="isRange && mmModel.startDate != undefined">{{mmModel.startDate | date: dateFormat}}</span>
+					<span ng-show="isRange">{{mmRangeDelimiter}}</span>
+					<span ng-show="isRange && mmModel.endDate == undefined">Enter End Date</span>
+					<span ng-show="isRange && mmModel.endDate != undefined">{{mmModel.endDate | date: dateFormat}}</span>
+				</span>
+
+				<span ng-show="!isRange && !isDisabled">{{mmModel.startDate | date: dateFormat}} </span>
+				<span ng-show="!isRange && mmModel.startDate == undefined && !isDisabled">Enter Date</span>
+				</span>
+	</span>
+			<span ng-show="isOpen">
+				<span ng-click="isOpen=!isOpen">{{mmFrom}}</span>
+				<input type ="text" ng-click="isclicked3= !isclicked3; isclicked2=false ;isclicked1=false" ng-model= "startDate" ng-change="parse(mmModel.startDate)" ng-disabled="isDisabled"/>
+
+			<span ng-show="isRange" style="padding-left:70px">
+					<span ng-click="isOpen=!isOpen" >{{mmTo}}</span>
+				<input type ="text"   ng-click="isclicked3=!isclicked3"   ng-model="endDate" ng-change="parse(mmModel.endDate)" ng-disabled="isDisabled"/>
+			</span>
+			<mm-row>
+
+				<div class="{{mmControlClass}}"  style="position:relative;right:20px" collapse="isclicked3" ng-show="!isDisabled">
+					<datepicker  is-open="isclicked3" ng-model="mmModel.startDate" min-date="minDate" show-weeks=false date-disabled = "isDisabled" ng-click="open1(isRange)"></datepicker>
+				</div>
+				<div class="{{mmControlClass}}"  style="position:relative;left:25px;" collapse="isclicked3"  ng-show="isRange && !isDisabled">
+					<datepicker  is-open="isclicked3" ng-model="mmModel.endDate" min-date="minDate" show-weeks=false  date-disabled = "isDisabled" ng-click="open2()" ></datepicker>
+				</div>
+			</mm-row>
+		</span>
+</div>
+<mm-error-div error-text="mmError" show-error="mmError"></mm-error-div>
+
+
+
+
+

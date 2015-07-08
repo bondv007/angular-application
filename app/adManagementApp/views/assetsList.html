@@ -1,0 +1,81 @@
+<div class="asset-content">
+    <div class="col-md-12 actionToolbar well well-sm">
+        <!--action toolbar-->
+        <div class="pull-left">
+            <button ng-repeat="actionFunc in displayData.assetActions" type="button" class="btn btn-default"
+                    ng-click="centralActionInvoke(actionFunc.func, displayData.assets)">{{actionFunc.name}}</button>
+        </div>
+        <!--view select-->
+        <div class="btn-group pull-right">
+            <button type="button" class="btn btn-default" ng-click="displayData.isGrid = false" type="button" href="javascript:void(0)"  title="Friendly"><i class="fa fa-list fa-fw"></i></button>
+            <button type="button" class="btn btn-default" ng-click="displayData.isGrid = true" type="button" href="javascript:void(0)"  title="Grid"><i class="fa fa-table fa-fw"></i></button>
+        </div>
+    </div>
+
+    <!--display data-->
+    <div class="col-md-12">
+        <!--search assets-->
+        <div class="row asset-search">
+            <div class="col-md-4" >
+                Filter Assets: <input type="text" class="form-control" ng-model="displayData.filterByText" placeholder="Search: Id, Name or Size">
+            </div>
+        </div>
+        <!--list info-->
+        <div class="row">
+            <div class="col-md-10">
+                <p>{{displayData.assets.length}} Assets{{dataObj.name}}</p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-10">
+                <!--friendly format-->
+                <div ng-show="!displayData.isGrid">
+                    <!-- <div ng-if="displayData.isEditable" >-->
+                    <div>
+                        <accordion close-others="oneAtATime">
+                            <accordion-group ng-repeat="asset in displayData.assets | filter:displayData.filterByText" class="element-list" is-open="isopen">
+                                <accordion-heading>
+                                    <!--<input type="checkbox" ng-model="asset.isSelected">-->
+                                    <input type="checkbox" ng-model="asset.isSelected" ng-click="checkboxClick(asset, $event)">
+                                    <span>{{asset.title || 'Default Asset Title'}}</span>
+                                    <i class="pull-right fa fa-chevron-circle-right" ng-class="{'fa-chevron-circle-down': isopen, 'fa-chevron-circle-right': !isopen}"></i>
+                                    <!--<i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': isopen, 'glyphicon-chevron-right': !isopen}"></i>-->
+                                </accordion-heading>
+                                <div ng-repeat="index in displayData.assetMetaData" class="compact-list"><span>{{index.text}}:</span> {{ asset[index.key] }} &nbsp </div>
+                            </accordion-group>
+                        </accordion>
+                        <!--<div ng-repeat="asset in displayData.assets" class="element-list">
+                            <div>
+                                <input type="checkbox" ng-model="asset.isSelected">
+                                <span>{{asset.title}}</span>
+                            </div>
+                            <br>
+                            <div ng-repeat="index in displayData.assetMetaData" class="compact-list"><span>{{index.text}}:</span> {{ asset[index.key] }} &nbsp </div>
+                        </div><br>-->
+                    </div>
+                </div>
+                <!--     </div>-->
+                <!--grid format-->
+                <div ng-show="displayData.isGrid">
+                    <table class="table table-striped">
+                        <thead>
+                        <tr><th ng-repeat="index in displayData.assetMetaData">{{index.text}}</th></tr>
+                        </thead>
+                        <tbody ng-repeat="asset in displayData.assets | filter:displayData.filterByText">
+                        <tr ng-class-odd="'trOdd'" ng-class-even="'trEven'" ng-click="setSelected()" ng-dblclick="rowDoubleClicked(asset.assetId)"><td ng-repeat="index in displayData.assetMetaData">{{ asset[index.key] }}</td></tr>
+                        <!--<tr><td>Test1</td></tr>
+                        <tr><td>Test2</td></tr>-->
+                        </tbody>
+                    </table>
+                </div>
+
+                <br>
+                <p>List of clicked assets: </p>
+                <div ng-repeat="asset in displayData.assets">
+                    <p ng-if="asset.isSelected">{{asset.assetId}}</p>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,23 @@
+<div class="decision-item-inner" ng-class="{'audience-segment' : decision.type == 'Audience Segment', 'active' : decision == decisionTreeService.selectedDecision, 'droppable' : GraphFactory.highlightDroppable }" ng-click="editDecision( decision )" data-drop="true" jqyoui-droppable="{ onDrop: 'onDrop' }">
+
+    <div class="decision-item-triangle"></div>
+
+    <div class="decision-item-content">
+        <p ng-hide="GraphFactory.highlightDroppable && decision.type == 'Audience Segment'" class="centered" limit-chars chars="60" title="{{decision.name}}">{{decision.name | limitTo: 60 }}{{decision.name.length > 60 ? '...' : '' }}</p>
+        <p ng-show="GraphFactory.highlightDroppable && decision.type == 'Audience Segment'" class="centered">Droppable Area</p>
+    </div>
+
+    <i class="csb-icon csb-icon-{{decision.icon}}"></i>
+    <div class="csb-icon-bg"></div>
+
+    <span class="decision-label preview" ng-show="decision.label" title="{{decision.label}}">{{decision.label | limitTo: 3 }}</span>
+
+</div>
+
+<!-- could use ng-hide="decision.type == 'Audience Segment'" instead if I want to show them right away -->
+<span class="decision-label yes" ng-if="decision.yesDecisions.length > 0">Yes</span>
+<span class="decision-label no" ng-if="decision.noDecisions.length > 0">No</span>
+
+
+
+

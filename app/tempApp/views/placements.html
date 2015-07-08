@@ -1,0 +1,20 @@
+<table class="table table-hover table-striped">
+	<thead>
+	<tr>
+		<th ng-click="sortBy('id')" style="width:20%"><a style="cursor: pointer">#</a></th>
+		<th ng-click="sortBy('name')" style="width:20%"><a style="cursor: pointer">Name</a></th>
+		<th ng-click="sortBy('siteName')" style="width:20%"><a style="cursor: pointer">Site Name</a></th>
+		<th ng-click="sortBy('startDate')" style="width:20%"><a style="cursor: pointer">Start Date</a></th>
+		<th ng-click="sortBy('endDate')" style="width:20%"><a style="cursor: pointer">End Date</a></th>
+	</tr>
+	</thead>
+	<tbody>
+	<tr ng-repeat="p in pls">
+		<td><a ng-href="#/editPlacement/{{p.id}}">{{p.id}}</a></td>
+		<td>{{p.name}}</td>
+		<td>{{p.siteName}}</td>
+		<td>{{p.startDate}}</td>
+		<td>{{p.endDate}}</td>
+	</tr>
+	</tbody>
+</table>

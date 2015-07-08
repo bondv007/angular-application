@@ -1,0 +1,69 @@
+<mm-mini-section mm-caption="'Panel Settings'" mm-start-open="toggleHandler.showToggleAdvancedPanelSettings"
+                 mm-is-modal="true">
+  <mm-row>
+    <mm-check-box
+        mm-caption="Delay Expansion"
+        mm-model="ad.panelsSettings.delayedExpansion"
+        mm-description="Enable"
+        mm-label-width="120"
+        mm-layout-type="medium"
+        mm-error="errors.delayedExpansion">
+    </mm-check-box>
+  </mm-row>
+  <mm-row>
+    <mm-check-box
+        mm-caption="Auto Expand"
+        mm-model="ad.panelsSettings.autoExpandDefaultPanel"
+        mm-description="Auto Expand Default Panel when Ad is Loaded"
+        mm-label-width="120"
+        mm-layout-type="medium"
+        mm-error="errors.autoExpand"
+        mm-change="autoExpandClick()">
+    </mm-check-box>
+  </mm-row>
+  <div ng-include="'adManagementApp/views/panelFrequency.html'"></div>
+  <mm-row>
+    <mm-label mm-caption="Component Position in Banner asset" mm-show-control="false" mm-model="NA" mm-label-width="250"
+              mm-custom-control-width="0" mm-layout-type="custom"></mm-label>
+    <mm-text mm-model="ad.panelsSettings.componentPositionX"
+             mm-is-required="true"
+             mm-disable="controlStatus.panelComponent"
+             mm-edit-multiple="isMultiple != undefined && isMultiple.indexOf('positionX') != -1"
+             mm-layout-type="custom"
+             mm-custom-control-width="50"
+             mm-label-width="20"
+             mm-caption="X"
+             mm-additional-text="px"></mm-text>
+    <mm-text mm-model="ad.panelsSettings.componentPositionY"
+             mm-is-required="true"
+             mm-disable="controlStatus.panelComponent"
+             mm-edit-multiple="isMultiple != undefined && isMultiple.indexOf('positionY') != -1"
+             mm-layout-type="custom"
+             mm-custom-control-width="50"
+             mm-label-width="20"
+             mm-caption="Y"
+             mm-additional-text="px"></mm-text>
+  </mm-row>
+  <mm-row>
+    <mm-label mm-caption="Component Collapsed Size" mm-show-control="false" mm-model="NA" mm-label-width="250"
+              mm-layout-type="custom"></mm-label>
+    <mm-text mm-model="ad.panelsSettings.componentCollapsedSizeX"
+             mm-is-required="true"
+             mm-disable="controlStatus.panelComponent"
+             mm-edit-multiple="isMultiple != undefined && isMultiple.indexOf('positionX') != -1"
+             mm-layout-type="custom"
+             mm-custom-control-width="50"
+             mm-label-width="20"
+             mm-caption="X"
+             mm-additional-text="px"></mm-text>
+    <mm-text mm-model="ad.panelsSettings.componentCollapsedSizeY"
+             mm-is-required="true"
+             mm-disable="controlStatus.panelComponent"
+             mm-edit-multiple="isMultiple != undefined && isMultiple.indexOf('positionY') != -1"
+             mm-layout-type="custom"
+             mm-custom-control-width="50"
+             mm-label-width="20"
+             mm-caption="Y"
+             mm-additional-text="px"></mm-text>
+  </mm-row>
+</mm-mini-section>

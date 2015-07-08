@@ -1,0 +1,33 @@
+<div class="decision-item-inner"
+     ng-class="{'audience-segment' : decision.type == 'Audience Segment', 'active' : decision == decisionTreeService.selectedDecision, 'droppable' : GraphFactory.highlightDroppable }"
+     id="{{itemId}}"
+     ng-click="editDecision( decision )"
+     data-drop="true"
+     jqyoui-droppable="{ onDrop: 'onDrop' }"
+     data-drag="true"
+     jqyoui-draggable="elementDraggableSettings()">
+
+    <div class="decision-item-triangle"></div>
+
+    <div class="decision-item-content">
+        <p ng-if="!GraphFactory.highlightDroppable || decision.type != 'Audience Segment'" id="{{decision.clientId}}" class="centered" limit-chars chars="60" title="{{decision.name}}">{{decision.name | limitTo: 60 }}{{decision.name.length > 60 ? '...' : '' }}</p>
+        <p ng-if="GraphFactory.highlightDroppable && decision.type == 'Audience Segment'" id="{{decision.clientId}}" class="centered">Droppable Area</p>
+    </div>
+
+    <!-- hiding the icon that is used on decision diamonds when displaying an audience segment  -->
+    <i ng-hide="decision.type == 'Audience Segment' && decision.description == 'Default Audience'" class="csb-icon csb-icon-{{decision.icon}} decision-icon"></i>
+    <!-- replacing the only icon in decisions to display the icons that represent the decisions that have been used so far-->
+    <i ng-if="decision.type == 'Audience Segment' && decision.description != 'Default Audience'" ng-repeat="icon in decision.icons" class="csb-icon csb-icon-{{ decisionIconMap[icon] }} collection-icon"></i>
+
+    <div ng-hide="decision.description == 'Default Audience' && decision.type == 'Audience Segment'" class="csb-icon-bg"></div>
+
+    <span class="decision-label preview" ng-show="decision.label" title="{{decision.label}}">{{decision.label | limitTo: 3 }}</span>
+
+</div>
+
+<!-- could use ng-hide="decision.type == 'Audience Segment'" instead if I want to show them right away -->
+<span class="decision-label yes" ng-if="decision.yesDecisions.length > 0">Yes</span>
+<span class="decision-label no" ng-if="decision.noDecisions.length > 0">No</span>
+
+
+

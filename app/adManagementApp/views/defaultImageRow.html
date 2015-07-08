@@ -1,0 +1,12 @@
+<tr ng-click="select(defaultImage)">
+	<td><mm-label mm-is-required="true" mm-caption="Default Image" mm-show-label="true"></mm-label></td>
+	<td  ng-if="isMultiple == undefined || isMultiple.length == 0 || isMultiple.indexOf('defaultImage.assetId') == -1" >{{defaultImage.name}}</td>
+	<td ng-if="isMultiple != undefined && isMultiple.indexOf('defaultImage.assetId') != -1">Multiple Values</td>
+	<td>
+		<a class="glyphicon glyphicon-upload" ng-click="showUploadAssetModal(true,'defaultImage')"></a>
+		<!-- a class="glyphicon glyphicon-eye-open" ng-click="openAssetPreview()"></a>&nbsp;-->
+	</td>
+	<td ng-if="defaultImage.size > 1048575 && (isMultiple == undefined || isMultiple.length == 0 || isMultiple.indexOf('defaultImage.assetId') == -1)">{{defaultImage.size/1024/1024|number:2}} MB</td>
+	<td ng-if="defaultImage.size < 1048576 && (isMultiple == undefined || isMultiple.length == 0 || isMultiple.indexOf('defaultImage.assetId') == -1)">{{defaultImages.size/1024|number:2}} KB </td>
+	<td ng-if="isMultiple == undefined || isMultiple.length == 0 || isMultiple.indexOf('defaultImage.assetId') == -1">{{defaultImages.dimensions}}</td>
+</tr>

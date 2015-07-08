@@ -1,0 +1,37 @@
+<mm-row ng-show="mmDeliveryGroup.rootContainer.subContainers.length > 0">
+  <mm-drop-down
+    mm-id="dgtree_root_rotation_dropdown_{{mmId}}"
+    ng-if="mmDeliveryGroup.isSupportedDg"
+    mm-show-as-label="true"
+    class="rootRotationPosition"
+    mm-layout-type="custom"
+    mm-label-width="62"
+    mm-custom-control-width="170"
+    mm-caption="dg_tree_rotation"
+    mm-select-change-func="onRotationChange(mmDeliveryGroup.rootContainer)"
+    mm-data-model="mmDeliveryGroup.rootContainer.rotations"
+    mm-disable="mmDisable"
+    mm-model="mmDeliveryGroup.rootContainer.childRotationType">
+  </mm-drop-down>
+  <span class="rootRotationPosition rootRotationText" ng-if="!mmDeliveryGroup.isSupportedDg">
+        <span ng-bind="'dg_tree_rotation' | T"></span>
+        <span>{{ :: mmDeliveryGroup.rootContainer.childRotationType | T}}</span>
+  </span>
+  <span class="pull-right dg_totalWeightedTitle" ng-if="mmDeliveryGroup.rootContainer.childRotationType=='Weighted'">
+    {{'Total: ' | T}}
+    <span class="dg_root_totalWeightedValue">{{ mmDeliveryGroup.rootContainer.totalWeight + " %"}}</span>
+  </span>
+
+</mm-row>
+<!--Root Rotation Ads-->
+<div ui-tree="rotationTreeOptions" data-drag-enabled="mmDeliveryGroup.isSupportedDg">
+  <ol ui-tree-nodes="" ng-model="mmDeliveryGroup.rootContainer.subContainers" class="dgTree_removeListNumber">
+    <li
+      id="dgtree_ad_li_{{mmId}}_{{$index}}"
+      ng-class="{'selectedBackgroundColor':item.selected}"
+      ng-if="(item.type =='AdContainer') ? true : item.rotationSetting.enabled || !mmHideDisabled.val"
+      ng-repeat="item in mmDeliveryGroup.rootContainer.subContainers" ui-tree-node
+      ng-include="'campaignManagementApp/directives/dg/tree/views/templates/rotationTree/nodes_renderer.html'">
+    </li>
+  </ol>
+</div>

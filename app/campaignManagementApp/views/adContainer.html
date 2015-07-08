@@ -1,0 +1,12 @@
+<div style="align-items: center" draggable="true">
+  <div class="dgAd">
+    <div ng-if="container.showRotation" class="adWeight">
+      Weight {{weight | number: 2}}%
+    </div>
+    <div ng-repeat="subContainer in mainEntityEdit.rootContainer">
+      <span ng-if="container.type =='DeliveryGroupAd'" ng-include="'campaignManagementApp/views/dgAdTemplate.html'"></span>
+      <span ng-if="container.type == 'AdContainer'" ng-include="'campaignManagementApp/views/adContainer.html'"></span>
+    </div>
+  </div>
+
+</div>

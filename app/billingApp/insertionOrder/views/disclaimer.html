@@ -1,0 +1,29 @@
+<div class="ioDisclaimer">
+    <div class="ioDisclaimerBox">
+        <mm-check-box mm-model="disclaimer.checked"
+                      mm-hide-label="true"
+                      mm-description="I Read the Terms and conditions"
+                      mm-hide-label="true"
+                      mm-layout-type="custom"
+                      mm-custom-control-width="225">
+        </mm-check-box>
+        <mm-text ng-show="disclaimer.checked" class="ioDisclaimerTextBox"
+                 mm-show-label="false"
+                 mm-hide-label="true"
+                 mm-model="disclaimer.userName"
+                 mm-placeholder="Enter Username"
+                 mm-layout-type="custom"
+                 mm-caption="userName"
+                 mm-custom-control-width="150"></mm-text>
+
+        <mm-text ng-show="disclaimer.checked" class="ioDisclaimerTextBox"
+                 mm-show-label="false"
+                 mm-hide-label="true"
+                 mm-model="disclaimer.password"
+                 mm-placeholder="Enter Password"
+                 mm-layout-type="custom"
+                 mm-input-type="password"
+                 mm-caption="password"
+                 mm-custom-control-width="150"></mm-text>
+    </div>
+</div>

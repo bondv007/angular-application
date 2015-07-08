@@ -1,0 +1,14 @@
+<h1>Cloud Account.</h1>
+<hr>
+
+Get Account <input type="number" ng-model="accountId" ng-change="getAccountById()"/> Id
+
+<span
+		style="display: block; text-align:start; margin: 20px; width:185px;font-size: 18px;font-weight: 200;line-height: 30px;background-color: #eee;border-radius: 6px;padding: 40px;">
+    <h3>{{account.name}}</h3>
+    <hr/>
+    <p>
+			Account ID: {{account.entityID}} <br>
+			Account Type: {{account.accountType}} <br>
+		</p>
+</span>

@@ -1,0 +1,64 @@
+<mm-row>
+    <div class="mm-entity-fields-container-single">
+        <mm-row>
+            <div style="float: left">
+                <mm-row>
+                    <mm-text
+                            mm-layout-type="custom"
+                            mm-custom-control-width="100"
+                            mm-label-width="140"
+                            mm-caption="dg_Name"
+                            mm-is-required="true"
+                            mm-model="mainEntityEdit.name"
+                            mm-show-edit-mode="essentialArea.dgName.open"
+                            mm-placeholder="dg_Enter_Name"
+                            mm-disable="!hasDGManagementPermission"
+                            mm-error="mainEntityEdit.errors.errorDgName.text"></mm-text>
+                </mm-row>
+                <mm-row>
+                    <mm-label
+                            mm-layout-type="custom"
+                            mm-custom-control-width="100"
+                            mm-label-width="140"
+                            mm-caption="dg_Target_Audience"
+                            mm-model="targetAudience.value"></mm-label>
+                </mm-row>
+                <mm-row>
+                    <mm-text
+                            mm-layout-type="custom"
+                            mm-custom-control-width="100"
+                            mm-label-width="140"
+                            mm-caption="dg_Attached_To_Placements"
+                            mm-model="'javascript:void()'"
+                            mm-link-text="attachedPlacementsLink.val"
+                            mm-is-link="true"
+                            mm-disable="true"></mm-text>
+                </mm-row>
+            </div>
+            <div style="float: right">
+                <mm-row>
+                    <div class="data-box">
+                        <mm-row>
+                            <mm-row>
+                                <mm-label
+                                        mm-layout-type="custom"
+                                        mm-custom-control-width="110"
+                                        mm-label-width="70"
+                                        mm-caption="dg_Dimensions"
+                                        mm-model="firstAdDimension.dimension">
+                                </mm-label>
+                            </mm-row>
+                            <mm-label
+                                    mm-layout-type="custom"
+									mm-custom-control-width="100"
+									mm-label-width="70"
+									mm-caption="Type"
+									mm-model="firstPlacementType.name">
+							</mm-label>
+						</mm-row>
+					</div>
+				</mm-row>
+			</div>
+		</mm-row>
+	</div>
+</mm-row>

@@ -1,0 +1,8 @@
+<div class="dpMainOpenCloseMode" ng-if="!isEditMode && !isHoverMode && !mmError.text" class="dpMain"
+		 ng-class="{'dpDisableMode':mmDisable}" ng-mouseover="onMouseOver()">
+	<div class="dpWrapDateIconCloseMode">
+		<span class="dpCloseMode">{{mmModel? (mmModel |date: dateFormat):('select date' | T) }}
+			<span class="dpCalendarIconCloseMode"></span>
+		</span>
+	</div>
+</div>

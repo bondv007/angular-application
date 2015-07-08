@@ -1,0 +1,102 @@
+$borderHeight: 38px;
+@mixin dgToggle {
+  float: left;
+  background-repeat: no-repeat;
+  background-color: $cThird;
+  display: inline-block;
+  width: $borderHeight;
+  height: $borderHeight;
+  cursor: pointer;
+  z-index: 3000;
+  background-position: 11px;
+}
+
+.dgContainer {
+  left: 3px;
+  top: 12px;
+  display: table;
+  background-color: #ffffff;
+  .essentialContainer {
+    background-color: #ffffff;
+    width: 635px;
+    height: 60px;
+    position: relative;
+    .essential_bar_position {
+      position: relative;
+      right: 16px;
+      top: 10px;
+      .essential_elements {
+        background-color: $cWhite;
+        display: inline-block;
+        float: left;
+        border: 1px solid $cFourth;
+        width: 590px;
+        height: $borderHeight;
+        .select_all_MMNext {
+          top: 0;
+          position: relative;
+          right: 123px;
+        }
+        .select_all_MM2 {
+          top: 4px;
+          position: relative;
+          right: 123px;
+        }
+        .dg_name {
+          top: 4px;
+          position: absolute;
+          right: 50px;
+          left: 93px;
+        }
+        .textPosition {
+          top: 5px;
+          left: 23px;
+          position: relative;
+        }
+
+      }
+    }
+  }
+  .dgToggleOpen {
+    background-image: image-url('SI_arrow_up_secondary.png');
+    @include dgToggle;
+  }
+  .dgToggleClose {
+    background-image: image-url('SI_arrow_down_secondary.png');
+    @include dgToggle;
+  }
+  .buttonDivider {
+    width: 5px;
+    height: $borderHeight;
+    background-color: $cSecondary;
+    float: left;
+    display: table-cell;
+  }
+
+  // GPU HACK
+  -webkit-transform: translatez(0);
+  -moz-transform: translatez(0);
+  -ms-transform: translatez(0);
+  -o-transform: translatez(0);
+  transform: translatez(0);
+}
+
+.unSupportedRotationMessage{
+  border: 1px solid $cFourth;
+  background-color: rgba(255,255,255, 0.95);
+  box-shadow: 0 1px 4px rgba(0,0,0,.2);
+  margin: 0 20px;
+  padding: 14px;
+  .message{
+    font-family:arial;
+    font-size: 13px;
+    color: $cSecondary;
+    opacity: 0.75;
+    line-height: 20px;
+  }
+}
+
+.dgSettings {
+  position: relative;
+  bottom: 20px;
+}

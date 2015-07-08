@@ -1,0 +1,57 @@
+.errorText {
+  @include tErrorText;
+  position: relative;
+  display: block;
+  word-wrap: break-word;
+  float: left;
+}
+
+@mixin errorBorder {
+  border: solid 1px $cErrorColor !important;
+  border-radius: 0px;
+  &:focus {
+    outline: 0;
+  }
+}
+
+.errorInput {
+  @include errorBorder;
+  background-color: $cWhite !important;
+}
+
+.errorTab {
+  border-top: solid 4px $cErrorColor !important;
+  background-color: $cWhite !important;
+  padding-top: 7px !important;
+  &:hover {
+    border-top: solid 4px $cMain !important;
+  }
+}
+
+.errorGrid {
+  @include tGridErrorText;
+  display: inline-block;
+  padding: 6px 14px 0 14px;
+  border: solid 1px $cErrorColor;
+  height: 38px;
+  min-width: 50px;
+  background-color: #ecd6d7;
+  z-index: 50000;
+}
+
+.errorArrow{
+  background-image: image-url('si_error_tip.png');
+  width: 12px;
+  height: 6px;
+  position: absolute;
+  top: 67px;
+  left: 28px;
+}
+
+.gridErrorArrow{
+  background-image: image-url('si_error_tip.png');
+  width: 12px;
+  height: 6px;
+  position: absolute;
+  top: 135px;
+}

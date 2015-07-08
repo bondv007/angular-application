@@ -1,0 +1,46 @@
+<mm-row>
+	<mm-text
+      mm-label-width="155"
+			mm-caption="Name"
+			mm-is-required="true"
+			mm-model="mainEntityEdit.name"
+			mm-show-edit-mode="essentialArea.dgName.open"
+			mm-placeholder="Enter name"
+			mm-error="dgNameError.text"
+			text-tooltip="Enter name"></mm-text>
+</mm-row>
+<mm-row>
+	<mm-link
+      mm-label-width="155"
+			mm-caption="Attached Placements"
+			mm-model="'http://www.google.co.il'"
+			mm-link-text="attachedPlacementsLink.val"
+      mm-disable="true"></mm-link>
+</mm-row>
+<mm-row>
+	<mm-label
+    mm-label-width="155"
+			mm-caption="Type"
+			mm-model="firstPlacementType.name"></mm-label>
+</mm-row>
+<mm-row>
+	<mm-multiselect
+    mm-label-width="155"
+			mm-caption="Rotation"
+			mm-select-change-func="onRotationChange()"
+			mm-data-model="rotations"
+			mm-option-id="type"
+			mm-model="mainEntityEdit.adContainer.rotationType"></mm-multiselect>
+</mm-row>
+<mm-row>
+	<mm-label
+    mm-label-width="155"
+			mm-caption="Size"
+			mm-model="firstAdSize.size"></mm-label>
+</mm-row>
+<mm-row>
+	<mm-label
+    mm-label-width="155"
+			mm-caption="Target Audience"
+			mm-model="targetAudience.value"></mm-label>
+</mm-row>

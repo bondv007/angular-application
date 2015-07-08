@@ -1,0 +1,15 @@
+app.directive('endlessScroll', function() {
+	return function(scope, elm, attr) {
+		var raw = elm[0];
+
+		elm.bind('scroll', function() {
+			if (raw.scrollTop + raw.offsetHeight >= raw.scrollHeight) {
+				scope.$apply(attr.endlessScroll);
+			}
+		});
+
+		scope.$on('$destroy', function() {
+			elm.off('scroll');
+		});
+	};
+});

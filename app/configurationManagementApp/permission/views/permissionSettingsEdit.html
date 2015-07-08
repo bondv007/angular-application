@@ -1,0 +1,15 @@
+<div ng-show="pageReady" class="editContainer" xmlns="http://www.w3.org/1999/html">
+  <div ng-repeat="permissionSet in permissionSettingsEdit.permissionSets">
+    <mm-mini-section mm-is-modal="false"
+                     mm-caption="permissionSet.roleType"
+                     mm-start-open="true">
+      <mm-row ng-repeat="permission in permissions">
+        <mm-check-box mm-description="{{permission.name}}"
+                     mm-model="permissionsIndex[permissionSet.roleType][permission.id].isChecked"
+                     mm-control-layout-class="col-lg-3 col-xs-1"
+                     mm-disabled="false"></mm-check-box>
+      </mm-row>
+    </mm-mini-section>
+  </div>
+</div>
+<wave-spinner ng-show="!pageReady"></wave-spinner>

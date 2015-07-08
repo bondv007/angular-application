@@ -1,0 +1,5 @@
+<ul class="mainNavBarButtons nav navbar-nav">
+	<li data-ng-repeat="button in leftMenuButtons" ng-click="isActive(button.name);clearContext()">
+        <a mm-id={{button.name.toLowerCase()}} id="{{::button.name.toLowerCase()}}" ui-sref="{{::button.uiRef}}" ng-class="{ 'active-li': activeButton[button.name]}"><span>{{button.name| T}}</span></a>
+    </li>
+</ul>

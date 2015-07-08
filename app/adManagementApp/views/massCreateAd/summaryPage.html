@@ -1,0 +1,101 @@
+<div ng-if="step.val==='success'">
+  <table class="buildAdsGrid" border="1px">
+    <tr>
+      <th class="header" ng-repeat="column in gridColumns" ng-if="!column.savePage" ng-bind="column.displayName | T"></th>
+    </tr>
+    <tr ng-repeat="ad in newAds track by ad.clientRefId">
+      <td style="min-width: 210px;">
+        <a class="name-link" ui-sref="spa.ad.adEdit({adId:ad.id})">{{ad.name}}</a>
+      </td>
+
+      <td style="min-width: 50px">
+        <a style="display: inherit;padding-top: 4px;" ui-sref="spa.ad.adEdit({adId:ad.id})">{{ad.id}}</a>
+      </td>
+
+      <td style="min-width: 380px">
+        <div class="mm-entity-fields-container-single">
+          <mm-row>
+            <mm-label mm-layout-type="custom" mm-custom-control-width="200" mm-label-width="90"
+                     mm-disable="true"
+                     mm-caption="Default Image"
+                     mm-model="ad.defaultImage.assetName"
+                     mm-error="errorObj.nullDefaultImage"></mm-label>
+            <!--<span class="glyphicon glyphicon-eye-open previewIcon"  ng-click="openAssetPreview(ad.defaultImage)"></span>&nbsp;-->
+          </mm-row>
+        </div>
+        <div ng-if="ad.banner && ad.banner.assetId > 0">
+          <mm-row>
+            <mm-label mm-layout-type="custom" mm-custom-control-width="220" mm-label-width="90"
+                     mm-caption="Flash Banner"  mm-placeholder="none" mm-disable="true"
+                     mm-model="ad.banner.assetName" mm-select-change-func="onFlashChange()"
+                     mm-error="errorObj.nullBannerError"></mm-label>
+            <!--<span class="glyphicon glyphicon-eye-open previewIcon"  ng-click="openAssetPreview(ad.banner)"></span>&nbsp;-->
+          </mm-row>
+        </div>
+      </td>
+
+      <td style="min-width: 40px">
+        <div class='externalImage' style='margin: 2px; cursor:pointer;'ng-click='redirectOnImageClick(row.entity[col.field].externalLink)'>
+          <img ng-mousemove='adjustPreview($event)' ng-mouseenter='showPreview($event)' ng-mouseleave='removePreview($event)'
+               ng-src='{{ad.defaultImage.thumbnailUrl}}' height='{{imageHeight}}' width='{{imageWidth}}' lazy-src/></div>
+        <div ng-if="ad.banner && ad.banner.assetId > 0 && ad.banner.thumbnailUrl" class='externalImage' style='margin: 2px;cursor:pointer;'ng-click='redirectOnImageClick(row.entity[col.field].externalLink)'>
+        <img ng-mousemove='adjustPreview($event)' ng-mouseenter='showPreview($event)' ng-mouseleave='removePreview($event)'
+             ng-src='{{ad.banner.thumbnailUrl}}' height='{{imageHeight}}' width='{{imageWidth}}' lazy-src/></div>
+      </td>
+
+      <td style="min-width: 100px">
+        <div class="mm-entity-fields-container-single">
+          <mm-row>
+            <mm-label mm-model="ad.defaultImage.dimensions"
+                      mm-layout-type="custom" mm-custom-control-width="90"
+                      mm-show-label="false">
+            </mm-label>
+          </mm-row>
+          <mm-row>
+            <mm-label ng-if="ad.banner && ad.banner.assetId > 0" mm-model="ad.banner.dimensions"
+                      mm-layout-type="custom" mm-custom-control-width="90"
+                      mm-show-label="false">
+            </mm-label>
+          </mm-row>
+        </div>
+      </td>
+
+      <td style="min-width: 90px">
+        <div class="mm-entity-fields-container-single">
+          <mm-row>
+            <mm-label mm-model="ad.defaultImage.parsedFileSize"
+                      mm-layout-type="custom" mm-custom-control-width="90"
+                      mm-show-label="false">
+            </mm-label>
+          </mm-row>
+          <mm-row ng-if="ad.banner && ad.banner.assetId > 0">
+            <mm-label mm-model="ad.banner.parsedFileSize"
+                      mm-layout-type="custom" mm-custom-control-width="90"
+                      mm-show-label="false">
+            </mm-label>
+          </mm-row>
+        </div>
+      </td>
+
+      <td>
+        <div class="mm-entity-fields-container-single">
+          <!--<mm-row>-->
+            <!--<mm-label  mm-model="ad.defaultImageClickthrough.url"-->
+                      <!--mm-layout-type="custom" mm-custom-control-width="180"-->
+                      <!--mm-show-label="false" mm-disable="true"-->
+                      <!--mm-min-length="100" mm-max-length="100"></mm-label>-->
+          <!--</mm-row>-->
+            <mm-row >
+                <mm-text  mm-model="ad.mainClickthrough.url"
+                          mm-layout-type="custom" mm-custom-control-width="150"
+                          mm-show-label="false" mm-disable="false"
+                          mm-min-length="100" mm-max-length="100"></mm-text>
+            </mm-row>
+        </div>
+      </td>
+    </tr>
+  </table>
+</div>
+<div ng-if="step.val==='fail'">
+
+</div>

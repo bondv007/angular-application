@@ -1,0 +1,198 @@
+<div class="container-fluid" id="adPreviewContainer" background-url="http://dl.dropbox.com/u/515046/www/garfield-interior.jpg">
+	<div class="row">
+		<div class="col-md-12 mt20">
+			<div class="col-sm-4 col-sm-offset-8">
+				<form class="form-inline pull-right" ng-show="!hideBackgroundUrlBox">
+					<div class="form-group">
+						<input type="text" data-ng-model="backgroundUrl" class="form-control" placeholder="Background URL">
+					</div>
+					<button class="btn hblue-bg color-white" type="submit" data-ng-click="DownloadBackgorundUrlContent()">GO</button>&nbsp; <u data-ng-click="clearUrlField()">Clear</u>
+				</form>
+			</div>
+		</div>
+		<div class="col-md-12 mtb10">
+			<div class="col-md-4 col-md-offset-8">
+				<a href="javascript://" class="col-md-4 btn btn-default" data-ng-class="selectedScreen" data-ng-click="changeScreen(screenTypes.adUnit)">  Ad Unit </a>
+				<a href="javascript://" class="col-md-4 btn btn-default" data-ng-class="selectedScreen" data-ng-click="changeScreen(screenTypes.assets)">  Assets </a>
+				<a href="javascript://" class="col-md-4 btn btn-default" data-ng-class="selectedScreen" data-ng-click="changeScreen(screenTypes.sideBySide)">  Side by Side </a>
+			</div>
+		</div>
+		<div class="col-md-12 mtb10" ng-show="!hideAdUnit">
+			<div class="col-md-6" ng-show="!hideMetaDataContainer" mm-draggable>
+				<div class="adPreview-tabs-mn">
+					<tabset>
+						<a class="close rightMargin" ng-click="closeContainer(containerTypes.metaDataContainer)">&times;</a>
+						<tab>
+							<tab-heading>General </tab-heading>
+							<div class="panel panel-default">
+								<div class="panel-body row">
+									<div class="col-md-12">
+										<mm-row ng-show="ad.masterAdId == null || ad.masterAdId  == ''">
+                                            <mm-label mm-model="ad.name"
+																											mm-layout-type="medium"
+                                                      mm-caption="Ad Name" />
+                                            <!--<mm-text mm-is-edit-mode="false"
+                                                     mm-model="ad.name"
+                                                     mm-placeholder="Enter Name"
+                                                     mm-is-required="true"
+                                                     mm-error="adNameError.text"
+                                                     mm-caption="Ad Name"
+                                                     text-tooltip="Ad name"></mm-text>-->
+										</mm-row>
+										<mm-row ng-show="ad.id != null && ad.id != ''">
+                                            <mm-label mm-model="ad.id"
+																											mm-layout-type="medium"
+                                                      mm-caption="ID" />
+                                            <!--<mm-link mm-model="ad.id"
+											         mm-enable-edit="false" mm-error="adNameError.text"
+											         mm-caption="ID" mm-link-text="ad.id"/>-->
+										</mm-row >
+										<mm-row >
+                                            <mm-label mm-model="ad.masterAdId"
+																											mm-layout-type="medium"
+                                                      mm-caption="Master Ad" />
+                                            <!--<mm-link mm-model="ad.masterAdId"
+											         mm-enable-edit="false" mm-error="adNameError.text"
+											         mm-caption="Master Ad" mm-link-text="ad.masterAdId"/>-->
+										</mm-row>
+										<mm-row ng-show="ad.banner != undefined">
+											<mm-label mm-model="formattedAdSize"
+																mm-layout-type="medium"
+											          mm-caption="Size" />
+										</mm-row >
+										</mm-row>
+										<mm-row>
+											<mm-label mm-model="NA"
+																mm-layout-type="medium"
+											          mm-caption="Dimensions" />
+										</mm-row >
+										<mm-row >
+											<mm-drop-down mm-data-model="adFormats" mm-model="ad.adFormat" mm-is-required="true" mm-disabled ="ad.id != null && ad.id != ''"
+											                mm-caption="Format"   mm-placeholder="Enter Ad Format" mm-tooltip="Ad Format"
+																			mm-layout-type="medium"
+											                mm-error="error.name"></mm-drop-down>
+										</mm-row >
+										<mm-row>
+											<mm-label mm-model="NA"
+																mm-layout-type="medium"
+											          mm-caption="Mode" />
+										</mm-row >
+										<mm-row>
+											<mm-label mm-model="NA"
+																mm-layout-type="medium"
+											          mm-caption="Placement Status" />
+										</mm-row >
+										<!--<mm-row>
+											<clickthrough-item ng-model="ad.mainClickthrough" target-window-types="targetWindowTypes" url-types="clickthroughTypes" url-type="Clickthrough"></clickthrough-item>
+											</mm-row>-->
+									</div>
+								</div>
+							</div>
+						</tab>
+						<tab>
+							<tab-heading>Assets</tab-heading>
+
+							<div class="panel panel-default">
+								<div class="panel-body row">
+									<div class="col-md-12">
+										<h3><i class="fa fa-plus"></i> Ad Parts </h3>
+										<div class="assets-mn-tb">
+											<dl>
+                                                <dd ng-repeat="item in adParts"> <span>{{item.partType}}</span> &nbsp;<span>|</span> &nbsp; <u>{{item.title}}</u> &nbsp;<span>|</span> &nbsp;<span class="color-lgrey">{{item.formatContext.fileSize/1024|number:2}} KB</span> </dd>
+											</dl>
+										</div>
+										<h3 ng-if="additionalAssets !== null && additionalAssets.length > 0"><i class="fa fa-minus"></i> Additional Assets </h3>
+										<div class="assets-mn-tb">
+											<dl>
+                                                <dd ng-repeat="item in additionalAssets"> <span>{{item.partType}}</span> &nbsp;<span>|</span> &nbsp; <u>{{item.title}}</u> &nbsp;<span>|</span> &nbsp;<span class="color-lgrey">{{item.formatContext.fileSize/1024|number:2}} KB</span> </dd>
+											</dl>
+										</div>
+									</div>
+								</div>
+							</div>
+						</tab>
+						<tab>
+							<tab-heading>Placement Ads</tab-heading>
+							<div class="panel panel-default">
+								<div class="panel-body row">
+									<div class="col-md-12">
+
+									</div>
+								</div>
+							</div>
+						</tab>
+					</tabset>
+				</div>
+			</div>
+			<div class="col-md-2" ng-show="!hideAdDisplayContainer" mm-draggable enable="enableDrag">
+				<div class="">
+					<div class="panel-body">
+						<iframe ng-style="frameStyle" style="border-left: 0px; border-top: 0px; border-right: 0px; border-bottom: 0px" scrolling="no" width="300" height="250" srcdoc="
+						    <script src='http://ds.serving-sys.com/BurstingScript/ebPreviewPosServing.js' ></script>
+                            <script src='http://ds.serving-sys.com/BurstingCachedScripts/Position_4_5_2_0.js' ></script>
+                            <script>
+                                function getResParams(){return ebResPosParams;}
+                            </script>
+                            <div style='position: absolute; top: 0px; left: 0px; z-index: 9000;'>
+                                <div id='BannerTagsContainer0'>
+                                    <script src='http://bs.preview.serving-sys.com/BurstingPipe/adServer.bs?cn=rsb&amp;c=28&amp;pli=&amp;PluID=0&amp;pr=1&amp;ai=21313102&amp;w=300&amp;h=250&amp;ord=&amp;p=&amp;npu=$$$$&amp;ncu=$$$$' ></script>
+                                    <script src='http://ds.serving-sys.com/BurstingCachedScripts//SBTemplates_2_9_0_0/StdBanner.js?ai=21313102' ></script>
+                                 </div>
+                                <div style='border: 0px; margin: 0px; padding: 0px; text-align: left; overflow: visible;'>
+                                    <img id='ebTransparentImage0' src='http://ds.serving-sys.com/BurstingCachedScripts//Res/Transparent.gif' width='0' height='0' onclick='' border='0' style='border:2px solid #FF3333;margin:0;padding:0;textAlign:left;overflow:visible;position:absolute;width:0;height:0;z-Index:9001;backgroundColor:aqua;cursor:move;visibility:hidden;' tabindex='1'>
+                                </div>
+                            </div>
+                            <script language='javascript'>function ebNotifyAutoPlay(fAutoPlay){top.setVideoAutoPlay(fAutoPlay);}</script>" >Default text</iframe>
+                    </div>
+				</div>
+				</div>
+				<div class="col-md-5" ng-show="!hideInteractionMonitorContainer" mm-draggable>
+					<a class="close rightMargin" ng-click="closeContainer(containerTypes.interactionMonitorContainer)">&times;</a>
+					<div class="panel panel-default">
+					<div class="panel-heading">
+						<h3 class="panel-title">Interaction Monitor Panel</h3>
+					</div>
+					<div class="panel-body">
+						<form class="form-inline">
+							<button class="btn hdblue-bg color-white">See All</button>
+							<div class="form-group pull-right ml10">
+								<select class="form-control">
+									<option>Filter by</option>
+								</select>
+							</div>
+							<div class="form-group pull-right">
+								<select class="form-control">
+									<option>Sort By</option>
+								</select>
+							</div>
+						</form>
+						<div class="table-responsive mt20">
+							<table class="table table-stripped">
+								<thead>
+								<tr>
+									<th>#</th>
+									<th>Action</th>
+									<th>Ad Part</th>
+									<th>EB Command</th>
+									<th>Argument</th>
+									<th>Time</th>
+								</tr>
+								</thead>
+								<tbody>
+								<tr ng-repeat="event in monitorEvents" >
+                                    <td>{{event.number}}</td>
+                                    <td>{{event.action}}</td>
+									<td>{{event.part}}</td>
+									<td>{{event.command}}</td>
+									<td>{{event.args}}</td>
+									<td>{{Event.time}}</td>
+								</tr>
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

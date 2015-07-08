@@ -1,0 +1,53 @@
+<div ng-repeat="subconditions in condition.or">
+  <mm-drop-down mm-model="subconditions.urlThat"
+                mm-error="validation.advertiser"
+                mm-data-model="urlOptionCondition"
+                mm-layout-type="medium"
+                mm-caption="OR was referred from"
+                mm-label-width="{{labelWidth}}"></mm-drop-down>
+
+
+
+  <div class="row" ng-show="!subconditions.isTextArea">
+    <span ng-show="subconditions.urlList.length < 1 && !subconditions.isTextArea" class="centralEntitylLink pull-left"
+          data-ng-click="subconditions.isTextArea = !subconditions.isTextArea">Click to Add an exclusion URL
+    </span>
+
+    <mm-row-container>
+        <mm-row>
+            <div class="col-md-8">
+                <div ng-show="subconditions.urlList.length > 0">
+                    <div ng-repeat="t in subconditions.urlList" >
+                        <span class="centralEntitylLink"> {{t}} </span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="pull-right">
+                    <a class="margin-right" ng-click="subconditions.isTextArea = !subconditions.isTextArea" >
+                        <i class="fa fa-pencil"></i>
+                    </a>
+                    <a ng-click="landingUrlModal($index)" >
+                        <i class="fa fa-th-list"></i>
+                    </a>
+                </div>
+            </div>
+        </mm-row>
+    </mm-row-container>
+
+  </div>
+
+  <div ng-show="subconditions.isTextArea ">
+    <textarea ng-trim="false"
+              ng-list="&#10"
+              data-ng-model="subconditions.urlList"
+              ng-blur="subconditions.isTextArea = !subconditions.isTextArea"
+              name="tagTextArea"
+              cols="80"
+              rows="8"
+              title="Type one Url per line"
+              style="width:97%;margin-left: 4px;margin-right: 4px"
+              html-text >
+    </textarea>
+  </div>
+</div>

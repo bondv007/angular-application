@@ -1,0 +1,8 @@
+{
+	"env": "development-liron",
+	"ec2": "http://54.201.242.250:8080/rest/",
+	"loginPath": "http://54.201.242.250:8080/rest/login/",
+	"resource": "http://54.201.243.190:8080/_/"
+}
+
+

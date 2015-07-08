@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>CSB MDX2 Mock</title>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
+
+    <script type="text/javascript">
+
+        var SessionID;
+        var DecisionDiagramID;
+        var ClientSource;
+        var UserID;
+        var AccountID;
+
+        $(function() {
+
+            var data = { UserName:"jeff.gunderson", Password:"Sizmek123" };
+            var baseURL = window.location.origin;
+
+            $.ajax({
+                url: "https://dev4.eyeblaster.com/MediaMind.InternalAPI.Web/CSBService.svc/Login/Signin/",
+                type: "POST",
+                contentType: "application/json; charset=utf-8",
+                dataType: 'json',
+                data: JSON.stringify( data )
+            }).done(function( response ) {
+                SessionID = response.SessionId;
+                $('#sessionID').html(SessionID );
+            });
+
+            $('.triggerApp').on( 'click', function() {
+                var page = $(this).data().page;
+                triggerApp( page );
+            });
+
+            $('#decisionDiagramID').on( 'keyup', function() {
+                if ( $(this).val().length ) {
+                    $('.share').show();
+                }
+                else{
+                    $('.share').hide();
+                }
+            });
+
+            function triggerApp( page ) {
+                DecisionDiagramID = $('#decisionDiagramID').val();
+                UserID = $('#userID').val();
+                AccountID = $('#accountID').val();
+
+                var windowHeight = $(window).height() - 40;
+
+                $('#form-wrapper').hide();
+
+                if ( page != 'share' ) {
+                    $('body')
+                            .append('<iframe src="' + baseURL + '/#/csb/' + page + '/?SessionID=' + SessionID + '&DecisionDiagramID=' + DecisionDiagramID + '&UserID=' + UserID + '&AccountID=' + AccountID + '&EnvID=9" frameborder="0"></iframe>')
+                            .addClass('csb');
+                }
+                else{
+                    $('body')
+                            .append('<iframe src="' + baseURL + '/#/csb/' + page + '/?DecisionDiagramID=' + DecisionDiagramID + '&EnvID=9" frameborder="0"></iframe>')
+                            .addClass('csb');
+                } // removed empty lines
+            }
+        });
+    </script>
+    <style>
+        iframe{
+            box-shadow:0 1px 4px rgba(0,0,0,0.4);
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            width: calc(100% - 40px);
+            height: calc(100% - 40px);
+        }
+        body.csb{
+            background: #486E9A url("/images/csbApp/CSB_canvas_image.png");
+            background-size:cover;
+            height:100vh;
+        }
+        #form-wrapper{
+            padding:30px;
+        }
+    </style>
+
+</head>
+<body>
+
+
+<div id="form-wrapper" class="row">
+    <div class="col-md-4">
+        <form role="form">
+            <h1>Utility to mock MXD2 triggering options</h1>
+            <p>This page will load CSB in an iframe. The parent window now will load an iframe that has query params for Session ID, Diagram ID, User ID, and Account ID to mimick MDX2 triggering. Please wait for a Session ID to load before starting.</p>
+            <hr>
+            <div class="form-group">
+                <label>Session ID:</label> <span id="sessionID">Loading...</span><br>
+                <label for="decisionDiagramID">Decision Diagram ID</label>
+                <input type="text" class="form-control" id="decisionDiagramID" placeholder="Decision Diagram ID" autofocus>
+                <label for="userID">User ID</label>
+                <input disabled type="text" class="disabled form-control" id="userID" value="85104" placeholder="User ID">
+                <label for="accountID">Account ID</label>
+                <input disabled type="text" class="disabled form-control" id="accountID" value="13196" placeholder="Account ID">
+            </div>
+            <a class="triggerApp btn btn-default" data-page="diagram">Go to Diagram</a>
+            <a class="triggerApp btn btn-default" data-page="trafficking">Go to Trafficking</a>
+            <a class="triggerApp btn btn-default share" data-page="share" style="display:none;">Go to Share</a>
+        </form>
+    </div>
+</div>
+</body>
+</html>
+<!---->

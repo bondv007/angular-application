@@ -1,0 +1,25 @@
+<div class="uploadAssets">
+    <span class="info-box">
+        <h1 class="info-title">Welcome to Ad Wizard </h1>
+        <p class="info-text" translate="AdWizard_WelcomeText"></p>
+        <span class="info-img"></span>
+    </span>
+
+    <span class="body-container">
+        <div class="header-text">{{'Choose ad format you wish to build ads for' | T | uppercase}}</div>
+        <span class="standard-container">
+             <span class="standard-logo"  ng-class="{selected: obj.adFormatType=='STANDARD_BANNER_AD'}" ng-click="formatSelected('STANDARD_BANNER_AD')"></span>
+             <span class="format-text">{{'StandardBannerAd'| T}}</span>
+        </span>
+        <span class="enhanced-container">
+          <span class="enhanced-logo" ng-class="{selected: obj.adFormatType=='ENHANCED_STANDARD_BANNER_AD'}" ng-click="formatSelected('ENHANCED_STANDARD_BANNER_AD')"></span>
+          <span class="format-text">{{'Enhanced Standard' | T}}</span>
+          <span class="format-text" style="margin-left: 60px;">{{'Banner' | T}}</span>
+        </span>
+        <span class="enhanced-container">
+           <span class="enhanced-logo" ng-class="{selected: obj.adFormatType=='RICH_MEDIA_BANNER_AD'}" ng-click="formatSelected('RICH_MEDIA_BANNER_AD')"></span>
+            <span class="format-text">{{'RichMediaBannerAd' | T}}</span>
+        </span>
+    </span>
+
+</div>

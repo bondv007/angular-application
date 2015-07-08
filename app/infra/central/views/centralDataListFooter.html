@@ -1,0 +1,7 @@
+<div class="centralFooter">
+	<div class="centralFooterText">{{'TOTAL ITEMS' | T}}: <span style="font-weight: bold;">
+		{{dataObj.serverLength > dataObj.filteredList.length ? dataObj.serverLength : dataObj.filteredList.length}}
+	</span></div>
+	<div class="centralFooterText" style="margin-right: 5px;margin-left: 5px;"> | </div>
+	<div class="centralFooterText">{{'SELECTED ITEMS' | T}}: <span style="font-weight: bold;">{{(dataObj.filteredList | filter:{isSelected:true}).length}}</span></div>
+</div>

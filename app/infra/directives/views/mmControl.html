@@ -1,0 +1,28 @@
+<div class="{{mmOuterClass}}">
+  <div class="mm-row">
+    <span ng-show="mmShouldShowLabel"
+          class="mm-control-label {{mmLabelClass}}"
+         style="{{'width:'+labelWidth}}"><span mm-required-sign="{{mmIsRequired}}"></span>{{mmCaption}}</span>
+    <div ng-show="mmShouldShowControl" class="{{mmControlClass}} {{mmAdditionalClass}}" ng-class="{'text-edit-mode': isEditMode, 'text-new-mode': !isEditMode}">
+      <div class="{{mmCloseModeClass}}">
+        <div ng-transclude style="line-height:0;"></div>
+        <span ng-if="(!isShowControl && !isLink && (mmError === undefined || mmError == '')) || (mmDisableEdit && !isLink && mmIsEditMode)"
+              class="mm-label-value {{labelClass}}"
+              ng-class="{hover: hover, hint: (!mmModelObj.text && mmPlaceholder), disable: mmDisable}"
+              ng-mouseenter="hover = true && !mmDisableEdit"
+              ng-mouseleave="hover = false"
+              ng-click="openToEdit(true);">{{mmModelObj.text || mmPlaceholder}}
+        <img ng-class="{'button-down': !isVisible, 'button-up': isVisible}"
+             ng-if="hover"/>
+        <div class="span-separator"
+             ng-show="hover"></div>
+        </span>
+        <span ng-if="!isShowControl && isLink && (mmError === undefined || mmError == '')" class="mm-link-label">
+          <div ng-if="mmSimpleLink" ng-include="'infra/directives/views/link/simpleLink.html'"></div>
+          <div ng-if="!mmSimpleLink" ng-include="'infra/directives/views/link/entityLink.html'"></div>
+        </span>
+      </div>
+      <mm-error-div mm-min-width="mmMinWidth" error-text="mmError"></mm-error-div>
+    </div>
+  </div>
+</div>

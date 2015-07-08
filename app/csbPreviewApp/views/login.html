@@ -1,0 +1,39 @@
+<!--<div>-->
+	<!--<form name="myForm">-->
+		<!--<div class="modal-header">-->
+			<!--<a class="close" ng-click="closeLoginModal()">&times;</a>-->
+			<!--<h3>Log in</h3>-->
+		<!--</div>-->
+		<!--<div class="modal-body">-->
+			<!--<div class="form-group" ng-class="{error: myForm.password.$invalid}">-->
+				<!--<label for="login_password">Password</label>-->
+				<!--<input id="login_password" type="password" name="password" class="form-control"-->
+				       <!--ng-model="loginCredentials.password" required ng-minlength="5" ng-maxlength="20">-->
+				<!--<span class="help-block" ng-show="myForm.password.$error.required">Required</span>-->
+				<!--<span class="help-block" ng-show="myForm.password.$error.minlength">Too short!</span>-->
+				<!--<span class="help-block" ng-show="myForm.password.$error.maxlength">Too long!</span>-->
+			<!--</div>-->
+			<!--<span class="alert-error" ng-show="fail">Login failed: {{fail}}</span>-->
+		<!--</div>-->
+		<!--<div class="modal-footer">-->
+			<!--<button type="button" ng-click="closeLoginModal()" class="btn">Cancel</button>-->
+			<!--<button type="submit" ng-click="login()" ng-disabled="myForm.$invalid" class="btn btn-primary">Log In</button>-->
+		<!--</div>-->
+	<!--</form>-->
+<!--</div>-->
+
+<div class="Sharepopupbox-outer">
+	<form name="myForm">
+	<div class="Sharepopupbox">
+		<h3>Password-Protected Preview</h3>
+		<div class="text"><p>The preview you are accessing requires a password</p></div>
+		<div class="input" ng-class="{'error':myForm.password.$invalid}"><span class="ico"></span>
+			<input type="password" name="password" ng-model="loginCredentials.password" required ng-minlength="5" ng-maxlength="50" placeholder="Type password">
+			<span ng-if="myForm.password.$invalid" class="txt-error">		<span ng-show="myForm.password.$error.required">Required</span>
+		<span  ng-show="myForm.password.$error.minlength">Too short!</span>
+		<span  ng-show="myForm.password.$error.maxlength">Too long!</span></span>
+		</div>
+		<input type="submit" ng-click="login()" ng-class="{'disabl':myForm.$invalid}" ng-disabled="myForm.$invalid" value="Login" class="submit-btn">
+	</div>
+</form>
+</div>

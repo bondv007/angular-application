@@ -1,0 +1,13 @@
+<h1>Placements</h1>
+<a ng-repeat="placement in placements" ng-href="#/editPlacement/{{placement.id}}"
+	 style="display: inline-block; text-align:start; margin: 30px; width:185px;font-size: 18px;font-weight: 200;line-height: 30px;background-color: #eee;border-radius: 6px;padding: 60px;">
+	<h3>{{placement.name}}</h3>
+	<hr/>
+	<p>
+		Site Name: {{placement.siteName}} <br/>
+		Start Date: {{placement.startDate}} <br/>
+		End Date: {{placement.endDate}} <br/>
+	</p>
+</a>
+
+

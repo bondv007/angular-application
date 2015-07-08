@@ -1,0 +1,82 @@
+<mm-toggle-container mm-caption="Settings"
+                     start-open="togglesStatus.settings">
+  <tabset justified="false">
+    <tab id="campaignSetupTab" heading="Campaign Setup" active="tabHandler.settings.campaign.isActive" ng-attr-class="{{isTabValid.settings.campaign ? '' : 'tabWithErrors'}}">
+      <mm-campaign-settings
+        mm-model="editObject.adminSettings.campaignSettings"
+        mm-label-width="{{labelWidth}}"
+        mm-is-required="{{!isRequired}}"
+        mm-hide-data-access="!isRequired"
+        has-permission="true"
+        mm-disable-trafficking-mode="false">
+      </mm-campaign-settings>
+    </tab>
+    <tab id="regionalTab" heading="Regional" active="tabHandler.settings.regional.isActive" ng-attr-class="{{isTabValid.settings.regional ? '' : 'tabWithErrors'}}">
+      <mm-row>
+        <mm-drop-down mm-is-edit-mode="isEditMode"
+                      mm-caption="Default Time Zone"
+                      mm-model="editObject.adminSettings.regionalSettings.defaultTimeZone"
+                      mm-data-model="gmtOffset"
+                      mm-error="validation.gmtOffset"
+                      mm-is-required="{{isRequired}}"
+                      mm-label-width="{{labelWidth}}"
+                      mm-layout-type="medium"
+                      mm-select-change-func="onGMTOffsetSelected()"></mm-drop-down>
+      </mm-row>
+    </tab>
+    <tab id="privacyTab" heading="Privacy" active="tabHandler.settings.privacy.isActive" ng-attr-class="{{isTabValid.settings.privacy ? '' : 'tabWithErrors'}}">
+      <mm-row>
+        <mm-check-box
+            mm-model="editObject.adminSettings.privacy.disableCookies"
+            mm-description="Disable Cookies"
+            mm-caption="Cookies"
+            mm-layout-type="medium"
+            mm-label-width="{{labelWidth}}"></mm-check-box>
+      </mm-row>
+      <mm-mini-section
+          mm-is-modal="'false'"
+          mm-caption="'Ad Choices Icon'"
+          mm-start-open="togglesStatus.adChoicesIcon">
+        <mm-row>
+          <mm-check-box
+              mm-model="editObject.adminSettings.privacy.adMarker.includeInAllAds"
+              mm-description="Include AdChoices Icon in All Ads"
+              mm-caption="AdChoices Icon"
+              mm-layout-type="medium"
+              mm-label-width="{{labelWidth}}"></mm-check-box>
+        </mm-row>
+        <mm-row>
+          <div style="line-height:30px">
+            <mm-radiobutton
+                mm-model="regulationProgram"
+                mm-visible="true"
+                mm-is-required="false"
+                mm-is-vertical="true"
+                mm-selected="editObject.adminSettings.privacy.adMarker.regulationProgram"
+                mm-model-id="text"
+                mm-disabled="false"
+                mm-caption="Regulation Program"
+                mm-show-label="true"
+                mm-layout-type="medium"
+                mm-error="validation.regulationProgram"
+                mm-is-required="{{isRequired}}"
+                mm-label-width="{{labelWidth}}">
+            </mm-radiobutton>
+          </div>
+        </mm-row>
+        <mm-row>
+          <mm-text mm-is-edit-mode="isEditMode"
+                   mm-caption="Marker Clickthrough URL"
+                   mm-model="editObject.adminSettings.privacy.adMarker.markerClickthroughURL"
+                   mm-placeholder="Enter URL"
+                   mm-error="validation.markerClickthroughURL"
+                   mm-is-required="{{!isRequired}}"
+                   mm-label-width="{{labelWidth}}"
+                   text-tooltip="Enter URL"
+                   mm-layout-type="medium"
+                   mm-change="onMarkerClickThroughURLChange()"></mm-text>
+        </mm-row>
+      </mm-mini-section>
+    </tab>
+  </tabset>
+</mm-toggle-container>

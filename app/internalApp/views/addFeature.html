@@ -1,0 +1,35 @@
+<mm-row>
+  <div class="mm-entity-fields-container-single">
+    <mm-row>
+      <mm-text mm-caption="Name:"
+               mm-model="newFeature.name"
+               mm-placeholder="Enter feature name"
+               mm-disable="false"
+               mm-is-edit-mode="false"
+               mm-label-width="100"
+               mm-layout-type="custom"
+               mm-custom-control-width="200"></mm-text>
+    </mm-row>
+    <mm-row>
+      <mm-drop-down mm-model="newFeature.teams"
+                      mm-data-model="teams"
+                      mm-caption="Feature teams:"
+                      mm-error="sitesError.text"
+                      mm-label-width="100"
+                      mm-layout-type="custom"
+                      mm-custom-control-width="200"
+                      control-type="multi">
+      </mm-drop-down>
+    </mm-row>
+  </div>
+</mm-row>
+<mm-row>
+  <mm-text mm-caption="Description:"
+           mm-model="newFeature.description"
+           mm-placeholder="Enter feature description"
+           mm-disable="false"
+           mm-is-edit-mode="false"
+           mm-label-width="100"
+           mm-layout-type="custom"
+           mm-custom-control-width="200"></mm-text>
+</mm-row>

@@ -1,0 +1,282 @@
+.spreadsheetEntity .editContainer {top: 60px;}
+.spreadsheetEntity .entityActionsBar {background: none;}
+.spreadsheetContainer {position:fixed !important; border: 1px solid gray; top:120px; right:20px; left:20px; bottom:30px; border: 1px solid gray; }
+.spreadsheetEntity .v-separator {
+  border-left: 1px solid $cFourth;
+  margin-left: 10px;
+  margin-right: 15px;
+}
+.spreadsheetEntity .testProgress {margin-top: 30px;}
+.spreadsheetEntity .innerBar {padding: 0 5px; color:black; white-space:nowrap; line-height: 30px;}
+.spreadsheetEntity .progress {height: 30px; /*background-color: $cMainSeventyFive;*/}
+.spreadsheetEntity .progressContainer {position: fixed; bottom: 10%; right: 27%; width: 600px; height: 300px; z-index: 100; background-color: $cWhite; border: solid 1px $cSecondarySeventyFive; }
+.progress-modal .modal-dialog { width: 520px; /*400 width + 10 padding*/}
+.progress-modal .mmmodal-content {height: 300px;}
+.spreadsheetEntity .progressContainer .mmmodal-body {height: 200px;}
+
+//.spreadsheetEntity .validationFixContainer .mmmodal-body {height: 200px;}
+.spreadsheetEntity .validationFixContainer .mmmodal-content {margin-top: 20px; margin-right: 10px; margin-bottom: 10px; margin-left: 20px;}
+.spreadsheetEntity .validationFixContainer .mmmodal-footer {margin: 10px;}
+.spreadsheetEntity .validationFixContainer {visibility: hidden; position: absolute; width: 475px; z-index: 100; background-color: $cWhite; border: solid 1px $cSecondarySeventyFive; }
+
+.spreadsheetEntity .validationConfirmDelete .mmmodal-body {height: 110px;}
+.spreadsheetEntity .validationConfirmDelete .mmmodal-content {height: 70px;}
+.spreadsheetEntity .validationConfirmDelete {position: absolute; right: 32%; top: 10%; width: 400px; height: 200px; z-index: 100; background-color: $cWhite; border: solid 1px $cSecondarySeventyFive; }
+
+.spreadsheetEntity .importOverlay {
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  position: fixed;
+  background: rgba(255,255,255,0.8);
+  pointer-events: none;
+}
+
+.spreadsheetEntity .wave-spinner {
+  margin: 100px auto;
+  width: 50px;
+  height: 30px;
+  text-align: center;
+  font-size: 10px;
+}
+
+.spreadsheetEntity .wave-spinner > div {
+  background-color: #0d2a4d;
+  height: 100%;
+  width: 6px;
+  display: inline-block;
+  -webkit-animation: stretchdelay 1.2s infinite ease-in-out;
+  animation: stretchdelay 1.2s infinite ease-in-out;
+}
+
+.spreadsheetEntity .wave-spinner .rect2 {
+  -webkit-animation-delay: -1.1s;
+  animation-delay: -1.1s;
+}
+
+.spreadsheetEntity .wave-spinner .rect3 {
+  -webkit-animation-delay: -1.0s;
+  animation-delay: -1.0s;
+}
+
+.spreadsheetEntity .wave-spinner .rect4 {
+  -webkit-animation-delay: -0.9s;
+  animation-delay: -0.9s;
+}
+
+.spreadsheetEntity .wave-spinner .rect5 {
+  -webkit-animation-delay: -0.8s;
+  animation-delay: -0.8s;
+}
+
+@-webkit-keyframes stretchdelay {
+  0%, 40%, 100% { -webkit-transform: scaleY(0.4) }
+  20% { -webkit-transform: scaleY(1.0) }
+}
+
+@keyframes stretchdelay {
+  0%, 40%, 100% {
+    transform: scaleY(0.4);
+    -webkit-transform: scaleY(0.4);
+  }  20% {
+       transform: scaleY(1.0);
+       -webkit-transform: scaleY(1.0);
+     }
+}
+
+
+.ui-helper-hidden-accessible {font-size: 1px}
+.ui-autocomplete {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  z-index: 1000;
+  max-height: 120px;
+  overflow-y: auto;
+  overflow-x: hidden;
+
+  float: left;
+  display: none;
+  min-width: 160px;
+  _width: 160px;
+  padding: 4px 0;
+  margin: 2px 0 0 0;
+  list-style: none;
+  background-color: #ffffff;
+  border-color: #ccc;
+  border-color: rgba(0, 0, 0, 0.2);
+  border-style: solid;
+  border-width: 1px;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+  -webkit-box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+  -moz-box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+  -webkit-background-clip: padding-box;
+  -moz-background-clip: padding;
+  background-clip: padding-box;
+  *border-right-width: 2px;
+  *border-bottom-width: 2px;
+
+  .ui-menu-item > a.ui-corner-all {
+    display: block;
+    padding: 3px 15px;
+    clear: both;
+    font-weight: normal;
+    line-height: 18px;
+    color: #555555;
+    white-space: nowrap;
+
+    &.ui-state-hover, &.ui-state-active {
+      color: #ffffff;
+      text-decoration: none;
+      background-color: #0088cc;
+      border-radius: 0px;
+      -webkit-border-radius: 0px;
+      -moz-border-radius: 0px;
+      background-image: none;
+    }
+  }
+}
+
+
+
+
+/** mmSpreadsheet.js directive styles **/
+.mm-spreadsheet-wrapper{
+  position:relative;
+  background:white;
+  border:1px solid $cSecondaryDisable;
+}
+.mm-spreadsheet{
+  height:calc( 100vh - 150px );
+}
+.mm-spreadsheet.with-tabs{
+  height:calc( 100vh - 170px );
+}
+.spreadsheet-errors{
+  font-family: 'Titillium Semibold'
+}
+.spreadsheet-errors .error-count{
+  color:red;
+}
+.mm-spreadsheet-input{
+  border:0;
+}
+.mm-spreadsheet-input:focus{
+  outline:0;
+}
+.mm-spreadsheet-loader{
+  position:absolute;
+  z-index:999;
+  top:0;
+  left:0;
+  width:100%;
+  height:100%;
+  background:rgba(0,0,0,0.4);
+}
+.mm-spreadsheet-loader span{
+  display:inline-block;
+  position:absolute;
+  top:50%;
+  margin-top:-0.5em;
+  width:100%;
+  text-align:center;
+  color:white;
+  font-size:26px;
+}
+.mm-spreadsheet-sheet-tabs{
+  height:26px;
+  cursor:pointer;
+}
+.mm-spreadsheet-sheet-tabs > .tab-label{
+  font-family: 'Titillium Semibold';
+  display:inline-block;
+  padding:0 15px;
+  line-height:20px;
+}
+.mm-spreadsheet-sheet-tabs > .tab{
+  display:inline-block;
+  padding:0 10px;
+  line-height:20px;
+  font-size:12px;
+  border-right:1px solid $cSecondaryDisable;
+}
+.mm-spreadsheet-sheet-tabs > .tab.first{
+  border-left: 1px solid $cSecondaryDisable;
+}
+.mm-spreadsheet-sheet-tabs > .tab.active{
+  background: $cMain;
+  color:white;
+}
+.mm-spreadsheet-dropdown{
+  background:white;
+  border:1px solid #0068ff;
+  min-width:calc( 100% + 2px );
+  display:inline-block;
+}
+.mm-spreadsheet-dropdown .item{
+  padding: 3px 9px;
+  white-space:nowrap;
+  color:$cDarkGrey;
+}
+.mm-spreadsheet-dropdown .item:hover{
+  background: rgba( 186, 202, 228, 0.5 );
+  color: $cSecondary;
+}
+.mm-spreadsheet-dropdown .item:focus{
+  background: rgb( 186, 202, 228 );
+}
+// spreadjs overrides
+.mm-spreadsheet .scroll-bar{
+  left:1px;
+}
+.mm-spreadsheet .scroll-arrow{
+  width: 18px !important;
+}
+.mm-spreadsheet-wrapper .mm-spreadsheet-tooltip{
+  position:fixed;
+  width:300px;
+  background:white;
+  background: rgba(255,255,255,0.95);
+  padding:13px;
+  border:1px solid $cFourth;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.2);
+  -moz-box-shadow: 0 1px 4px rgba(0,0,0,0.2);
+  -webkit-box-shadow: 0 1px 4px rgba(0,0,0,0.2);
+}
+.mm-spreadsheet-tooltip p{
+  font-size:13px;
+  color: $cSecondary;
+  line-height:1em;
+}
+.mm-spreadsheet-tooltip .mm-spreadsheet-tooltip-caret{
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 10px 13px 10px 0;
+  border-color: transparent $cFourth transparent transparent;
+  position:absolute;
+  z-index:10;
+  top:20px;
+  left:-13px;
+}
+.mm-spreadsheet-tooltip .mm-spreadsheet-tooltip-caret:after{
+  content: ' ';
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 10px 13px 10px 0;
+  border-color: transparent rgba(255,255,255,0.95) transparent transparent;
+  position:absolute;
+  top:50%;
+  margin-top:-10px;
+  left:2px;
+}
+
+// overrides the spreadjs OK filter button
+#filterOK{
+  margin-left:4px !important;
+}

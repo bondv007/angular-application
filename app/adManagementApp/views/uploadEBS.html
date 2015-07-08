@@ -1,0 +1,229 @@
+<div class="upload-modal">
+	<div class="mmmodal-header">
+		<div class="close">
+			<div class="close-button" ng-click="closeModal()" data-dismiss="modal"></div>
+		</div>
+		<div class="mmmodal-title">CREATE ADS FROM BUNDLES</div>
+	</div>
+	<div class="mmmodal-body upload-entry">
+		<div class="mmmodal-content">
+			<div uploader="uploader" nv-file-drop>
+			<!-- uploader -->
+				<div class="uploadMainContainer">
+          <!-- destination folder -->
+          <div class="destination-folder">
+            <p>Destination Folder:
+              <a class="destFolderLink" href="javascript:void(0)" ng-click="showTreeControl()" ng-disabled="foldersData.length <= 1">
+                <span class="truncate">{{selectedFolder.name}} </span>
+                <i class="assets-icon-Mini_folder_color"></i></a>
+            </p>
+          </div>
+          <div class="clearfix"></div>
+          <!--<tabset>
+
+          <tab ng-click="removeSelectedImages()">
+          <tab-heading>Upload</tab-heading>-->
+						<div class="file-dropzone">
+							<!--entry dropzone-->
+							<div ng-if="showDropzone">
+								<div class="ebsFileErrorInfo" style="display:none">
+									<div class="alert alert-info"><i class="fa fa-info-circle"></i> Please choose only EBS files to import.
+									</div>
+								</div>
+								<div ng-show="uploader.isHTML5">
+									<div class="well ebswell my-drop-zone text-center {{filebrowseCssClass}}" uploader="uploader" nv-file-over over-class="image-file-over" ng-class="{active: itemsInUploader.length > 0}">
+										<div class="uploadIcon" uploader="uploader" nv-file-over over-class="image-file-over"></div>
+										<p>Drag files here</p>
+										<p class="connect">&ndash;&ndash;&ndash;&ndash; OR &ndash;&ndash;&ndash;&ndash;</p>
+										<div class="upload-browse-link" ng-if="!IsSingleFileUpload">
+											<input uploader="uploader" nv-file-select type="file" multiple id="upload-input1"/>
+											<label class="file-text" for="upload-input1">Browse files</label>
+										</div>
+										<div class="upload-browse-link" ng-if="IsSingleFileUpload">
+											<input uploader="uploader" nv-file-select type="file" id="upload-input2"/>
+											<label class="file-text" for="upload-input2">Browse files</label>
+										</div>
+									</div>
+								</div>
+							</div>
+							<!--<div ng-show="showTree" ng-click="storeCurrentNode()" class="treeview-wrapper-div">
+									<div
+											data-angular-treeview="true"
+											data-tree-id="destinationLocationTree"
+											data-tree-model="roleList"
+											data-node-id="id"
+											data-node-label="label"
+											data-node-children="children">
+									</div>
+							</div>-->
+
+							<div class="upload-prog-sec" ng-show="ShowProgressContainer">
+								<div class="ebsFileErrorInfo" style="display:none">
+									<div class="alert alert-info"><i class="fa fa-info-circle"></i> Please choose only EBS files to import.
+									</div>
+								</div>
+								<!--upload info section-->
+								<div ng-show="ShowProgressContainer">
+
+									<div class="upload-info">
+										<!--<span>Time Elapsed: xx Seconds</span>-->
+                    <span>{{queueIndex}} out of</span>
+                    <!--<span class="separator">|</span><span>{{queueIndex}} out of</span>-->
+										<span>{{uploader.queue.length}} Files </span><span class="separator" ng-show="uploader.queue.length > 0">|</span>
+                    <span ng-show="!isUploadError && uploader.queue.length > 0" class="strong">{{uploader.progress}}% complete</span>
+                    <span ng-show="isUploadError && uploader.queue.length > 0" class="strong error">{{uploader.progress}}% complete (Error)</span>
+										<!--<span class="strong">{{uploader.progress}}% complete</span>-->
+										<!--add in when error handling implemented-->
+										<span class="pull-right" ng-disabled="!uploader.isUploading">
+											<a ng-disabled="!uploader.isUploading" ng-click="cancelAllUploading()">Cancel All</a>
+										</span>
+									</div>
+									<div class="clearfix"></div>
+									<div class="progress relative">
+										<div class="progress-bar" role="progressbar" ng-style="{ 'width': uploader.progress + '%' }">
+										</div>
+									</div>
+								</div>
+
+								<!--upload table-->
+								<!--<div>-->
+									<!--<div class="tableSelect col-sm-12">-->
+									<div class="tableSelect">
+										<div class="table-wrap">
+											<!--<table class="table upload-table marginZero">-->
+											<table class="table upload-table">
+												<thead>
+												<tr>
+													<th class="ebsname">File Name</th>
+													<!--<th class="filetype">Type</th>-->
+													<!--<th class="ebsdest" ng-show="uploader.isHTML5">Destination</th>-->
+													<th class="ebsid" ng-show="uploader.isHTML5">ID</th>
+													<th class="ebsad" ng-show="uploader.isHTML5">Ad Name</th>
+													<!--<th class="col-sm-2" ng-show="uploader.isHTML5">Ad Format</th>-->
+													<th class="size ebssize" ng-show="uploader.isHTML5">Size</th>
+													<th class="status" ng-show="uploader.isHTML5">Progress</th>
+												</tr>
+												</thead>
+												<tfoot>
+												<tr>
+													<td colspan="6">
+														<span ng-show="uploader.queue.length == 1 && !IsUploadCompleted">Uploading <span>{{uploader.queue.length}}</span> File</span>
+														<span ng-show="uploader.queue.length > 1 && !IsUploadCompleted">Uploading <span>{{uploader.queue.length}}</span> Files</span>
+														<span ng-show="IsUploadCompleted && !IsUploadCancelled && uploader.queue.length >= 1">Upload Completed</span>
+														<span ng-show="uploader.queue.length <= 0">No files in upload queue</span>
+                            <span ng-show="IsUploadCancelled && uploader.queue.length > 0"> **Upload Cancelled</span>
+													</td>
+												</tr>
+												</tfoot>
+												<tbody>
+												<tr class="{{cssClass[$index]}}" ng-repeat="item in uploader.queue"
+														ng-click="!isFolderLinkClicked ? selectRow($index,item) : ''"
+														ng-class='{selected:  selectedRows.indexOf(item.assetId)!=-1}'>
+													<td class="ebsname">{{ item.file.name }}</td>
+													<!--<td class=""><i class="{{item.icon}}"></i></td>-->
+													<!--<td class="ebsdest" ng-show="uploader.isHTML5" nowrap>
+														<a class="cursorPointer" ng-click="openDestinationFolderTreePopup($index)"> {{
+															item.destinationFolder }}</a>
+													</td>-->
+													<td class="ebsid" ng-show="uploader.isHTML5" nowrap>
+														<span class="cursorPointer" ng-if="!item.isUploaded"><i class="fa fa-clock-o"></i></span>
+														<span class="cursorPointer" ng-if="item.isUploaded">{{ item.adId }}</span>
+													</td>
+													<td class="ebsad" ng-show="uploader.isHTML5">
+														<span class="cursorPointer" ng-if="!item.isUploaded"><i class="fa fa-clock-o"></i></span>
+														<span class="cursorPointer" ng-if="item.isUploaded && !item.hasAdNameError">{{ item.adName }}</span>
+																		<span class="cursorPointer" ng-if="item.hasAdNameError">
+																				<mm-text
+																					mm-caption=""
+																					mm-is-required=""
+																					mm-model="item.file.name"
+																					mm-label-layout-class="col-md-1"
+																					mm-control-layout-class="col-md-12"
+																					mm-show-label="false"
+																					mm-show-edit-mode="true"
+																					mm-placeholder="Enter ad name"
+																					mm-error=""
+																					text-tooltip="Enter new ad name"></mm-text>
+																		</span>
+
+														<div width="100%" align="right" ng-if="item.hasAdNameError">
+															<i class="fa fa-spinner fa-spin" ng-if="item.isSaving" title="Saving your changes..."></i>
+															<i class="fa fa-save" ng-if="!item.isSaving"></i>&nbsp;
+                              <a class="cursorPointer" ng-if="!item.isSaving" ng-click="saveAdName(item)">Save</a>
+														</div>
+													</td>
+													<!--<td ng-show="uploader.isHTML5" nowrap>
+															<span class="cursorPointer" ng-if="!item.isUploaded"><i class="fa fa-clock-o"></i></span>
+															<span class="cursorPointer" ng-if="item.isUploaded">format</span>
+													</td>-->
+													<td class="size ebssize" ng-show="uploader.isHTML5" nowrap>{{ item.file.size/1024/1024|number:2 }} MB</td>
+													<td class="status ebsstatus" ng-show="uploader.isHTML5">
+														<span ng-if="item.isUploading || item.isSuccess">
+															<span class="pull-left">{{item.progress}}%</span>
+															<div class="progress innergrid pull-left">
+																<div class="progress-bar" role="progressbar" ng-style="{ 'width': item.progress + '%' }">
+																</div>
+															</div>
+														</span>
+														<span ng-if="item.isUploaded && !item.isSuccess">
+															<span class="pull-left error">Upload failed </span>
+														</span>
+														<a ng-click="item.remove(); removeAssetFromList(item)" ng-if="!item.isUploading && !item.isUploaded" ng-disabled="item.progress==100">
+															<span class="cancel-icon"></span>
+														</a>
+														<a ng-click="item.cancel()" ng-if="item.isUploading">
+															<span class="cancel-icon"></span>
+														</a>
+														<a ng-if="item.isUploaded && item.isSuccess">
+															<span><i class="fa fa-check"></i></span>
+														</a>
+													</td>
+												</tr>
+												</tbody>
+											</table>
+										</div>
+									</div>
+							</div>
+						</div>
+
+					<!--</tab>
+					</tabset>-->
+				</div>
+			</div>
+		</div>
+	</div>
+
+    <!-- footer -->
+	<div class="clearfix"></div>
+	<div class="modal-footer">
+		<span class="cursorPointer pull-left footer-message" ng-if="ShowProgressContainer && !IsSingleFileUpload">TIP: You can drag more
+			files to the screen to add them to the upload queue, or
+				<span>
+					<input uploader="uploader" nv-file-select type="file" multiple id="upload-input3"/>
+					<label class="file-text" for="upload-input3">use manual upload</label>
+				</span>
+		</span>
+
+		<button type="button" ng-class="{'primaryButton':true}" class="btn btn-group mm-btn-save"
+						ng-if="(uploader.queue.length && !uploader.isUploading && ShowProgressContainer && !IsUploadCompleted) && getTotalAssetsToUpload()==1"
+						ng-click="startUploading()">
+			Upload Bundle
+		</button>
+		<button type="button" ng-class="{'primaryButton':true}" class="btn btn-group mm-btn-save"
+						ng-if="(uploader.queue.length && !uploader.isUploading && ShowProgressContainer && !IsUploadCompleted) && getTotalAssetsToUpload()>1"
+						ng-click="startUploading()">
+			Upload Bundles
+		</button>
+		<button type="button" ng-class="{'primaryButton':true}" ng-show="IsUploadCompleted && !uploader.isUploading && !showSelectTab"
+						ng-click="closePopup()" class="mm-attach-button btn btn-primary">
+			Done
+		</button>
+		<!--<button type="button"
+						ng-show="ShowProgressContainer && uploader.isUploading && !( IsSingleFileUpload && IsUploadCompleted )"
+						ng-click="flyLayout()" class="btn btn-primary">
+				Minimize
+		</button>-->
+		<button type="button" ng-click="closeModal()" class="btn btn-group mm-btn-discard">Cancel
+		</button>
+	</div>
+</div>

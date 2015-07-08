@@ -1,0 +1,12 @@
+<table>
+	<tr>
+		<td ng-if="ad.rotationSetting.type != 'TimeBased'">
+			<div ng-if="sg.type != 'AdContainer'" ng-repeat="ad in sg" ng-bind="ad.rotationSetting.weight+'%'"></div>
+			<div ng-if="sg.type == 'AdContainer'" ng-repeat="ad in sg.subContainers" ng-bind="(ad.type != 'AdContainer')?ad.rotationSetting.weight+'%':'_'"></div>
+		</td>
+		<td ng-if="ad.rotationSetting.type == 'TimeBased'">
+			<div ng-if="sg.type != 'AdContainer'" ng-repeat="ad in sg" ng-bind="'-'"></div>
+			<div ng-if="sg.type == 'AdContainer'" ng-repeat="ad in sg.subContainers" ng-bind="'-'"></div>
+		</td>
+	</tr>
+</table>

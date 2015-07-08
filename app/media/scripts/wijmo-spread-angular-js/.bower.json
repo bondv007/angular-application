@@ -1,0 +1,12 @@
+{
+  "name": "wijmo-spread-angular-js",
+  "_cacheHeaders": {
+    "Last-Modified": "Wed, 10 Sep 2014 19:14:20 GMT",
+    "Content-Length": "63511",
+    "Content-Type": "application/javascript"
+  },
+  "main": "index.js",
+  "_source": "http://wijmo.com/demo/spreadjs/scripts/interop/angular.wijmo.wijspread.3.20142.13.js",
+  "_target": "*",
+  "_originalSource": "http://wijmo.com/demo/spreadjs/scripts/interop/angular.wijmo.wijspread.3.20142.13.js"
+}

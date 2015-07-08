@@ -1,0 +1,28 @@
+<mm-row>
+  <mm-drop-down mm-caption="Trafficking Mode"
+                mm-model="settings.traffickingMode"
+                mm-data-model="traffickingMode"
+                mm-is-required="false"
+                mm-label-width="{{mmLabelWidth}}"
+                mm-layout-type="medium"
+                mm-disable="disableTrafficking"
+								mm-select-change-func="mmOnTraffickingChange()"></mm-drop-down>
+</mm-row>
+<mm-row>
+  <mm-drop-down mm-caption="Stop Serving Method"
+                mm-model="settings.hardStopMethod"
+                mm-data-model="hardStops"
+                mm-is-required="false"
+                mm-label-width="{{mmLabelWidth}}"
+                mm-layout-type="medium"
+                mm-disable="noPermission"></mm-drop-down>
+</mm-row>
+<mm-row ng-if="!!displayDataAccess">
+  <mm-check-box
+      mm-model="settings.creativeManagerAccess"
+      mm-description="Allow for Creative Manager"
+      mm-caption="Analytics Data Access"
+      mm-layout-type="medium"
+      mm-label-width="{{mmLabelWidth}}"
+			mm-disable="noPermission"></mm-check-box>
+</mm-row>

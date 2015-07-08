@@ -1,0 +1,34 @@
+<div class="gridExpansionRow">
+    <div class="expansionBg"></div>
+    <div class="expansionInner">
+        <mm-row>
+            <mm-drop-down mm-data-model="row.entity['targetWindowTypeslookup']"
+                          mm-model="row.entity['targetWindowType']"
+                          mm-is-required="true"
+                          mm-is-edit-mode="!!entityId"
+                          mm-layout-type="medium"
+                          mm-label-width="150"
+                          mm-caption="Target Window Type"
+                          mm-placeholder="Enter Target Window Type"
+                          mm-error="errors.targetWindowType"></mm-drop-down>
+        </mm-row >
+        <mm-row>
+    <mm-check-box
+            mm-caption="Show Address Bar"
+            mm-model="row.entity['showAddressBar']"
+            mm-description = ""
+            mm-label-width="150"
+            mm-layout-type="medium">
+    </mm-check-box>
+</mm-row>
+        <mm-row>
+            <mm-check-box
+                    mm-caption="Show Menu Bar"
+                    mm-model="row.entity['showMenuBar']"
+                    mm-description = ""
+                    mm-label-width="150"
+                    mm-layout-type="medium">
+            </mm-check-box>
+        </mm-row>
+    </div>
+</div>

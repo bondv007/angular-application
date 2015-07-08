@@ -1,0 +1,84 @@
+<div class="mdxUI mdxUIContainer" ng-class="{ 'active' : showUI, 'mdx3': csb.config.env == 'mdx3' }">
+  <div class="header">
+    <h1>Geo Targeting <span ng-click="cancelChanges()" class="pull-right glyphicon glyphicon-remove"></span></h1>
+  </div>
+  <div class="body-wrapper" ng-style="csb.config.panelHeight">
+    <div class="body clearfix">
+      <div class="form-group" ng-show="errorText">
+        <div class="csb-alert alert alert-danger">{{errorText}}</div>
+      </div>
+      <mm-row>
+        <mm-text mm-layout-type="custom"
+                 mm-custom-control-width="210"
+                 mm-label-width="130"
+                 mm-caption="Decision Rule Name"
+                 mm-model="name.text">
+        </mm-text>
+      </mm-row>
+      <mm-row>
+        <mm-drop-down
+            mm-layout-type="custom"
+            mm-custom-control-width="210"
+            mm-label-width="130"
+            mm-caption="Decision Rule Type"
+            mm-data-model="ruleTypeOptions"
+            mm-model="ruleType.id"
+            mm-disable="disableType"
+            mm-select-change-func="changeRuleType()">
+        </mm-drop-down>
+      </mm-row>
+      <mm-row>
+        <mm-auto-complete id="ex2"
+                          placeholder="Search geo"
+                          pause="100"
+                          mm-width="340"
+                          selected-object="geoModel.selectedGeo"
+                          remote-url="geo"
+                          remote-url-data-field="result"
+                          title-field="name"
+                          type-field="type"
+                          minlength="2"
+                          clear-selected="true"
+                          text-no-results="Geo not supported"
+                          class="mm-auto-complete"
+                          use-title-manipulator
+                          show-geo-grouping
+                          title-manipulator="generateGeoTitle(data)"
+                          match-class="angucomplete-match"/>
+      </mm-row>
+      <mm-row>
+        <i ng-click="openAdvanceSearch()" class="csb-advance-search-icon" style="color: #6798ff; cursor: pointer"></i>
+        <a ng-click="openAdvanceSearch()" style="color: #6798ff">Advanced Search</a>
+      </mm-row>
+      <mm-row ng-if="geoGrid.columns">
+        <mm-grid show-selection-checkbox="true"
+                 items="geoModel.gridAddedGeos"
+                 grid-button-actions="gridButtonActions"
+                 selected-items="geoModel.gridSelectedGeos"
+                 grid-height="350"
+                 grid-width="340"
+                 cols="geoGrid.columns"
+                 show-footer="true"
+                 is-sort="true"
+                 is-single-select="false"
+                 is-groupable="false"
+                 show-filter="false"
+                 enable-column-resize="true"
+                 is-column-reorder="true"
+                 is-column-freeze="true"
+                 is-show-menu="false"
+                 is-show-tool-tip="true"
+                 is-central-grid="false"
+                 is-grid-toolbar="false"
+                 is-grid-loading="false">
+        </mm-grid>
+      </mm-row>
+      <div class="footer">
+        <div class="form-buttons pull-right">
+          <button class="btn mdx-btn mdx-save-btn" ng-click="save(model)">Save</button>
+          <button class="btn mdx-btn mdx-close-btn" ng-click="cancelChanges()">Cancel Changes</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

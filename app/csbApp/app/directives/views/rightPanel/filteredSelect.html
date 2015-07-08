@@ -1,0 +1,29 @@
+<div class="col-md-5">
+    <label>{{label}}</label>
+    <div class="form-group has-feedback">
+        <input name="filter" type="text" class="form-control" placeholder="Search" ng-model="itemFilter">
+    </div>
+    <select multiple class="form-control choose-items" ng-model="listToChooseFromSelected" ng-options="item[itemNameKey] for item in listToChooseFrom | filter: itemFilter | filter: selectedFilter track by item[itemIdKey]" ng-disabled="!listToChooseFrom.length" ng-dblclick="addChosen()"></select>
+</div>
+
+<div class="col-md-2 text-center">
+    <div class="btn-group-vertical move-btn-group">
+        <button class="btn btn-default" ng-click="addAll()">
+            <span class="glyphicon glyphicon-forward"></span>
+        </button>
+        <button class="btn btn-default" ng-click="addChosen()">
+            <span class="glyphicon glyphicon-chevron-right"></span>
+        </button>
+        <button class="btn btn-default" ng-click="removeChosen()">
+            <span class="glyphicon glyphicon-chevron-left"></span>
+        </button>
+        <button class="btn btn-default" ng-click="removeAll()">
+            <span class="glyphicon glyphicon-backward"></span>
+        </button>
+    </div>
+</div>
+
+<div class="col-md-5">
+    <label>Selected</label>
+    <select multiple class="form-control selected-items" ng-model="listChosenSelected" ng-options="item[itemNameKey] for item in listChosen track by item[itemIdKey]" ng-dblclick="removeChosen()"></select>
+</div>

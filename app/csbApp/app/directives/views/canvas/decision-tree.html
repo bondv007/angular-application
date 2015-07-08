@@ -1,0 +1,16 @@
+<ul ng-show="decisionTreeService.decisions.length > 0" class="decision-tree decision-tree-parent">
+    <li ng-repeat="decision in decisionTreeService.decisions" ng-include="'csbApp/app/directives/views/canvas/decision-tree-decisions.html'"></li>
+</ul>
+
+<div class="decision-tree-empty-item" ng-hide="decisionTreeService.decisions.length > 0"
+     id="canvas_First_Drop_Zone"
+     data-drop="true"
+     jqyoui-droppable="{ onDrop: 'onDropFirst' }">Drag the first decision here</div>
+<div class="audience-icon-guy"></div>
+
+<!-- notes -->
+<div id="note-canvas">
+    <div note-item="note" ng-repeat="note in csbData.notes"> </div>
+    <div text-box-item="textBox" ng-repeat="textBox in csbData.textBoxes"> </div>
+    <div arrow-item="arrow" ng-repeat="arrow in csbData.arrows"> </div>
+</div>

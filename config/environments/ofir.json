@@ -1,0 +1,6 @@
+{
+  "env": "development-liron",
+  "ec2": "https://dev1.dev.sizmdx.com/rest/",
+  "loginPath": "https://dev1.dev.sizmdx.com/rest/login/",
+  "resource": "http://54.201.243.190:8080/_/"
+}

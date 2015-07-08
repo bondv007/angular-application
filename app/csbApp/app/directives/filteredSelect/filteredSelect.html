@@ -1,0 +1,34 @@
+<div class="col-md-5">
+    <label>{{availableLabel}}</label>
+    <div class="form-group has-feedback">
+        <label class="control-label sr-only">Hidden Search</label>
+        <input name="filter" type="text" class="form-control" placeholder="Search" ng-model="itemFilter" ng-disabled="searchDisabled">
+        <span class="glyphicon glyphicon-search form-control-feedback"></span>
+    </div>
+
+    <select multiple class="form-control choose-items" ng-model="highlightedElements" ng-options="item.GeoItemName for item in availableElements | filter: itemFilter track by item.GeoItemID" ng-dblclick="pickElements()" ng-disabled="leftListDisabled"></select>
+
+</div>
+<div class="col-md-2 text-center">
+    <div class="btn-group-vertical move-btn-group">
+        <button class="btn btn-default" ng-click="selectAllElements()" ng-disabled="selectAllElementsDisabled">
+            <span class="glyphicon glyphicon-forward"></span>
+        </button>
+        <button class="btn btn-default" ng-click="pickElements()" ng-disabled="pickElementsDisabled">
+            <span class="glyphicon glyphicon-chevron-right"></span>
+        </button>
+        <button class="btn btn-default" ng-click="unPickElements()" ng-disabled="unPickElementsDisabled">
+            <span class="glyphicon glyphicon-chevron-left"></span>
+        </button>
+        <button class="btn btn-default" ng-click="unSelectAllElements()" ng-disabled="unSelectAllElementsDisabled">
+            <span class="glyphicon glyphicon-backward"></span>
+        </button>
+    </div>
+</div>
+<div class="col-md-5">
+
+    <label>{{selectedLabel}}</label>
+    <select multiple class="form-control selected-items" ng-model="highlightedSelected" ng-options="item.GeoItemName for item in pickedElements track by item.GeoItemID" ng-dblclick="unPickElements()" ng-disabled="rightListDisabled">
+    </select>
+
+</div>

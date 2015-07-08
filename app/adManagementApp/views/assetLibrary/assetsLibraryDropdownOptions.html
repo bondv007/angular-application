@@ -1,0 +1,37 @@
+<div class="btn-group">
+    <!--<button class="cleanButton dropdown-toggle" type="button" role="menu"><div class="settingsIcon"></div></button>-->
+    <ul class="dropdown-menu" style="cursor: pointer;">
+        <li class="dropdown" ng-mouseover="displayViewSubMenu = true" ng-mouseleave="displayViewSubMenu = false">{{'View' | T}}<div class="arrowRight"></div>
+            <div ng-if="displayViewSubMenu">
+                <ul  class="mmSubMenu">
+                  <!--<li ng-click="setGridColumns(dataObj, 'idName');" ng-class="{'selectedSubMenu': displayData.viewBy=='idName'}">{{'Basic' | T}}</li>-->
+                  <li ng-click="toggleViews('grid')" ng-class="{'selectedSubMenu': viewBy=='grid'}">{{'Grid View' | T}}</li>
+                  <li ng-click="toggleViews('tile')" ng-class="{'selectedSubMenu': viewBy=='tile'}">{{'Tile View' | T}}</li>
+                  <li ng-click="toggleViews('list')" ng-class="{'selectedSubMenu': viewBy=='list'}">{{'List View' | T}}</li>
+                </ul>
+            </div>
+        </li>
+        <!--li class="dropdown" ng-mouseover="displayViewSubMenu1 = true" ng-mouseleave="displayViewSubMenu1 = false">{{'Sort' | T}}<div class="arrowRight"></div>
+            <div ng-if="displayViewSubMenu1">
+                <ul class="mmSubMenu">
+                    <li class="dropdown-header">{{'Sort By' | T}}</li>
+                    <li ng-class="'selectedSubMenu'" ng-click="">{{'None' | T}}</li>
+                    <li class="dropdown-header">{{'Sort Order' | T}}</li>
+                    <li ng-class="{'selectedSubMenu' :displayData.selectedSortOrder }" ng-click="displayData.selectedSortOrder = true">{{'Ascending' | T}}</li>
+                    <li ng-class="{'selectedSubMenu' :!displayData.selectedSortOrder }" ng-click="displayData.selectedSortOrder = false">{{'Descending' | T}}</li>
+                    <li class="addTopBorderFifth">{{'Advanced' | T}}</li>
+                </ul>
+            </div>
+        </li>-->
+        <!--li class="dropdown" ng-mouseover="displayViewSubMenu2 = true" ng-mouseleave="displayViewSubMenu2 = false">{{'Group By' | T}}<div class="arrowRight"></div>
+            <div ng-if="displayViewSubMenu2">
+                <ul class="mmSubMenu">
+                    <li class="dropdown-header">{{'Group By' | T}}</li>
+                    <li ng-class="{'selectedSubMenu' :!dataObj.isGrouped}" ng-click="changeGroupOption(dataObj, 'None')">{{'None' | T}}</li>
+                    <li ng-class="{'selectedSubMenu' : dataObj.isGrouped && dataObj.groupedList.memberName == groupedOption}"
+                        ng-repeat="groupedOption in dataObj.groupedListOptions" ng-click="changeGroupOption(dataObj, groupedOption)">{{groupedOption}}</li>
+                </ul>
+            </div>
+        </li>-->
+    </ul>
+</div>

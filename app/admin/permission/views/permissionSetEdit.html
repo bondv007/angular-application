@@ -1,0 +1,57 @@
+<div ng-show="pageReady" class="editContainer" xmlns="http://www.w3.org/1999/html">
+  <mm-row>
+    <div class="mm-entity-fields-container-single">
+      <mm-row>
+        <mm-text mm-model="permissionSetEdit.name"
+                 mm-is-edit-mode="isEditMode"
+                 mm-placeholder="Enter Permission Name"
+                 mm-error="validation.name"
+                 mm-is-required="true"
+                 mm-caption="Permission Name"
+                 mm-change="validation.name = ''"
+                 mm-label-width="{{labelWidth}}"></mm-text>
+      </mm-row>
+      <mm-row>
+        <mm-text mm-model="permissionSetEdit.description"
+                 mm-is-edit-mode="isEditMode"
+                 mm-placeholder="Enter Description"
+                 mm-is-required="true"
+                 mm-error="validation.description"
+                 mm-change="validation.description = ''"
+                 mm-caption="Description"
+                 mm-label-width="{{labelWidth}}"></mm-text>
+      </mm-row>
+      <mm-row>
+        <mm-check-list mm-data-model="adminZones"
+                       mm-model="permissionAdminZones"
+                       mm-error="validation.adminZones"
+                       mm-is-required="{{isRequired}}"
+                       mm-change="validation.adminZones = ''"
+                       mm-label-width="{{labelWidth}}"
+                       mm-disable="isDisable"
+                       mm-caption="Admin Zones">
+        </mm-check-list>
+      </mm-row>
+      <mm-row>
+        <mm-label mm-caption="Permissions"
+                  mm-layout-type="medium"
+                  mm-label-width="{{labelWidth}}"></mm-label>
+      </mm-row>
+      <mm-row>
+        <mm-select-list mm-data-model="permissions"
+                        mm-model="permissionIdsArray"
+                        mm-change="permissionChange()"></mm-select-list>
+      </mm-row>
+      <mm-row>
+        <mm-label mm-caption="Permission Sets"
+                  mm-layout-type="medium"
+                  mm-label-width="{{labelWidth}}"></mm-label>
+      </mm-row>
+      <mm-row>
+        <mm-select-list mm-data-model="permissionSets"
+                        mm-model="permissionSetIdsArray"></mm-select-list>
+      </mm-row>
+    </div>
+  </mm-row>
+</div>
+<wave-spinner ng-show="!pageReady"></wave-spinner>

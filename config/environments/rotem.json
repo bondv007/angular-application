@@ -1,0 +1,9 @@
+{
+"env": "development-rotem",
+"ec2": "https://dev1.dev.sizmdx.com/rest/",
+"ec2ams": "https://dev1.dev.sizmdx.com/rest/",
+"loginPath": "https://dev1.dev.sizmdx.com/rest/login/",
+"resource": "/_/"
+}
+
+

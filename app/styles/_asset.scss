@@ -1,0 +1,44 @@
+/*atdg asset detail page*/
+$cSecondaryFifty: rgba(13, 42, 77, 0.50);
+.metalist {padding: 0 0 15px 0 }
+.metalist .asset-essentials {float:left; width: 100%; padding: 0 0;}
+.metalist .asset-essentials .mm-control-label {padding: 0 0;}
+.asset-technical {float:left;}
+.extra-technical {float:left; width: 100px; padding-top: 2px; margin-left: -44px;}
+.asset-technical .mm-directive-control.mm-label {width: 100px; padding: 0 0;}
+.metalist .mm-directive-control.mm-label {max-width: 350px; padding: 0 0;}
+.assetviewer .infobox-container-reduced {width: 226px;}
+.assetviewer .infobox-container {width: 544px;}
+.assetviewer .viewer { min-height: 148px; padding: 0 0; }
+.assetviewer .viewer .thumbnail {margin-bottom: 0; padding: 0; border-radius: 0px; border-color: $cFourth;}
+.assetviewer .viewer .image-container { width: 270px; height: 148px;  padding: 10px; position: relative; border-right: 1px solid $cFourth;}
+.assetviewer .viewer .image-container-reduced { width: 226px; height: 100px;  padding: 5px; position: relative; border-right: none;}
+@media(max-width:1088px) {
+  .assetviewer .viewer .image-container { border-right: none;}
+}
+@media(min-width:1200px) {
+  .assetviewer .viewer .image-container-reduced { border-right: none;}
+}
+.assetviewer .viewer .image-container img {max-width:250px; max-height:128px; margin: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-right: -50%;
+  transform: translate(-50%, -50%)  }
+.assetviewer .viewer .image-container-reduced img {max-width:202px; max-height:90px; margin: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-right: -50%;
+  transform: translate(-50%, -50%)}
+.assetviewer .viewer-summarybox {width: 272px; height: 148px; padding: 12px 20px; }
+.assetviewer .viewer-summarybox-reduced {width: 226px; height: 148px; padding: 6px 10px; }
+.assetviewer .technical {  }
+.assetviewer .img-thumbnail, .assetviewer .thumbnail {background-color:transparent; display: inline-block; }
+.assetviewer .viewer p {font-size: 12px; line-height: 23px; font-family: 'Arial'; color: $cSecondarySeventyFive; margin-bottom: 0; }
+.assetviewer .viewer p span { color: $cSecondaryFifty; margin-left: 15px; }
+
+.details .tab-content {
+  margin-top: 15px;
+}
+/*end atdg asset detail page*/

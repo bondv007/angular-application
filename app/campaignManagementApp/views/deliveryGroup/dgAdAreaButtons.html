@@ -1,0 +1,12 @@
+<div id="adsAreaButtons" class="divButton">
+	<button type="button" class="mainButton btn btn-xs" ng-click="action()" ng-bind="'Preview' | T"></button>
+	<button type="button" class="mainButton  btn btn-xs" ng-disabled="enableDisableState.notClickable" ng-click="enableDisableAds(enableDisableState.text)" >
+		{{enableDisableState.text | T}}
+	</button>
+	<button type="button" class="mainButton  btn btn-xs" ng-click="createSubGroup()" ng-bind="'Create Sub Group' | T"></button>
+	<button type="button" class="mainButton  btn btn-xs" ng-click="removeAds()" ng-bind="'Remove' | T"></button>
+	<label class="checkbox-inline">
+		<input type="checkbox"  ng-model="hideDisabled.val" ng-click="onAfterHideDisabledClick()">
+		<span style="position: relative; top:4px;" ng-bind="'Hide Disabled Ads' | T"></span>
+	</label>
+</div>

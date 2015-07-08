@@ -1,0 +1,22 @@
+<div style="position:relative;">
+  <div class="mmmodal-header">
+    <div class="mmmodal-title">{{headerText | T | uppercase}}</div>
+    <div class="close">
+      <div class="close-button" ng-click="cancel()"></div>
+    </div>
+  </div>
+  <div class="mmmodal-body" style="height: 116px;">
+    <div class="mmDiscard">
+      <span class="iconWithText-alert">
+          <span class="mm-discard-icon"></span>
+          <span class="message-container">
+              <p class="messageText">{{bodyMessage | T}}</p>
+          </span>
+      </span>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <button type="button" ng-click="discard()" class="btn btn-group mm-btn-save">{{"YES" | T}}</button>
+    <button type="button" ng-click="cancel()" class="btn btn-group mm-btn-save">{{"NO" | T}}</button>
+  </div>
+</div>

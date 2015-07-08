@@ -1,0 +1,30 @@
+<script  type="text/ng-template" id="window.html">
+	<div tabindex="-1" class="modal fade {{ windowClass }}" ng-class="{in: animate}" ng-style="{'z-index': 1050 + index*10}" ng-transclude></div>
+</script>
+<script  type="text/ng-template" id="backdrop.html">
+	<div class="modal-backdrop fade" ng-class="{in: animate}" ng-style="{'z-index': 1040 + index*10}" ng-click="close($event)"></div>
+</script>
+
+<div>
+	<form name="myForm">
+		<div class="modal-header">
+			<a class="close" ng-click="cancel()">&times;</a>
+			<h3>Log in</h3>
+		</div>
+		<div class="modal-body">
+			<div class="form-group" ng-class="{error: myForm.password.$invalid}">
+				<label for="login_password">Password</label>
+				<input id="login_password" type="password" name="password" class="form-control"
+				       ng-model="userCredentials.password" required ng-minlength="5" ng-maxlength="20">
+				<span class="help-block" ng-show="myForm.password.$error.required">Required</span>
+				<span class="help-block" ng-show="myForm.password.$error.minlength">Too short!</span>
+				<span class="help-block" ng-show="myForm.password.$error.maxlength">Too long!</span>
+			</div>
+			<span class="alert-error" ng-show="fail">Login failed: {{fail}}</span>
+		</div>
+		<div class="modal-footer">
+			<button type="button" ng-click="cancel()" class="btn">Cancel</button>
+			<button type="submit" ng-click="login()" ng-disabled="myForm.$invalid" class="btn btn-primary">Log In</button>
+		</div>
+	</form>
+</div>

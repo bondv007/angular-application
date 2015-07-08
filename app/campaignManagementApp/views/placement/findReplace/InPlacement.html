@@ -1,0 +1,32 @@
+<div class="swapDG">
+  <p>
+  <div class="swapDGText">
+    {{'Swap Master Ad' | T}} : <i>{{swapad}}</i><br/>
+    {{'With Master Ad' | T}} : <i>{{withad}}</i><br/>
+    {{'In following placement' | T }}<br/>
+  </div>
+  <input style="width: 200px" type="text" ng-model="filterDg"><br/><br/>
+  <mm-grid
+    items="InPlacementItems"
+    selected-items="selectedItemsInPlacement"
+    cols="PlacementColumns"
+    is-grid-loading="isGridLoading"
+    filter-text="filterDg"
+    show-selection-checkbox="true"
+    grid-height="300"
+    show-footer="true"
+    is-sort="true"
+    is-single-select="false"
+    is-groupable="false"
+    show-filter="false"
+    enable-column-resize="true"
+    is-column-reorder="true"
+    is-column-freeze="true"
+    is-show-menu="false"
+    is-show-tool-tip="true"
+    is-central-grid="false"
+    enable-selected-row-selection ="true"
+    is-grid-toolbar="false">
+  </mm-grid>
+  </p>
+</div>

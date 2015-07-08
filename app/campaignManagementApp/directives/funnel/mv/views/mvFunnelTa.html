@@ -1,0 +1,51 @@
+<div style="width: 300px">
+
+  <div class="mvFunnelTaWrapper">
+    <span class="mvFunnelTaTitle">
+      <span class="mvIcon"></span>
+      <span ng-bind="'Mass Version Audiences (Total ' | T"></span>
+      <span>{{totalOptions + ")"}}</span>
+    </span>
+    <mm-row>
+      <mm-radiobutton
+        class="mvFlatOrDropDownView"
+        mm-layout-type="custom"
+        mm-custom-control-width="140"
+        mm-model="mvFlatOrDropDownView.options"
+        mm-vertical="true"
+        mm-change="onChangeDropDownView()"
+        mm-selected="mvFlatOrDropDownView.selected"
+        mm-id="mv_List_or_flat_view">
+      </mm-radiobutton>
+      <a ng-click="clearSelection()" href="" class="linkColor mm-entity-link mvFunnelTaClearSelection" ng-bind="'Clear Selection' | T"></a>
+    </mm-row>
+    <mm-row>
+      <div ng-if="mvFlatOrDropDownView.selected" ng-repeat="dd in dropDowns">
+        <div class="dropDownDecisionName" ng-bind="dd.optionName + ' (' + dd.distinctNumOfAudiences + ')'"></div>
+        <mm-drop-down
+          mm-layout-type="custom"
+          mm-custom-control-width="270"
+          mm-model="dd.selected"
+          mm-select-change-func="onDropDownItemSelect(dd)"
+          mm-data-model="dd.items"
+          mm-id="{{dd.mmId}}"
+          mm-disable="dd.disable"
+          show-search-box>
+        </mm-drop-down>
+      </div>
+      <div ng-if="!mvFlatOrDropDownView.selected">
+        <mm-drop-down
+          mm-layout-type="custom"
+          mm-custom-control-width="270"
+          mm-model="flatDropDown.selected"
+          mm-select-change-func="onDropDownItemSelect(flatDropDown)"
+          mm-data-model="flatDropDown.items"
+          mm-id="{{flatDropDown.mmId}}"
+          show-search-box>
+        </mm-drop-down>
+      </div>
+    </mm-row>
+
+  </div>
+</div>
+

@@ -1,0 +1,71 @@
+<div>
+	<mm-mini-section mm-caption="'Linear Settings'"  mm-start-open="toggleHandler.showToggleLinearSettings" mm-is-modal="true">
+		<mm-row>
+			<mm-text mm-caption="Linear Duration"  mm-model="ad.linearSettings.fileDuration"
+							 mm-is-edit-mode="!!entityId"
+							 mm-layout-type="custom"
+                             mm-custom-control-width="50"
+							 mm-edit-multiple="isMultiple != undefined && isMultiple.indexOf('fileDuration') != -1"
+							 mm-label-width = {{labelWidth3}}></mm-text>
+            <mm-text mm-caption="Sec"
+                     mm-disable = "true"
+                     mm-is-edit-mode = "false"
+                     mm-show-as-label="true"
+                     mm-layout-type="small"
+                     mm-label-width = {{labelWidth3}}></mm-text>
+		</mm-row>
+		<mm-row >
+			<div class="mm-entity-fields-container-single">
+				<mm-check-box mm-model="ad.linearSettings.scalable" mm-caption="Scalable"
+											mm-label-width={{labelWidth3}}
+											mm-layout-type="medium"
+											mm-change="isScalableClick()"
+											mm-edit-multiple="isMultiple != undefined && isMultiple.indexOf('scalable') != -1"
+											mm-description = "Scale video to the video player size"></mm-check-box>
+			</div>
+		</mm-row>
+		<mm-row >
+			<mm-check-box mm-model="ad.linearSettings.maintainAspectRatio" mm-caption="Aspect Ratio"
+										mm-layout-type="medium"
+										mm-label-width={{labelWidth3}}
+										mm-disable="isAspectRatioDisabled"
+										mm-edit-multiple="isMultiple != undefined && isMultiple.indexOf('maintainAspectRatio') != -1"
+										mm-description = "Maintain aspect ratio"></mm-check-box>
+		</mm-row>
+		<mm-row>
+			<mm-text mm-caption="Linear Click-through" mm-model="ad.linearSettings.clickthrough"
+               mm-is-edit-mode="ad.id"
+							 mm-layout-type="medium"
+							 mm-label-width = {{labelWidth3}}
+							 mm-edit-multiple="isMultiple != undefined && isMultiple.indexOf('clickthrough') != -1"
+                             mm-error="errors.linearSettingsClickhrough.text"
+							 mm-placeholder=""></mm-text>
+		</mm-row>
+		<mm-row  ng-if="ad.adFormat == 'INSTREAM_INTERACTIVE_AD'">
+		<div class="mm-entity-fields-container-single">
+			<mm-check-box mm-model="ad.linearSettings.skipEnabled" mm-caption="Skip Settings"
+                    mm-change="skipEnabledClick()"
+										mm-label-width={{labelWidth3}}
+										mm-layout-type="custom"
+										mm-custom-control-width="195"
+										mm-edit-multiple="isMultiple != undefined && isMultiple.indexOf('skipEnabled') != -1"
+										mm-description="skip ad unit after 'X' seconds"></mm-check-box>
+      <mm-text
+              mm-model="ad.linearSettings.skipDelay"
+							 mm-layout-type="small"
+							 mm-label-width="0"
+               mm-hide-label = true
+               mm-disable = "controlStatus.skipDelayDisabled"
+							 mm-edit-multiple="isMultiple != undefined && isMultiple.indexOf('skipDelay') != -1"></mm-text>
+		</div>
+		</mm-row>
+    <mm-row>
+      <mm-check-box mm-model="adRemaining.val" mm-caption="Unconditional Close"
+                    mm-label-width={{labelWidth3}}
+                    mm-layout-type="medium"
+                    mm-change="adRemainingClick()"
+                    mm-edit-multiple="isMultiple != undefined && isMultiple.indexOf('scalable') != -1"
+                    mm-description = "The ad closes when it finishes"></mm-check-box>
+    </mm-row>
+	</mm-mini-section>
+</div>

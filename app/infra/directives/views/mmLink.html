@@ -1,0 +1,10 @@
+<mm-control>
+
+<input type="text"
+        class="mm-text-box {{mmClass}}"
+        ng-if="isShowControl || (!!mmError && mmError !='' )"
+        ng-model="mmModelObj.val"
+				ng-change="onChange()"
+        ng-blur="hideControl()"
+        mm-focus="isShowControl">
+</mm-control>

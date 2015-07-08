@@ -1,0 +1,259 @@
+<mm-toggle-container mm-caption="Settings"
+										 start-open="togglesStatus.settings">
+<tabset justified="false">
+<tab ng-if="editObject.accountTypes.campaignManager || editObject.accountTypes.payingAccount"
+		 heading="Billing"
+		 id="billingTab"
+		 active="tabHandler.settings.billing.isActive"
+		 ng-attr-class="{{isTabValid.settings.billing ? '' : 'tabWithErrors'}}"><!-- add is attach to account to ng-if-->
+	<mm-row>
+		<mm-text mm-caption="Billing Account Name"
+						 mm-model="editObject.billingSettings.billingAccountName"
+						 mm-placeholder="Enter Name"
+						 mm-error="validation.billingAccountName"
+						 mm-is-required="{{:: isRequired}}"
+						 mm-label-width="{{:: labelWidth}}"
+						 text-tooltip="Enter Name"
+						 mm-layout-type="medium"
+						 mm-change="onBillingAccountNameChanged()"
+						 mm-disable="!editBilling"></mm-text>
+	</mm-row>
+	<mm-row>
+		<mm-text mm-caption="Billing Address"
+						 mm-model="editObject.billingSettings.billingAddress"
+						 mm-placeholder="Enter Address"
+						 mm-error="validation.billingAddress"
+						 mm-is-required="{{:: isRequired}}"
+						 mm-label-width="{{:: labelWidth}}"
+						 text-tooltip="Enter Address"
+						 mm-layout-type="medium"
+						 mm-change="onBillingAddressChanged()"
+						 mm-disable="!editBilling"></mm-text>
+	</mm-row>
+	<mm-row>
+		<mm-text mm-caption="City"
+						 mm-model="editObject.billingSettings.city"
+						 mm-placeholder="Enter City"
+						 mm-error="validation.billingCity"
+						 mm-is-required="{{:: isRequired}}"
+						 mm-label-width="{{:: labelWidth}}"
+						 text-tooltip="Enter City"
+						 mm-layout-type="medium"
+						 mm-change="onBillingCityChanged()"
+						 mm-disable="!editBilling"></mm-text>
+	</mm-row>
+	<mm-row>
+		<mm-text mm-caption="Zip Code"
+						 mm-model="editObject.billingSettings.zipCode"
+						 mm-placeholder="Enter Zip Code"
+						 mm-error="validation.billingZipCode"
+						 mm-is-required="{{:: isRequired}}"
+						 mm-label-width="{{:: labelWidth}}"
+						 text-tooltip="Enter Zip Code"
+						 mm-layout-type="medium"
+						 mm-change="onBillingZipCodeChanged()"
+						 mm-disable="!editBilling"></mm-text>
+	</mm-row>
+	<mm-row ng-if="!billingContact.isCreated && !isEditMode">
+		<mm-text
+				mm-caption="A/P Billing Contact"
+				mm-label-width="{{:: labelWidth}}"
+				mm-layout-type="custom"
+				mm-custom-control-width="{{:: billingContact.labelNameWidth}}"
+				mm-custom-control-width="0"
+				mm-is-required="{{:: isRequired}}"
+				mm-show-as-label="true"
+				mm-disable="true"
+				mm-input-type="link"
+				mm-change="OnBillingContactCreated()"
+				mm-model="billingContact.name"></mm-text>
+                        <span ng-if="!billingContact.isCreated && !isEditMode"
+															class="centralEntitylLink"
+															id="addNewAPBillingContact1"
+															data-ng-click="onCreateFirstBillingContactLinkClicked()">{{:: billingContact.addLink}}</span>
+	</mm-row>
+	<!--<mm-row><mm-error-div error-text="validation.firstCreationContact"></mm-error-div></mm-row>-->
+	<mm-row ng-if="billingContact.isCreated && !isEditMode">
+		<mm-label
+				mm-is-edit-mode="isEditMode"
+				mm-model="billingContact.name"
+				mm-caption="A/P Billing Contact"
+				mm-is-required="{{:: isRequired}}"
+				mm-layout-type="custom"
+				mm-custom-control-width="{{:: billingContact.labelNameWidth}}"
+				mm-label-width="{{:: labelWidth}}"></mm-label>
+                        <span ng-if="billingContact.isCreated && !isEditMode"
+															class="centralEntitylLink"
+															id="addNewAPBillingContact2"
+															data-ng-click="onCreateFirstBillingContactLinkClicked()">{{:: billingContact.addLink}}</span>
+	</mm-row>
+	<mm-row ng-if="isEditMode">
+		<mm-drop-down mm-caption= "A/P Billing Contact"
+
+									mm-label-width="{{:: labelWidth}}"
+									mm-is-required="{{:: isRequired}}"
+									mm-data-model="globalContacts"
+									mm-model="editObject.billingSettings.billingUserId"
+									mm-error="validation.existingContact"
+									show-search-box
+									mm-show-add-new="relatedEntities.a_users.hasPermission"
+									new-entity-type="user"
+									entity-obj="entityObj"
+									mm-select-change-func="onBillingContactSelected()"
+									mm-disable="!editBilling"></mm-drop-down>
+	</mm-row>
+	<mm-row>
+		<mm-text mm-caption="VAT#/TIN#"
+						 mm-model="editObject.billingSettings.vat_tin"
+						 mm-placeholder="Enter VAT#/TIN#"
+						 mm-error="validation.vat_tin"
+						 mm-is-required="{{:: !isRequired}}"
+						 mm-label-width="{{:: labelWidth}}"
+						 text-tooltip="Enter VAT#/TIN#"
+						 mm-layout-type="medium"
+						 mm-change="onBillingVatTin()"
+						 mm-disable="!editBilling"></mm-text>
+	</mm-row>
+</tab>
+<tab heading="Regional"
+		 id="regionalTab"
+		 active="tabHandler.settings.regional.isActive"
+		 ng-attr-class="{{isTabValid.settings.regional ? '' : 'tabWithErrors'}}">
+	<mm-row>
+		<mm-drop-down mm-caption="Default Time Zone"
+									mm-model="editObject.adminSettings.regionalSettings.defaultTimeZone"
+									mm-data-model="gmtOffset"
+									mm-error="validation.gmtOffset"
+									mm-is-required="{{:: !isRequired}}"
+									mm-label-width="{{:: labelWidth}}"
+									mm-layout-type="medium"
+									mm-select-change-func="onGMTOffsetSelected()"
+									mm-add-please-select
+									mm-disable="!editAccount"></mm-drop-down>
+	</mm-row>
+	<mm-row>
+		<mm-drop-down mm-caption="Language"
+									mm-model="editObject.adminSettings.regionalSettings.language"
+									mm-data-model=""
+									mm-error="validation.gmtOffset"
+									mm-is-required="{{:: !isRequired}}"
+									mm-label-width="{{:: labelWidth}}"
+									mm-layout-type="medium"
+									mm-select-change-func="onLanguageSelected()"
+									mm-add-please-select
+									mm-disable="true || !editAccount"></mm-drop-down>
+	</mm-row>
+	<mm-row>
+		<mm-drop-down mm-caption="Locale"
+									mm-model="editObject.adminSettings.regionalSettings.local"
+									mm-data-model="locals"
+									mm-error="validation.gmtOffset"
+									mm-is-required="{{:: !isRequired}}"
+									mm-label-width="{{:: labelWidth}}"
+									mm-layout-type="medium"
+									mm-select-change-func="onLanguageSelected()"
+									mm-add-please-select
+									mm-disable="true || !editAccount"></mm-drop-down>
+	</mm-row>
+</tab>
+<tab ng-if="editObject.accountTypes.campaignManager"
+		 heading="Campaign Setup"
+		 id="campaignSetupTab"
+		 active="tabHandler.settings.campaign.isActive">
+	<mm-campaign-settings
+			mm-model="editObject.adminSettings.campaignSettings"
+			mm-label-width="{{:: labelWidth}}"
+			mm-is-required="{{:: !isRequired}}"
+			mm-hide-data-access="!isRequired"
+			has-permission="editAccount"
+			mm-disable-trafficking-mode="!editAccount">
+	</mm-campaign-settings>
+</tab>
+<tab ng-if="editObject.accountTypes.creativeManager"
+		 heading="Video"
+		 id="videoTab"
+		 active="tabHandler.settings.video.isActive">
+	<mm-row>
+		<mm-check-box
+				mm-model="editObject.adminSettings.video.autoTranscode"
+				mm-description="Enables Video Auto-Transcoding"
+				mm-caption="Video Auto-Transcoding"
+				mm-layout-type="medium"
+				mm-label-width="{{:: labelWidth}}"
+				mm-disable="!editAccount"></mm-check-box>
+	</mm-row>
+</tab>
+<tab ng-if="editObject.accountTypes.campaignManager"
+		 heading="Privacy"
+		 id="privacyTab"
+		 active="tabHandler.settings.privacy.isActive"
+		 ng-attr-class="{{isTabValid.settings.privacy ? '' : 'tabWithErrors'}}">
+	<mm-row>
+		<mm-check-box
+				mm-model="editObject.adminSettings.privacy.disableCookies"
+				mm-description="Disable Cookies"
+				mm-caption="Cookies"
+				mm-layout-type="medium"
+				mm-label-width="{{:: labelWidth}}"
+				mm-disable="!editAccount"></mm-check-box>
+	</mm-row>
+	<mm-mini-section
+			mm-is-modal="'false'"
+			mm-caption="'Ad Choices Icon'"
+			mm-start-open="togglesStatus.addChioceIcon">
+		<mm-row>
+			<mm-check-box
+					mm-model="editObject.adminSettings.privacy.adMarker.includeInAllAds"
+					mm-description="Include AdChoices Icon"
+					mm-caption="AdChoices Icon"
+					mm-layout-type="medium"
+					mm-label-width="{{:: labelWidth}}"
+					mm-disable="!editAccount"></mm-check-box>
+		</mm-row>
+		<mm-row>
+			<div style="line-height:30px">
+				<mm-radiobutton
+						mm-model="regulationProgram"
+						mm-visible="true"
+						mm-is-required="false"
+						mm-is-vertical="true"
+						mm-selected="editObject.adminSettings.privacy.adMarker.regulationProgram"
+						mm-model-id="text"
+						mm-caption="Regulation Program"
+						mm-show-label="true"
+						mm-layout-type="medium"
+						mm-error="validation.regulationProgram"
+						mm-is-required="{{:: isRequired}}"
+						mm-label-width="{{:: labelWidth}}"
+						mm-disable="!editAccount"></mm-radiobutton>
+			</div>
+		</mm-row>
+		<mm-row>
+			<mm-text mm-caption="Marker Clickthrough URL"
+							 mm-model="editObject.adminSettings.privacy.adMarker.markerClickthroughURL"
+							 mm-placeholder="Enter URL"
+							 mm-error="validation.markerClickthroughURL"
+							 mm-is-required="{{:: !isRequired}}"
+							 mm-label-width="{{:: labelWidth}}"
+							 text-tooltip="Enter URL"
+							 mm-layout-type="medium"
+							 mm-change="onMarkerClickThroughURLChange()"
+							 mm-disable="!editAccount"></mm-text>
+		</mm-row>
+	</mm-mini-section>
+</tab>
+<tab ng-if="editObject.accountTypes.campaignManager"
+		 heading="Analytics"
+		 id="analyticsTab"
+		 active="tabHandler.settings.analytics.isActive"
+		 ng-attr-class="{{isTabValid.settings.analytics ? '' : 'tabWithErrors'}}">
+	<mm-analytics
+			mm-model="editObject.analyticsSettings"
+			mm-entity-type="account"
+			mm-error-message="analyticsValidation"
+			mm-is-tab-valid="isTabValid.settings.analytics"
+			mm-permission="editAccount && permissions.entity.editAdvanced">
+	</mm-analytics>
+</tab>
+</tabset>
+</mm-toggle-container>

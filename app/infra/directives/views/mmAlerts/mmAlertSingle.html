@@ -1,0 +1,6 @@
+<span ng-init="mmAlert=alert" ng-include="'infra/directives/views/mmAlertLink.html'"></span>
+<span ng-repeat="subAlert in alert.subAlerts">
+  <span ng-init="mmAlert=subAlert" ng-include="'infra/directives/views/mmAlertLink.html'"></span>
+</span>
+
+

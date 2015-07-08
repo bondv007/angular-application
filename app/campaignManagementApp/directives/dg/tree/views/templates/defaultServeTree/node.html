@@ -1,0 +1,33 @@
+<span class="rootRotationPosition">
+	<div class="middleElement defaultServeRotationText" ng-bind="'dg_tree_rotation' | T"></div>
+	<div class="middleElement defaultServeRotationFirstMatchingText" ng-bind="'dg_tree_first_matching' | T"></div>
+</span>
+<ol ui-tree-nodes="" ng-model="rootContainer.defaultServe" class="dgTree_removeListNumber">
+	<li  ng-if="ad.rotationSetting.enabled || !mmHideDisabled.val"
+			ng-class="{'disableItem':!ad.rotationSetting.enabled, 'selectedBackgroundColor':ad.selected}" ng-repeat="ad in rootContainer.defaultServe" ui-tree-node>
+		<div ui-tree-handle>
+			<!--Drag Icon-->
+			<div class="dragIcon middleElement"></div>
+
+			<!--Only for keep the same distance as other node from rotation-->
+			<div class="middleElement wrapContainerToggleIcon"></div>
+
+			<!--Check Box []-->
+			<div data-nodrag class="mm_checkbox middleElement selectedCBWrapper" ng-model="ad.selected"
+					 ng-click="ad.selected=!ad.selected; onItemSelected(ad)">
+				<span ng-class="{'selectedCB': ad.selected}"></span>
+			</div>
+
+			<!--Item Type Icon-->
+			<div class="middleElement adIcon"></div>
+
+			<!--ID + Name-->
+      <span class="highlightAdWrapper" ng-style="filter.dgs.length > 0 && ad.name.toLowerCase().indexOf(filter.dgs.toLowerCase()) > -1? {'background-color':'#FCFECC'}:{background:''}">
+        <div class="middleElement itemIdText" ng-bind="ad.masterAdId"></div>
+        <div class="middleElement itemName">
+          <div class="itemNameText" ng-bind="ad.name"></div>
+        </div>
+      </span>
+		</div>
+	</li>
+</ol>

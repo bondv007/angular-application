@@ -1,0 +1,9 @@
+<div ng-show="items.length > 0">
+    <p class="ioEditSubTitle"><span>{{title}}</span></p>
+    <mm-grid
+            cols="columns"
+            items="items"
+            grid-width="{{width}}"
+            grid-height="{{50 + 30 * items.length}}">
+    </mm-grid>
+</div>

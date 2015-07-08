@@ -1,0 +1,78 @@
+<mm-row>
+	<div class="mm-entity-fields-container-single">
+<mm-row xmlns="">
+	<mm-text mm-model="siteEdit.servingSettings.minZIndex"
+					 mm-placeholder="Enter Minimum Z Index"
+					 mm-error="validation.minimumZIndex"
+					 mm-caption="Minimum Z Index"
+					 mm-is-required="true"
+					 mm-is-edit-mode="isEditMode"
+					 mm-change="onMinimumZIndexChanged()"
+					 mm-label-width="{{adDeliveryLabelWidth}}"
+					 mm-label-width="{{trackingTargetingTabLabelWidth}}"
+					 mm-layout-type="custom"
+					 mm-custom-control-width="215"
+           mm-tab-index="11">
+	</mm-text>
+</mm-row>
+<mm-row>
+	<mm-text mm-model="siteEdit.servingSettings.addinEyeFileLocation"
+					 mm-placeholder="Enter AddinEye File Location"
+					 mm-error="validation.addinEyeFileLocation"
+					 mm-caption="AddinEye File Location"
+					 mm-is-required="false"
+					 mm-is-edit-mode="isEditMode"
+					 mm-change="onAddinEyeFileLocationChanged()"
+					 mm-label-width="{{adDeliveryLabelWidth}}"
+					 mm-label-width="{{trackingTargetingTabLabelWidth}}"
+					 mm-layout-type="custom"
+					 mm-custom-control-width="215"
+           mm-tab-index="12">
+	</mm-text>
+</mm-row>
+<mm-row>
+		<mm-check-box
+				mm-model="siteEdit.servingSettings.generatedTagWithoutDocumentWrite"
+				mm-caption="Document.Write"
+				mm-description="Avoid Document.Write"
+				mm-layout-type="medium"
+				mm-label-width="{{adDeliveryLabelWidth}}"
+        mm-tab-index="13"></mm-check-box>
+</mm-row>
+<mm-row>
+		<mm-check-box
+				mm-model="siteEdit.servingSettings.enableCORSResponseHeaders"
+				mm-caption="CORS on Response Headers"
+				mm-description="Enable CORS on Response Headers"
+				mm-layout-type="medium"
+				mm-label-width="{{adDeliveryLabelWidth}}"
+        mm-tab-index="14"></mm-check-box>
+</mm-row>
+		<div ng-repeat="adVersion in siteSettings.servingSettings.adClientVersions">
+			<mm-row>
+				<mm-check-box
+						mm-model="adVersion.state"
+						mm-caption="{{adVersion.caption}}"
+						mm-description="{{adVersion.text}}"
+						mm-layout-type="large"
+						mm-label-width="{{adDeliveryLabelWidth}}"
+            mm-tab-index="15">
+				</mm-check-box>
+			</mm-row>
+		</div>
+	<mm-mini-section
+			mm-is-modal="'false'"
+			mm-caption="'Video'"
+			mm-start-open="settingsToggelsStartOpen.videoMiniSection">
+		<mm-row>
+				<mm-check-box
+						mm-model="siteEdit.servingSettings.playerSupportsVPAID"
+						mm-caption="Player Supports VPAID"
+						mm-description="Supports VPAID"
+						mm-layout-type="medium"
+						mm-label-width="200"
+            mm-tab-index="16"></mm-check-box>
+		</mm-row>
+	</mm-mini-section>
+		</div>
+	</mm-row>

@@ -1,0 +1,27 @@
+.liItemHover {
+  list-style-position:inside;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  list-style-type: none;
+  &:hover {
+    background-color: #8d8d8d;
+    cursor: pointer;
+  }
+  a {
+    &:focus {
+      background-color: #befcff;
+    }
+
+  }
+}
+
+.searchTextBox {
+  border: 0px;
+  width: 89%;
+  &:focus {
+    outline: 0;
+  }
+}
+
+.ui-state-highlight { height: 1.5em; line-height: 1.2em; background-color: #9acdcf !important;border: 1px dashed}

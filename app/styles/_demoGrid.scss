@@ -1,0 +1,55 @@
+.testGrid ul li { list-style:none;}
+.testGrid .tags li{ margin: 0 0 5px; font-size: 14px;}
+.testGrid .tags li:last-child{ margin-bottom: 0!important;}
+.testGrid .tags li a { color: #717171; display: inline-block; font-size: 12px; height: 17px; line-height: 17px !important; margin: 0;
+  max-width: 64px; padding: 0 5px; text-overflow: ellipsis; white-space: nowrap;}
+.testGrid .tags li a:hover, .testGrid .tags li a:active {}
+.testGrid .tags li a:before{border-width: 12px; margin-top: -13px;}
+.testGrid .tags li a:after{border-width: 11px; margin-top: -12px;}
+.testGrid .color-yellow{ color: #ffb339!important;}
+.testGrid .color-yellow i{color: #ffb339!important; }
+.testGrid .color-yellow.active{ background: #ffb339; color: #fff!important;}
+.testGrid .color-yellow.active i{  color: #fff!important;}
+
+.testGrid .color-red{ color: #e94263!important;}
+.testGrid .color-red i{color: #e94263!important; }
+.testGrid .color-red.active{ background: #e94263; color: #fff!important;}
+.testGrid .color-red.active i{  color: #fff!important;}
+
+.testGrid .color-violet{ color: #b2acfc!important;}
+.testGrid .color-violet i{color: #b2acfc!important; }
+.testGrid .color-violet.active{ background: #b2acfc; color: #fff!important;}
+.testGrid .color-violet.active i{  color: #fff!important;}
+
+.testGrid .color-orange{ color: #FFA500!important;}
+.testGrid .color-orange i{color: #FFA500!important; }
+.testGrid .color-orange.active{ background: #FFA500; color: #fff!important;}
+.testGrid .color-orange.active i{  color: #fff!important;}
+
+.testGrid .color-green{ color: #0d9884!important;}
+.testGrid .color-green i{color: #0d9884!important; }
+.testGrid .color-green.active{ background: #0d9884; color: #fff!important;}
+.testGrid .color-green.active i{  color: #fff!important;}
+
+.testGrid .color-blue{ color: #00b4ff!important;}
+.testGrid .color-blue i{color: #00b4ff!important; }
+.testGrid .color-blue.active{ background: #00b4ff; color: #fff!important;}
+.testGrid .color-blue.active i{  color: #fff!important;}
+
+.testGrid .color-magenta{ color: #fa69eb!important;}
+.testGrid .color-magenta i{color: #fa69eb!important; }
+.testGrid .color-magenta.active{ background: #fa69eb; color: #fff!important;}
+.testGrid .color-magenta.active i{  color: #fff!important;}
+
+.testGrid .color-lime{ color: #c0d700!important;}
+.testGrid .color-lime i{color: #c0d700!important; }
+.testGrid .color-lime.active{ background: #c0d700; color: #fff!important;}
+.testGrid .color-lime.active i{  color: #fff!important;}
+
+.testGrid .color-gold{ color: #ffb700!important;}
+.testGrid .color-gold i{color: #ffb700!important; }
+.testGrid .color-gold.active{ background: #ffb700; color: #fff!important;}
+.testGrid .color-gold.active i{  color: #fff!important;}
+
+.testGrid .view-info-box{  background: none repeat scroll 0 0 #cccccc; border: 1px solid #999999; display: inline-block; margin-left: 20px; padding: 3px 10px; width: 29%; vertical-align: top;}
+.testGrid .view-info-box span{ font-size: 14px; font-weight: normal; vertical-align: top;}

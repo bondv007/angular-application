@@ -1,0 +1,12 @@
+<div ng-repeat="product in products" ng-show="result.length > 0">
+    <p class="ioEditSubTitle">
+        <span ng-repeat="item in (result = (product.products | filter :{isPartOfIo:partOfIo}))">
+            {{item.name}}{{$last ? '' : ', '}}</span>
+    </p>
+    <mm-grid  ng-if="result.length > 0"
+            cols="gridCols[product.id]"
+            items="gridItems[product.id]"
+            grid-width="{{width}}"
+            grid-height="{{50 + 30 * gridItems[product.id].length}}">
+    </mm-grid>
+</div>

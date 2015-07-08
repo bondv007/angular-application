@@ -1,0 +1,23 @@
+<div class="modal-dialog">
+    <div class="modal-content">
+        <div class="mmmodal-header">
+            <div class="close">
+                <div class="close-button" ng-click="adPreviewCommonModel.showTestSiteDialog=false"></div>
+            </div>
+            <div class="mmmodal-title"> TEST ON A SITE</div>
+        </div>
+        <div class="modal-body">
+            <input ng-model="adPreviewCommonModel.url" type="text" class="form-control"
+                   placeholder="Type the site's Url">
+        </div>
+        <div class="modal-footer">
+          <button ng-click="downloadBackgroundUrlContent();adPreviewCommonModel.showTestSiteDialog=false" type="button"
+                  class="btn btn-primary">
+            Test
+          </button>
+          <button type="button" class="btn btn-default" ng-click="adPreviewCommonModel.showTestSiteDialog=false">
+              Cancel
+          </button>
+        </div>
+    </div>
+</div>

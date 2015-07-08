@@ -1,0 +1,19 @@
+<mm-row>
+	<mm-drop-down style="position: relative;left: 2px"
+									mm-layout-type="custom"
+									mm-custom-control-width="200"
+									mm-data-model="assignmentStrategy"
+									mm-select-change-func="onAssignmentStrategyChange()"
+									mm-model="selectedAssignmentStrategy.selected"
+									mm-caption="Assignment Strategy"
+									mm-label-width="165">
+</mm-drop-down>
+</mm-row>
+<mm-row>
+	<div id="adsAreaButtons" class="divButton">
+		<button type="button" class="mainButton btn btn-xs" ng-click="preview()" ng-bind="'Preview' | T"></button>
+		<button type="button" class="mainButton  btn btn-xs" ng-click="createSubGroup()" ng-bind="sdButtonName | T"></button>
+	</div>
+</mm-row>
+<div ng-show="sdButtonName == strCreateSubGroup" ng-include="'campaignManagementApp/views/deliveryGroup/smartAttachDgsToAds/settings/ad.html'"></div>
+<div ng-show="sdButtonName != strCreateSubGroup && subGroup.subContainers.length > 0" ng-include="'campaignManagementApp/views/deliveryGroup/smartAttachDgsToAds/settings/subGroup.html'"></div>

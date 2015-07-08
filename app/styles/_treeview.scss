@@ -1,0 +1,122 @@
+/*destination folder selection modal*/
+.select-file-dest{ height: 512px;width:609px;}
+.select-file-dest .modal-header {
+  background-color: #0d2a4d;
+  height: 39px;
+  left: 0;
+  position: relative;
+  top: 10px;
+  padding: 0 0 0 11px;
+  text-transform: uppercase;
+}
+.select-file-dest .modal-header > .modal-title {
+  color: #faf000;
+  display: inline-block;
+  font-size: 15px;
+  margin: 6px;
+  position: relative;
+  top: 2px;
+}
+
+.select-file-dest .close {
+  color: black;
+  float: right;
+  font-size: 21px;
+  font-weight: bold;
+  line-height: 1;
+  opacity: 0.2;
+  text-shadow: 0 1px 0 white;
+}
+.select-file-dest .modal-header > .close {
+  opacity: 1 !important;
+  position: absolute;
+  right: 9px;
+  top: 0;
+}
+
+.select-file-dest .modal-header > .close > .close-button {
+  background-color: #faf000;
+  background-image: image-url("si_x_small.png");
+  background-position: 11px center;
+  background-repeat: no-repeat;
+  cursor: pointer;
+  height: 39px;
+  width: 38px;
+  z-index: 3000;
+  margin-top: 2px;
+}
+.select-file-dest .modal-body {
+  margin-bottom: 0px;
+  overflow: hidden;
+  position: relative;
+  top: 0px;
+  padding: 26px 28px 28px;
+}
+
+.select-file-dest div[data-tree-model] li .expanded {
+  background-image: image-url("destination_opened_folder.png");
+  background-repeat: no-repeat;
+  background-position: 0 2px;
+  padding: 0 11px;
+}
+.select-file-dest div[data-tree-model] li .normal {
+  background-image: image-url("destination_closed_folder.png");
+  background-repeat: no-repeat;
+  padding: 0px 9px;
+}
+
+.select-file-dest div[data-tree-model] li .collapsed {
+  background-image: image-url("destination_closed_folder.png");
+  background-repeat: no-repeat;
+  padding: 0px 10px;
+}
+
+.folder-search-area{ padding: 5px; border: 1px solid #bacae4; height: 312px; overflow: auto; clear: both}
+.select-file-dest div[data-tree-model] > li { padding-left:0;}
+.select-file-dest .top-folder-search{ margin-bottom: 12px;}
+.rename-dirt{ margin: 0; padding: 4px 0; float: left;}
+.rename-dirt li{ font-size:  13px; font-family: arial, sans-serif; color: #0D294E; display: inline-block; list-style: none; margin: 0 6px 0 0 }
+.rename-dirt li a{ color: #0068FF;}
+.select-file-dest .search {
+  background: image-url("search_normal.png") no-repeat scroll 0 0 rgba(0, 0, 0, 0);
+  display: inline-block;
+  height: 17px;
+  vertical-align: top;
+  width: 17px;
+}
+.clear{ clear: both}
+.select-file-dest .mmGridSearch-box button:last-child {
+  margin-right: 0px;
+}
+.select-file-dest .mmGridSearch-box{ margin: 0; width: 200px; padding: 3px 6px 0;}
+.select-file-dest .modal-footer {
+  padding: 10px 28px;
+  position: relative;
+  top: 10px;
+}
+.select-file-dest .modal-footer { margin-top: 0; top: 0;}
+.select-file-dest .modal-footer button { min-width: 100px; text-transform: uppercase;}
+.select-file-dest .btn.btn-primary { background: #FAF000; border-color:#FAF000; box-shadow: none; border-radius: 0; color: #0d2a4d;}
+.select-file-dest .btn.btn-warning { background: #F5F5F5; border-color:#F5F5F5; box-shadow: none; border-radius: 0; color: #0d2a4d;}
+.select-file-dest div[data-tree-model] li i, div[data-tree-model] li span{  font-size:  13px; font-family: arial, sans-serif; color: #0D294E; padding:1px 3px; }
+.select-file-dest div[data-tree-model] li .selected {
+  background-color: #E4EFFE; opacity: .7;
+  font-weight: normal;
+  padding: 1px 3px;
+}
+
+.select-file-dest .collapsed:after{ background: image-url("Destination_closed.png") no-repeat scroll 0 0 rgba(0, 0, 0, 0);
+  content: ""; height: 10px;  left: 7px;  position: absolute;  top: 4px;  width: 5px;}
+.select-file-dest .expanded:after{  background: image-url("Destination_opened.png") no-repeat scroll 0 0 rgba(0, 0, 0, 0);
+  content: "";  height: 10px;  left: 7px;  position: absolute;  top: 6px;  width: 5px;}
+.select-file-dest div[data-tree-model] li{ margin-bottom: 7px;}
+.select-file-dest div[data-tree-model] li:last-child{ margin-bottom: 0;}
+//.select-file-dest div[data-tree-model] li ul{ margin-top: 13px;}
+.select-file-dest div[data-tree-model] li ul li{ margin-top: 5px;}
+
+.select-file-dest .mCSB_scrollTools .mCSB_draggerRail{ background: none!important;}
+.select-file-dest .mCSB_scrollTools .mCSB_dragger .mCSB_dragger_bar{ width: 6px!important; background: #C0C9D0!important;}
+#mCSB_1_dragger_vertical{height: auto!important;}
+.select-file-dest  .mCSB_scrollTools .mCSB_dragger .mCSB_dragger_bar{height:54px!important; }
+.select-file-dest  .folder-search-area {padding: 5px 5px 5px 2px;}
+#destbackdrop, #confirmbackdrop {opacity: .6;}

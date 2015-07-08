@@ -1,0 +1,9 @@
+<div data-drag="{{true}}" ng-model="container" jqyoui-draggable="{index:{{$index}},animate:false,placeholder:'keep'}"
+		 data-jqyoui-options="{revert:'invalid', appendTo:'body', containment:'window', scroll:false,helper:'clone'}">
+	<div ng-if="container.type=='DeliveryGroupAd'">
+		<div ng-include="'campaignManagementApp/views/deliveryGroup/adTreeTemplate.html'"></div>
+	</div>
+	<div ng-if="container.type=='AdContainer'">
+		<div ng-include="'campaignManagementApp/views/deliveryGroup/containerTreeTemplate.html'"></div>
+	</div>
+</div>

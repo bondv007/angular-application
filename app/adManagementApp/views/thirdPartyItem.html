@@ -1,0 +1,21 @@
+<div>
+	<div >
+		<mm-check-box mm-model="ngModel.isChecked" mm-show-label="false"></mm-check-box>
+	</div>
+
+		<mm-text mm-model="ngModel.url" mm-show-label="false"
+						 mm-layout-type="medium" mm-max-length="250" mm-size="250"
+						 mm-is-required="true" mm-placeholder="URL" ></mm-text>
+
+
+		<mm-drop-down mm-model="ngModel.urlType" mm-data-model="lookups.thirdpartyUrlTypes"  mm-is-required="true"
+										mm-layout-type="medium" mm-show-label ="false"
+										mm-placeholder="URL Type" ></mm-drop-down>
+
+		<mm-drop-down mm-model="ngModel.enabled" mm-data-model="enableOptions"
+										mm-layout-type="medium"  mm-show-label ="false"></mm-drop-down>
+
+		<mm-label mm-model="ngModel.urlSource"  mm-show-label ="false"   mm-is-required="true"
+							mm-layout-type="medium" mm-placeholder="Ad" ></mm-label>
+
+</div>

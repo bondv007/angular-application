@@ -1,0 +1,159 @@
+.centralGridHeaderLine{
+  border-bottom: solid 1px #bacae4;
+  height: 34px;
+}
+
+.centralGridHeader{
+  position:relative;
+  line-height: 34px;
+  height: 34px;
+  display: inline-block;
+}
+.centralGridHeaderItem{
+  position:relative;
+  line-height: 34px;
+  height: 34px;
+  display: inline-block;
+}
+.centralGridHeaderSeperator{
+  position: absolute;
+  top: 7px;
+  bottom: 0;
+  right: 2px;
+  width: 1px;
+  height: 20px;
+  font-size: 20px;
+  border-right: solid 1px #bacae4;
+}
+.centralGridHeaderText{
+  position:absolute;
+  top:0;
+  bottom:0;
+  left:10px;
+  right:2px;
+  cursor: pointer;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+
+  opacity: 0.75;
+  color: $cSecondary;
+  font-family: "Titillium Semibold";
+  font-size: 12px;
+  font-weight: bold;
+  &:hover{
+    opacity: 1;
+  }
+}
+.centralGridRow{
+  position:relative;
+  line-height: 30px;
+  height: 30px;
+  display: inline-block;
+
+  .centralGridRowId{
+    text-decoration: none;
+    font-size: 13px;
+//    color: $cMain;
+  }
+}
+
+.centralGridRowText{
+  position:absolute;
+  top:0;
+  bottom:0;
+  left:10px;
+  right:2px;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
+.centralGridRowCursorPointer{
+  cursor: pointer;
+}
+
+.emptyStateText{
+  font-size: 16px;
+  color: #b6bec9;
+  font-family: 'Titillium';
+}
+
+.emptyStateLink{
+  font-size: 16px;
+  font-family: 'Titillium';
+  color: #0068ff;
+}
+
+.centralColumnHeaderResize {
+  right: 0px;
+  top: -2px;
+  color: #bacae4;
+  font-weight: lighter;
+  width: 0;
+  padding-left: 7px;
+  padding-right: 10px;
+  border: none;
+  height: 34px;
+}
+
+.centralGridColumnPlaceHolder{
+  overflow:auto;top:35px;padding: 0;
+}
+
+.emptyStatePlaceHolder{
+  position:absolute;top: 90px;height:30px;width:100%;text-align: center;
+}
+
+.centralColumnResizePosition{
+  right:3px;height: 100%;width: 100%;top: 0;bottom: 0;
+}
+
+.angular-ui-tree-empty {
+  border: none;
+  background-color: transparent;
+}
+
+//.angular-ui-tree-placeholder {
+//}
+
+//.angular-ui-tree-ghost{
+//}
+
+.angular-ui-tree-drag {
+  max-width: 470px;
+  overflow: hidden;
+  :first-child{
+    background-color: $cFifth !important;
+  }
+  .mm_checkbox {
+    top: 0px !important;
+    right: 1px !important;
+    background-color: white !important;
+    background: white !important;
+  }
+}
+
+.centralDrag{
+  position: relative;
+  bottom: 4px;
+  left: 1px;
+  width: 6px !important;
+  height: 22px!important;
+}
+
+.centralDragRowOver {
+  cursor: move !important;
+  &:hover {
+    cursor: move !important;
+    .centralDrag{
+      position: relative;
+      bottom: 4px;
+      left: 1px;
+      width: 6px !important;
+      height: 22px!important;
+      cursor: move;
+      background-image: image-url('drag.png');
+    }
+  }
+}

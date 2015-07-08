@@ -1,0 +1,57 @@
+<div style="display: inline-block; vertical-align: top; float: left"
+     ng-style="{'height': (controlType == 'multi' || controlType == 'single' || controlType == 'text') ? '30px' : 'auto',
+                'margin-bottom': (mmError !== undefined && mmError !== '') ? '20px' : 0}">
+  <div style="display: inline" ng-include="'infra/directives/views/template/label.html'"></div>
+  <div class="{{mmAdditionalClass}}" ng-class="{'text-edit-mode': mmIsEditMode, 'text-new-mode': !mmIsEditMode}" style="display: inline-block">
+    <div class="control-container">
+      <div ng-if="controlType == 'text'">
+        <div ng-include="'infra/directives/views/template/text.html'"></div>
+      </div>
+      <div ng-if="controlType == 'single' || controlType == 'multi'">
+        <div ng-include="'infra/directives/views/template/singleselect.html'" ng-class="{'multiselect-show': isShowControl && mmIsEditMode}"></div>
+      </div>
+      <div ng-if="controlType == 'redio'">
+        <div ng-include="'infra/directives/views/template/redio.html'"></div>
+      </div>
+      <div ng-if="controlType == 'checkbox'">
+        <div ng-include="'infra/directives/views/template/checkbox.html'"></div>
+      </div>
+      <div ng-if="controlType == 'daterange'">
+        <div ng-include="'infra/directives/views/template/daterange.html'"></div>
+      </div>
+      <div ng-if="controlType == 'date'">
+        <div ng-include="'infra/directives/views/template/date.html'"></div>
+      </div>
+      <div ng-if="controlType == 'checklist'">
+        <div ng-include="'infra/directives/views/template/checklist.html'"></div>
+      </div>
+      <div>
+        <mm-error-div mm-min-width="mmMinWidth" error-text="mmError"></mm-error-div>
+      </div>
+    </div>
+    <div ng-if="(!isShowControl && !mmIsLink && mmIsEditMode && (mmError === undefined || mmError == '')) || (mmDisable && !mmIsLink && mmIsEditMode && !mmForceHide)"
+         ng-click="$parent.isShowControl=true && !mmDisable;(controlType == 'multi' || controlType == 'single') ? toggleSelect() : 1==1;"
+         ng-mouseover="hover=true && !mmDisable"
+         ng-mouseleave="hover=false"
+         style="position: relative; display: inline-block;">
+      <div
+         class="{{mmControlClass}} mm-label-value mm-ellipsis"
+         ng-class="{hover: hover, hint: (!mmModel && mmPlaceholder), disable: mmDisable, 'mm-label-padding' :(controlType == 'multi' || controlType == 'single')}"
+         style="{{mmControlWidth}}">
+      {{(controlType == 'multi' || controlType == 'single') ? mmModelText || mmPlaceholder : mmModel || mmPlaceholder}}
+      </div>
+      <div class="label-button-down"
+           ng-if="hover && (controlType == 'multi' || controlType == 'single')"></div>
+      <div class="label-button-separator"
+           ng-show="hover && (controlType == 'multi' || controlType == 'single')"></div>
+    </div>
+    <div ng-if="(!isShowControl && mmIsLink && mmIsEditMode && (mmError === undefined || mmError == '')) || (mmDisable && mmIsLink && mmIsEditMode)"
+           class="mm-link-label"
+           ng-mouseover="hover=true"
+           ng-mouseleave="hover=false; changeControlVisibility(false);">
+          <div ng-if="mmSimpleLink" ng-include="'infra/directives/views/link/simpleLink.html'"></div>
+          <div ng-if="!mmSimpleLink" ng-include="'infra/directives/views/link/entityLink.html'"></div>
+      </div>
+  </div>
+</div>
+

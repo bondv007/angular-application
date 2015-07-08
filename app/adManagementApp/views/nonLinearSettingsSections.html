@@ -1,0 +1,55 @@
+<div >
+	<mm-mini-section mm-caption="'Non Linear Settings'"   mm-error="creativeError.name" mm-start-open="toggleHandler.showToggleNonLinearSettings" mm-is-modal="true">
+	<mm-row >
+		<mm-check-box mm-model="ad.nonLinearSettings.maintainAspectRatio" mm-caption="Aspect Ratio"
+									mm-layout-type="medium"
+									mm-label-width={{labelWidth3}}
+									mm-disable="isAspectRatioDisabled"
+									mm-edit-multiple="isMultiple != undefined && isMultiple.indexOf('maintainAspectRatio') != -1"
+									mm-description = "Maintain aspect ratio"></mm-check-box>
+	</mm-row>
+	<mm-row >
+		<mm-check-box mm-model="ad.nonLinearSettings.scalable" mm-caption="Scalable"
+							 mm-label-width={{labelWidth3}}
+							 mm-layout-type="medium"
+							 mm-change="isScalableClick()"
+							 mm-edit-multiple="isMultiple != undefined && isMultiple.indexOf('scalable') != -1"
+							 mm-description = "Scale video according to the player's size"></mm-check-box>
+</mm-row>
+	<mm-row >
+		<mm-check-box mm-model="ad.nonLinearSettings.vpaid" mm-caption="Support VPAID"
+									mm-label-width={{labelWidth3}}
+									mm-layout-type="medium"
+									mm-change="isScalableClick()"
+									mm-edit-multiple="isMultiple != undefined && isMultiple.indexOf('vpaid') != -1"
+									mm-description = "Support VPAID"></mm-check-box>
+	</mm-row>
+	<mm-row>
+		<mm-text mm-caption="Expanded Width" mm-model="ad.nonLinearSettings.expandedWidth"
+						 mm-is-edit-mode="!!entityId"
+						 mm-layout-type="small"
+						 mm-label-width = {{labelWidth3}}
+						 mm-is-edit-mode="ad.id"
+						 mm-edit-multiple="isMultiple != undefined && isMultiple.indexOf('expandedWidth') != -1"
+						 mm-placeholder=""></mm-text>
+	</mm-row>
+	<mm-row>
+		<mm-text mm-caption="Expanded Height" mm-model="ad.nonLinearSettings.expandedHeight"
+						 mm-is-edit-mode="!!entityId"
+						 mm-layout-type="small"
+						 mm-label-width = {{labelWidth3}}
+						 mm-is-edit-mode="ad.id"
+						 mm-edit-multiple="isMultiple != undefined && isMultiple.indexOf('expandedHeight') != -1"
+						 mm-placeholder=""></mm-text>
+	</mm-row>
+<mm-row>
+	<mm-text mm-caption="Linear Clickthrough" mm-model="ad.nonLinearSettings.clickthrough"
+					 mm-is-edit-mode="!!entityId"
+					 mm-layout-type="medium"
+					 mm-label-width = {{labelWidth3}}
+					 mm-is-edit-mode="ad.id"
+					 mm-edit-multiple="isMultiple != undefined && isMultiple.indexOf('clickthrough') != -1"
+					 mm-placeholder=""></mm-text>
+</mm-row>
+</mm-mini-section>
+</div>

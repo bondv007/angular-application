@@ -1,0 +1,11 @@
+<div class="modal-header">
+    <h3 class="modal-title">Decision Diagram Delete</h3>
+</div>
+<div class="modal-body">
+        <div class="alert csb-alert alert-danger" ng-show="error">{{error}}</div>
+        <p ng-hide="error">You are about to delete this template. Are you sure you want to go ahead?</p>
+</div>
+<div class="modal-footer">
+    <button class="btn btn-danger" ng-click="delete();">{{deleteButtonText}}</button>
+    <button class="btn btn-primary" ng-click="modal.dismiss()">Close</button>
+</div>

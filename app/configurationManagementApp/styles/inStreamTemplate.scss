@@ -1,0 +1,40 @@
+.in-stream-template{
+
+  .toggleWrapper {
+    left:10px;
+    margin-right: 20px;
+  }
+
+  .upload-file-btn{
+    color: #428bca;
+    display: inline-block;
+    line-height: 2.5;
+    margin: 0px 7px;
+    font-weight: normal;
+    &:hover{
+      cursor: pointer;
+      text-decoration: underline
+    }
+  }
+
+  .mm-description-area {
+    @include tArialText;
+    border:1px solid gray;
+    padding: 5px;
+    outline: none;
+    resize: none;
+    width: 29.4%;
+
+    &:focus{
+      outline:0;
+      outline:none;
+    }
+  }
+
+  .descriptionerror {
+    border: 1px solid red;
+  }
+}
+
+
+

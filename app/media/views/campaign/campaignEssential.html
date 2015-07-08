@@ -1,0 +1,135 @@
+<mm-row>
+  <mm-label ng-if="isEditMode"
+            mm-is-edit-mode="isEditMode"
+            mm-model="editObject.id"
+            mm-caption="Campaign ID"
+            mm-is-required="{{isRequired}}"
+            mm-layout-type="medium"
+            mm-label-width="{{labelWidth}}"></mm-label>
+</mm-row>
+<mm-row>
+  <mm-text mm-is-edit-mode="isEditMode"
+           mm-model="editObject.name"
+           mm-placeholder="Enter Name"
+           mm-error="validation.name"
+           mm-is-required="true"
+           mm-caption="Campaign Name"
+           mm-label-width="{{labelWidth}}"
+           mm-layout-type="medium"
+           mm-change="onCampaignNameChange()"
+           mm-disable="!editCampaign"></mm-text>
+</mm-row>
+<!--<mm-row>-->
+  <!--<mm-drop-down mm-is-edit-mode="isEditMode"-->
+                <!--mm-caption="Trafficking Mode"-->
+                <!--mm-data-model="traffickingMode"-->
+                <!--mm-model="editObject.traffickingMode"-->
+                <!--mm-label-width="{{labelWidth}}"-->
+                <!--mm-select-change-func="onTraffickingModeChange()"-->
+                <!--mm-layout-type="medium"></mm-drop-down>-->
+<!--</mm-row>-->
+<mm-row ng-if="contextData.isInContext || isEditMode || !isMultipleAccounts">
+  <mm-label mm-is-edit-mode="isEditMode"
+            mm-model="editObject.relationsBag.parents.account.name"
+            mm-caption="Account Name"
+            mm-is-required="{{isRequired}}"
+            mm-layout-type="medium"
+
+            mm-label-width="{{labelWidth}}"></mm-label>
+</mm-row>
+<mm-row ng-if="!contextData.isInContext && !isEditMode && isMultipleAccounts">
+  <mm-drop-down mm-caption="Account Name"
+                mm-data-model="relatedEntities.accounts.list"
+                lazy-type="lazyTypeParams"
+                mm-is-edit-mode="isEditMode"
+                mm-model="editObject.relationsBag.parents.account.id"
+                mm-is-required="true"
+                mm-select-change-func="onAccountSelected()"
+                show-search-box
+                mm-error="validation.account"
+                mm-label-width="{{labelWidth}}"
+                mm-layout-type="medium"></mm-drop-down>
+</mm-row>
+<mm-row ng-if="(contextData.isInContext || isEditMode) && (advertiserId || brandId || isEditMode)">
+  <mm-label mm-is-edit-mode="isEditMode"
+            mm-model="editObject.relationsBag.parents.advertiser.name"
+            mm-caption="Advertiser Name"
+            mm-is-required="{{isRequired}}"
+            mm-layout-type="medium"
+            mm-label-width="{{labelWidth}}"></mm-label>
+</mm-row>
+<mm-row ng-if="(!contextData.isInContext && !isEditMode) || (!advertiserId && !brandId && !isEditMode)">
+  <mm-drop-down mm-caption="Advertiser Name"
+                mm-data-model="relatedEntities.advertisers.filteredAdvertisers"
+                mm-is-edit-mode="isEditMode"
+                mm-model="editObject.relationsBag.parents.advertiser.id"
+                mm-is-required="true"
+                mm-select-change-func="onAdvertiserSelected()"
+                show-search-box
+                mm-error="validation.advertiser"
+                mm-label-width="{{labelWidth}}"
+                mm-layout-type="medium"
+                mm-disable="!editObject.relationsBag.parents.account.id"
+                mm-show-add-new="hasCreateAdvertiserBrandPermission"
+                new-entity-type="advertiser"
+                entity-obj="entityObj"></mm-drop-down>
+</mm-row>
+<mm-row ng-if="(contextData.isInContext || isEditMode) && (brandId || isEditMode)">
+  <mm-label mm-is-edit-mode="isEditMode"
+            mm-model="editObject.relationsBag.parents.brand.name"
+            mm-caption="Brand Name"
+            mm-is-required="{{isRequired}}"
+            mm-layout-type="medium"
+            mm-label-width="{{labelWidth}}"></mm-label>
+</mm-row>
+<mm-row ng-if="(!contextData.isInContext && !isEditMode) || (!brandId && !isEditMode)">
+  <mm-drop-down mm-caption="Brand Name"
+                mm-data-model="relatedEntities.brands.filteredBrands"
+                mm-is-edit-mode="isEditMode"
+                mm-model="editObject.relationsBag.parents.brand.id"
+                mm-is-required="{{isRequired}}"
+                mm-select-change-func="onBrandSelected()"
+                show-search-box
+                mm-error="validation.brand"
+                mm-label-width="{{labelWidth}}"
+                mm-layout-type="medium"
+                mm-disable="!editObject.relationsBag.parents.advertiser.id"
+                mm-show-add-new="hasCreateAdvertiserBrandPermission"
+                new-entity-type="brand"
+                entity-obj="entityObj"></mm-drop-down> <!--lazy-type="'brands'"-->
+</mm-row>
+<mm-row ng-if="isEditMode">
+  <mm-text mm-caption="Placements"
+           mm-label-width="{{labelWidth}}"
+           mm-layout-type="small"
+           mm-custom-control-width="0"
+           mm-is-required="{{!isRequired}}"
+           mm-show-as-label="true"
+           mm-entity-type="{{'campaign'}}"
+           mm-is-custom-link="true"
+           mm-custom-link="{{placementsCentralLink.link}}"
+           mm-entity-id="editObject.id"
+           mm-input-type="link"
+           mm-is-link="true"
+           mm-simple-link="'true'"
+           mm-disable="true"
+           mm-model="editObject.placementsCount+placementsText"></mm-text>
+</mm-row>
+<mm-row ng-if="isEditMode">
+  <mm-text mm-caption="Placement Ads"
+           mm-label-width="{{labelWidth}}"
+           mm-layout-type="small"
+           mm-custom-control-width="0"
+           mm-is-required="{{!isRequired}}"
+           mm-show-as-label="true"
+           mm-entity-type="{{'campaign'}}"
+           mm-is-custom-link="true"
+           mm-custom-link="{{placementAdsCentralLink.link}}"
+           mm-entity-id="editObject.id"
+           mm-input-type="link"
+           mm-is-link="true"
+           mm-simple-link="'true'"
+           mm-disable="true"
+           mm-model="editObject.placementAdsCount+placementsAdsText"></mm-text>
+</mm-row>
+

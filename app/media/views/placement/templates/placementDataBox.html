@@ -1,0 +1,34 @@
+<div class="mm-entity-info-box-container-right">
+  <mm-info-box num-of-info-lines="6">
+    <mm-info-label
+      mm-model="placementEdit.status"
+      mm-label-width={{placementViewSettings.infoBoxLabelWidth}}
+      mm-caption="{{'Status' | T}}:">
+    </mm-info-label>
+    <mm-info-label
+      mm-model="isEditMode ? placementEdit.analyticsData.impressions : null"
+      mm-label-width={{placementViewSettings.infoBoxLabelWidth}}
+      mm-caption="{{'Total Impressions' | T}}:">
+    </mm-info-label>
+    <mm-info-label
+      mm-model="isEditMode ? placementEdit.analyticsData.clicks : null"
+      mm-label-width={{placementViewSettings.infoBoxLabelWidth}}
+      mm-caption="{{'Total Clicks' | T}}:">
+    </mm-info-label>
+    <mm-info-label
+      mm-model="isEditMode ? placementEdit.analyticsData.ctr : null"
+      mm-label-width={{placementViewSettings.infoBoxLabelWidth}}
+      mm-caption="{{'CTR' | T}}:">
+    </mm-info-label>
+    <mm-info-label
+      mm-model="isEditMode ? placementEdit.analyticsData.lastUpdated : null"
+      mm-label-width={{placementViewSettings.infoBoxLabelWidth}}
+      mm-caption="{{'Last Served Impression' | T}}:">
+    </mm-info-label>
+    <mm-info-label
+      mm-model="isEditMode ? placementEdit.analyticsData.lastUpdateOn : null"
+      mm-label-width={{placementViewSettings.infoBoxLabelWidth}}
+      mm-caption="{{'Last updated' | T}}:">
+    </mm-info-label>
+  </mm-info-box>
+</div>

@@ -1,0 +1,1174 @@
+$bootstrap-sass-asset-helper: false;
+$icon-font-path: "../bower_components/bootstrap-sass-official/vendor/assets/fonts/bootstrap/";
+$icon-font-name: "glyphicons-halflings-regular";
+$fa-font-path: "../bower_components/font-awesome/fonts/";
+
+/*
+@font-face {
+  font-family: 'Titillium';
+  src: url('fonts/titilliumweb-black-webfont.eot');
+  src: url('fonts/titilliumweb-black-webfont.eot?#iefix') format('embedded-opentype'),
+    url('fonts/titilliumweb-black-webfont.svg#titillium_webblack') format('svg'),
+    url('fonts/Titillium-Black.otf') format("opentype"),
+    url('fonts/titilliumweb-black-webfont.woff') format('woff'),
+    url('fonts/titilliumweb-black-webfont.ttf') format('truetype');
+  font-weight: 900;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Titillium';
+  src: url('fonts/titilliumweb-bold-webfont.eot');
+  src: url('fonts/titilliumweb-bold-webfont.eot?#iefix') format('embedded-opentype'),
+    url('fonts/titilliumweb-bold-webfont.svg#titillium_webbold') format('svg'),
+    url('fonts/Titillium-Bold.otf') format("opentype"),
+    url('fonts/titilliumweb-bold-webfont.woff') format('woff'),
+    url('fonts/titilliumweb-bold-webfont.ttf') format('truetype');
+  font-weight: 700;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Titillium';
+  src: url('fonts/titilliumweb-bolditalic-webfont.eot');
+  src: url('fonts/titilliumweb-bolditalic-webfont.eot?#iefix') format('embedded-opentype'),
+    url('fonts/titilliumweb-bolditalic-webfont.svg#titillium_webbold_italic') format('svg'),
+    url('fonts/Titillium-BoldItalic.otf') format("opentype"),
+    url('fonts/titilliumweb-bolditalic-webfont.woff') format('woff'),
+    url('fonts/titilliumweb-bolditalic-webfont.ttf') format('truetype');
+  font-weight: 700;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: 'Titillium';
+  src: url('fonts/titilliumweb-extralight-webfont.eot');
+  src: url('fonts/titilliumweb-extralight-webfont.eot?#iefix') format('embedded-opentype'),
+    url('fonts/titilliumweb-extralight-webfont.svg#titillium_webthin') format('svg'),
+    url('fonts/Titillium-Light.otf') format("opentype"),
+    url('fonts/titilliumweb-extralight-webfont.woff') format('woff'),
+    url('fonts/titilliumweb-extralight-webfont.ttf') format('truetype');
+  font-weight: 200;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Titillium';
+  src: url('fonts/titilliumweb-extralightitalic-webfont.eot');
+  src: url('fonts/titilliumweb-extralightitalic-webfont.eot?#iefix') format('embedded-opentype'),
+    url('fonts/titilliumweb-extralightitalic-webfont.svg#titillium_webthin_italic') format('svg'),
+    url('fonts/Titillium-LightItalic.otf') format("opentype"),
+    url('fonts/titilliumweb-extralightitalic-webfont.woff') format('woff'),
+    url('fonts/titilliumweb-extralightitalic-webfont.ttf') format('truetype');
+  font-weight: 200;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: 'Titillium';
+  src: url('fonts/titilliumweb-italic-webfont.eot');
+  src: url('fonts/titilliumweb-italic-webfont.eot?#iefix') format('embedded-opentype'),
+    url('fonts/titilliumweb-italic-webfont.svg#titillium_webitalic') format('svg'),
+    url('fonts/Titillium-RegularItalic.otf') format("opentype"),
+    url('fonts/titilliumweb-italic-webfont.woff') format('woff'),
+    url('fonts/titilliumweb-italic-webfont.ttf') format('truetype');
+  font-weight: 400;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: 'Titillium';
+  src: url('fonts/titilliumweb-light-webfont.eot');
+  src: url('fonts/titilliumweb-light-webfont.eot?#iefix') format('embedded-opentype'),
+    url('fonts/titilliumweb-light-webfont.svg#titillium_weblight') format('svg'),
+    url('fonts/Titillium-Light.otf') format("opentype"),
+    url('fonts/titilliumweb-light-webfont.woff') format('woff'),
+    url('fonts/titilliumweb-light-webfont.ttf') format('truetype');
+  font-weight: 300;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Titillium';
+  src: url('fonts/titilliumweb-lightitalic-webfont.eot');
+  src: url('fonts/titilliumweb-lightitalic-webfont.eot?#iefix') format('embedded-opentype'),
+    url('fonts/titilliumweb-lightitalic-webfont.svg#titillium_weblight_italic') format('svg'),
+    url('fonts/Titillium-LightItalic.otf') format("opentype"),
+    url('fonts/titilliumweb-lightitalic-webfont.woff') format('woff'),
+    url('fonts/titilliumweb-lightitalic-webfont.ttf') format('truetype');
+  font-weight: 300;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: 'Titillium';
+  src: url('fonts/titilliumweb-regular-webfont.eot');
+  src: url('fonts/titilliumweb-regular-webfont.eot?#iefix') format('embedded-opentype'),
+    url('fonts/titilliumweb-regular-webfont.svg#titillium_webregular') format('svg'),
+    url('fonts/Titillium-Regular.otf') format("opentype"),
+    url('fonts/titilliumweb-regular-webfont.woff') format('woff'),
+    url('fonts/titilliumweb-regular-webfont.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Titillium';
+  src: url('fonts/titilliumweb-semibold-webfont.eot');
+  src: url('fonts/titilliumweb-semibold-webfont.eot?#iefix') format('embedded-opentype'),
+    url('fonts/titilliumweb-semibold-webfont.svg#titillium_websemibold') format('svg'),
+    url('fonts/Titillium-Semibold.otf') format("opentype"),
+    url('fonts/titilliumweb-semibold-webfont.woff') format('woff'),
+    url('fonts/titilliumweb-semibold-webfont.ttf') format('truetype');
+  font-weight: 600;
+  font-style: normal;
+
+}
+
+@font-face {
+  font-family: 'Titillium';
+  src: url('fonts/titilliumweb-semibolditalic-webfont.eot');
+  src: url('fonts/titilliumweb-semibolditalic-webfont.eot?#iefix') format('embedded-opentype'),
+    url('fonts/titilliumweb-semibolditalic-webfont.svg#titillium_websemibold_italic') format('svg'),
+    url('fonts/Titillium-SemiboldItalic.otf') format("opentype"),
+    url('fonts/titilliumweb-semibolditalic-webfont.woff') format('woff'),
+    url('fonts/titilliumweb-semibolditalic-webfont.ttf') format('truetype');
+  font-weight: 600;
+  font-style: italic;
+}
+*/
+
+@font-face {
+  font-family: 'Titillium';
+  src: url('fonts/titilliumweb-regular-webfont.woff') format('woff');
+}
+
+@font-face {
+  font-family: 'Titillium Semibold';
+  src: url('fonts/titilliumweb-semibold-webfont.woff') format('woff');
+  font-weight: bold;
+}
+
+$baseFontFamily: 'Titillium', Helvetica, Arial, sans-serif !default;
+$sansFontFamily: $baseFontFamily;
+
+// widths and heights
+$header-height: 34px;
+$footer-height: 0px;
+$rightPanel-width: 0;
+$leftPanel-width: 0;
+$toolbar-height: 33px;
+
+// colors pallet - http://wiki.eyeblaster.com/display/MM30/Color+Pallete
+$cMain: #0068ff;
+$cSecondary: #0d2a4d;
+$cSecondaryDisable: rgba(13, 42, 77, 0.4);
+$cThird: #faf000;
+$cFourth: #bacae4;
+$cFifth: #e4effe;
+$cWhite: #fff;
+$cGrey: #e6e6e6;
+$cErrorColor: #b94a48;
+$cDarkGrey: #b6bec9;
+
+$cMainSeventyFive: rgba(0, 104, 255, 0.75);
+$cForthBorder: rgba(186, 202, 228, 0.5);
+$cForthHint: rgba(186, 202, 228, 0.4);
+$cSecondaryHint: rgba(13, 42, 77, 0.4);
+$cSecondarySeventyFive: rgba(13, 42, 77, 0.75);
+$cSecondaryTwenty: rgba(13, 42, 77, 0.2);
+$cWhiteNavHover: rgba(255, 255, 255, 0.3);
+$cWhiteSixty: rgba(255,255,255,0.6);
+$cWhiteSeventy: rgba(255,255,255,0.7);
+$cWhiteEighty: rgba(255,255,255,0.8);
+
+$directiveZindex: 1000;
+
+// Typographic Styles - http://wiki.eyeblaster.com/display/MM30/Typographic+Styles
+@mixin tMenuTitles {
+  font-family: "Titillium";
+  font-size: 14px;
+  text-transform: uppercase;
+}
+
+@mixin tMenuTitlesButtons {
+  font-family: "Titillium Semibold";
+  font-size: 12px;
+  color:rgba(255,255, 255, 0.8);
+  text-transform: uppercase;
+}
+
+@mixin tMenuLinks {
+  font-family: "Titillium";
+  font-size: 13px;
+  text-transform: uppercase;
+}
+
+@mixin tMenuGroupTitles {
+  font-family: "Titillium Semibold";
+  font-size: 14px;
+}
+
+@mixin tLargeText {
+  font-family: "Titillium Semibold";
+  font-size: 15px;
+  font-weight: bold;
+}
+
+@mixin tArialText{
+  font-family:arial, sans-serif;
+  font-size: 13px;
+  color: $cSecondary;
+}
+
+@mixin tArialTextInfo{
+  font-family: ariel,  sans-serif;
+  font-size: 13px;
+  color: $cSecondary;
+  opacity: 0.75;
+  line-height: 20px;
+}
+
+@mixin tArialTextInfoTitle{
+  font-family: ariel, sans-serif;
+  font-size: 13px;
+  color: $cSecondary;
+  opacity: 0.75;
+  line-height: 20px;
+  font-weight: bold;
+}
+
+@mixin tTitillium{
+  font-family: titillium, "Titillium Web Regular";
+  font-size: 18px;
+  color: $cSecondary;
+  opacity: 0.75;
+}
+
+
+@mixin tErrorText{
+  font-family:arial, sans-serif;
+  font-size: 12px;
+  color: $cErrorColor;
+}
+
+@mixin tHintText{
+  font-family:arial, sans-serif;
+  font-size: 13px;
+  color: rgba(13,42, 77, 0.75);
+  font-style:italic;
+  //opacity: 0.7;
+}
+
+@mixin tGridErrorText{
+  font-family:arial, sans-serif;
+  font-size: 12px;
+  opacity: 0.75;
+}
+
+@mixin tEditPage {
+  font-family: "Arial";
+  font-size: 13px;
+}
+
+@mixin bButtons{
+  padding: 1px 16px;
+  margin: 0 0 0 7px;
+  min-width: 70px;
+  height: 24px;
+  font-family: "Titillium Semibold" !important;
+  font-size: 13px !important;
+  border: 0;
+  border-radius: 0;
+  text-align: center;
+  vertical-align: middle;
+  &:focus {
+    outline: none;
+  }
+  &:hover {
+    color: $cWhite;
+    background-color: $cSecondary;
+  }
+  &:first-child
+  {
+    margin-left: 0;
+  }
+}
+
+@mixin boxShadowNone{
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
+}
+
+@mixin text_not_select{
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+
+// Navbar
+$navbar-height: $header-height;
+$navbar-margin-bottom: 0;
+$navbar-border-radius: 0;
+$navbar-padding-horizontal: 0;
+$navbar-padding-vertical: 0;
+
+$navbar-default-color: $cWhite;
+$navbar-default-bg: $cSecondary;
+$navbar-default-border: darken($navbar-default-bg, 6.5%) !default;
+
+// Navbar links
+$navbar-default-link-color: $cWhite;
+$navbar-default-link-hover-color: $cWhite;
+$navbar-default-link-hover-bg: $cSecondary;
+$navbar-default-link-active-color: $cWhite;
+$navbar-default-link-active-bg: $cSecondary;
+$navbar-default-link-disabled-color: #ccc !default;
+$navbar-default-link-disabled-bg: transparent !default;
+
+// Navbar brand label
+$navbar-default-brand-color: $navbar-default-link-color !default;
+$navbar-default-brand-hover-color: darken($navbar-default-brand-color, 10%) !default;
+$navbar-default-brand-hover-bg: transparent !default;
+
+// Navbar toggle
+$navbar-default-toggle-hover-bg: #ddd !default;
+$navbar-default-toggle-icon-bar-bg: #ccc !default;
+$navbar-default-toggle-border-color: #ddd !default;
+
+// Nav
+
+//$nav-link-padding:                          10px 15px !default;
+//$nav-link-hover-bg:                         $gray-lighter !default;
+//
+//$nav-disabled-link-color:                   $gray-light !default;
+//$nav-disabled-link-hover-color:             $gray-light !default;
+//
+//$nav-open-link-hover-color:                 #fff !default;
+//$nav-open-caret-border-color:               #fff !default;
+
+// Dropdowns
+// -------------------------
+
+$dropdown-bg: $cSecondary;
+//$dropdown-border:                rgba(0,0,0,.15) !default;
+//$dropdown-fallback-border:       #ccc !default;
+$dropdown-divider-bg: $cSecondary;
+$dropdown-link-color: $cWhite;
+$dropdown-link-hover-color: $cSecondary;
+$dropdown-link-hover-bg: $cFourth;
+//$dropdown-link-active-color:     $component-active-color !default;
+//$dropdown-link-active-bg:        $component-active-bg !default;
+//$dropdown-link-disabled-color:   $gray-light !default;
+$dropdown-header-color: $cThird;
+//$dropdown-caret-color:           #000 !default;
+
+$loading_bar_spinner_color: $cSecondary;
+$cWhite: #fff;
+$cGrey: #e6e6e6;
+$cMidGrey: #5f5f6e;
+
+$gray-dark: lighten(#000, 20%) !default;
+// #333
+$dropdown-link-hover-bg: #000 !default;
+$dropdown-link-hover-color: darken($gray-dark, 5%) !default;
+$line-height-base: 1.428571429 !default;
+// 20/14
+$input-border-focus: #66afe9 !default;
+$border-radius-small: 3px !default;
+$border-width-small: 1px !default;
+
+@import "../bower_components/bootstrap-sass-official/vendor/assets/stylesheets/bootstrap";
+@import "../bower_components/font-awesome/scss/font-awesome";
+@import "loading-bar";
+@import "../infra/scroller/styles/scroller";
+@import "../infra/central/styles/central";
+@import "../infra/entityLayout/styles/entityLayout";
+@import "../admin/styles/admin";
+@import "../campaignManagementApp/styles/dg/dg.scss";
+@import "../media/styles/media";
+@import "../media/styles/placement/_placement.scss";
+@import "../campaignManagementApp/styles/directives/dg/timeBaseRotation.scss";
+@import "../campaignManagementApp/styles/dg/smartAttach.scss";
+@import "../campaignManagementApp/styles/placement.scss";
+@import "../campaignManagementApp/styles/strikeWithText.scss";
+@import "../styles/_checkbox.scss";
+@import "../styles/_miniSection.scss";
+@import "../adManagementApp/styles/massCreateAds.scss";
+@import "../adManagementApp/styles/uploadFromWorkshop.scss";
+@import "../adManagementApp/styles/attachAdToCampaignManager.scss";
+@import "../campaignManagementApp/styles/attach/adsToPlacements.scss";
+@import "../billingApp/insertionOrder/styles/ioEdit.scss";
+@import "_multiselect";
+@import "_selectList";
+@import "_autoComplete";
+@import "_modal";
+@import "glyphicon";
+@import "_radiobutton";
+@import "_link";
+@import "_button";
+@import "_error";
+@import "../infra/grid/styles/_grid.scss";
+@import "_tab";
+@import "_bootstrap-overloads";
+@import "_control-layout";
+@import "_textbox";
+@import "_label";
+@import "_toggle";
+@import "_tooltip";
+@import "_treeview";
+@import "_uploader";
+@import "_asset";
+@import "_csbStyles"; // CSBpreview
+@import "_wizard";
+@import "_wizardButton";
+@import "_adPreviewStyles";
+@import "_textArea.scss";
+@import "_csbApp";
+@import "_infoBox.scss";
+@import "../campaignManagementApp/directives/dg/tree/styles/_tree.scss";
+@import "../campaignManagementApp/directives/dg/tree/styles/_dgRotation.scss";
+@import "../campaignManagementApp/directives/dg/dg/styles/_dg.scss";
+@import "../campaignManagementApp/directives/dg/dgs/styles/_dgs.scss";
+@import "../campaignManagementApp/styles/dg/replaceDgAd.scss";
+@import "../campaignManagementApp/directives/funnel/mv/styles/mvSortDropDown.scss";
+@import "_fontIcon";
+@import "_assetsLibrary";
+@import "_spreadsheet";
+@import "../configurationManagementApp/styles/inStreamTemplate.scss";
+@import "_login";
+@import "_versaTag";
+@import "../campaignManagementApp/directives/funnel/mv/styles/_mvFunnelTa.scss";
+
+
+// @import "../csbApp/css/_app.scss";
+
+/* Put your CSS here */
+html, body, h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
+  font-family: Titillium, "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+a{
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.mmStretched {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
+.mmStretchedWithScroll {
+  position: absolute;
+  top: 20px;
+  bottom: 20px;
+  left: 20px;
+  right: 20px;
+}
+
+#mmMain {
+  min-width: 1024px;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-color: white;//rgb(242, 242, 242);
+  color: #333;
+  overflow: hidden;
+}
+
+entity-layout{
+  background-color: #e3e9f4;
+}
+
+#mmFooter {
+  position: absolute;
+  height: $footer-height;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  overflow: hidden;
+}
+
+#mmRightPanel {
+  position: absolute;
+  top: $header-height;
+  right: 0;
+  bottom: $footer-height;
+  width: $rightPanel-width;
+  overflow: hidden;
+}
+
+#mmLeftPanel {
+  position: absolute;
+  top: $header-height;
+  width: $leftPanel-width;;
+  bottom: $footer-height;
+  left: 0;
+  overflow: hidden;
+}
+
+#mmMainContainer {
+  position: absolute;
+  top: $header-height;
+  right: $rightPanel-width;
+  bottom: $footer-height;
+  left: $leftPanel-width;
+  overflow: hidden;
+}
+
+.mmToolBar {
+  position: absolute;
+  top: 0;
+  right: 0;
+  height: $toolbar-height;
+  left: 0;
+  overflow: hidden;
+}
+
+.mmInnerContainer {
+  position: absolute;
+  top: $toolbar-height;
+  right: 0;
+  bottom: 0;
+  bottom: 0;
+  left: 0;
+  overflow: auto;
+}
+
+/* http://angular-ui.github.io/bootstrap/ */
+.nav a, .pagination a, .carousel a {
+  cursor: pointer;
+}
+
+/*****/
+
+.click {
+  cursor: pointer;
+}
+
+.navbar-nav > li > a {
+  line-height: 34px;
+//  padding-top: 10px !important;
+//  padding-bottom: 10px !important;
+}
+
+.dropdown-toggle {
+  @include tMenuTitles;
+  padding-left: 20px !important;
+  padding-right: 20px !important;
+}
+
+.dropdown-menu {
+  border: 0;
+  border-radius: 0;
+  box-shadow: 0 0 0;
+  .dropdown-header {
+    @include tMenuGroupTitles;
+    padding: 16px 20px 8px 20px;
+    cursor: default;
+  }
+  .divider {
+    margin: 4px 0;
+  }
+  li {
+    a {
+      @include tMenuLinks;
+      /* line-height: 30px;
+       padding: 0 20px;*/
+    }
+  }
+}
+
+.mmSubMenu {
+  border: 0;
+  LI {
+    A {
+      @include tMenuLinks;
+    }
+  }
+}
+
+.navbar-form {
+  margin-left: 30px;
+  margin-right: 20px;
+}
+
+.editContainer {
+  position: absolute;
+  top: 20px;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  overflow-x: hidden;
+  overflow-y: auto;
+  line-height: 25px;
+  min-width: 600px;
+  padding-right: 16px; /* a place for scroll */
+  padding-left: 20px;
+  @include tEditPage;
+}
+
+.debug {
+  margin: 20px;
+  padding: 20px;
+  border: 1px solid red;
+  /* remove this line */
+  display: block;
+}
+
+////////////// mmEssential ////////////////////
+
+.mm-nowrap {
+  white-space: nowrap;
+}
+
+.mm-text {
+  display: block;
+
+  a.editable-click {
+    color: grey;
+    display: block;
+    height: 30px;
+    padding: 4px 10px 5px 10px;
+    font-size: 14px;
+    line-height: 1.5;
+    border-radius: 3px;
+    font-family: 'Titillium';
+    vertical-align: middle;
+    white-space: nowrap;
+  }
+  a.editable-click:hover {
+    color: #000066;
+  }
+  a.editable-click.error {
+    border: solid 1px red;
+    &:hover {
+      border: solid 1px darkred;
+    }
+  }
+  a.editable-click.regular {
+    border: solid 1px transparent;
+    &:hover {
+      border: solid 1px #808080;
+    }
+  }
+  a.editable-click.dirty {
+    color: #80ff80;
+    border: solid 1px transparent;
+    &:hover {
+      border: solid 1px #80ff80;
+    }
+  }
+  form {
+    display: block !important;
+    div {
+      display: block !important;
+    }
+  }
+  input {
+    font-size: 14px !important;
+    font-family: 'Titillium';
+    -webkit-box-shadow: none !important;
+    -moz-box-shadow: none !important;
+    box-shadow: none !important;
+  }
+}
+
+mm-select {
+  display: block;
+
+  a.editable-click {
+    color: grey;
+    display: block;
+    height: 30px;
+    padding: 4px 10px 5px 10px;
+    font-size: 14px;
+    line-height: 1.5;
+    border-radius: 3px;
+    font-family: 'Titillium';
+    vertical-align: middle;
+    white-space: nowrap;
+  }
+  a.editable-click:hover {
+    color: #000066;
+  }
+  a.editable-click.error {
+    border: solid 1px red;
+    &:hover {
+      border: solid 1px darkred;
+    }
+  }
+  a.editable-click.regular {
+    border: solid 1px transparent;
+    &:hover {
+      border: solid 1px #808080;
+    }
+  }
+  a.editable-click.dirty {
+    color: #80ff80;
+    border: solid 1px transparent;
+    &:hover {
+      border: solid 1px #80ff80;
+    }
+  }
+  form {
+    display: block !important;
+    div {
+      display: block !important;
+    }
+  }
+  select {
+    font-size: 14px !important;
+    font-family: 'Titillium' !important;
+    -webkit-box-shadow: none !important;
+    -moz-box-shadow: none !important;
+    box-shadow: none !important;
+    padding-top: 4px !important;
+    padding-left: 6px !important;
+  }
+}
+
+.tabbable {
+  .nav-tabs {
+    li.dirty {
+      a {
+        background-color: #002a80;
+      }
+    }
+    li.dirty.active {
+      a {
+        background-color: #00CC00;
+      }
+    }
+  }
+}
+
+mm-toggle-container {
+  .dirty {
+    background-color: #00CC00;
+  }
+  .error {
+    border: solid 1px red;
+  }
+}
+
+////////////////////////////////////
+
+.configuration_header {
+  position: absolute;
+  top: 5px;
+  right: 0;
+  left: 0;
+  height: 40px;
+}
+
+.configuration_container {
+  position: absolute;
+  top: 50px;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  overflow: auto;
+}
+
+.editable-dirty {
+  color: #a83c3a !important;
+  &:hover {
+    color: #DD1144 !important;
+  }
+}
+
+.mainEntityCentralPage {
+  padding-left: 20px;
+  font-family: Titillium, "Helvetica Neue", Helvetica, Arial, sans-serif;;
+  font-weight: 700;
+  font-size: 20px;
+  color: #5D6A72;
+}
+
+.inlineBlock {
+  display: inline-block;
+  vertical-align: top;
+}
+
+.central {
+  font-size: 12px;
+}
+
+.centralMainTable {
+  width: 100%;
+  vertical-align: top;
+}
+
+.centralMainTable > tr {
+  vertical-align: top;
+}
+
+.centralMainTable > tr, td {
+  vertical-align: top;
+}
+
+.centralDockedMenu {
+  background-color: rgb(220, 220, 220);
+  padding: 5px 0 5px 0;
+}
+
+.centralDockedScrollMenuButtons {
+  display: inline-block;
+  padding-right: 10px;
+  width: 155px !important;
+}
+
+.advancedSearchButtons {
+  position: relative;
+  top: 1px;
+  display: inline-block;
+}
+
+.menuButtonColor {
+  background-color: rgb(179, 224, 255);
+}
+
+.menuButtonColorButton {
+  width: 115px;
+  display: block;
+  float: left;
+  line-height: 12px;
+  border: 2px solid rgb(179, 224, 255);
+  background-color: rgb(179, 224, 255);
+  padding: 3px;
+  cursor: pointer;
+}
+
+.arrow-right {
+  display: block;
+  float: left;
+  width: 0;
+  height: 0;
+  border: 11px solid transparent;
+  border-left-color: rgb(179, 224, 255);
+}
+
+.form-control-group {
+  clear: both;
+  padding-bottom: 30px;
+}
+
+.form-control-group label {
+  display: block;
+  float: left;
+  text-align: left;
+  width: 100px;
+  font-weight: bold;
+}
+
+.form-control-group input, .form-control-group select, .form-control-group span {
+  display: block;
+  float: left;
+  padding-left: 5px;
+  width: 250px;
+}
+
+.app-modal-window .modal-dialog {
+  width: 1100px;
+}
+
+//Main Page
+.mainRecentlyViewedItems {
+  width: 69%;
+  height: 100%;
+}
+
+.mainCommonTasks {
+  width: 30%;
+  height: 100%;
+}
+
+.mainFilterOptions {
+  display: inline-block;
+  margin-right: 10px;
+}
+
+.mainActions {
+  padding-left: 10px;
+  cursor: pointer;
+}
+
+//end Main Page//end Main Page
+//add back in to support scrolling in asset details - talk to UI team about how this is supposed to be handled
+.elementContainer {
+  min-height: 100px;
+  overflow-x: hidden;
+}
+
+.mmRequiredSign {
+  color: $cSecondary;
+  float: left;
+  position: relative;
+  margin-right: 10px;
+  width: 0;
+}
+
+.relationship-dropdown {
+  position: fixed;
+  top: 38px;
+  right: 170px;
+  z-index: 900;
+  color: #ffffff;
+  font-size: 14px;
+}
+
+.relationship-dropdown-disabled {
+  position: fixed;
+  top: 55px;
+  right: 60px;
+  z-index: 900;
+  color: #ffffff;
+  font-size: 14px;
+}
+
+.central {
+  .relationship-dropdown {
+    position: fixed;
+    top: 195px;
+    right: 20px;
+    z-index: 900;
+    color: #ffffff;
+    font-size: 14px;
+  }
+}
+
+.central {
+  .relationship-dropdown-disabled {
+    position: fixed;
+    top: 195px;
+    right: 20px;
+    z-index: 900;
+    color: #ffffff;
+    font-size: 14px;
+  }
+}
+
+.adPreview-tabs-mn .tab-content {
+  padding-top: 0;
+  padding-bottom: 0;
+}
+
+.adPreview-tabs-mn .nav.nav-tabs {
+  background-color: #f5f5f5;
+  border-color: #dddddd;
+  color: #333333;
+  border: 1px solid #ddd;
+  border-bottom: none;
+  border-radius: 3px 3px 0 0;
+}
+
+.adPreview-tabs-mn .nav.nav-tabs li {
+  background-color: none;
+  border: none;
+  border-right: 1px solid #ddd;
+}
+
+.adPreview-tabs-mn .nav.nav-tabs li:hover,
+.adPreview-tabs-mn .nav.nav-tabs li.active {
+  border-top: none;
+  background: #eee;
+  border-left: 1px solid #ddd;
+  color: #0d2a4d;
+  margin-bottom: 0px;
+}
+
+.adPreview-tabs-mn .nav.nav-tabs li:first-child {
+  border-left: none;
+}
+
+.assets-mn-tb dd {
+  padding: 5px 0;
+}
+
+.rightMargin {
+  margin-right: 6px;
+}
+
+.slctedScreen{
+  background-color: yellow !important;
+}
+
+.entityActionsBar {
+height: 35px;
+background-color: white;
+margin: 15px 0 0 0;
+top: 0px;
+position: absolute;
+width: 100%;
+right: 0px;
+left: 0px;
+bottom: 0;
+padding: 0px 20px;
+}
+.editEntityIcon {
+  width: 16px;
+  height: 16px;
+  background-image: image-url('si_edit_normal.png');
+  background-size: 16px;
+  display: inline-block;
+  background-repeat: no-repeat;
+  position: relative;
+  top: 2px;
+  &:hover {
+    cursor: pointer;
+    background-image: image-url('si_edit_hover.png');
+  }
+  &:focus, &:active {
+    outline: 0;
+
+  }
+}
+/* atd 8/1/14 */
+/*Essentials test area - searchableList*/
+.searchableScrollerTest { top: 44px;}
+.searchable-container span:last-child .list-comma{ display: none;}
+.cfwTest {float: left; padding-right: 10px;}
+.testGrid .emptyDiv {display:inline-block;}
+.testGrid  .emptyDivDelete {
+  display:inline-block;
+  width: 25px;
+  height: 16px;
+  background-image: image-url('delete_n.png');
+  background-repeat: no-repeat;
+}
+.testGrid .emptyDivDelete:hover  {background-image: image-url('delete_h.png');}
+.testGrid .emptyDivDelete:active {background-image: image-url('delete_p.png');}
+.testGrid .emptyDivEdit {
+  display:inline-block;
+  width: 25px;
+  height: 16px;
+  background-image: image-url('edit_n.png');
+  background-repeat: no-repeat;
+}
+.testGrid .emptyDivEdit:hover  {background-image: image-url('edit_h.png');}
+.testGrid .emptyDivEdit:active {background-image: image-url('edit_p.png');}
+.testGrid  .emptyDivPreview {
+  display:inline-block;
+  width: 25px;
+  height: 16px;
+  background-image: image-url('preview_n.png');
+  background-repeat: no-repeat;
+}
+.testGrid .emptyDivPreview:hover  {background-image: image-url('preview_h.png');}
+.testGrid .emptyDivPreview:active {background-image: image-url('preview_p.png');}
+
+  /* flex slider css */
+  .flex-control-thumbs {margin: 5px 0 0; position: absolute !important; top:-280px; overflow: hidden;}
+  .flexslider-container { padding-top: 280px;}
+  .sort-option-select { background: none; border: none; }
+  .flexslider .slides > li .list-inline li { display: inline !important; width: auto !important;}
+
+  .slide-content{background-color: #a1a1a1; border-top: 1px #666 solid;}
+  .left-inner-slide{float: left; width: 60%; padding-top: 120px; text-align: center; border-right: 1px #666 solid; min-height: 450px;}
+  .left-inner-slide img{display:inline-block !important; vertical-align: middle; max-width: 100%; width: auto !important;}
+  .right-inner-slide{float: left; width: 33%; padding: 35px 3%;}
+  .slide-content h3{color: #fff; font-size: 22px; margin: 0 0 20px 0;}
+  .slide-content ul{margin: 0; padding: 0;}
+  .slide-content ul, .slide-content li{float: left; width: 100%; list-style: none;}
+  .slide-content li{margin-top: 5px;}
+  .slide-content li:first-child{margin-top: 0;}
+  .slide-content li label{float: left; width: 110px; color: #000; font-size: 15px; font-weight: 600;}
+  .slide-content li span{font-size: 15px; color: #000;}
+
+
+  #carousel .slides li{position: relative; padding: 0 0 20px 0; margin-right: 10px;}
+  #carousel .slides li:after{display: none; position: absolute; bottom: 0; left: 50%; margin-left: -17px; border-bottom: 17px #a1a1a1 solid; border-left: 17px solid transparent; border-right: 17px solid transparent; content: "";}
+  #carousel .slides li:before{display: none; position: absolute; bottom: 0; left: 50%; margin-left: -18px; border-bottom: 18px #666 solid; border-left: 18px solid transparent; border-right: 18px solid transparent; content: "";}
+  #carousel .slides li.flex-active-slide:after, #carousel .slides li.flex-active-slide:before{display: block;}
+
+  .flexslider { background: none; border: none; border-radius: 0; box-shadow: none; margin: 0; padding: 0 15px;}
+  .flexslider .fa-times { position: absolute; top: 10px; right: 28px;  z-index: 10000;}
+
+  .table-container table { width: 100%; box-sizing: border-box; -ms-box-sizing: border-box; -moz-box-sizing: border-box; -webkit-box-sizing: border-box;}
+
+  .clear { clear: both;}
+
+  .ads-section { padding-top: 20px; clear: both;}
+  .ads-section .table-container { max-height: 118px; overflow-y: auto;}
+  .ads-section .table-container table { width: 100%; border-bottom: 1px solid #555; border-right: 1px solid #555;}
+  .ads-section .table-container table td { border-top: 1px solid #555; border-left: 1px solid #555;}
+
+  .assetpreviewmargin {margin-right: 35px}
+  .removeOverflow{overflow-x: visible;}
+
+
+
+@mixin placeholder {
+  &::-webkit-input-placeholder {@content}
+  &:-moz-placeholder           {@content}
+  &::-moz-placeholder          {@content}
+  &:-ms-input-placeholder      {@content}
+}
+
+input { @include placeholder {
+  @include tHintText;
+}}
+
+textarea { @include placeholder {
+    @include tHintText;
+  }
+}
+
+
+
+
+.infobox-demo {
+//  content: image-url('PNG.png');
+}
+
+.control-container{
+  display: inline;
+  float: left;
+  margin-right: 10px;
+}
+
+.stopOpenAnimation {
+  -webkit-transition: none !important;
+  transition: none !important;
+}
+
+.shield
+{
+
+  top:0;
+  left:0;
+  width:100%;
+  height:100%;
+  background: transparent;
+
+  z-index: 1000;
+}
+
+
+.shield.enabled
+{
+  position:fixed;
+   visibility:hidden;
+}
+
+.shield.enabled > .shieldInner
+{
+  position:fixed;
+}
+
+.shield.enabled.loaded
+{
+  visibility:visible;
+}
+

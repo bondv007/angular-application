@@ -1,0 +1,334 @@
+/* Central header CSS */
+.centralHeader {
+  height: 61px;
+  min-width: 300px;
+  padding-left:10px;
+  padding-top: 8px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  border-bottom: solid 1px #bacae4;
+
+  .btn-group.open .dropdown-toggle { box-shadow:none }
+  .cleanButton {
+    background-color: transparent;
+    box-shadow: 0;
+    border: 0;
+    position: relative;
+    top: -3px;
+  }
+
+  .centralHeaderTitle {
+    font-family: "Titillium";
+    font-weight: normal;
+    font-size: 16px;
+    color: $cSecondary;
+    margin: 0px 8px;
+    line-height:42px;
+    text-transform: uppercase;
+    padding-left: 10px;
+    padding-right: 7px;
+    white-space: nowrap;
+    display:table-cell;
+    width:1%;
+  }
+  .centralGroupHeaderTitle{
+    font-family: "Titillium";
+    font-size: 12px;
+    color: $cSecondary;
+    text-transform: uppercase;
+  }
+
+  .centralHeaderMenuIcons{
+    width:25px;
+    display:table-cell;
+  }
+
+  .centralMenuIcon{
+    width: 16px;
+    height: 16px;
+    margin-right: 5px;
+    background-size: 16px;
+    display: inline-block;
+    position: relative;
+    top: 4px;
+
+    &:hover {
+      cursor: pointer;
+    }
+  }
+
+  .settingsIcon {
+    @extend .centralMenuIcon;
+    background-image: image-url('settings_normal.png');
+
+    &:hover {
+      background-image: image-url('settings_hover.png');
+    }
+
+    &:active {
+      background-image: image-url('settings_pressed.png');
+    }
+  }
+  .searchIcon {
+    @extend .centralMenuIcon;
+    top: 2px;
+    background-image: image-url('search_normal.png');
+
+    &:hover {
+      background-image: image-url('search_hover.png');
+    }
+
+    &:active {
+      background-image: image-url('search_pressed.png');
+    }
+  }
+
+  .dropdown-toggle {
+    padding: 0px !important;
+  }
+  ul {
+    margin: 0;
+    display: inline-block;
+    margin: 0;
+    padding: 0px;
+    list-style: none;
+  }
+  .open > .dropdown-menu {
+    display:block;
+  }
+  .dropdown-menu , .mmSubMenu > .dropdown-menu {
+    background-color: $cWhite;
+    border: solid 1px $cSecondary;
+    color: $cSecondary;
+    font-family: "Arial";
+    font-size: 13px;
+    //padding: 5px 10px;
+    min-width: 140px;
+    display:none;
+  }
+  .dropdown-header , .mmSubMenu > .dropdown-header{
+    font-family: "Titillium";
+    font-size: 13px;
+    color: $cSecondary;
+    text-transform: uppercase;
+    padding: 0px 10px ;
+    &:hover {
+      background-color: inherit !important;
+    }
+  }
+
+  .addTopBorderFifth { border-top: 1px solid $cFifth !important; }
+
+  .dropdown-menu > li , .mmSubMenu > li {
+    padding: 0px 10px;
+    display: block;
+    //padding: 3px 20px;
+    clear: both;
+    font-weight: normal;
+    line-height: 30px;
+    color: $cSecondary;
+    white-space: nowrap;
+    font-size: 13px;
+    color: $cSecondary;
+    &:hover {
+      background-color: $cFifth;
+    }
+  }
+  .mmSubMenu > li {
+    padding-left: 25px;
+  }
+  .arrowRight {
+    background-image: image-url('arrow_right_normal.png');
+    background-repeat:no-repeat;
+    background-position:right;
+    display:inline-block;
+    float:right;
+    height:10px;
+    width: 6px;
+    position: relative;
+    top: 10px;
+  }
+
+  .mmSubMenu {
+    background-color: $cWhite;
+    border: solid 1px $cSecondary;
+    color: $cSecondary;
+    font-family: "Titillium";
+    font-size: 13px;
+    position: absolute;
+    top: -1px;
+    left: 99.9%;
+    float:right;
+    min-width: 177px;
+
+  }
+
+  .selectedSubMenu {
+    background-image: image-url('check.png');
+    background-repeat:no-repeat;
+    background-position: 6%;
+    display:inline-block;
+    background-color: $cFifth;
+  }
+
+  .searchContainer {
+    // vertical-align: middle;
+    height: 28px;
+    width:100%;
+    max-width: 170px;
+    min-width:100px;
+    line-height: 28px;
+    .form-control {
+      font-family: Arial;
+      font-size: 13px;
+      background-color: $cWhite;
+      border: solid 1px $cFourth;
+      //height: 28px;
+      //padding: 0px 6px;
+      border-radius: 0 !important;
+
+      box-shadow: 0;
+
+      &:focus, &:hover, &:active {
+        outline: none;
+        border: solid 1px $cFourth;
+        box-shadow: none;
+      }
+    }
+  }
+  .arrowLeftIcon {
+    background-image: image-url('close_normal.png');
+    display: inline-block;
+    width: 15px;
+    height: 20px;
+    background-repeat: no-repeat;
+    background-size: 10px;
+    float: right;
+    position: relative;
+    top: 8px;
+    &:hover {
+      background-image: image-url('close_hover.png');
+    }
+
+    &:active {
+      background-image: image-url('close_pressed.png');
+    }
+  }
+  .filterIcon {
+    width: 16px;
+    height: 16px;
+    background-image: image-url('filter_normal.png');
+    background-size: 16px;
+    display: inline-block;
+    position: absolute;
+    top: 6px;
+    right: 40px;
+
+    &:hover {
+      background-image: image-url('filter_hover.png');
+    }
+
+    &:active {
+      background-image: image-url('filter_active.png');
+    }
+  }
+
+  .tableIcon {
+    width: 16px;
+    height: 16px;
+    background-image: image-url('table_normal.png');
+    background-size: 16px;
+    display: inline-block;
+    position: absolute;
+    top: 6px;
+    right: 15px;
+
+
+    &:hover {
+      background-image: image-url('table_hover.png');
+    }
+
+    &:active {
+      background-image: image-url('table_active.png');
+    }
+
+    input {
+      height: 20px;
+      border:none;
+      background: transparent;
+      max-width: 210px;
+      min-width:040px;
+      width: 100%;
+      box-shadow: none;
+      padding-left: 4px;
+      padding-right: 4px;
+      position: relative;
+      vertical-align: middle;
+      padding-top: 0px;
+      right: 40px;
+
+      &:focus, &:hover, &:active {
+        border:none;
+        outline: none;
+        box-shadow: none;
+      }
+    }
+  }
+  .inner-addon {
+    position: relative;
+    display:inline-block;
+  }
+
+  .right-addon input { padding-right: 40px; }
+  .capitalize { text-transform: capitalize; }
+}
+
+.centralGoToEntityIcon{
+  background-image: image-url('Expand_icon_normal_A01.png');
+  display: inline-block;
+  width: 12px;
+  height: 12px;
+  float: right;
+  background-repeat: no-repeat;
+  background-size: 12px;
+  position: relative;
+  top: 14px;
+  right: 54px;
+  &:hover {
+    background-image: image-url('Expand_icon_hoverl_A01.png');
+  }
+
+  &:active {
+    background-image: image-url('Expand_icon_on_press_A01.png');
+  }
+}
+
+.centralCloseEntityIcon{
+  background-image: image-url('si_close_entity_normal.png');
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  float: right;
+  background-repeat: no-repeat;
+  background-size: 16px;
+  position: relative;
+  top: 12px;
+  right: 15px;
+  &:hover {
+    background-image: image-url('si_close_entity_hover.png');
+  }
+
+  &:active {
+    background-image: image-url('si_close_entity_pressed.png');
+  }
+}
+
+.groupByColumnText{
+  cursor: pointer;
+  height: 30px;
+  position: relative;
+  text-align: left;
+  text-transform: none;
+}

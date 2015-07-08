@@ -1,0 +1,26 @@
+<input class="existing_dg_search_text_box" type="text" ng-model="filterDg" placeholder="Search ID, Name or Dimension">
+<mm-grid
+		items="dgs"
+		selected-items="selectedDgs"
+		cols="columns"
+		save-data="saveData"
+		is-grid-loading="isGridLoading"
+		filter-text="filterDg"
+		show-selection-checkbox="true"
+		grid-height="400"
+		show-footer="true"
+		is-sort="true"
+		is-single-select="false"
+		is-groupable="false"
+		show-filter="false"
+		enable-column-resize="true"
+		is-column-reorder="true"
+		is-column-freeze="true"
+		is-show-menu="false"
+		is-show-tool-tip="true"
+		is-central-grid="false"
+		enable-selected-row-selection ="true"
+    after-selection-change="afterSelectionChange"
+		is-grid-toolbar="false">
+
+</mm-grid>

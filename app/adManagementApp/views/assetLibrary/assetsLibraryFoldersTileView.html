@@ -1,0 +1,32 @@
+<li class="add-tile" ng-repeat="folder in commonModel.filteredFolders | orderBy: 'name'" ng-class="{'active':folder.isChecked, 'html5': folder.mediaType=='HTML5FOLDER'}">
+    <div ng-click="selectedFolderNodeHandler(folder)" ng-dblclick="breadCrumbNodeHandler(folder)" ng-model="folder.isChecked">
+        <div class="tages-sec tag-hover">
+            <div class="check-wrap" ng-click="selectedFolderNodeHandler(folder, 'checkbox'); $event.stopPropagation();">
+                <input ng-model="folder.isChecked"  type="checkbox">
+                <label class="mmGrid-customCheckbox">
+                    <i class="glyphicon glyphicon-ok"></i>
+                </label>
+            </div>
+        </div>
+        <!--<div class="figure-img">-->
+            <!--<i class="fa fa-folder-o"></i>-->
+        <!--</div>-->
+      <div class="sub-folder-content">
+        {{folder.name}}
+      </div>
+        <!--<div class="hover-effect">-->
+            <!--<a class="buttonOverlay">Play Ad</a>-->
+        <!--</div>-->
+        <!--<div class="ads-discrip">-->
+            <!--<div class="ads-discrip-inner">-->
+                <!--<div class="primary">-->
+                    <!--<p class="wrapper"><span class="truncate">{{folder.text}}</span>-->
+                    <!--</p>-->
+                <!--</div>-->
+                <!--<div class="secondary">-->
+                    <!--<p>{{folder.folders}} Folder | {{folder.files}} Files</p>-->
+                <!--</div>-->
+            <!--</div>-->
+        <!--</div>-->
+    </div>
+</li>

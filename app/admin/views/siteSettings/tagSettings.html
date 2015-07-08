@@ -1,0 +1,50 @@
+<mm-row>
+	<div class="mm-entity-fields-container-single">
+		<mm-row>
+			<mm-check-box
+					mm-model="siteEdit.servingSettings.securedTagHttps"
+					mm-caption="Secured Tag (HTTPS)"
+					mm-description="Is Secured Tag (HTTPS)"
+					mm-layout-type="medium"
+					mm-label-width="200"
+          mm-tab-index="11"></mm-check-box>
+		</mm-row>
+		<mm-row>
+			<mm-check-box
+					mm-model="siteEdit.servingSettings.clearEscapingNoScriptTag"
+					mm-caption="Escaping of Noscript Tag"
+					mm-description="Clear Escaping of Noscript Tag"
+					mm-layout-type="medium"
+					mm-label-width="200"
+          mm-tab-index="12"></mm-check-box>
+		</mm-row>
+		<mm-row>
+				<mm-check-box
+						mm-model="siteEdit.servingSettings.createIFrameSupported"
+						mm-caption="Create iFrame Supported"
+						mm-description="iFrame Supported"
+						mm-layout-type="medium"
+						mm-label-width="200"
+						mm-change="onCreateIFrameSupportedChange()"
+            mm-tab-index="13"></mm-check-box>
+		</mm-row>
+		<mm-row>
+			<div style="line-height:30px">
+			<mm-radiobutton
+					mm-model="siteSettings.servingSettings.defaultTagType"
+					mm-visible="true"
+					mm-is-required="false"
+					mm-is-vertical="true"
+					mm-selected="siteEdit.servingSettings.defaultTagType"
+					mm-model-id="text"
+					mm-disabled="false"
+					mm-caption="Default Supported Tag Type"
+					mm-show-label="true"
+					mm-layout-type="medium"
+					mm-label-width="200"
+          mm-tab-index="14">
+			</mm-radiobutton>
+			</div>
+		</mm-row>
+	</div>
+</mm-row>

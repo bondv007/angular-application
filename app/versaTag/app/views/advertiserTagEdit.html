@@ -1,0 +1,193 @@
+<div ng-if="feature.advertiserTags && permission.view" style="position:absolute; bottom:2px; top:2px; left : 0px; right:0px;">
+
+    <div ng-class="{editContainer : !isModal}">
+        <div class="mm-entity-fields-container">
+            <div class="mm-entity-fields-container-left">
+                <div class="mm-entity-fields-container-single">
+                    <mm-row>
+                        <mm-text mm-id="tag_reporting_name"
+                                mm-is-edit-mode="isEditMode"
+                                 mm-caption="Tag (Reporting) Name"
+                                 mm-model="editObject.reportingName"
+                                 mm-placeholder="Enter Tag (Reporting) Name"
+                                 mm-is-required="{{isRequired}}"
+                                 mm-error="validation.reportingName"
+                                 mm-label-width="{{labelWidth}}"
+                                 text-tooltip="Enter tag (reporting) name"
+                                 mm-layout-type="medium">
+
+                        </mm-text>
+                    </mm-row>
+                    <mm-row>
+
+                        <mm-drop-down mm-is-edit-mode="isEditMode"
+                                      mm-caption="Advertiser"
+                                      mm-model="editObject.advertiserId"
+                                      mm-data-model="listOfAdvertisers"
+                                      mm-is-required="{{isRequired}}"
+                                      mm-error="validation.advertiser"
+                                      mm-label-width="{{labelWidth}}"
+                                      mm-layout-type="medium">
+
+                        </mm-drop-down>
+                    </mm-row>
+                    <mm-row>
+                        <mm-text mm-is-edit-mode="isEditMode"
+                                 mm-caption="Page URL"
+                                 mm-model="editObject.pageURL"
+                                 mm-placeholder="Enter Page URL"
+                                 mm-is-required="{{isRequired}}"
+                                 mm-error="validation.pageUrl"
+                                 mm-label-width="{{labelWidth}}"
+                                 text-tooltip="Enter Page URL"
+                                 mm-layout-type="medium">
+
+                        </mm-text>
+                    </mm-row>
+                    <mm-row>
+
+                        <mm-drop-down mm-is-edit-mode="isEditMode"
+                                      mm-caption="Conversion Type"
+                                      mm-model="editObject.conversionType"
+                                      mm-data-model="conversionTypes"
+                                      mm-is-required="{{isRequired}}"
+                                      mm-error="validation.conversionType"
+                                      mm-label-width="{{labelWidth}}"
+                                      mm-layout-type="medium">
+
+                        </mm-drop-down>
+                    </mm-row>
+                    <mm-row>
+                      <mm-text mm-is-edit-mode="isEditMode"
+                               mm-caption="Conversion Value"
+                               mm-model="editObject.conversionValue"
+                               mm-placeholder="Enter Conversion Value"
+                               mm-is-required="{{isRequired}}"
+                               mm-error="validation.conversionValue"
+                               mm-label-width="{{labelWidth}}"
+                               text-tooltip="Enter Conversion Value"
+                               mm-layout-type="medium">
+
+                      </mm-text>
+                    </mm-row>
+                    <div ng-show="isEditMode">
+                        <mm-row>
+                          <mm-text mm-caption="3rd Party Tags"
+                                   mm-label-width="{{labelWidth}}"
+                                   mm-layout-type="small"
+                                   mm-custom-control-width="0"
+                                   mm-is-required="{{!isRequired}}"
+                                   mm-show-as-label="true"
+                                   mm-entity-type="{{'advertiserVtag'}}"
+                                   mm-is-custom-link="true"
+                                   mm-custom-link="{{thirdPartyTagsCentralLink.link}}"
+                                   mm-entity-id="editObject.id"
+                                   mm-input-type="link"
+                                   mm-is-link="true"
+                                   mm-simple-link="'true'"
+                                   mm-disable="true"
+                                   mm-model="editObject.numberOfThirdPartyTags + ' tags'">
+                          </mm-text>
+                        </mm-row>
+<!--                        <mm-row>
+                          <mm-label mm-model="editObject.campaignAssig"
+                                    mm-is-required="false" mm-label-width="{{labelWidth}}"
+                                    mm-layout-type="medium"
+                                    mm-caption="Campaign Assignment">
+                          </mm-label>
+                          <span class="centralEntitylLink"
+                                data-ng-click="assignAdToCampaignManager()">Assigned to All Campaigns
+                          </span>
+                        </mm-row>
+                        <mm-row>
+                          <mm-label mm-model="editObject.brandAssig"
+                                    mm-is-required="false" mm-label-width="{{labelWidth}}"
+                                    mm-layout-type="medium"
+                                    mm-caption="Brand Assignment">
+                          </mm-label>
+                          <span class="centralEntitylLink"
+                                data-ng-click="alert('hi')">Assigned to All Brands
+                          </span>
+                        </mm-row>-->
+                    </div>
+
+                  <mm-row>
+                </div>
+            </div>
+        </div>
+
+<!--        <div class="mm-entity-fields-container-single">
+            <mm-row>
+                <mm-toggle-container
+                        mm-caption="Code"
+                        start-open="togglesStatus.code">
+                    <mm-row>
+                        <div style="borde: 1px solid black; height: 300px">
+                            <p>Code</p>
+                            <mm-button mm-caption="Edit Code (In Full Editing)"></mm-button>
+                            <a>Copy To Clipboard</a>
+                        </div>
+                        <div>
+                            &lt;!&ndash;need to show code block here..&ndash;&gt;
+                        </div>
+                    </mm-row>
+                </mm-toggle-container>
+            </mm-row>
+        </div>-->
+
+        <div class="mm-entity-fields-container-single">
+            <mm-row>
+                <mm-toggle-container
+                        mm-caption="Firing Conditions"
+                        start-open="togglesStatus.firingConditions">
+
+                    <mm-row>
+                    <mm-drop-down
+                      mm-model="editObject.occurs"
+                      mm-data-model="conditions"
+                      mm-layout-type="medium"
+                      mm-caption="Fire This Tag"
+                      mm-label-width="{{labelWidth}}"></mm-drop-down>
+                    </mm-row>
+                    <span ng-if="condition.urlThat !== 'Any'" class="centralEntitylLink"
+                          data-ng-click="alert('hi')">The User has Vtag
+                    </span>
+
+                </mm-toggle-container>
+            </mm-row>
+        </div>
+
+        <div class="mm-entity-fields-container-single">
+            <mm-row>
+                <mm-toggle-container
+                        mm-caption="Grouping"
+                        start-open="togglesStatus.grouping">
+
+                <groups-grid groups="groups"
+                             selected-groups="selectedGroups"
+                             on-remove-group="onGroupRemoved(group)">
+                </groups-grid>
+
+                </mm-toggle-container>
+            </mm-row>
+        </div>
+    </div>
+</div>
+
+<div ng-if="feature.advertiserTags && permission.view === false">
+    <mm-row>
+        <mm-one-column>
+            <h1>Permission Denied</h1>
+            <p>We're sorry, you do not have permission to view this page. Please contact your account administrator if you think this is an error.</p>
+        </mm-one-column>
+    </mm-row>
+</div>
+
+<div ng-if="feature.advertiserTags === false">
+    <mm-row>
+        <mm-one-column>
+            <h1>This feauture is unavailable</h1>
+            <p>We're sorry, this feature is not turned on for your account. Please contact your account administrator if you think this is an error.</p>
+        </mm-one-column>
+    </mm-row>
+</div>

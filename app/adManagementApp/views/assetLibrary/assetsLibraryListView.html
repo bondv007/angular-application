@@ -1,0 +1,57 @@
+<div class="inner-container grid-container">
+
+  <mm-grid
+    ng-if="!commonModel.isSearchView"
+    id="contentGridList"
+    grid-data-name="Asset"
+    grid-data-add="showUploadAssetModal"
+    items="commonModel.allData"
+    cols="columnDefsListView"
+    selected-items="commonModel.checkedData"
+    is-cell-edit="false"
+    show-selection-checkbox="true"
+    is-single-select="false"
+    enableRowSelection="false"
+    is-column-reorder="false"
+    is-central-grid="false"
+    is-show-menu="false"
+    show-filter="false"
+    enableColumnResize="false"
+    is-sort="true"
+    is-column-resize="false"
+    is-infinite-scroll="true"
+    page-size="pagingOptions.pageSize"
+    current-page="pagingOptions.currentPage"
+    paging-handler="scrollBottomEvent"
+    db-click-handler="dblClick"
+    selection-checkbox-column-width="47">
+  </mm-grid>
+
+  <mm-grid
+    ng-if="commonModel.isSearchView"
+    id="contentGridList"
+    grid-data-name="Asset"
+    grid-data-add="showUploadAssetModal"
+    items="commonModel.filteredAssets"
+    cols="columnDefsListView"
+    selected-items=""
+    is-cell-edit="false"
+    show-selection-checkbox="true"
+    is-single-select="false"
+    enableRowSelection="false"
+    is-column-reorder="false"
+    is-central-grid="false"
+    is-show-menu="false"
+    show-filter="false"
+    enableColumnResize="false"
+    is-sort="true"
+    db-click-handler="dblClick"
+    is-column-resize="false"
+    page-size="pagingOptions.pageSize"
+    current-page="pagingOptions.currentPage"
+    paging-handler="scrollBottomEvent"
+    db-click-handler="gridParentFolderHandler"
+    selection-checkbox-column-width="47">
+  </mm-grid>
+
+  </div>

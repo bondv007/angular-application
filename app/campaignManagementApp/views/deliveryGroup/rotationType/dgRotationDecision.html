@@ -1,0 +1,26 @@
+<div ng-switch on="parentContainer.rotationType">
+
+	<!--EvenDistribution-->
+	<div ng-switch-when="EvenDistribution">
+		<div ng-include="'campaignManagementApp/views/deliveryGroup/rotationType/dgAdEvenDistribution.html'"></div>
+	</div>
+
+	<!--Weighted-->
+	<div ng-switch-when="Weighted">
+		<div ng-include="'campaignManagementApp/views/deliveryGroup/rotationType/dgAdWeighted.html'">
+		</div>
+	</div>
+
+	<!--Timebase-->
+	<div ng-switch-when="TimeBased">
+		<div ng-include="'campaignManagementApp/views/deliveryGroup/rotationType/dgTimeBased.html'">
+		</div>
+	</div>
+
+	<!--Default EvenDistribution-->
+	<div ng-switch-default>
+		<div ng-include="'campaignManagementApp/views/deliveryGroup/rotationType/dgAdEvenDistribution.html'"></div>
+	</div>
+
+</div>
+

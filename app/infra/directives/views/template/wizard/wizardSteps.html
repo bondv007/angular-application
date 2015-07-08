@@ -1,0 +1,21 @@
+<div class="wizardSteps">
+	<span ng-repeat="step in wizardSteps">
+		<div ng-if="isDisplaySteps" ng-class="{
+										'currentStep': $index == currentStep.index,
+										'completedStep': $index < currentStep.index,
+										'stepDisable':step.disable,
+										'step':!step.disable
+										}"
+				  ng-click="onStepClick($index)">
+			<div ng-if="isDisplaySteps" class="index" ng-bind="$index + 1"></div>
+			<div ng-if="isDisplaySteps" class="text" ng-bind="step.text | T"></div>
+		</div>
+	<div ng-if="isDisplaySteps"
+			ng-class="{
+			'currentStepIcon': $index == currentStep.index,
+			'futureStepIcon': $index > currentStep.index,
+			'completedStepIcon':$index + 1 == currentStep.index,
+			'completedCompletedStepIcon':$index + 1 < currentStep.index
+			}"></div>
+	</span>
+</div>

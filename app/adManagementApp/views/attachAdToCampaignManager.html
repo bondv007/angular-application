@@ -1,0 +1,38 @@
+<!--mm-row>
+	<div class="attachAdToCamapignManager">
+		<img  class="infoIcon" id="info" src="../images/active-index.png"/>
+  	<textarea  class="infoArea"  data-ng-disabled="true">{{'Assigning ads to an agency will allow the agency to view the ads in their account and assign them to a campaign'|T}}</textarea>
+		<a class="readMore" ng-click="callCreateNewDg()"  href="" ng-bind="'read more' | T"></a>
+	</div>
+</mm-row-->
+<mm-row>
+	<div style="margin-top: 20px">
+			<mm-drop-down mm-data-model="accounts"
+										mm-model="selected.accountManager"
+										mm-is-required="true"
+										mm-is-edit-mode="!!entityId"
+										mm-disable ="!!entityId"
+										mm-layout-type="medium"
+										mm-label-width={{labelWidth}}
+										mm-caption="Campaign Manager"
+										mm-placeholder= "'Select Campaign Manager'"
+										mm-custom-model-text= "'Select Campaign Manager'"
+										mm-select-change-func="changeCampaignManager()"
+										mm-error="errors.campaignManager"
+										show-search-box></mm-drop-down>
+	</div>
+</mm-row >
+<mm-row>
+	<div style="margin-top: 40px">
+		<mm-drop-down mm-model="selected.advertiser"
+									mm-is-edit-mode="!!entityId"
+									mm-disable ="!!entityId"
+									mm-layout-type="medium"
+									mm-label-width={{labelWidth}}
+									mm-caption="Advertiser"
+									mm-placeholder= "'Select Advertiser'"
+									mm-custom-model-text="'Select Advertiser'"
+									mm-error="errors.advertiser"
+                  lazy-type="lazyTypeParams"></mm-drop-down>
+	</div>
+</mm-row>

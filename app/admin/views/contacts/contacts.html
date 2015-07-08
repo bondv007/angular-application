@@ -1,0 +1,31 @@
+	<mm-toggle-container
+			mm-caption="Contacts"
+			start-open="mmToggleExpanded">
+		<tabset justified="false">
+			<tab ng-if="mmIsCampaign && !!mmDisplayCreative" id="creativeManagerTab" heading="Creative Manager" active="tabsHandler.creativeManagerContacts.isActive"
+           select="onTabSelected()" ng-attr-class="{{mmContactsTabError.creativeManagerContacts ? '' : 'tabWithErrors'}}">
+				<span ng-include="'admin/views/contacts/creativeAgency.html'"  disabled="false"></span>
+			</tab>
+			<tab ng-if="!mmIsCampaign && !!mmDisplaySizmek" id="sizmekTab" heading="Sizmek" active="tabsHandler.sizmekContacts.isActive"
+           select="onTabSelected()" ng-attr-class="{{mmContactsTabError.sizmekContacts ? '' : 'tabWithErrors'}}">
+				<span ng-include="'admin/views/contacts/sizmek.html'" disabled="false"></span>
+			</tab>
+			<tab ng-if="!!mmDisplayMedia" id="campaignManagerTab" heading="Campaign Manager" active="tabsHandler.campaignManagerContacts.isActive"
+           select="onTabSelected()" ng-attr-class="{{mmContactsTabError.campaignManagerContacts ? '' : 'tabWithErrors'}}">
+        <!--mmIsAccount&&!mmIsEditMode ? 'tabDisabled':  ''-->
+				<span ng-include="'admin/views/contacts/mediaAgency.html'" disabled="false"></span>
+			</tab>
+			<tab ng-if="!mmIsCampaign && !!mmDisplayCreative" id="creativeManagerTab" heading="Creative Manager" active="tabsHandler.creativeManagerContacts.isActive"
+           select="onTabSelected()" ng-attr-class="{{mmContactsTabError.creativeManagerContacts ? '' : 'tabWithErrors'}}">
+				<span ng-include="'admin/views/contacts/creativeAgency.html'" disabled="false"></span>
+			</tab>
+			<tab ng-if="!!mmDisplaySite && mmIsEditMode" heading="Sites" id="siteTab" active="tabsHandler.siteContacts.isActive"
+           select="onTabSelected()" ng-attr-class="{{mmContactsTabError.siteContacts ? '' : 'tabWithErrors'}}">
+				<span ng-include="'admin/views/contacts/site.html'" disabled="false"></span>
+			</tab>
+			<tab ng-if="mmIsCampaign && !!mmDisplaySizmek" id="sizmekTab" heading="Sizmek" active="tabsHandler.sizmekContacts.isActive"
+           select="onTabSelected()" ng-attr-class="{{mmContactsTabError.sizmekContacts ? '' : 'tabWithErrors'}}">
+				<span ng-include="'admin/views/contacts/sizmek.html'" disabled="false"></span>
+			</tab>
+		</tabset>
+	</mm-toggle-container>

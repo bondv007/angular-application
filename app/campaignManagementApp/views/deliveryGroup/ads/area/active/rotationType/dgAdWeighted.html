@@ -1,0 +1,8 @@
+<div class="adWeightedRotation">
+	<div class="adWeightedRotation">
+		<span class="adWeightedRotationLabel mm-control-label" ng-bind="'Weight' | T"></span>
+		<input type="number"class="WeightedRotationTB" ng-change="onWeightedChange(parentContainer,container)" ng-model="container.rotationSetting.weight"/>
+		<span class="adWeightedRotationLabel mm-control-label" ng-bind="'%'"></span>
+	</div>
+</div>
+<mm-error-div error-text="container.rotationSetting.adWeightError.text"></mm-error-div>

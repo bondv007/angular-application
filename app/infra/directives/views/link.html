@@ -1,0 +1,12 @@
+<mm-control-label mm-caption="{{mmCaption}}" mm-show-label="{{mmShouldShowLabel}}"
+                  mm-layout-class="{{mmLabelClass}}" mm-is-required="{{mmIsRequired}}"></mm-control-label>
+<div mm-dirty class="{{mmControlClass}}">
+  <div tooltip-popup-delay="500" tooltip-placement="bottom" tooltip="{{mmError}}">
+    <input type="text" class="mm-text-box form-control" ng-show="mmShowEdit" ng-model="mmLinkModel.Val" mm-focus="mmShowEdit">
+    <span ng-show="!mmShowEdit" class="mm-link-label">
+      <a class="linkColor" ng-class="(mmError?'error':(mmLocalIsDirty?'dirty':'regular'))" ng-click="onLinkClick()" ng-show="!mmShowEdit"
+				 href="">{{mmLinkModel.Text}}</a>
+      <i class="glyphicon glyphicon-edit glyphicon-right" ng-click="openToEdit()" ng-show="isEnableEdit"></i>
+    </span>
+  </div>
+</div>

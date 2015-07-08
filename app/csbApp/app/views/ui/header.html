@@ -1,0 +1,96 @@
+<div class="row">
+    <div class="col-md-12 top-menu-nav">
+        <div class="pull-left"><a go-to-serving-strategy class="sizmek-logo"></a></div>
+        <ul class="pull-left nav-campaign-advertiser">
+            <li ng-if="appService.selectedStrategy && appService.selectedStrategy.template">
+                <span class="template-name" title="{{csb.params.diagramName}}">TEMPLATE: {{ csb.params.diagramName | limitTo: 20}}</span>
+                <span class="campaign-name" ng-if="csb.params.diagramName.length > 20">...</span>
+            </li>
+            <li ng-if="csb.params.campaignName">
+                <span class="campaign-name" title="{{csb.params.campaignName}}">CAMPAIGN: {{ :: csb.params.campaignName | limitTo: 20}}
+                  <span class="campaign-name" ng-if="csb.params.campaignName.length > 20">...</span>
+                  <span>({{::csb.params.campaignID}})</span>
+                </span>
+            </li>
+            <li ng-if="csb.params.advertiserName">
+                <span class="advertiser-name" title="{{csb.params.advertiserName}}">ADVERTISER: {{ csb.params.advertiserName | limitTo: 20 }}</span>
+                <span class="campaign-name" ng-if="csb.params.advertiserName.length > 20">...</span>
+            </li>
+
+        </ul>
+
+        <ul class="pull-left main-nav" ng-if="csb.params.permissions.edit">
+            <!--<li><a href="#/{{csb.params.campaignID ? '?CampaignID=' + csb.params.campaignID : ''}}"-->
+            <li>
+                <a go-to-audience-strategy ng-class="{ 'active' : activePage == 'decisionDiagram' }">AUDIENCE STRATEGY</a>
+            </li>
+            <li>
+                <a go-to-serving-strategy ng-class="{ 'active' : activePage == 'trafficking', 'disabled': !appService.csbData.targetAudienceIDs.length }" title="The Trafficking page is available after you save a decision diagram to a campaign and the required audience segments are generated">SERVING STRATEGY</a>
+            </li>
+        </ul>
+
+        <ul class="pull-right nav-actions" ng-if="csb.params.permissions.edit">
+
+            <!--<li id="shareDropDown" class="dropdown" ng-show="activePage == 'decisionDiagram'" ng-class="{ 'open' : shareDropdown }">-->
+                <!--<div id="shareDiagram">-->
+                    <!--<a class="btn btn-xs btn-sizmek-outline dropdown-toggle" ng-click="shareDropdown = !shareDropdown;"><i class="icon icon-CSB-share"></i> Share <span class="fa fa-caret-down"></span></a>-->
+                <!--</div>-->
+                <!--<ul class="dropdown-menu" role="menu">-->
+                    <!--<li class="disabled"><a href="" class="dropdown-toggle" ng-show="decisionTreeService.decisions.length">Export to PDF</a></li>-->
+                    <!--<li><a href="" class="dropdown-toggle" share-url>Share URL</a></li>-->
+                    <!--<li class="disabled"><a href="" class="dropdown-toggle">Export to 3rd party</a></li>-->
+                <!--</ul>-->
+            <!--</li>-->
+
+            <li id="shareDropDown" class="dropdown" ng-show="activePage == 'decisionDiagram'" ng-class="{ 'open' : shareDropdown }">
+                <a class="btn btn-xs btn-sizmek-outline dropdown-toggle" ng-click="shareDropdown = !shareDropdown;"><i class="csb-icon csb-icon-CSB-share"></i> Share <span class="fa fa-caret-down"></span></a>
+                <ul class="dropdown-menu" role="menu">
+                    <li><a href="" class="dropdown-toggle" ng-show="decisionTreeService.decisions.length" export-tree>Export to PDF</a></li>
+                    <li><a href="" class="dropdown-toggle" share-url>Share URL</a></li>
+                    <li class="disabled"><a href="" class="dropdown-toggle">Export to 3rd party</a></li>
+                </ul>
+            </li>
+
+            <li ng-if=" activePage != 'trafficking' " class="disabled"><a id="discard-btn" class="btn btn-xs btn-sizmek-outline disabled" ng-click="">Discard</a></li>
+
+            <li class="dropdown" ng-class="{ 'open' : saveDropdown }" ng-show="activePage == 'decisionDiagram'">
+                <a class="btn btn-xs btn-sizmek-outline highlighted dropdown-toggle" ng-click="saveDropdown = !saveDropdown;">Save <span class="fa fa-caret-down"></span></a>
+                <ul class="dropdown-menu pull-right" role="menu" ng-show="activePage == 'decisionDiagram' ">
+
+
+                    <!-- SAVES DECISION DIAGRAM AS A TEMPLATE -->
+                    <!-- show when in template mode only  -->
+                    <li ng-if="decisionTreeService.decisions.length && csb.params.campaignID">
+                        <a class="dropdown-toggle" ng-click="saveDropdown = !saveDropdown;" save-decision-diagram-as-template templates="templates" set-strategy-vars="setStrategyVars( data )">Save As Template</a>
+                    </li>
+
+                    <!-- SAVES THE DECISION DIAGRAM TO CAMPAIGN, SAVES TA's, AND SETS ARBITRARY PRIORITIES -->
+                    <!-- show in campaign mode -->
+                    <li ng-if="decisionTreeService.decisions.length && csb.params.campaignID">
+                        <a class="dropdown-toggle" save-decision-diagram-to-campaign>Save Campaign</a>
+                    </li>
+
+                    <!-- UPDATES A TEMPLATE -->
+                    <!-- show when in template mode only -->
+                    <li ng-if="decisionTreeService.decisions.length && !csb.params.campaignID && appService.selectedStrategy">
+                        <a class="dropdown-toggle" update-decision-diagram-template templates="templates" set-strategy-vars="setStrategyVars( data )">Save Template</a>
+                    </li>
+
+                    <!-- SAVES DECISION DIAGRAM AS A TEMPLATE -->
+                    <!-- show when in template mode only  -->
+                    <li ng-if="!csb.params.campaignID" ng-class="{ 'disabled' : !decisionTreeService.decisions.length }">
+                        <a class="dropdown-toggle" ng-click="saveDropdown = !saveDropdown;" save-decision-diagram-as-template templates="templates" set-strategy-vars="setStrategyVars( data )">Save Template As</a>
+                    </li>
+
+                    <!-- ATTACHES A TEMPLATE TO A CAMPAIGN -->
+                    <!-- show when in template mode only -->
+                    <li ng-if="!csb.params.campaignID" ng-class="{ 'disabled' : !decisionTreeService.decisions.length }">
+                        <a save-decision-diagram-to-campaign class="dropdown-toggle" set-strategy-vars="setStrategyVars( data )">Save to Campaign</a>
+                    </li>
+
+                </ul>
+            </li>
+        </ul>
+
+    </div>
+</div>

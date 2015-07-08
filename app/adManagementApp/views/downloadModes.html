@@ -1,0 +1,9 @@
+<mm-row>
+	<mm-drop-down mm-data-model="lookups.downloadModes" mm-model="ad.downloadMode"
+									mm-edit-multiple="isMultiple != undefined && isMultiple.indexOf('downloadMode') != -1"
+									mm-is-edit-mode="ad.id"
+									mm-layout-type="medium"
+									mm-caption="Download mode"   mm-placeholder="Enter Default Panel Frequency"
+									mm-label-width={{::labelWidth3}}
+									mm-error="errors.downloadMode"></mm-drop-down>
+</mm-row>

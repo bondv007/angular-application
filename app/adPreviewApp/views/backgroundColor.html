@@ -1,0 +1,63 @@
+<div class="AdPreviewOpt">
+	<div class="" id="myModalSetBG" tabindex="-1" role="dialog">
+		<div class="modal-dialog">
+			<div class="modal-contant">
+				<div class="modal-header">
+					<button type="button" class="close" ng-click="closeBackgroundColorDialog()">
+						&times;
+					</button>
+					<h4 class="modal-title"><i class="fa fa-barcode"></i> Set Background</h4>
+				</div>
+				<div class="modal-body">
+
+					<div class="top-opt">
+
+						<div class="my-background">
+							<div class="bg-opt-btns">
+								<button ng-click="clearUrlField();adPreviewCommonModel.uploadBackground()" class="btn">
+									<i class="fa fa-upload"></i> &nbsp; &nbsp; Upload Background
+								</button>
+								<div class="btn-group">
+									<button colorpicker type="button" colorpicker-position="bottom"
+									        ng-model="adPreviewCommonModel.selectedBackgroundColor" class="btn" data-toggle="dropdown">
+										Add Custom Color
+										<span class="caret"></span>
+									</button>
+									<ul class="dropdown-menu">
+										<!-- dropdown menu links -->
+									</ul>
+								</div>
+							</div>
+
+							<div class="search">
+								<input ng-model="adPreviewCommonModel.searchColor" type="text">
+								<input type="submit" value="" class="submit">
+							</div>
+
+						</div>
+
+					</div>
+
+					<div class="choose-color">
+						<div ng-class="{'active':color.active}" class="color1" ng-repeat="color in colors | filter:adPreviewCommonModel.searchColor">
+							<div ng-click="adPreviewCommonModel.selectedBackgroundColor=color;color.active=!color.active"
+							     ng-style="{'background':color}"
+							     class="box"></div>
+							<label>{{color}}</label>
+						</div>
+					</div>
+
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" ng-click="showBackgroundColorDialog=false">
+						Cancel
+					</button>
+					<button ng-click="clearUrlField();adPreviewCommonModel.uploadBackground();showBackgroundColorDialog=false"
+					        type="button" class="btn btn-primary">
+						Apply Background
+					</button>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

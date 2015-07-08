@@ -1,0 +1,234 @@
+@mixin mAlertText {
+  position: relative;
+  margin-right: 9px;
+  display: block;
+  top: -11px;
+  word-wrap:break-word;
+  @include tArialText;
+  opacity: 0.75;
+  padding-left: 50px;
+  line-height: initial;
+}
+
+@mixin mAlertMainDiv {
+  position: relative;
+  margin:auto;
+  top: 31px;
+  z-index: 100000000;
+}
+
+@mixin mAlert {
+  border-radius: 0;
+  min-height: 40px;
+  height: auto;
+  margin: auto;
+  padding: 0px;
+  background-color: #ffffff;
+}
+
+@mixin mAlertType {
+  box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+  opacity: 0.98;
+  margin-bottom: 5px;
+}
+
+@mixin alertAnimationFadeIn{
+  -webkit-animation:alertFadeIn 0.3s;
+  animation: alertFadeInFFandIE 0.3s;
+}
+
+@mixin alertAnimationFadeOut{
+  -webkit-animation:alertFadeOut 0.3s;
+  animation: alertFadeOutFFandIE 0.3s;
+}
+
+@mixin mAlertIcon{
+  position: relative;
+  left: 14px;
+  margin-right: 9px;
+  top: 11px;
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+}
+
+@mixin ulAlert{
+  margin-bottom:-4px;
+  margin-top:-1px;
+  opacity: 0.75;
+}
+
+@media screen and (max-width: 1280px) {
+  $mainWidth : 420px;
+  $maxAlertTextWidth : $mainWidth - 80px;
+  .alertMainDiv {
+    width: $mainWidth;
+   @include mAlertMainDiv;
+  }
+
+  .alert {
+    @include mAlert;
+    min-width: $mainWidth;
+    width: $mainWidth;
+  }
+
+  .alertText {
+    max-width: 300px;
+    @include mAlertText;
+  }
+
+  .ulAlert{
+    max-width: $maxAlertTextWidth;
+    @include ulAlert;
+  }
+}
+
+@media screen and (min-width: 1281px) and (max-width: 1680px) {
+  $mainWidth : 620px;
+  $maxAlertTextWidth : $mainWidth - 80px;
+
+  .alertMainDiv {
+    width: $mainWidth;
+    @include mAlertMainDiv;
+  }
+
+  .alert {
+    @include mAlert;
+    min-width: $mainWidth;
+    width: $mainWidth;
+  }
+
+  .alertText {
+    max-width: 500px;
+    @include mAlertText;
+  }
+
+  .ulAlert{
+    max-width: $maxAlertTextWidth;
+    @include ulAlert;
+  }
+}
+
+@media screen and (min-width: 1681px)  {
+  $mainWidth : 820px;
+  $maxAlertTextWidth : $mainWidth - 80px;
+  .alertMainDiv {
+    width: $mainWidth;
+    @include mAlertMainDiv;
+  }
+
+  .alert {
+    @include mAlert;
+    min-width: $mainWidth;
+    width: $mainWidth;
+  }
+
+  .alertText {
+    max-width: 700px;
+    @include mAlertText;
+  }
+
+  .ulAlert{
+    max-width: $maxAlertTextWidth;
+    @include ulAlert;
+  }
+}
+
+.close {
+  top: 3px;
+  right: 11px;
+  position: relative;
+  line-height: normal;
+  width: 19px;
+  &:focus {
+    outline: 0;
+  }
+}
+
+.alertSuccess {
+  @include mAlertType;
+  border: solid 1px rgba(141, 191, 129, .9);
+  background-color: #d3e8d3;
+}
+
+.alertWarning {
+  @include mAlertType;
+  border: solid 1px rgba(192, 152, 83, .9);
+  background-color: #fbf7e3;
+}
+
+.alertError {
+  @include mAlertType;
+  border: solid 1px rgba(185,74,72,.8);
+  background-color: #ecd6d7;
+}
+
+.alertInfo {
+  @include mAlertType;
+  border: solid 1px #9cc5ea;
+  background-color:#d4e1f4;
+}
+
+.cAlertFadeIn{
+  @include alertAnimationFadeIn;
+}
+
+.cAlertFadeOut{
+  @include alertAnimationFadeOut;
+}
+
+.liSquare{
+  list-style-type: square;
+  color: #000000;
+  padding-bottom: 4px;
+  position: relative;
+  left: 23px;
+  bottom:11px;
+}
+
+.liAlertText{
+  @include tArialText;
+}
+
+/* Chrome */
+@-webkit-keyframes alertFadeIn{
+  from{opacity: 0;}
+  to{opacity: 1;}
+}
+
+/* Browser FF, IE */
+@keyframes alertFadeInFFandIE {
+  from{opacity: 0;}
+  to{opacity: 1;}
+}
+
+@-webkit-keyframes alertFadeOut{
+  from{opacity: 1;}
+  to{opacity: 0;}
+}
+
+@keyframes alertFadeOutFFandIE {
+  from{opacity: 1;}
+  to{opacity: 0;}
+}
+
+
+.successIcon{
+  @include mAlertIcon;
+  background-image: image-url('si_success_page.png');
+}
+
+.warningIcon{
+  @include mAlertIcon;
+  background-image: image-url('si_warning_page.png');
+}
+
+.errorIcon{
+  @include mAlertIcon;
+  background-image: image-url('si_error_page.png');
+}
+
+.infoIcon{
+  @include mAlertIcon;
+  background-image: image-url('si_info_page.png');
+}

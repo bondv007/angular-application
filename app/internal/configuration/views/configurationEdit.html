@@ -1,0 +1,13 @@
+<script type="text/ng-template" id="tree_item_renderer.html">
+	<span ng-if="!config.new">{{config.name}}</span>
+	<a ng-if="config.new" class="click editable-dirty" onbeforesave="checkName(config.name, $data, _p.value)" onaftersave="edited(config)" e-size="30" editable-text="config.name">{{ config.name || "Enter Name"}}</a>
+	<span ng-if="config.value.push === undefined">: <a class="click" ng-class="{'editable-dirty': config.edited}" onaftersave="edited(config)" e-size="100" editable-text="config.value">{{ config.value || "Empty" }}</a></span>
+	<ul ng-if="config.value.push !== undefined">
+		<li ng-init="_p = $parent.config" ng-repeat="config in config.value track by $index" ng-include="'tree_item_renderer.html'"></li>
+		<li><span class="click glyphicon glyphicon-plus-sign" ng-click="newItem(config)"></span></li>
+	</ul>
+</script>
+<wave-spinner ng-if="showSPinner"></wave-spinner>
+<div class="configuration_header" ng-if="!showSPinner"><input type="button" value="Update" class="btn btn-default" ng-click="save()"></div><br>
+<alert ng-repeat="alert in alerts" type="alert.type" close="closeAlert($index)">{{alert.msg}}</alert>
+<div class="configuration_container" ng-if="!showSPinner" ng-include="'tree_item_renderer.html'"></div>

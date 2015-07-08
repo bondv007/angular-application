@@ -1,0 +1,13 @@
+<div style="padding-left:20px">
+
+    <h3>Feature Flags Management</h3>
+    <mm-grid items="features" cols="columnDefs" selected-items="selectedItems" filtered-items="filteredItems" is-cell-edit="true" is-single-select="true" is-sort="true" show-footer="true" is-groupable="true" show-selection-checkbox="true" show-filter="true" enable-column-resize="true" is-column-reorder="true" is-column-freeze="true" is-show-menu="true" save-data="saveData" grid-height="400" grid-width="900" is-central-grid="false" is-grid-toolbar="false" grid-title="MM Grid" grid-button-actions="gridButtonActions" grid-select-actions="gridSelectActions">
+    </mm-grid>
+    <div class="container-fluid" ng-if="hasEditPermission">
+        <div class="gridaction-btn" style="margin-top:29px">
+            <mm-button mm-disable="saveChangesDisabled" mm-class="btn-primary" mm-action="saveFeaturesChanges()" mm-caption="Save Changes"></mm-button>
+        </div>
+    </div>
+    </tab>
+</div>
+</div>

@@ -1,0 +1,87 @@
+<div>
+  <table class="buildAdsGrid" border="1px" style="padding-top: 20px">
+    <tr>
+      <th class="header" ng-repeat="column in gridColumns" ng-if="!column.review && !column.update" ng-bind="column.displayName | T"></th>
+    </tr>
+    <tr ng-if="newAds.length > 0" ng-repeat="ad in newAds track by ad.clientRefId">
+      <!--td class="narrow">
+        <-div class="mm_checkbox"
+             ng-class="{'mm-checkbox-hover': liHover}"
+             ng-click="onAdClick(ad)">
+        <span ng-class="{'selectedCB': ad.selected}"></span>
+        </div>
+      </td-->
+      <td>
+        <div class="workShopThumbnail">
+          <mm-text mm-model="ad.name" mm-change="onNameEnter(ad)"
+                 mm-error="errorObj[ad.clientRefId].adName"
+                 mm-layout-type="custom" mm-custom-control-width="295"
+								 mm-label-width="0" mm-show-label="false"
+								 mm-placeholder="Enter Name"></mm-text>
+        </div>
+      </td>
+      <td ng-if="!state.update" style="min-width: 50px;max-width: 150px">
+        <div class="mm-entity-fields-container-single">
+			<mm-check-box  mm-model="ad.isUpdate" mm-description="Override Existing ad" mm-layout-type="medium"></mm-check-box>
+        </div>
+      </td>
+      <td style="min-width: 80px">
+        <div class="workShopThumbnail">
+          <div class='externalImage' style='cursor:pointer;'ng-click='redirectOnImageClick(row.entity[col.field].externalLink)'>
+            <img ng-mousemove='adjustPreview($event)' ng-mouseenter='showPreview($event)' ng-mouseleave='removePreview($event)'
+                 ng-src='{{ad.thumbnail_url}}' height='{{imageHeight}}' width='{{imageWidth}}' lazy-src/></div>
+          </div>
+      </td>
+      <td style="min-width: 120px;max-width: 150px">
+        <div class="mm-entity-fields-container-single">
+          <mm-row>
+						<mm-label mm-model="ad.adFormat"
+											mm-layout-type="custom" mm-custom-control-width="160"
+											mm-show-label="false">
+						</mm-label>
+          </mm-row>
+        </div>
+      </td>
+      <td style="min-width: 40px;max-width: 80px">
+				<div class="mm-entity-fields-container-single">
+					<mm-label mm-model="ad.parsedFileSize"
+										mm-layout-type="small" mm-custom-control-width="100"
+										mm-show-label="false">
+					</mm-label>
+				</div>
+			</td>
+      <td style="min-width: 60px;max-width: 100px">
+        <div class="mm-entity-fields-container-single">
+          <mm-row>
+						<mm-label mm-model="ad.dimensions"
+											mm-layout-type="custom" mm-custom-control-width="80"
+											mm-show-label="false">
+						</mm-label>
+          </mm-row>
+        </div>
+      </td>
+       <td>
+            <div class="workShopThumbnail">
+                <mm-text mm-model="ad.folder"
+                         mm-error="errorObj[ad.clientRefId].folder"
+                         mm-layout-type="custom" mm-custom-control-width="295"
+                         mm-label-width="0" mm-show-label="false"
+                         mm-placeholder="Enter Folder"></mm-text>
+            </div>
+        </td>
+
+
+
+    </tr>
+		</table>
+</div >
+<div class="uploadAlert" ng-if=true>
+<div>{{"Ads containing the following advanced features cannot be edited on the platform and may not function as expected:" | T}}</div>
+<ul class="advancedfeatures">
+	<li>	{{"Data Catpure" | T}}</li>
+	<li>	{{"Synch Ads" |T}}</li>
+	<li>{{"Dynamic Content" | T}}</li>
+	<li>{{"Variables" | T}}</li>
+	<li>{{"Smart Versioning (DCO)" | T}}</li>
+</ul>
+</div>

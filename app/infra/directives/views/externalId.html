@@ -1,0 +1,38 @@
+<!--<div ng-class="modalStyling" ng-style="{'padding-left': externalPadding, 'padding-right':'0px', 'width':'490px'}">-->
+    <mm-toggle-container ng-if="permissions.common.externalId.view" mm-caption="External Id"
+                         start-open="externalIdMiniSectionStartOpen">
+        <mm-row>
+            <div class="mm-entity-fields-container-single" style="margin-top: 5px">
+                <mm-row>
+                    <mm-drop-down mm-model="externalId.entityType"
+                                  mm-data-model="entityTypes"
+                                  mm-error="externalId.validation.entityType"
+                                  mm-is-edit-mode="isEditMode"
+                                  mm-is-required="false"
+                                  mm-caption="Entity Type"
+                                  mm-label-width="{{externalIdlabelWidth}}"
+                                  mm-layout-type="custom"
+                                  mm-custom-control-width="235"
+                                  mm-select-change-func="onEntityTypeSelected()"
+                                  mm-tab-index="{{mmTabIndex}}"
+                                  mm-add-please-select
+                                  mm-disable="!permissions.common.externalId.edit"></mm-drop-down>
+                </mm-row>
+                <mm-row>
+                    <mm-text mm-model="externalId.id"
+                             mm-is-edit-mode="isEditMode"
+                             mm-placeholder="Enter External Id"
+                             mm-error="externalId.validation.id"
+                             mm-change="initExternalId();onIdTextChanged()"
+                             mm-is-required=false
+                             mm-caption="External Id"
+                             mm-label-width={{externalIdlabelWidth}}
+                             mm-layout-type="custom"
+                             mm-custom-control-width="235"
+                             mm-tab-index="{{mmTabIndex + 1}}"
+                             mm-disable="!permissions.common.externalId.edit"></mm-text>
+                </mm-row>
+            </div>
+        </mm-row>
+    </mm-toggle-container>
+<!--</div>-->

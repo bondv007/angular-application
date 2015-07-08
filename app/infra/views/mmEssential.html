@@ -1,0 +1,21 @@
+<style type="text/css">
+  .error{
+    border:1px solid red;
+  }
+  .plain{
+
+  }
+</style>
+<span>
+  <span class="first" ng-show="!showInput" size="{{mmSize}}" ng-click="showInput = !showInput"
+    onmouseover="this.style.border = '1px solid gray'; this.style.padding = '2px'" onmouseout="this.style.border = ''">
+    <span ng-if="!isLinkElement">
+      {{ controlType == "select" ? (mmSelectData | filter:{id: ngModel})[0].name : ngModel }}
+    </span>
+    <span ng-if="isLinkElement" ng-mouseover="showEdit = true" ng-mouseleave="showEdit = false" >
+      <a ui-sref="{{mmLink}}">{{ controlType == "select" ? (mmSelectData | filter:{id: ngModel})[0].name : ngModel }}</a>
+      <i ng-show="showEdit" class="glyphicon glyphicon-edit" onmouseover="this.style.cursor = 'pointer'"></i>
+    </span>
+  </span>
+  <span style="padding-left: 10px" ng-show="mmRequired && ngModel == ''">Required field.</span>
+</span>

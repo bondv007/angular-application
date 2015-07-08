@@ -1,0 +1,45 @@
+<div class="navbar-right rightNavBarContainer">
+	<div class="mainNavBarSearch" ng-include="'index/views/spa/navSearch.html'"></div>
+	<ul class="rightNavButtons nav navbar-nav">
+		<li class="dropdown" ng-show="showFlyoutProgress">
+			<a class="dropdown-toggle refresh-icon"></a>
+			<ul class="dropdown-menu messages arrow refresh-sec">
+				<li>Ongoing processes
+					<div class="process-link">
+						<a ng-click="showAssetPopup()">Uploading {{uploader.queue.length}} files</a>
+						<div class="progress">
+							<div class="progress-bar" role="progressbar" ng-style="{ 'width': uploader.progress + '%' }"><b>{{uploader.progress}}%</b>
+							</div>
+						</div>
+					</div>
+				</li>
+			</ul>
+		</li>
+		<li class="dropdown">
+			<a class="dropdown-toggle"><div class="si_help"></div></a>
+		</li>
+		<li class="dropdown">
+			<a class="dropdown-toggle"><div class="si_globe"></div></a>
+			<ul class="dropdown-menu">
+				<li><a ng-click="changeLanguage('english')">{{'English' | T}}<span
+						ng-if="currentLanguage=='english'">&nbsp;&nbsp;&nbsp;V</span></a></li>
+				<li><a ng-click="changeLanguage('spanish')">{{'Spanish' | T}}<span
+						ng-if="currentLanguage=='spanish'">&nbsp;&nbsp;&nbsp;V</span></a></li>
+				<li><a ng-click="changeLanguage('chinese')">{{'Chinese' | T}}<span
+						ng-if="currentLanguage=='chinese'">&nbsp;&nbsp;&nbsp;V</span></a></li>
+			</ul>
+		</li>
+		<li class="dropdown">
+			<a class="dropdown-toggle"><div class="si_user"></div></a>
+			<ul class="dropdown-menu">
+				<li class="dropdown-header">{{userName}}</li>
+				<li ng-if="userName != 'Guest'" ng-click="OpenUserSettings()"><a>{{'My Settings' | T}}</a></li>
+        <li ng-if="userName != 'Guest'" ng-click="OpenAccountSettings()"><a>{{'Account Settings' | T}}</a></li>
+        <li ng-switch="userName">
+          <a ng-switch-when="Guest" ng-click="redirectToLogIn()">{{'Log in' | T}}</a>
+          <a ng-switch-default ng-click="logOut()">{{'Log out' | T}}</a>
+        </li>
+			</ul>
+		</li>
+	</ul>
+</div>

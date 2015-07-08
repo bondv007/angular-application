@@ -1,0 +1,61 @@
+<div ng-if="hideGoTo" class="entityLayoutTitle" style="display: inline-block;">
+  <div style="display: inline-block;">
+    <div ng-if="editMultiplequantity>1">Multiple Edit &lt; {{editMultiplequantity}}  Selected  {{entityMetaData.name}}s &gt;</div>
+
+    <div ng-if="(!entralEntity&&(!editMultiplequantity||editMultiplequantity==1)) && isNewMode " class="entityType entityLayoutTitleColLeft"><span>{{'New' | T}}</span> {{entityMetaData.name}}</div>
+    <div class="entityLayoutTitleColWrap">
+      <div ng-if="!editMultiplequantity||(mainEntity.id!=null&&editMultiplequantity==1)" class="entityLayoutTitleColRight entityId">{{contextEntityInfo.id}}</div>
+      <div ng-if="!editMultiplequantity||(mainEntity.id!=null&&editMultiplequantity==1)" class="entityName entityLayoutTitleColCenter"><b style="margin-right: 10px;">{{entralEntity.name | uppercase}}</b> {{contextEntityInfo.name}}</div>
+    </div>
+  </div>
+  <div class="entityTitleIcon"></div>
+</div>
+<div ng-if="!hideGoTo" class="btn-group">
+	<div class="dropdown-toggle goToButton" style="padding-right: 0 !important;padding-left: 0 !important;">
+		<div ng-include="'entityName.html'"></div>
+	</div>
+	<ul ng-if="mainEntity" class="dropdown-menu goToMenu" style="padding: 0;border: none;box-shadow: 2px 3px 4px rgba(0,0,0,.2);">
+		<li class="goToMainLi"><div ng-include="'entityName.html'"></div></li>
+		<li class="goToMainLi">
+			<table cellpadding="0" cellspacing="0">
+				<tr>
+					<td class="goToLinkMenu">
+						<ul class="subMenuUL" style="padding: 0;width: 240px;">
+							<li ng-if="goToData.links.length != 0" ng-repeat="goToLink in goToData.links" class="goToLinkLi" ng-init="goToLink.shouldShowLink = true">
+								<div ng-if="goToLink.shouldShowLink" class="click" ui-sref="{{goToLink.sref}}({ {{goToLink.paramKey}}: getInnerValue(goToLink, 'paramPath') })">
+									<div class="goToLinkType">{{goToLink.type | T}}</div>
+									<div id="{{(goToLink.type.replace(' ', '') + goToLink.namePath.replace(' ', ''))}}" class="entityName goToLinkName" title="{{(goToLink.namePath?getInnerValue(goToLink, 'namePath'):'')}}">
+										{{(goToLink.namePath?getInnerValue(goToLink, 'namePath'):'')}}
+									</div>
+									<div ng-if="!$last" class="goToLinkSeperator"></div>
+								</div>
+							</li>
+						</ul>
+					</td>
+					<td ng-if="goToData.actions.length > 0" style="width: 210px;">
+						<ul class="" style="padding: 0;">
+							<li class="goToMenuAction" ng-repeat="goToAction in goToData.actions">
+								<div id="{{goToAction.name.replace(' ', '')}}" class="goToMenuActionText" ng-click="goToAction.func()">{{goToAction.name | T}}</div>
+								<div ng-if="!$last" class="goToActionBottomSeparate"></div>
+							</li>
+						</ul>
+					</td>
+				</tr>
+			</table>
+		</li>
+	</ul>
+</div>
+
+<script type="text/ng-template" id="entityName.html">
+	<div class='goToContainer'>
+		<div class="goToIcon"></div>
+		<div class="goToBorder"></div>
+		<div class="goToText">
+			<div ng-if="editMultiplequantity>1">Multiple Edit &lt; {{editMultiplequantity}}  Selected  {{entityMetaData.name}}s &gt;</div>
+			<div ng-if="(!editMultiplequantity||editMultiplequantity==1)">
+				<div class="goToType" ><span ng-if="isNewMode">{{'New' | T}}</span> {{entityMetaData.name}}</div>
+				<div class="goToName" title="{{contextEntityInfo.name}}">{{contextEntityInfo.name}}</div>
+			</div>
+		</div>
+	</div>
+</script>

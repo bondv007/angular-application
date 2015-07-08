@@ -1,0 +1,12 @@
+<mm-control-label mm-caption="{{mmCaption}}" mm-show-label="{{mmShouldShowLabel}}"
+                  mm-layout-class="{{mmLabelClass}}" mm-is-required="{{mmIsRequired}}"></mm-control-label>
+<div class="{{mmControlClass}}" >
+  <div class="{{mmCloseModeClass}}" mm-dirty mm-tool-tip="{{textTooltip | T}}">
+    <input type="text" class="mm-text-box form-control {{mmClass}}" ng-show="mmShowEdit" ng-model="mmModelObj.Val" placeholder="{{mmPlaceholder | T}}">
+    <span ng-show="!mmShowEdit" class="mm-label-value" ng-class="(mmError?'error':(mmLocalIsDirty?'dirty':''))"
+          ng-mouseenter="openToEdit(true);">{{mmModelObj.Val}}</span>
+  </div>
+</div>
+<mm-error-div error-text="mmError" show-error="mmError"></mm-error-div>
+
+

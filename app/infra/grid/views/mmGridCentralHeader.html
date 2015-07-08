@@ -1,0 +1,55 @@
+<div class="mmGrid-toolGrid row top-row" ng-if="isCentralGrid" data-ng-style="{'width':gridWidth}" style="">
+	<div class="col-xs-12" style="padding-left: 0;">
+		<div class="master-add">
+			<ul>
+				<li>
+					<div class='check-wrap' data-ng-if="(isSingleSelect==undefined || isSingleSelect==false)">
+						<input id="masterCheck" type="checkbox"/>
+						<label ng-click="clickHeaderCheck($event)" class="mmGrid-customCheckbox" style="margin: 0px 10px 0 0">
+							<i class='glyphicon glyphicon-ok'></i></i></label>{{gridTitle}}
+					</div>
+				</li>
+				<li>
+					<button data-ng-click="toggleSetting($event)"><i class="cog"></i></button>
+					<ul class="sub-cate masterUl">
+						<li><a href="#" ng-mouseover="showSortBySubCategory=false">View<i class="fa fa-angle-right"></i> </a></li>
+						<li><a data-ng-click="showSortBySubCategory=!showSortBySubCategory"
+									 ng-mouseover="showSortBySubCategory=true">Sort<i class="fa fa-angle-right"></i> </a>
+							<ul class="sub-cate" ng-if="showSortBySubCategory">
+								<li><label>Sort By</label></li>
+								<li data-ng-repeat="name in headerNames">
+									<a href="#"><i class="fa fa-check"></i> {{name}}</a>
+								</li>
+								<!--<li class="active"><a href="#"><i class="fa fa-check"></i> None</a></li>-->
+								<!--<li><a href="#"><i class="fa fa-check"></i> Site</a></li>-->
+								<!--<li><a href="#"><i class="fa fa-check"></i> Package</a></li>-->
+								<!--<li><a href="#"><i class="fa fa-check"></i> Type</a></li>-->
+								<!--<li><a href="#"><i class="fa fa-check"></i> Site</a></li>-->
+								<!--<li><a href="#"><i class="fa fa-check"></i> Booked Impressions</a></li>-->
+								<!--<li><a href="#"><i class="fa fa-check"></i> Actual Impressions</a></li>-->
+								<li><label>Sort Order</label></li>
+								<li><a href="#">Ascending</a></li>
+								<li><a href="#">Descending</a></li>
+								<li><a href="#">Advanced</a></li>
+							</ul>
+						</li>
+						<li><a href="#" ng-mouseover="showSortBySubCategory=false">Group By<i class="fa fa-angle-right"></i> </a>
+						</li>
+						<li><a href="#" ng-mouseover="showSortBySubCategory=false">Customize View</a></li>
+					</ul>
+				</li>
+				<li>
+					<button data-ng-click="toggleSearch($event)"><i class="search"></i></button>
+				</li>
+			</ul>
+		</div>
+
+		<div class="mmGridSearch-box" ng-show="showSearchBox">
+			<input type="text" data-ng-model="filterOptions.filterText" placeholder="Search...">
+			<button class="active"><i class="table-icon"></i></button>
+			<button class="filter-icon active"><i class="filter"></i></button>
+
+		</div>
+	</div>
+</div>
+<div class="clear"></div>

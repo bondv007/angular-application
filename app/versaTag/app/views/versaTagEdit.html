@@ -1,0 +1,161 @@
+<div style="position:absolute; bottom:2px; top:2px; left : 0px; right:0px;">
+
+    <div ng-class="{editContainer : !isModal}">
+    <div class="mm-entity-fields-container">
+        <div class="mm-entity-fields-container-left">
+            <div class="mm-entity-fields-container-single">
+                <mm-row>
+                    <mm-text mm-is-edit-mode="isEditMode"
+                             mm-caption="Tag Name"
+                             mm-model="editObject.name"
+                             mm-placeholder="Enter Tag Name"
+                             mm-is-required="{{isRequired}}"
+                             mm-error="validation.name"
+                             mm-label-width="{{labelWidth}}"
+                             text-tooltip="Enter tag name"
+                             mm-layout-type="medium"></mm-text>
+                </mm-row>
+                <mm-row ng-if="listOfAdvertisers.length > 0">
+
+                    <mm-drop-down mm-is-edit-mode="isEditMode"
+                                  mm-caption="Advertiser"
+                                  mm-model="editObject.advertiserIds"
+                                  mm-data-model="listOfAdvertisers"
+                                  mm-is-required="{{isRequired}}"
+                                  mm-error="validation.advertiser"
+                                  mm-label-width="{{labelWidth}}"
+                                  allow-multi-select
+                                  control-type="multi"
+                                  mm-layout-type="medium"></mm-drop-down>
+                </mm-row>
+                <mm-row>
+                    <mm-text mm-is-edit-mode="isEditMode"
+                             mm-caption="Page URL"
+                             mm-model="editObject.pageURL"
+                             mm-placeholder="Enter Page URL"
+                             mm-is-required="{{isRequired}}"
+                             mm-error="validation.pageUrl"
+                             mm-label-width="{{labelWidth}}"
+                             text-tooltip="Enter Page URL"
+                             mm-layout-type="medium"></mm-text>
+                </mm-row>
+            </div>
+        </div>
+    </div>
+
+<!--    <div class="mm-entity-info-box-container-right">
+        <mm-row>
+            <div   style="border:1px solid gray;padding-bottom:12px; padding-top:12px;padding-right:20px;height:164px; width:272px;">
+                <div style="padding-left: 20px">
+                    <mm-row>
+                        <div>Total Page Views: {{editObject.totalPageViews}}</div>
+                    </mm-row>
+                    <mm-row>
+                        <div >Rules Page Views: {{editObject.rulesPageView}}</div>
+                    </mm-row>
+                    <mm-row>
+                        <div >Last 24 Hrs Page Views: 0</div>
+                    </mm-row>
+                </div>
+
+            </div>
+        </mm-row>
+    </div>-->
+
+    <div class="mm-entity-fields-container-single">
+        <mm-row>
+            <mm-toggle-container
+                    mm-caption="Code"
+                    start-open="togglesStatus.code">
+                <mm-row>
+                    <mm-drop-down mm-is-edit-mode="isEditMode"
+                                  mm-caption="Type"
+                                  mm-model="editObject.vtType"
+                                  mm-data-model="codeTypes"
+                                  mm-error="validation.codeType"
+                                  mm-is-required="{{isRequired}}"
+                                  mm-label-width="{{labelWidth}}"
+                                  mm-layout-type="medium"
+                                  mm-select-change-func=""></mm-drop-down>
+                </mm-row>
+                <mm-row>
+                    <div style="line-height:30px">
+                        <mm-radiobutton
+                                mm-model="codeGenerationMode"
+                                mm-visible="true"
+                                mm-is-required="false"
+                                mm-is-vertical="false"
+                                mm-selected="editObject.codeGeneration"
+                                mm-model-id="text"
+                                mm-disabled="false"
+                                mm-caption="Code Generation Mode"
+                                mm-show-label="true"
+                                mm-layout-type="medium"
+                                mm-error="validation.codeGenerationMode"
+                                mm-is-required="{{isRequired}}"
+                                mm-label-width="{{labelWidth}}">
+                        </mm-radiobutton>
+                    </div>
+                </mm-row>
+                <mm-row>
+                    <div style="line-height:30px">
+                        <mm-radiobutton
+                                mm-model="loadingMethod"
+                                mm-visible="true"
+                                mm-is-required="false"
+                                mm-is-vertical="false"
+                                mm-selected="editObject.loadingMethod"
+                                mm-model-id="text"
+                                mm-disabled="false"
+                                mm-caption="Loading Method"
+                                mm-show-label="true"
+                                mm-layout-type="medium"
+                                mm-error="validation.codeGenerationMode"
+                                mm-is-required="{{isRequired}}"
+                                mm-label-width="{{labelWidth}}">
+                        </mm-radiobutton>
+                    </div>
+                </mm-row>
+            </mm-toggle-container>
+        </mm-row>
+    </div>
+
+<!--        <div class="mm-entity-fields-container-single">
+            <mm-row>
+                <mm-toggle-container
+                        mm-caption="Custom Script"
+                        start-open="togglesStatus.customScript">
+
+                    <mm-row>
+                    <span><mm-button mm-caption="Add"></mm-button></span>
+                    <span><mm-button mm-caption="Remove"></mm-button></span>
+                    <div class="pull-right"><mm-text mm-is-edit-mode="isEditMode"
+                                   mm-model="editObject.searchGroup"
+                                   mm-placeholder="Search"
+                                   mm-is-required="false"
+                                   mm-error="validation.searchGroup"
+                                   mm-label-width="{{labelWidth}}"
+                                   text-tooltip="Enter Search Text"
+                                   mm-layout-type="medium"></div>
+                    </mm-row>
+                    <mm-row class="clearfix">
+                        <mm-grid cols="customScriptColumnDefs"
+                                 is-central-grid="false"
+                                 is-cell-edit="false"
+                                 show-selection-checkbox="true"
+                                 is-single-select="true"
+                                 is-column-reorder="true"
+                                 grid-height="200"
+                                 is-show-menu="true"
+                                 show-filter="true"
+                                 show-footer="true"
+                                 is-sort="true">
+                                ></mm-grid>
+                    </mm-row>
+
+                </mm-toggle-container>
+            </mm-row>
+        </div>-->
+</div>
+
+</div>

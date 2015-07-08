@@ -1,0 +1,7 @@
+{
+  "env": "production",
+	"ec2": "https://uat.dev.sizmdx.com/rest/",
+	"ec2ams": "https://uat.dev.sizmdx.com/rest/",
+	"loginPath": "https://uat.dev.sizmdx.com/rest/login/",
+	"resource": "/_/"
+}

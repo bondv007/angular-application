@@ -1,0 +1,71 @@
+@mixin emptyDgTraffickingState {
+  font-size: 16px;
+  font-family: 'Titillium';
+}
+
+.centerDgs {
+  position: relative;
+  top: 50px;
+  width: 635px;
+  margin: auto;
+  background-color: $cWhite;
+}
+
+.dgTraffickingWrapButtons {
+  position: relative;
+  top: 20px;
+  width: 492px;
+  margin: auto;
+  .newDeliveryGroupButton {
+    position: relative;
+    top: 3px;
+    left: 3px;
+  }
+  .treeButton {
+    height: 24px;
+    border: solid 1px black;
+    border-radius: 0px;
+    background-color: $white;
+    padding: 0px 10px 0px 10px;
+    color: #4a5f7a;
+    border: 1px solid rgba(13, 41, 77, .3);
+    &:hover {
+      background-color: $cFifth;
+      border: 1px solid $cSecondary;
+      opacity: 1;
+      color: $cSecondary;
+    }
+    &:focus {
+      outline: 0;
+      box-shadow: 0;
+    }
+    &:active {
+      outline: 0;
+      box-shadow: 0;
+      background-color: $cSecondary;
+      color: $cWhite;
+    }
+    .btn {
+      &:active {
+        outline: 0;
+        box-shadow: 0;
+      }
+    }
+  }
+}
+
+.emptyDgTraffickingStateWrap {
+  text-align: center;
+  top: 100px;
+  position: relative;
+  .emptyDgTraffickingStateText {
+    @include emptyDgTraffickingState;
+    color: $cDarkGrey;
+
+  }
+
+  .emptyDgTraffickingStateLinkText {
+    @include emptyDgTraffickingState;
+    color: $cMain;
+  }
+}

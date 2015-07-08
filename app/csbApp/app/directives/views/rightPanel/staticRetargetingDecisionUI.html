@@ -1,0 +1,162 @@
+<div class="mdxUI mdxUIContainer" ng-class="{ 'active' : showUI, 'mdx3': csb.config.env == 'mdx3' }">
+  <div class="header">
+    <h1>Static Retargeting Decision Rule<span ng-click="cancelChanges()" class="pull-right glyphicon glyphicon-remove"></span></h1>
+  </div>
+  <div class="body-wrapper" ng-style="csb.config.panelHeight">
+    <div class="body clearfix">
+      <div ng-show="loading">
+        <span><i class="glyphicon glyphicon-refresh spin-360"></i> Loading Static Retargeting options...</span>
+      </div>
+      <div ng-hide="loading">
+        <div ng-hide="staticAvailable">
+          <div decision-not-available decision="decision" decision-type="Static Retargeting"
+               close-panel="closePanelUi()"></div>
+        </div>
+        <div ng-show="staticAvailable">
+          <div class="form-group" ng-show="errorText">
+            <div class="csb-alert alert alert-danger">{{errorText}}</div>
+          </div>
+          <div class="mm-entity-fields-container-single">
+            <mm-row>
+              <mm-text
+                mm-layout-type="custom"
+                mm-custom-control-width="210"
+                mm-label-width="130"
+                mm-caption="Decision Rule Name"
+                mm-model="name.text">
+              </mm-text>
+            </mm-row>
+            <mm-row>
+              <mm-drop-down
+                mm-layout-type="custom"
+                mm-custom-control-width="210"
+                mm-label-width="130"
+                mm-caption="Decision Rule Type:"
+                mm-placeholder="Select one"
+                mm-data-model="ruleTypeOptions"
+                mm-model="decision.data.isYesNo"
+                mm-disable="disableType"
+                mm-select-change-func="changeTargetType(decision.data.isYesNo)">
+              </mm-drop-down>
+            </mm-row>
+            <mm-row>
+              <mm-drop-down
+                mm-layout-type="custom"
+                mm-custom-control-width="210"
+                mm-label-width="130"
+                mm-caption="Advertiser"
+                mm-custom-model-text="'Select an advertiser'"
+                mm-data-model="advertisers"
+                mm-model="advertiser.id"
+                mm-select-change-func="advertiserChanged(true)"
+                mm-auto-pre-select-change-func="advertiserChanged()"
+                mm-disable="csb.params.advertiserID"
+                >
+              </mm-drop-down>
+            </mm-row>
+            <div ng-show="advertiser.id" style="">
+              <label>Targeted Viewers</label>
+              <div ng-repeat="group in decision.data.targetingGroups track by $index">
+                <div ng-if="group.type != 'default-decision'" style="position:relative">
+                  <i ng-show="decision.data.targetingGroups.length > 1 && decision.data.isYesNo != 'yes-no'"
+                     ng-click="removeGroup(group, $index)"
+                     class="csb-icon csb-icon-x-icon remove-group-icon"
+                     style="">
+                  </i>
+                  <div class="form-inline retargeting-content" style="width:340px; padding-top: 0;">
+                    <div class="form-group">
+                      <div ng-repeat="rule in group.rules track by $index"
+                           ng-init="rule.exposure = rule.exposure || exposures[0];">
+                        <!-- select options for the exposure, model is stored locally -->
+                        <div>
+                          <mm-radiobutton
+                            mm-id="'ruleRadioButton_' + $index"
+                            mm-model="exposures"
+                            mm-selected="rule.exposure.id"
+                            mm-is-vertical="false">
+                          </mm-radiobutton>
+                        </div>
+                        <div class="row">
+                          <div class="col-md-5">
+                            <mm-drop-down
+                              mm-id="'tagDropDown_' + $index"
+                              mm-layout-type="custom"
+                              mm-custom-control-width="145"
+                              mm-hide-label="{{true}}"
+                              mm-data-model="tags"
+                              mm-model="rule.details"
+                              mm-return-full-object="true"
+                              mm-custom-model-text="'Select Tag...'"
+                              mm-select-change-func="updateTagValues(rule, true)"
+                              mm-auto-pre-select-change-func="updateTagValues(rule)">
+                            </mm-drop-down>
+                          </div>
+                          <div class="col-md-5">
+                            <mm-drop-down
+                              mm-id="'tagValuesDropDown_' + $index"
+                              mm-layout-type="custom"
+                              mm-custom-control-width="145"
+                              mm-hide-label="{{ true }}"
+                              mm-data-model="rule.tagValues"
+                              mm-return-full-object="true"
+                              mm-model="rule.selectedTagValues"
+                              ng-hide="!rule.tagValues.length && !rule.tagValue.id"
+                              allow-multi-select
+                              control-type="multi">
+                            </mm-drop-down>
+                          </div>
+                          <div class="col-md-1">
+                            <!-- delete button -->
+                            <i class="remove-rule-icon csb-icon csb-icon-x-icon"
+                               ng-if="group.rules.length > 1"
+                               ng-click="group.rules.splice(group.rules.indexOf(rule),1)"
+                               style="position: absolute; margin-top: 10px;">
+                            </i>
+                          </div>
+                        </div>
+                        <div class="logical-operator" ng-hide="$last">
+                          <mm-radiobutton
+                            mm-id="'logicalOperaterRadioButton_' + $index"
+                            mm-model="logicalOperater"
+                            mm-selected="rule.logicalOperator.id">
+                          </mm-radiobutton>
+                        </div>
+                      </div>
+                    </div>
+                    <hr>
+                    <div ng-show="group.type != 'default-decision'"
+                         ng-init="group.rules.length == 0 ? addRule(group) : null">
+                      <a class="add-rule" ng-click="addRule(group)"><i class="csb-icon csb-icon-add-btn"></i> Add another rule</a>
+                    </div>
+                  </div>
+                </div>
+                <span class="group-logical-separator"
+                      ng-hide="decision.data.isYesNo == 'yes-no' || $index == decision.data.targetingGroups.length - 1">OR</span>
+              </div>
+              <div class="form-group" ng-hide="decision.data.isYesNo == 'yes-no'">
+                <a class="add-rule" ng-click="addGroup()"><i class="csb-icon csb-icon-add-btn"></i> Add Yes Branch</a>
+              </div>
+            </div>
+            <mm-row>
+              <mm-drop-down
+                mm-caption="And cookie age is not older than"
+                mm-layout-type="custom"
+                mm-custom-control-width="140"
+                mm-label-width="200"
+                mm-custom-model-text="'Advertiser Default'"
+                mm-data-model="advertiserDays"
+                mm-model="selectedDay.value">
+              </mm-drop-down>
+            </mm-row>
+          </div>
+          <div class="footer">
+            <div class="form-buttons pull-right">
+              <button class="btn mdx-btn mdx-save-btn" ng-click="save(decision.data)">Save</button>
+              <button class="btn mdx-btn mdx-close-btn" ng-click="cancelChanges()">Cancel Changes</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

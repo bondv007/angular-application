@@ -1,0 +1,24 @@
+<div class="centralFriendlyGridCube" ng-class="{centralFriendlyGridSelectedItem : dataObj.selectedItem == item}" style="position: relative;">
+	<span class="centralFriendlyGridCubeInner">
+		<div class="pull-left">
+            <input type="checkbox"  ng-model="item.isSelected" ng-click="setToolBar(dataObj)" >
+        </div>
+        <div class="pull-left" ng-if="item.isOpen && item.thumbnails[0].master">
+            <img class="centralRowImg" ng-src="{{item.thumbnails[0].url}}" alt="asset thumbnail" width="75" height="75"/>
+        </div>
+        <div class="pull-left">
+            <span class="centralFriendlyGridItemName"> {{item.id }} </span> <span>&nbsp; | &nbsp;</span> <span class="centralFriendlyGridItemName"> {{item[dataObj.title] || item.title || 'Empty Title'}} </span>
+
+            <span class="pull-right centralFriendlyGridItemButtons">
+                <!--<a class="centralFriendlyGridItemName fa fa-arrow-circle-o-right" ui-sref="{{dataObj.editPageURL}}({ {{dataObj.foreignKey}}: item.assetId })"></a>&nbsp;-->
+                <a class="centralFriendlyGridItemName fa fa-arrow-circle-o-right" ui-sref="{{dataObj.editPageURL}}({ {{dataObj.foreignKey}}: item.id })"></a>&nbsp;
+                <a ng-show="item.isOpen" class="fa fa-angle-double-up centralFriendlyGridItemName centralFriendlyGridItemOpenIcon" ng-click="item.isOpen=!item.isOpen"></a>
+                <a ng-show="!item.isOpen" class="fa fa-angle-double-down centralFriendlyGridItemName centralFriendlyGridItemClosedIcon" ng-click="item.isOpen=!item.isOpen"></a>
+            </span>
+            <div ng-if="item.isOpen">
+                <p ng-repeat="index in dataObj.userMetaData" class="centralFriendlyGridItem">{{dataObj.listMetaData[index].text}}: {{ item[dataObj.listMetaData[index].key] }} &nbsp </p>
+            </div>
+        </div>
+        <div class="clearfix"></div>
+	</span>
+</div>

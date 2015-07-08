@@ -1,0 +1,195 @@
+$subHeaderHeight: 34px;
+$cSelected :#bac9e3;
+$cHeader: #e4e4e4;
+
+@mixin ad-format-logo($url,$hUrl){
+  width: 150px;
+  height: 100px;
+  margin-bottom: 7px;
+  background-image: image-url($url);
+  display: inline-block;
+
+  &:hover{
+    cursor: pointer;
+    background-image: image-url($hUrl);
+  }
+}
+
+.uploadAssets {
+
+  .info-box{
+    border: 1px solid $cFourth;
+    background-color: rgba(255,255,255,.95);
+    box-shadow: 0 1px 4px rgba(0,0,0,.2);
+    width: 242px;
+    height: 379px;
+    float: left;
+    margin-left: 50px;
+    margin-right: 116px;
+    margin-top: 49px;
+    margin-bottom: 48px;
+
+    .info-img{
+      width: 100px;
+      height: 85px;
+      margin: 18px 70px 22px 70px;
+      background-image: image-url('tip-image.png');
+      background-repeat: no-repeat;
+      display: inline-block;
+    }
+
+    .info-text{
+      margin: 4px 14px 0 14px;
+      @include tArialTextInfo;
+    }
+
+    .info-title{
+      margin-left: 14px;
+      margin-top: 10px;
+      margin-bottom: 0px;
+      @include tArialTextInfoTitle;
+    }
+
+  }
+
+  .body-container{
+    width: 406px;
+    height: 360px;
+    float: left;
+    margin-right: 150px;
+    margin-top: 64px;
+    margin-bottom: 50px;
+
+    .header-text {
+      @include tTitillium;
+    }
+
+    .format-container{
+      width: 150px;
+      margin-top: 42px;
+      float: left;
+      padding: 0;
+    }
+
+    .format-text{
+      margin-left: 25px;
+      font-family: titillium, "Titillium Web Regular";
+      font-size: 14px;
+      color: $cSecondary;
+      opacity: 0.75;
+    }
+
+    .standard-container{
+      @extend .format-container;
+      margin-right: 106px;
+
+      .standard-logo{
+        @include ad-format-logo('../images/Standard_banner_n.png', '../images/Standard_banner_h.png');
+      }
+
+      .standard-logo:hover  + .format-text{
+        opacity: 1;
+      }
+
+      .selected{
+        @include ad-format-logo('../images/Standard_banner_h.png', '../images/Standard_banner_h.png');
+      }
+    }
+
+    .enhanced-container{
+      @extend .format-container;
+
+      .enhanced-logo{
+        @include ad-format-logo('../images/Enhanced_banner_n.png', '../images/Enhanced_banner_h.png');
+      }
+
+      .enhanced-logo:hover  + .format-text{
+        opacity: 1;
+      }
+
+      .selected{
+        @include ad-format-logo('../images/Enhanced_banner_h.png', '../images/Enhanced_banner_h.png');
+      }
+    }
+
+
+  }
+
+}
+
+.buildAdsGrid{
+
+  padding: 5px;
+  display: block;
+  border: $cHeader;
+
+  td{
+    padding: 5px;
+  }
+
+  .name-link{
+    display: inherit;
+    max-width: 240px;
+    padding-top: 4px;
+    padding-right: 5px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+  }
+
+  .header {
+    background-color: $cHeader;
+    text-align: left;
+  }
+
+  .previewIcon{
+    float: right;
+    margin-right: 20px;
+    margin-top: 5px;
+  }
+
+  .assignIcon{
+    float: right;
+    margin-right: 20px;
+    margin-top: 5px;
+  }
+
+  .cellAlign{
+    //padding-top: 25px;
+  }
+
+  .bannerCell{
+    background-color: $cGrey;
+  }
+
+}
+
+.ad-wizard-grid{
+  padding: 10px;
+  padding-right: 20px;
+
+  .row{
+    margin-right: 0px;
+  }
+
+  .name-link{
+    display: inherit;
+    max-width: 240px;
+    padding-top: 4px;
+    padding-right: 5px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    position: relative;
+    bottom: 55px;
+    left: 10px;
+  }
+
+  .mmErrorText{
+    display: inline;
+  }
+}
+
+.review-ads-step {
+  .column-padding {
+    padding-left: 10px;
+  }
+}

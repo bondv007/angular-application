@@ -1,0 +1,28 @@
+<div class="mdxUI mdxUIContainer" ng-class="{ 'active' : showUI, 'mdx3': csb.config.env == 'mdx3' }">
+    <form role="form">
+        <div class="header">
+            <h1>TextBox <span ng-click="closePanelUi()" class="pull-right glyphicon glyphicon-remove"></span></h1>
+        </div>
+
+        <div class="body-wrapper">
+
+            <div class="body">
+                <div class="editor" text-angular text-angular-name="defaultEditor" name="defaultEditor" ng-model="selectedTextBox.label" ta-toolbar="[['bold','italics'],['justifyLeft','justifyCenter','justifyRight']]" placeholder="Type Here"></div>
+
+              <div class="btn-group" role="group">
+                <button type="button" class="btn btn-default" ng-click="toggleBorder()">{{borderLabel}}</button>
+              </div>
+
+                <div class="footer col-md-12">
+                    <div class="form-buttons pull-right">
+                        <button class="btn mdx-btn mdx-save-btn" ng-click="save()">Save</button>
+                        <button class="btn mdx-btn mdx-close-btn" ng-click="cancelChanges()">Cancel Changes</button>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+    </form>
+</div>

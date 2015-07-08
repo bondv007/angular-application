@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<title>Sizmek | Instream Player</title>
+<link rel="stylesheet" type="text/css" href="../styles/qa-interface.css"/>
+<script type="text/javascript" src="../lib/vkbeautify/vkbeautify.js"></script>
+<script type="text/javascript" src="../lib/sizmek/debug/common.js"></script>
+<script type="text/javascript" src="../lib/sizmek/debug/qa-interface.js"></script>
+
+</head>
+
+<body>
+
+<div id="header">
+    <img id="logo" src="../assets/images/sizmek-logo.png"/>
+    <div id="submit-btn" class="btn">SUBMIT</div>
+    <div id="reset-btn" class="btn">RESET</div>
+</div>
+
+<div id="player-container">
+    <div id="player">
+        <iframe id="player-iframe" frameBorder="0" seamless="seamless"></iframe>
+    </div>
+</div>
+
+<div id="menu">
+
+    <div id="ad-config" class="section">
+        <div class="title-bar">
+            <span>Ad Configuration</span>
+            <div class="expand-btn"></div>
+        </div>
+        <div class="content">
+            <div class="item">
+                <div class="label">Linear Preroll</div>
+                <input id="ad-pre" class="text-field" type="text" />
+            </div>
+            <div class="item">
+                <div class="label">Linear Midroll</div>
+                <input id="ad-mid" class="text-field" type="text" />
+            </div>
+            <div class="item">
+                <div class="label">Linear Postroll</div>
+                <input id="ad-post" class="text-field" type="text" />
+            </div>
+            <div class="item">
+                <div class="label">Non-Linear Overlay</div>
+                <input id="ad-over" class="text-field" type="text" />
+            </div>
+        </div>
+    </div>
+
+    <div id="player-config" class="section">
+        <div class="title-bar">
+            <span>Player Configuration</span>
+            <div class="expand-btn"></div>
+        </div>
+        <div class="content">
+            <div class="item">
+                <div class="label">Type </div>
+                <select id="player-type" class="select">
+                    <option value="as3">Flash (as3) </option>
+                    <option value="html5">Html5</option>
+                </select>
+            </div>
+            <div class="item">
+                <div class="label">Dimensions </div>
+                <input id="player-width" class="text-field" type="text" />
+                <span> x </span>
+                <input id="player-height" class="text-field" type="text" />
+            </div>
+            <div class="item">
+                <div class="label">Controls </div>
+                <select id="player-controls" class="select">
+                    <option value="over">Overlay</option>
+                    <option value="below">Below</option>
+                </select>
+            </div>
+            <div class="item">
+                <div class="label">Auto-start </div>
+                <select id="player-auto-start" class="select">
+                    <option value="true">Yes</option>
+                    <option value="false">No</option>
+                </select>
+            </div>
+            <div class="item">
+                <div class="label">Allow Script Access  </div>
+                <select id="player-script-access" class="select">
+                    <option value="always">Always</option>
+                    <option value="same">Same Domain</option>
+                    <option value="never">Never</option>
+                </select>
+            </div>
+            <div class="item">
+                <div class="label">Wmode  </div>
+                <select id="player-wmode" class="select">
+                    <option value="opaque">Opaque</option>
+                    <option value="window">Window</option>
+                    <option value="trans">Transparent</option>
+                </select>
+            </div>
+        </div>
+    </div>
+
+    <div id="reporting" class="section">
+        <div class="title-bar">
+            <span>Reporting</span>
+            <div class="expand-btn"></div>
+        </div>
+        <div class="content">
+            <div class="column">
+                <div class="item">
+                    <div id="impression-count" class="count">0</div>
+                    <span class="label">impression</span>
+                </div>
+                <div class="item">
+                    <div id="creativeView-count" class="count">0</div>
+                    <span class="label">creativeView</span>
+                </div>
+                <div class="item">
+                    <div id="start-count" class="count">0</div>
+                    <span class="label">start</span>
+                </div>
+                <div class="item">
+                    <div id="firstQuartile-count" class="count">0</div>
+                    <span class="label">firstQuartile</span>
+                </div>
+                <div class="item">
+                    <div id="midpoint-count" class="count">0</div>
+                    <span class="label">midpoint</span>
+                </div>
+                <div class="item">
+                    <div id="thirdQuartile-count" class="count">0</div>
+                    <span class="label">thirdQuartile</span>
+                </div>
+                <div class="item">
+                    <div id="complete-count" class="count">0</div>
+                    <span class="label">complete</span>
+                </div>
+                <div class="item">
+                    <div id="progress-count" class="count">0</div>
+                    <span class="label">progress</span>
+                </div>
+            </div>
+            <div class="column">
+                <div class="item">
+                    <div id="mute-count" class="count">0</div>
+                    <span class="label">mute</span>
+                </div>
+                <div class="item">
+                    <div id="unmute-count" class="count">0</div>
+                    <span class="label">unmute</span>
+                </div>
+                <div class="item">
+                    <div id="pause-count" class="count">0</div>
+                    <span class="label">pause</span>
+                </div>
+                <div class="item">
+                    <div id="resume-count" class="count">0</div>
+                    <span class="label">resume</span>
+                </div>
+                <div class="item">
+                    <div id="skip-count" class="count">0</div>
+                    <span class="label">skip</span>
+                </div>
+                <div class="item">
+                    <div id="close-count" class="count">0</div>
+                    <span class="label">close</span>
+                </div>
+                <div class="item">
+                    <div id="fullscreen-count" class="count">0</div>
+                    <span class="label">fullscreen</span>
+                </div>
+            </div>
+            <div class="column">
+                <div class="item">
+                    <div id="clickTracking-count" class="count">0</div>
+                    <span class="label">clickTracking</span>
+                </div>
+                <div class="item">
+                    <div id="interaction-count" class="count">0</div>
+                    <span class="label">interaction</span>
+                </div>
+                <div class="item">
+                    <div id="expand-count" class="count">0</div>
+                    <span class="label">expand</span>
+                </div>
+                <div class="item">
+                    <div id="collapse-count" class="count">0</div>
+                    <span class="label">collapse</span>
+                </div>
+                <div class="item">
+                    <div id="acceptInvitation-count" class="count">0</div>
+                    <span class="label">acceptInvitation</span>
+                </div>
+                <div class="item">
+                    <div id="error-count" class="count">0</div>
+                    <span class="label">error</span>
+                </div>
+                <div class="item">
+                    <div id="exitFullscreen-count" class="count">0</div>
+                    <span class="label">exitFullscreen</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="ad-tag" class="section">
+        <div class="title-bar">
+            <span>Ad Tag</span>
+            <div class="expand-btn"></div>
+        </div>
+        <div class="content">
+            <div class="raw-output">Waiting for output...</div>
+        </div>
+    </div>
+
+</div>
+
+<div id="companion-container">Companion ads will display here...</div>
+
+
+</body>
+
+</html>

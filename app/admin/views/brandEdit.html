@@ -1,0 +1,83 @@
+<!-- position in negative horizontal place -->
+<div class="relationship-dropdown" ng-show="isEditMode && !isEntral">
+  Brand:
+    <select ng-model="selectedEditItem" ng-change="updateSelectedItem()" ng-options="a._displayName for a in listItems">
+    </select>
+</div>
+<div class="editContainer">
+  <mm-row>
+    <div class="mm-entity-fields-container-single">
+      <mm-row>
+        <mm-label ng-if="!entityRoot"
+                  mm-model="parentName"
+                  mm-label-width="{{labelWidth}}"
+                  mm-layout-type="medium"
+                  mm-caption="Brand Name"></mm-label>
+        <mm-text ng-if="entityRoot"
+                 mm-model="editObject.name"
+                 mm-placeholder="Enter Name"
+                 mm-is-required="true"
+                 mm-is-edit-mode="isEditMode"
+                 mm-error="validation.name"
+                 mm-caption="Brand Name"
+                 mm-label-width="{{labelWidth}}"
+                 text-tooltip="Enter name"
+                 mm-layout-type="medium"
+                 mm-change="onBrandNameChange()"></mm-text>
+      </mm-row>
+      <mm-row ng-if="!entityRoot">
+        <mm-text mm-model="editObject.name"
+                 mm-placeholder="Enter Name"
+                 mm-is-required="true"
+                 mm-error="validation.name"
+                 mm-is-edit-mode="isEditMode"
+                 mm-caption="Brand Display Name"
+                 mm-label-width="{{labelWidth}}"
+                 text-tooltip="Enter name"
+                 mm-layout-type="medium"
+                 mm-change="onBrandNameChange()"></mm-text>
+      </mm-row>
+      <mm-row>
+        <mm-label ng-if="isEditMode"
+                  mm-model="advertiserName"
+                  mm-label-width="{{labelWidth}}"
+                  mm-is-required="true"
+                  mm-caption="Advertiser Name"></mm-label>
+        <mm-drop-down ng-if="!isEditMode"
+                        mm-is-required="true"
+                        mm-error="validation.advertiser"
+                        mm-caption="Advertiser Name"
+                        mm-data-model="advertisers"
+                        mm-is-edit-mode="isEditMode"
+                        mm-model="editObject.advertiserId"
+                        mm-label-width="{{labelWidth}}"
+                        mm-layout-type="medium"
+                        mm-select-change-func="advertiserChange()"
+                        show-search-box></mm-drop-down>
+      </mm-row>
+      <mm-row>
+        <mm-drop-down mm-is-edit-mode="isEditMode"
+                        mm-error="validation.vertical"
+                        mm-caption="Vertical"
+                        mm-data-model="verticals"
+                        mm-label-width="{{labelWidth}}"
+                        mm-is-required="true"
+                        mm-model="editObject.vertical"
+                        mm-layout-type="medium"
+                        mm-select-change-func="onVerticalSelected()"></mm-drop-down>
+      </mm-row>
+    </div>
+  </mm-row>
+	<!--TODO currently not in use due to missing server side implementation -->
+	<!-- <mm-row>
+    <mm-label mm-placeholder="Me"
+              mm-label-width="{{labelWidth}}"
+              mm-caption="Last Updated By"></mm-label>
+  </mm-row>
+  <mm-row>
+    <mm-label mm-placeholder="Then"
+              mm-label-width="{{labelWidth}}"
+              mm-caption="Last Updated On"></mm-label>
+  </mm-row>-->
+	<mm-external-id></mm-external-id>
+</div>

@@ -1,0 +1,30 @@
+$white : $cWhite;
+$gray : $cGrey;
+
+@import "_dgButtons.scss";
+
+.data-box {
+  width: 250px;
+  height: 100px;
+  border: 1px solid $cFourth;
+  padding: 10px;
+}
+
+.settingsContainer {
+  background-color: #ffffff;
+  min-height: 30px;
+  position: relative;
+  top: 22px;
+}
+.swapDG {
+  position: relative;
+  top: 10px;
+  width: 980px;
+  margin: auto;
+
+}
+.swapDGText
+{
+  font-size: 13px !important;
+  line-height: 200% !important;
+}

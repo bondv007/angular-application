@@ -1,0 +1,136 @@
+<div class="ad-wizard-grid">
+  <div class="container-fluid mmGrid-buttons-line"  data-ng-include="'infra/grid/views/mmGridHeader.html'"></div>
+  <div class="grid-body">
+    <div class="gridStyle common-grid" style="min-height: 400px;">
+      <div class="ngTopPanel" style="height: 34px;">
+        <!--select all check box-->
+        <span ng-show="!isReview.val" style="width:30px;display: inline-block;">
+          <div class="mm_checkbox ng-scope" ng-class="{'isMouseHoverCB':checkboxHover}" ng-mouseenter="checkboxHover=true" ng-mouseleave="checkboxHover=false" ng-click="selectAllAds()" style="position:relative;top: -10px;left: 10px;">
+            <span ng-class="{'selectedCB': isAllSelected.val}"></span>
+          </div>
+        </span>
+        <!--column headers-->
+        <span class="ngHeaderText" ng-style="{ 'width' : column.width, 'background' : bgColor }" style="display: inline-block;" ng-repeat="column in gridColumns">
+          <span ng-hide="isReview.val && column.key == 'name'">|</span>
+          <span class="ngHeaderText" style="padding-left: 5px;">{{::column.displayName | T | uppercase}}</span>
+        </span>
+      </div>
+      <!--grid rows-->
+      <div ng-if="newAds.length > 0" ng-repeat="ad in newAds track by ad.clientRefId">
+        <mm-row>
+          <!--select-->
+          <span ng-show="!isReview.val" style="width: 40px; display: inline-block;padding-bottom: 25px;padding-left: 10px;">
+           <mm-check-box mm-model="ad.selected"
+                         mm-is-edit-mode="editMode.val"
+                         mm-layout-type="custom" mm-custom-control-width="20"
+                         mm-hide-label="true" ></mm-check-box>
+          </span>
+          <!--name-->
+          <span style="width: 200px;display: inline-block;position: relative;" ng-style="{'padding-bottom': isReview.val ? '0px' : '40px'}">
+            <mm-text  ng-show="!isReview.val" mm-model="ad.name" mm-change="onNameEnter(ad)"
+                     mm-is-edit-mode="editMode.val"
+                     mm-layout-type="custom" mm-custom-control-width="190"
+                     mm-hide-label="true"  mm-placeholder="Enter Name"></mm-text>
+            <span ng-show="errorObj[ad.clientRefId].adName" style="margin-left:0px;z-index:100000;min-width:160px;display: inline;" class="mmErrorDiv">
+              <div  class="leftarrowdiv">
+                <span class="bot-arrow"></span>
+                <span class="mmErrorText" style="display: inline;">{{errorObj[ad.clientRefId].adName}}</span>
+              </div>
+            </span>
+            <a ng-show="isReview.val" style="overflow: hidden;width: 150px;" class="name-link" ui-sref="spa.ad.adEdit({adId:ad.id})">{{ad.name}}</a>
+          </span>
+          <!--file-->
+          <span ng-show="!isReview.val" style="width: 330px; display: inline-block;padding-top: 10px;position: relative;">
+                <mm-drop-down mm-layout-type="custom" mm-custom-control-width="190" mm-label-width="100"
+                              mm-is-edit-mode="editMode.val"
+                              mm-data-model="imageDropDownItems" mm-caption="Default Image"
+                              mm-model="ad.defaultImage.assetId" mm-select-change-func="onFlashChange(ad,'defaultImage')"
+                              mm-custom-model-text="selectImage" show-search-box
+                              mm-disable="isReview.val"></mm-drop-down>
+                <span ng-show="errorObj[ad.clientRefId].defaultImage" style="margin-left:0px;z-index:100000;min-width:160px;display: inline;left: 100px; bottom:82px;" class="mmErrorDiv">
+                  <div  class="leftarrowdiv">
+                    <span class="bot-arrow"></span>
+                    <span class="mmErrorText" style="display: inline;">{{errorObj[ad.clientRefId].defaultImage}}</span>
+                  </div>
+                </span>
+                <!--<span class="glyphicon glyphicon-eye-open previewIcon"  ng-click="openAssetPreview(ad.defaultImage)"></span>-->
+                <span class="glyphicon glyphicon-import assignIcon" style="position: absolute;top: 16px;" ng-click="showUploadAssetModal('defaultImage', ad)"></span>
+
+                <mm-drop-down mm-layout-type="custom" mm-custom-control-width="190" mm-label-width="100"
+                              mm-is-edit-mode="editMode.val"
+                              mm-data-model="bannerDropDownItems" mm-caption="Flash Banner"  mm-placeholder="none"
+                              mm-model="ad.banner.assetId" mm-select-change-func="onFlashChange(ad,'banner')"
+                              mm-custom-model-text="selectFlash" show-search-box
+                              mm-disable="!bannerDropDownItems || bannerDropDownItems.length <= 1 || isReview.val"></mm-drop-down>
+                <span ng-show="errorObj[ad.clientRefId].banner" style="margin-left:0px;z-index:100000;min-width:160px;display: inline;" class="mmErrorDiv">
+                  <div  class="leftarrowdiv">
+                    <span class="bot-arrow"></span>
+                    <span class="mmErrorText" style="display: inline;">{{errorObj[ad.clientRefId].banner}}</span>
+                  </div>
+                </span>
+                <!--<span class="glyphicon glyphicon-eye-open previewIcon"  ng-click="openAssetPreview(ad.banner)"></span>-->
+                <span class="glyphicon glyphicon-import assignIcon" style="position: absolute;top: 55px;" ng-click="showUploadAssetModal('banner', ad)"></span>
+          </span>
+          <span ng-show="isReview.val" style="width: 310px; display: inline-block;padding-top: 10px;padding-bottom: 8px;position: relative;">
+            <mm-label  mm-layout-type="custom" mm-custom-control-width="190" mm-label-width="100"
+                           mm-disable="true"
+                           mm-caption="Default Image"
+                           mm-model="ad.defaultImage.assetName"></mm-label>
+            <mm-label  mm-layout-type="custom" mm-custom-control-width="190" mm-label-width="100"
+                          mm-caption="Flash Banner"  mm-placeholder="none" mm-disable="true"
+                          mm-model="ad.banner.assetName" mm-select-change-func="onFlashChange()"></mm-label>
+          </span>
+          <!--thumbnails-->
+          <span style="width: 100px; display: inline-block;padding-bottom: 20px;" class="column-padding">
+            <span style="width: 35px; height: 35px"  ng-show="ad.defaultImage.assetId>0" class='externalImage' style='margin: 2px;cursor:pointer;'ng-click='redirectOnImageClick(row.entity[col.field].externalLink)'>
+              <img ng-mousemove='adjustPreview($event)' ng-mouseenter='showPreview($event)' ng-mouseleave='removePreview($event)'
+                   ng-src='{{ad.defaultImage.thumbnailUrl}}' height='{{imageHeight}}' width='{{imageWidth}}' lazy-src/>
+            </span>
+            <span ng-if="ad.banner && ad.banner.assetId > 0 && ad.banner.thumbnailUrl" class='externalImage' style='margin: 2px;cursor:pointer;'ng-click='redirectOnImageClick(row.entity[col.field].externalLink)'>
+              <img ng-mousemove='adjustPreview($event)' ng-mouseenter='showPreview($event)' ng-mouseleave='removePreview($event)'
+                   ng-src='{{ad.banner.thumbnailUrl}}' height='{{imageHeight}}' width='{{imageWidth}}' lazy-src/>
+            </span>
+          </span>
+          <!--dimensions-->
+          <span style="width: 100px; display: inline-block;padding-bottom: 5px;" class="column-padding">
+                <mm-label mm-model="ad.defaultImage.dimensions"
+                          mm-layout-type="small" mm-custom-control-width="90"
+                          mm-hide-label="true">
+                </mm-label>
+
+                <mm-label mm-model="ad.banner.dimensions"
+                          mm-layout-type="small" mm-custom-control-width="90"
+                          mm-hide-label="true">
+                </mm-label>
+          </span>
+          <!--size-->
+          <span style="width: 100px; display: inline-block;padding-bottom: 5px;" class="column-padding">
+                <mm-label mm-model="ad.defaultImage.parsedFileSize"
+                          mm-layout-type="small" mm-custom-control-width="90"
+                          mm-hide-label="true">
+                </mm-label>
+                <mm-label mm-model="ad.banner.parsedFileSize"
+                          mm-layout-type="small" mm-custom-control-width="90"
+                          mm-hide-label="true">
+                </mm-label>
+          </span>
+          <!--click-through-->
+          <span style="width: 120px; display: inline-block;padding-bottom: 40px;position: relative" class="column-padding">
+            <mm-text  mm-model="ad.mainClickthrough.url"
+                      mm-layout-type="custom" mm-custom-control-width="230"
+                      mm-is-edit-mode="editMode.val"
+                      mm-hide-label="true" mm-disable="isReview.val"></mm-text>
+            <span ng-show="errorObj[ad.clientRefId].clickthroughs" style="margin-left:0px;z-index:100000;min-width:160px;display: inline;" class="mmErrorDiv">
+              <div  class="leftarrowdiv">
+              <span class="bot-arrow"></span>
+              <span class="mmErrorText" style="display: inline;">{{errorObj[ad.clientRefId].clickthroughs}}</span>
+            </div>
+            </span>
+          </span>
+        </mm-row>
+      </div>
+    </div>
+  </div>
+</div>
+
+

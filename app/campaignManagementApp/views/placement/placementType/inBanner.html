@@ -1,0 +1,17 @@
+<mm-row>
+	<mm-drop-down
+    mm-id="bannerSize"
+    mm-data-model="bannerSizeDD"
+    mm-model="selectedBannerSize.id"
+    mm-caption="dg_Dimensions"
+    mm-is-required="true"
+    mm-label-width="{{labelWidth}}"
+    mm-layout-type="medium"
+    mm-select-change-func="onSelectedBannerSize()"
+    mm-error="bannerSizeError.text"
+    show-search-box
+    mm-tab-index="13"
+    mm-show-add-new="true"
+    new-entity-type="bannerSize"
+    entity-obj="entityObj"></mm-drop-down>
+</mm-row>

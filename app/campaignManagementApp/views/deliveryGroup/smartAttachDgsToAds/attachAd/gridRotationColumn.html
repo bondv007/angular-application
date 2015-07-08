@@ -1,0 +1,12 @@
+<div ng-switch on="dg.rootContainer.childRotationType" class="itemGap cellEllipsis" ng-repeat="ad in dg.rootContainer.subContainers" ng-class="{highlightAd:ad.isNew,'cell':dg.adContainer.rotationType != 'Weighted'}">
+
+		<!--EvenDistribution-->
+		<span ng-switch-when="EvenDistribution" ng-bind-html="ad.rotationSetting.weight + ' %'"></span>
+
+		<!--Weighted-->
+		<span ng-switch-when="Weighted"><input class="weightedRotationTB" type="number" ng-model="ad.rotationSetting.weight"/> %</span>
+
+		<!--Default EvenDistribution-->
+		<span ng-switch-default ng-bind-html="ad.rotationSetting.weight + '%'"></span>
+
+</div>

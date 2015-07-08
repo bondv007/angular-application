@@ -1,0 +1,388 @@
+<div class="panel-heading">
+  <h4 class="panel-title">
+    <a ng-class="{'active':showAsset}" data-toggle="collapse" data-parent="#accordion"
+       ng-click="manageSideBar(sectionType.asset,showAsset)">
+    <i class="preview-icon-assets"></i> ASSETS
+    <!--<i class="fa" ng-class="{'fa-angle-down':!showAsset,'fa-angle-up rotated':showAsset}"></i>-->
+    <i class="fa fa-angle-down"> </i>
+    </a>
+  </h4>
+</div>
+<div ng-show="showAsset" id="collapseThree" class="panel-collapse assets">
+
+  <div class="panel-body" ng-style="{'height':panelHeight}">
+    <div class="top-head-box2">
+      <a ng-show="adPreviewCommonModel.showAssetTabs" class="search-btn2"
+         ng-click="adPreviewCommonModel.showAssetTabs=false"><i id="assetSrchIco" class="preview-icon-search"></i></a>
+
+      <div ng-show="!adPreviewCommonModel.showAssetTabs" class="search-box-hide">
+        <div class="search-bar-outer">
+          <div class="search-bar2">
+            <input click-elem-id="assetSrchIco" type="text" autofocus
+                   class="form-control col-xs-10"
+                   ng-model="searchCriteria.searchAsset"
+                   style="">
+            <a class="cross-icon" ng-show="searchCriteria.searchAsset.length>0" ng-click="searchCriteria.searchAsset='';"><i
+              class="preview-icon-close1"></i></a>
+            <button class="search-btn"><i
+              class="preview-icon-search"></i></button>
+          </div>
+        </div>
+      </div>
+
+      <div ng-show="adPreviewCommonModel.showAssetTabs" class="search-box-hide">
+        <ul class="tabs">
+          <li ng-class="{'active':adPreviewCommonModel.showAllTab}">
+            <a ng-click="adPreviewCommonModel.showLoadedTab=false;adPreviewCommonModel.showAllTab=true;">All
+              ({{adPreviewCommonModel.filteredAssets.length}})</a>
+          </li>
+          <li ng-class="{'active':adPreviewCommonModel.showLoadedTab}">
+            <a ng-click="adPreviewCommonModel.showLoadedTab=true;adPreviewCommonModel.showAllTab=false;">Loaded
+              ({{adPreviewCommonModel.filteredAssets.length}})</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <!-- Tab panes -->
+    <div class="tab-content">
+      <div ng-show="adPreviewCommonModel.showLoadedTab" class="" id="">
+        <div class="columns">
+          <div class="col">
+            Type
+          </div>
+          <div class="col">
+            Name
+          </div>
+          <div class="col1 col2">
+            Size
+          </div>
+        </div>
+        <div class="user-list">
+          <ul>
+            <li
+              ng-repeat="asset in adPreviewCommonModel.filteredAssets = (ad.additionalAssets |filter:searchCriteria.searchAsset) track by $index">
+              <a title="{{asset.title}}" ng-class="{'select':asset.id==selectedAsset.id}" ng-click="loadAssetDetails(asset)">
+                <span class="col2">{{asset.size}}</span>
+                <span class="panel-icon" ng-class="getFileTypeIcon(asset)"></span>
+                <span class="panel-descrip">{{asset.title}}</span>
+              </a>
+            </li>
+          </ul>
+
+        </div>
+        <div class="total">
+          TOTAL ASSETS: {{adPreviewCommonModel.filteredAssets.length}}
+        </div>
+
+        <div class="additional-info">
+          <!--<div class="arrows">
+              <a ng-click="loadAsset(false)"><i class="fa fa-angle-left"></i></a>
+              <a ng-click="loadAsset(true)"><i class="fa fa-angle-right"></i></a>
+          </div>-->
+
+          <!--<h4>Additional Info <a class="previewbtn" ng-click="redirectToSingleAssetView(asset.id)">Preview</a></h4>-->
+
+          <div class="col-md-12 total-asset">
+            <div class="icon"><span class="panel-icon" ng-class="getFileTypeIcon(selectedAsset)"></span></div>
+            <div class="col-md-8 link" ng-click="redirectToSingleAssetView(selectedAsset.id)" style="cursor: pointer;">
+              {{selectedAsset.title}}
+            </div>
+          </div>
+          <div class="col-md-12 bottom-list">
+            <ul class="general-info pdt0">
+              <li>
+                <label>Type:</label>
+                <div class="value">
+                  {{selectedAsset.mediaType}}
+                </div>
+              </li>
+              <li
+                ng-if="selectedAsset.mediaType=='IMAGE' || selectedAsset.mediaType=='FLASH' || selectedAsset.mediaType=='VIDEO'">
+                <label>Dimensions:</label>
+                <div class="value">
+                  {{selectedAsset.dimension}}
+                </div>
+              </li>
+              <li>
+                <label>File Size:</label>
+                <div class="value">
+                  {{selectedAsset.size}}
+                </div>
+              </li>
+              <li ng-if="selectedAsset.mediaType=='FLASH' || selectedAsset.mediaType=='VIDEO'">
+                <label>Duration:</label>
+                <div class="value">
+                  {{selectedAsset.duration}}
+                </div>
+              </li>
+            </ul>
+            <ul class="general-info no-border">
+              <li ng-if="selectedAsset.mediaType=='FLASH'">
+                <label>Flash Version:</label>
+                <div class="value">
+                  {{ad.minFlashVersion}}
+                </div>
+              </li>
+              <li ng-if="selectedAsset.mediaType=='FLASH'">
+                <label>AS Version:</label>
+                <div class="value">
+                  {{selectedAsset.swfContext.asversion}}
+                </div>
+              </li>
+              <!--<li ng-if="selectedAsset.mediaType=='FLASH'">
+                <label>Workshop Version:</label>
+                <div class="value">
+                  {{selectedAsset.assetMetadata[0].workshopVersion}}
+                </div>
+              </li>-->
+              <li ng-if="selectedAsset.mediaType=='VIDEO'">
+                <label>Frame rate:</label>
+                <div class="value">
+                  {{selectedAsset.videoStreamContext.frameRate}}
+                </div>
+              </li>
+              <li ng-if="selectedAsset.mediaType=='FLASH'">
+                <label>Frame rate:</label>
+                <div class="value">
+                  {{selectedAsset.swfContext.frameRate}}
+                </div>
+              </li>
+              <li ng-if="selectedAsset.mediaType=='VIDEO'">
+                <label>Bitrate:</label>
+                <div class="value">
+                  {{selectedAsset.formatContext.bitRate}}
+                </div>
+              </li>
+              <li ng-if="selectedAsset.mediaType=='FLASH'">
+                <label>EB Version:</label>
+                <div class="value">
+                  {{selectedAsset.swfContext.ebVersion}}
+                </div>
+              </li>
+              <li ng-if="selectedAsset.mediaType=='FLASH'">
+                <label>EB DC Version:</label>
+                <div class="value">
+                  {{selectedAsset.swfContext.ebDcVersion}}
+                </div>
+              </li>
+              <li ng-if="selectedAsset.mediaType=='FLASH'">
+                <label>Compressed:</label>
+                <div class="value">
+                  {{selectedAsset.swfContext.isCompressed}}
+                </div>
+              </li>
+              <li ng-if="selectedAsset.mediaType=='FLASH'">
+                <label>Include SV:</label>
+                <div class="value">
+                  {{selectedAsset.swfContext.includeSV}}
+                </div>
+              </li>
+              <li ng-if="selectedAsset.mediaType=='FLASH'">
+                <label>Mobile:</label>
+                <div class="value">
+                  {{selectedAsset.swfContext.isMobile}}
+                </div>
+              </li>
+              <li ng-if="selectedAsset.mediaType=='FLASH'">
+                <label>EB Standard Exists:</label>
+                <div class="value">
+                  {{selectedAsset.swfContext.isEBStdExist}}
+                </div>
+              </li>
+              <li ng-if="selectedAsset.mediaType=='FLASH'">
+                <label>Includes Dynamic CI Name:</label>
+                <div class="value">
+                  {{selectedAsset.swfContext.includeDynamicCIName}}
+                </div>
+              </li>
+              <li ng-if="selectedAsset.mediaType=='FLASH'">
+                <label>Background Color:</label>
+                <div class="value">
+                  {{selectedAsset.swfContext.backgroundColor}}
+                </div>
+              </li>
+              <li ng-if="selectedAsset.mediaType=='FLASH'">
+                <label>X and Y Position:</label>
+                <div class="value">
+                  {{selectedAsset.swfContext.simpleExpX}} , {{selectedAsset.swfContext.simpleExpY}}
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div ng-show="adPreviewCommonModel.showAllTab" class="" id="AllTab">
+        <div class="columns">
+          <div class="col">
+            Type
+          </div>
+          <div class="col">
+            Name
+          </div>
+          <div class="col1 col2">
+            Size
+          </div>
+        </div>
+        <div class="user-list">
+          <ul>
+            <li
+              ng-repeat="asset in adPreviewCommonModel.filteredAssets= (ad.additionalAssets |filter:searchCriteria.searchAsset) track by $index">
+              <a title="{{asset.title}}" ng-class="{'select':asset.id==selectedAsset.id}" ng-click="loadAssetDetails(asset)">
+                <span class="col2">{{asset.size}}</span>
+                <span class="panel-icon" ng-class="getFileTypeIcon(asset)"></span>
+                <span class="panel-descrip">{{asset.title}}</span>
+              </a>
+            </li>
+          </ul>
+
+        </div>
+        <div class="total">
+          TOTAL ASSETS: {{adPreviewCommonModel.filteredAssets.length}}
+        </div>
+
+        <div class="additional-info" ng-class="{'disable-data-active': adPreviewCommonModel.filteredAssets.length==0}">
+          <!--<h4>Additional Info <a class="previewbtn" ng-click="redirectToSingleAssetView(asset.id)">Preview</a></h4>-->
+          <div class="disable-data">
+            <div class="disable-data-inner"><span>No details to display </span> <i class="preview-icon-assets"></i>
+            </div>
+          </div>
+          <div class="add-inner-sec">
+            <div class="col-md-12 total-asset">
+              <div class="icon"><span class="panel-icon" ng-class="getFileTypeIcon(selectedAsset)"></span></div>
+              <div class="col-md-8 link" ng-click="redirectToSingleAssetView(asset.id)" style="cursor: pointer;">
+                {{selectedAsset.title}}
+              </div>
+              <span class="arrows" ng-if="adPreviewCommonModel.filteredAssets.length > 2">
+                <a ng-click="loadAsset(true)"><i class="preview-icon-back"></i></a>
+                <a ng-click="loadAsset(false)"><i class="preview-icon-back flipped"></i></a>
+              </span>
+            </div>
+            <div class="col-md-12 bottom-list">
+              <ul class="general-info pdt0">
+                <li>
+                  <label>Type:</label>
+                  <div class="value">
+                    {{selectedAsset.mediaType}}
+                  </div>
+                </li>
+                <li
+                  ng-if="selectedAsset.mediaType=='IMAGE' || selectedAsset.mediaType=='FLASH' || selectedAsset.mediaType=='VIDEO'">
+                  <label>Dimensions:</label>
+                  <div class="value">
+                    {{selectedAsset.dimension}}
+                  </div>
+                </li>
+                <li>
+                  <label>File Size:</label>
+                  <div class="value">
+                    {{selectedAsset.size}}
+                  </div>
+                </li>
+                <li ng-if="selectedAsset.mediaType=='FLASH' || selectedAsset.mediaType=='VIDEO'">
+                  <label>Duration:</label>
+                  <div class="value">
+                    {{selectedAsset.formatContext.duration}}
+                  </div>
+                </li>
+              </ul>
+              <ul class="general-info no-border">
+                <li ng-if="selectedAsset.mediaType=='FLASH'">
+                  <label>Flash Version:</label>
+                  <div class="value">
+                    {{ad.flashVersion}}
+                  </div>
+                </li>
+                <li ng-if="selectedAsset.mediaType=='FLASH'">
+                  <label>AS Version:</label>
+                  <div class="value">
+                    {{selectedAsset.swfContext.asversion}}
+                  </div>
+                </li>
+                <!--<li ng-if="selectedAsset.mediaType=='FLASH'">
+                  <label>Workshop Version:</label>
+                  <div class="value">
+                    {{selectedAsset.assetMetadata[0].workshopVersion}}
+                  </div>
+                </li>-->
+                <li ng-if="selectedAsset.mediaType=='VIDEO'">
+                  <label>Frame rate:</label>
+                  <div class="value">
+                    {{selectedAsset.videoStreamContext.frameRate}}
+                  </div>
+                </li>
+                <li ng-if="selectedAsset.mediaType=='FLASH'">
+                  <label>Frame rate:</label>
+                  <div class="value">
+                    {{selectedAsset.swfContext.frameRate}}
+                  </div>
+                </li>
+                <li ng-if="selectedAsset.mediaType=='VIDEO'">
+                  <label>Bitrate:</label>
+                  <div class="value">
+                    {{selectedAsset.formatContext.bitRate}}
+                  </div>
+                </li>
+                <li ng-if="selectedAsset.mediaType=='FLASH'">
+                  <label>EB Version:</label>
+                  <div class="value">
+                    {{selectedAsset.swfContext.ebVersion}}
+                  </div>
+                </li>
+                <li ng-if="selectedAsset.mediaType=='FLASH'">
+                  <label>EB DC Version:</label>
+                  <div class="value">
+                    {{selectedAsset.swfContext.ebDcVersion}}
+                  </div>
+                </li>
+                <li ng-if="selectedAsset.mediaType=='FLASH'">
+                  <label>Compressed:</label>
+                  <div class="value">
+                    {{selectedAsset.swfContext.isCompressed}}
+                  </div>
+                </li>
+                <li ng-if="selectedAsset.mediaType=='FLASH'">
+                  <label>Include SV:</label>
+                  <div class="value">
+                    {{selectedAsset.swfContext.includeSV}}
+                  </div>
+                </li>
+                <li ng-if="selectedAsset.mediaType=='FLASH'">
+                  <label>Mobile:</label>
+                  <div class="value">
+                    {{selectedAsset.swfContext.isMobile}}
+                  </div>
+                </li>
+                <li ng-if="selectedAsset.mediaType=='FLASH'">
+                  <label>EB Standard Exists:</label>
+                  <div class="value">
+                    {{selectedAsset.swfContext.isEBStdExist}}
+                  </div>
+                </li>
+                <li ng-if="selectedAsset.mediaType=='FLASH'">
+                  <label>Includes Dynamic CI Name:</label>
+                  <div class="value">
+                    {{selectedAsset.swfContext.includeDynamicCIName}}
+                  </div>
+                </li>
+                <li ng-if="selectedAsset.mediaType=='FLASH'">
+                  <label>Background Color:</label>
+                  <div class="value">
+                    {{selectedAsset.swfContext.backgroundColor}}
+                  </div>
+                </li>
+                <li ng-if="selectedAsset.mediaType=='FLASH'">
+                  <label>X and Y Position:</label>
+                  <div class="value">
+                    {{selectedAsset.swfContext.simpleExpX}} , {{selectedAsset.swfContext.simpleExpY}}
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+</div>

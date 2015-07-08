@@ -1,0 +1,22 @@
+<mm-toggle-container mm-caption="Accounts"
+										 start-open="togglesStatus.accounts">
+	<!--<mm-row>-->
+		<!--<mm-text mm-model="filter.accountId"-->
+						 <!--mm-is-edit-mode="false"-->
+						 <!--mm-label-width="0"-->
+						 <!--mm-id="accountSelectListSelectSearch"-->
+						 <!--mm-change="filterDataModel()"-->
+						 <!--mm-tab-index="3"></mm-text>-->
+		<!--&lt;!&ndash; Currently commented out due to lack of support in quick create process for account entity &ndash;&gt;-->
+		<!--&lt;!&ndash;<span class="newSectionLink" data-ng-click="createNewAccountModal();">{{'New Account' | T}}</span>&ndash;&gt;-->
+	<!--</mm-row>-->
+	<mm-row>
+		<mm-select-list mm-data-model="accounts"
+										mm-model="accountIds"
+										mm-model-type="account"
+										mm-force-init="togglesStatus.accounts"
+										mm-available-title="TOTAL Accounts"
+										show-search-box>
+		</mm-select-list>
+	</mm-row>
+</mm-toggle-container>

@@ -1,0 +1,113 @@
+<div class="editContainer">
+  <mm-row>
+    <div class="mm-entity-fields-container">
+      <mm-row>
+        <mm-text
+          mm-caption="Name"
+          mm-model="placementEdit.name"
+          mm-error="placementEdit.errors.placementName.text"
+          mm-placeholder="Enter Placement Name"
+          mm-is-required="true"
+          mm-label-width="{{placementViewSettings.labelWidth}}"
+          mm-layout-type="medium"
+          mm-tab-index="1">
+        </mm-text>
+      </mm-row>
+      <mm-row>
+        <mm-label
+          mm-model="placementData.campaignName"
+          mm-label-width="{{placementViewSettings.labelWidth}}"
+          mm-layout-type="medium"
+          mm-tab-index="10"
+          mm-caption="Campaign">
+        </mm-label>
+      </mm-row>
+      <mm-row>
+        <mm-drop-down
+          mm-caption="Site"
+          mm-model="placementEdit.siteId"
+          mm-data-model="placementData.sites"
+          mm-error="placementEdit.errors.siteName.text"
+          mm-label-width="{{placementViewSettings.labelWidth}}"
+          mm-layout-type="medium"
+          mm-is-required="true"
+          mm-select-change-func="onSiteSelected()"
+          mm-tab-index="20"
+          mm-disable="isEditMode"
+          show-search-box>
+        </mm-drop-down>
+      </mm-row>
+      <mm-row>
+        <mm-drop-down
+          mm-caption="Section"
+          mm-model="placementEdit.sectionId"
+          mm-data-model="placementData.sections"
+          mm-error="placementEdit.errors.sectionName.text"
+          mm-label-width="{{placementViewSettings.labelWidth}}"
+          mm-layout-type="medium"
+          mm-disable="!placementEdit.siteId"
+          mm-is-required="true"
+          new-entity-type="sitesection"
+          entity-obj="entityObj"
+          mm-tab-index="30"
+          show-search-box
+          mm-show-add-new="true">
+        </mm-drop-down>
+      </mm-row>
+      <mm-row>
+        <mm-drop-down
+          mm-caption="Site Contacts"
+          mm-model="placementData.selectedContacts"
+          mm-data-model="placementData.siteContacts"
+          control-type="multi"
+          mm-layout-type="medium"
+          mm-label-width="{{placementViewSettings.labelWidth}}"
+          mm-tab-index="40"
+          mm-disable="!placementEdit.siteId"
+          show-search-box>
+        </mm-drop-down>
+        <span ng-if="placementData.displayAdvertiserLink" ng-class="{'placementLink':placementData.selectedContacts.length > 0,'placementDisableLink':placementData.selectedContacts.length < 1}" ng-click="updateAdvertiserSiteContacts()">{{'placementEdit_SetAsAdvertisersDefault' | T}}</span>
+      </mm-row>
+      <mm-row>
+        <mm-drop-down
+          mm-caption="Placement Type"
+          mm-model="placementEdit.placementType"
+          mm-data-model="placementData.placementTypes"
+          mm-label-width="{{placementViewSettings.labelWidth}}"
+          mm-layout-type="medium"
+          mm-is-required="true"
+          mm-option-id="placementType"
+          mm-tab-index="50"
+          mm-disable="isEditMode"
+          mm-select-change-func="onPlacementTypeSelected()">
+        </mm-drop-down>
+      </mm-row>
+      <span ng-include="'media/views/placement/placementTypes/placementTypeDecision.html'"></span>
+      <mm-row>
+        <mm-drop-down
+          mm-caption="Package"
+          mm-model="placementEdit.packageId"
+          mm-data-model="placementData.packages"
+          mm-label-width="{{placementViewSettings.labelWidth}}"
+          mm-layout-type="medium"
+          mm-select-change-func="onPackageSelected()"
+          entity-obj="entityObj"
+          new-entity-type="placementPackage"
+          mm-tab-index="200"
+          mm-show-add-new="true"
+          show-search-box>
+        </mm-drop-down>
+      </mm-row>
+    </div>
+    <div ng-include="'media/views/placement/templates/placementDataBox.html'"></div>
+  </mm-row>
+  <mm-row>
+    <div class="mm-entity-fields-container-single">
+      <mm-toggle-container mm-id="servingAndSetting" mm-caption="Serving and Cost" start-open="placementViewSettings.servingAndCost.open">
+        <div ng-include="'campaignManagementApp/views/templates/servingAndCost.html'"></div>
+      </mm-toggle-container>
+    </div>
+  </mm-row>
+  <div ng-include="'media/views/placement/templates/tagSettings.html'"></div>
+  <div ng-include="'media/views/placement/templates/placementTracking.html'"></div>
+</div>

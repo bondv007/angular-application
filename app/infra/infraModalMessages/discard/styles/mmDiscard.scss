@@ -1,0 +1,49 @@
+.mmDiscard{
+  .iconWithText{
+    position: absolute;
+    top:16px;
+    left:8px;
+    height: 45px;
+  }
+
+  .iconWithText-alert{
+    @extend .iconWithText;
+    min-height: 100px;
+    width: 90%;
+  }
+
+  .mmDiscardIcon{
+    margin-right: 33px !important;
+    overflow: hidden;
+    position: relative;
+    left: 14px;
+    margin-right: 9px;
+    top: 11px;
+    display: inline-block;
+    width: 45px;
+    height: 41px;
+    background-image: image-url('si_floater-warning.png');
+  }
+
+  .mm-discard-icon{
+    margin: 22px;
+    float: left;
+    width: 45px;
+    height: 41px;
+    background-image: image-url('si_floater-warning.png');
+  }
+
+  .messageText{
+    font-family:arial, sans-serif;
+    font-size: 14px;
+    color: $cSecondary;
+    line-height: 20px;
+  }
+  .message-container{
+    float: left;
+    width: 80%;
+    margin-top: 25px;
+  }
+}
+
+

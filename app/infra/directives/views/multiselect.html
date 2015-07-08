@@ -1,0 +1,27 @@
+<div>
+  <mm-control-label mm-caption="{{mmCaption}}" mm-show-label="{{mmShouldShowLabel}}"
+                    mm-layout-class="{{mmLabelClass}}" mm-is-required="{{mmIsRequired}}"></mm-control-label>
+  <div class="{{mmControlClass}} multiselect ">
+    <span ng-show="!mmShowCombo" mm-dirty ng-class="(mmError?'error':(mmLocalIsDirty?'dirty':'regular'))" class="mm-label-value"
+          ng-mouseenter="showCombo(true);">{{mmSelectedLabel | T}}</span>
+    <button ng-show="mmShowCombo" class="btn" ng-click="toggleSelect()" style="height: 30px;">
+      <span class="pull-left">{{'Select' | T}}</span>&nbsp;<span class="caret pull-right"></span>
+    </button>
+    <div class="multiselect-wrapper" ng-show="isVisible">
+      <div style="background-color: #bacae4">
+        <input ng-show="mmShowSearchBox" type="text"  ng-model="searchBox.text" autofocus="autofocus" />
+      </div>
+      <ul>
+        <scroller scroller-repeater="c in filtered" item-height="21" ng-class="{withsearchbox: mmShowSearchBox}">
+          <li>
+            <label class="checkbox">
+              <input ng-show="mmIsMultiSelect" type="checkbox" ng-click="toggleCheck(c[mmOptionId], c[mmOptionName])"
+                     ng-checked="isChecked(c[mmOptionId], c[mmOptionName])" />
+              <span class="mm-nowrap">{{c[mmOptionName]}}</span>
+            </label>
+          </li>
+        </scroller>
+      </ul>
+    </div>
+  </div>
+</div>

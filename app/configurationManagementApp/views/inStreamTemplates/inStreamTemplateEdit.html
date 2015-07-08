@@ -1,0 +1,93 @@
+<div class="editContainer in-stream-template">
+  <div class="mm-entity-fields-container-single">
+    <mm-row>
+      <mm-text mm-model="template.name"
+               mm-is-required="true"
+               mm-label-width={{labelWidth}}
+               mm-layout-type="medium"
+               mm-caption="Template Name"
+               mm-placeholder="Enter a template name"
+               mm-error = "errors.nameMsg"
+               mm-change = "errors.nameMsg = ''"
+               mm-tab-index="1"></mm-text>
+    </mm-row>
+    <mm-row>
+      <mm-drop-down mm-data-model="baseTemplates"
+                    show-search-box
+                    mm-model="template.baseTemplateId"
+                    mm-layout-type="medium"
+                    mm-label-width={{labelWidth}}
+                    mm-caption="Base Template"
+                    mm-add-please-select
+                    mm-disable = ""
+                    mm-select-change-func="onBaseTemplateChange()"></mm-drop-down>
+    </mm-row>
+    <mm-row>
+      <mm-text mm-model="template.customXsltFileName || customXsltFileName"
+               mm-label-width={{labelWidth}}
+               mm-layout-type="custom"
+               mm-custom-control-width="230"
+               mm-caption="Custom XSLT"
+               mm-disable="true"
+               mm-tab-index="3"></mm-text>
+      <input type="file" fileread="xslt.file"  file-meta-data="xslt.meta" id="upload-input2" accept=".xslt"/>
+      <label class="upload-file-btn" for="upload-input2">Browse</label>
+      <a style="height: 15px;width:15px;" ng-click="removeTemplateFile()">Remove</a>
+    </mm-row>
+    <mm-row>
+      <!--Description -->
+      <mm-text-area mm-model="template.description"
+                    mm-label-width={{labelWidth}}
+                    mm-layout-type="medium"
+                    mm-caption="Description"
+                    mm-is-required="true"
+                    mm-error = "errors.descMsg"
+                    mm-change = "errors.descMsg = ''"
+                    mm-placeholder=inStreamTemplateDescriptionError
+                    mm-tab-index="4"></mm-text-area>
+    </mm-row>
+  </div>
+  <mm-row>
+    <div class="mm-entity-fields-container-single">
+      <!--XML Variables -->
+      <mm-toggle-container mm-caption="In-Stream XML Variables" start-open="true">
+        <mm-row>
+          <mm-grid items=template.vastVariables
+                   cols=xmlVariablesCols
+                   is-cell-edit="true"
+                   is-single-select="false"
+                   is-sort="true"
+                   show-footer="false"
+                   is-groupable="false"
+                   show-selection-checkbox="false"
+                   show-filter="false"
+                   enable-column-resize="true"
+                   is-column-reorder="false"
+                   is-column-freeze="false"
+                   is-show-menu="false"
+                   grid-height="200"
+                   is-central-grid="false"
+                   is-grid-loading="false">
+          </mm-grid>
+        </mm-row>
+      </mm-toggle-container>
+    </div>
+  </mm-row>
+  <mm-row>
+    <div class="mm-entity-fields-container-single">
+      <!--Ad Formats -->
+      <mm-toggle-container mm-caption="Applicable Ad Formats" start-open="togglesStatus.adFormats" mm-is-required="true">
+        <div style="position: absolute;top: 35px;">
+          <mm-error-div mm-min-width="errorMinWidth" error-text="errors.adFormatMsg"></mm-error-div>
+        </div>
+        <mm-row>
+          <mm-select-list mm-data-model="applicableAdFormats"
+                          mm-model="template.applicableAdFormats"
+                          mm-force-init="togglesStatus.adFormats"
+                          mm-available-title="" >
+          </mm-select-list>
+        </mm-row>
+      </mm-toggle-container>
+    </div>
+  </mm-row>
+</div>

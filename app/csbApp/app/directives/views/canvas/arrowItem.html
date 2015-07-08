@@ -1,0 +1,11 @@
+<div    id="{{arrowItem.id}}"
+                class="sketching-tools-arrow"
+                ng-class="{'csb-selected-arrow': appService.selectedCanvasItem === arrowItem}"
+                ng-style="arrowItem.style"
+                data-drag="true"
+                jqyoui-draggable="elementDraggableSettings()">
+        <div ng-show="appService.selectedCanvasItem === arrowItem" class="csb-arrowItem-handle"
+        data-drag="true"
+        jqyoui-draggable="arrowHandleSettings()"></div>
+
+</div>

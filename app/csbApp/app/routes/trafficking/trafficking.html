@@ -1,0 +1,61 @@
+<!-- this should be the location for the route html -->
+
+<!-- include the common header -->
+<div ng-include="'csbApp/app/views/ui/header.html'"></div>
+
+<div ng-include="'csbApp/app/views/ui/alert-error-box-include.html'"></div>
+
+<!-- This is the main container for what is displayed
+below the header -->
+<div id="trafficking-wrapper" class="wrapper" resize>
+    <!-- white bar underneath header -->
+    <div id="trafficking-top-bar" class="row">
+        <!-- priorities dropdown  -->
+       <div class="dropdown trafficking-dropdown row">
+          <button type="button" class="dropdown-toggle dg-toolbar-button" ng-disabled="true">
+            Priorities <span class="caret"></span>
+          </button>
+          <ul class="dropdown-menu dg-toolbar-button" role="menu">
+            <li role="presentation"><button role="menuitem" class="dg-dropdown-button">Server (recommended)</button></li>
+            <li role="presentation"><button role="menuitem" class="dg-dropdown-button">Diagram</button></li>
+            <li role="presentation"><button role="menuitem" class="dg-dropdown-button">Manual</button></li>
+            </ul>
+        </div>
+
+        <div class="row" id="trafficking-column-titles">
+            <div class="col-xs-3">
+                AUDIENCE FUNNEL <span class="fa fa-gear">&nbsp;</span><span class="icon icon-search-retargeting"></span>
+            </div>
+            <div class="col-xs-9">
+                DELIVERY GROUPS
+            </div>
+        </div>
+    </div>
+
+    <!-- This is the row that contains the funnel and message views -->
+    <div class="row">
+        <!-- Funnel view -->
+        <div id="funnelView" class="sidebar-funnel col-xs-3">
+            <!-- <perfect-scrollbar class="TAscroller" refresh-on-change="appService.csbData.targetAudienceIDs"> -->
+            <div id="targetAudienceList">
+                <audience-segments></audience-segments>
+            </div>
+            <!-- </perfect-scrollbar> -->
+        </div>
+
+        <!-- Message Area -->
+        <!-- <div class="message-area"  style=""> -->
+        <div class="col-xs-9" id="dgs-message-area" ng-controller="treeviewCtrl">
+            <div ng-show="selectTaMessage" class="centered-div message">
+                <h2>CLICK ON A  TARGET AUDIENCE TO VIEW DELIVERY GROUPS</h2>
+                <h1><i class="fa fa-arrow-left centered"></i></h1>
+            </div>
+
+            <div data-tree-view="">
+            </div>
+        </div>
+
+        <!-- Ads Area -->
+        <!-- <right-side-bar></right-side-bar> -->
+    </div>
+</div>

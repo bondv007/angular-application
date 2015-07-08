@@ -1,0 +1,78 @@
+<mm-row>
+	<mm-drop-down mm-caption="Protocol"
+								mm-model="editObject.siteTagSettings.protocol"
+								mm-data-model="httpTypes"
+								mm-is-required="{{isRequired}}"
+								mm-label-width="{{labelWidth}}"
+								mm-layout-type="custom"
+								mm-custom-control-width="{{labelWidth}}"
+								mm-error="validation.settings.tagSettings.protocol"
+								mm-select-change-func="onProtocolSelected()"
+								mm-tab-index="1"></mm-drop-down>
+</mm-row>
+<mm-row>
+	<mm-check-box
+			mm-model="editObject.siteTagSettings.createIFrameSupported"
+			mm-caption="Support Create iFrame"
+			mm-description="iFrame Supported"
+			mm-label-width="{{labelWidth}}"
+			mm-change="onCreateIFrameSupporteToggle()"
+			mm-tab-index="2"></mm-check-box>
+</mm-row>
+<mm-row>
+	<mm-drop-down mm-caption="Tag Type"
+								mm-model="editObject.siteTagSettings.tagTypes"
+								mm-data-model="tagTypes"
+								allow-multi-select
+								control-type="multi"
+								mm-error="validation.settings.tagSettings.tagType"
+								mm-select-change-func="onTagTypesSelected()"
+								mm-is-required="{{isRequired}}"
+								mm-label-width="{{labelWidth}}"
+								mm-layout-type="custom"
+								mm-custom-control-width="{{labelWidth}}"
+								mm-tab-index="3"></mm-drop-down>
+</mm-row>
+<mm-row>
+	<mm-check-box
+			mm-model="editObject.siteTagSettings.clearEscapingOfNoscriptTag"
+			mm-caption="Escape No Script Tags"
+			mm-description="Clear Escaping"
+			mm-label-width="{{labelWidth}}"
+			mm-tab-index="4"></mm-check-box>
+</mm-row>
+<mm-row>
+	<mm-text mm-caption="Referring URL Token"
+					 mm-model="editObject.siteTagSettings.referringURLToken"
+					 mm-placeholder="Enter URL"
+					 mm-label-width="{{labelWidth}}"
+					 text-tooltip="Enter URL"
+					 mm-layout-type="custom"
+					 mm-custom-control-width="{{labelWidth}}"
+					 mm-tab-index="5"></mm-text>
+</mm-row>
+<mm-mini-section
+		mm-is-modal="'false'"
+		mm-caption="'Tracking Placement'"
+		mm-start-open="togglesStatus.trackingPlacement">
+	<mm-row>
+		<mm-drop-down mm-caption="Tracking Tag Type"
+									mm-model="editObject.siteTagSettings.trackingTagType"
+									mm-data-model="trackingTagTypes"
+									mm-is-required="{{isRequired}}"
+									mm-label-width="{{labelWidth}}"
+									mm-layout-type="custom"
+									mm-custom-control-width="{{labelWidth}}"
+									mm-tab-index="1"></mm-drop-down>
+	</mm-row>
+	<mm-row>
+		<mm-check-box
+				mm-model="editObject.siteTagSettings.impressionTrackerResponse"
+				mm-caption="Impression Tracker Response"
+				mm-description="Zero Length Response"
+				mm-label-width="{{labelWidth}}"
+				mm-layout-type="custom"
+				mm-custom-control-width="{{labelWidth}}"
+				mm-tab-index="2"></mm-check-box>
+	</mm-row>
+</mm-mini-section>

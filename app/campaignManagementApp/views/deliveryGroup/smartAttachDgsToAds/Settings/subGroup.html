@@ -1,0 +1,25 @@
+<div class="adContainer">
+	<time-base-rotation weight="subGroup.timeBased" on-link-click="openScheduledSwap()" ng-if="selectedAssignmentStrategy.selected == 'ScheduledSwap'"></time-base-rotation>
+
+	<div class="adContainerDetails">
+		<mm-row>
+			<mm-text style="position: relative; float: left; right:130px"
+							 mm-show-label="false"
+							 mm-model="subGroup.name"
+							 mm-placeholder="dg_Enter_Name"
+							 mm-layout-type="custom"
+							 mm-custom-control-width="200"></mm-text>
+			<mm-drop-down style="position: relative; right: 20px; top:4px"
+											mm-caption="Rotation"
+											mm-select-change-func="onSubGroupRotationChange()"
+											mm-layout-type="custom"
+											mm-custom-control-width="170"
+											mm-label-width="70"
+											mm-data-model="rotations"
+											mm-option-id="type"
+											mm-model="subGroup.childRotationType"></mm-drop-down>
+		</mm-row>
+		<div ng-include="'campaignManagementApp/views/deliveryGroup/smartAttachDgsToAds/settings/ad.html'"></div>
+	</div>
+	<div ng-if="subGroup.childRotationType == 'Weighted'" class="successTotalWeight" ng-bind="'Total Weight ' + subGroup.totalWeight + '%'"></div>
+</div>

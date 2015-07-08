@@ -1,0 +1,11 @@
+<table class="sgTable" border="1">
+	<tr ng-repeat="sg in dg.rootContainer.subContainers">
+		<td ng-class="{highlightAd:sg.isNew}" style="width: 132px;" ng-bind="sg.name">/td>
+		<td ng-class="{highlightAd:sg.isNew}" style="width: 142px;" ng-bind="sg.childRotationType">/td>
+		<td ng-class="{highlightAd:sg.isNew}" style="width: 142px;" ng-bind="sg.rotationSetting.startDate | date : 'MMM dd,yyyy'">/td>
+		<td ng-class="{highlightAd:sg.isNew}" style="width: 142px;" ng-bind="sg.rotationSetting.endDate | date : 'MMM dd,yyyy'">/td>
+		<td ng-class="{highlightAd:sg.isNew}" style="width: 142px;"><span ng-include="'campaignManagementApp/views/deliveryGroup/smartAttachDgsToAds/attachAd/templates/ads.html'"></span></td>
+		<td ng-class="{highlightAd:sg.isNew}" style="width: 142px;"><span ng-include="'campaignManagementApp/views/deliveryGroup/smartAttachDgsToAds/attachAd/templates/adsName.html'"></span></td>
+		<td ng-class="{highlightAd:sg.isNew}" style="width: 142px;"><span ng-include="'campaignManagementApp/views/deliveryGroup/smartAttachDgsToAds/attachAd/templates/adsRotationValue.html'"></span></td>
+	</tr>
+</table>

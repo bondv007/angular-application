@@ -1,0 +1,77 @@
+@mixin mWizardIcon {
+  position: relative;
+  display: inline-block;
+  width: 6px;
+  height: 9px;
+}
+
+.wizardButtonContainer {
+  margin-left: 7px;
+  .wizardButton {
+    text-transform: uppercase;
+  }
+
+  .back {
+    @include mWizardIcon;
+    background-image: image-url('arrow_back.png');
+  }
+
+  &:hover .back{
+    @include mWizardIcon;
+    background-image: image-url('arrow_back_white.png');
+  }
+
+  .next {
+    @include mWizardIcon;
+    background-image: image-url('arrow_next.png');
+  }
+
+  &:hover .next{
+    @include mWizardIcon;
+    background-image: image-url('arrow_next_white.png');
+  }
+
+  .primaryButton {
+    background-color: $cThird !important;
+    &:hover {
+      color: $cWhite !important;;
+      background-color: $cSecondary !important;
+    }
+  }
+
+}
+
+.wizardButtonContainerDisableMode {
+  margin-left: 7px;
+  .wizardButton {
+    text-transform: uppercase;
+    &:hover{
+      color: $cSecondary !important;
+    }
+  }
+
+  .disabledButton {
+    cursor: auto;
+    opacity: 0.4;
+  }
+
+  .back {
+    @include mWizardIcon;
+    background-image: image-url('arrow_back.png');
+  }
+
+  .next {
+    @include mWizardIcon;
+    background-image: image-url('arrow_next.png');
+  }
+
+  .primaryButton {
+    background-color: $cThird !important;
+  }
+
+  .secondaryButton {
+    background-color: $cGrey !important;
+  }
+
+}
+

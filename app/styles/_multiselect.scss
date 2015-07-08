@@ -1,0 +1,347 @@
+.multiselect {
+  max-height: 300px;
+}
+
+.multiselect .label-general{
+  color: $cSecondary;
+}
+
+.multiselect .label-hint{
+  color: $cSecondarySeventyFive;
+  font-style: italic;
+}
+
+.multiselect .label-disabled{
+  color: $cSecondaryHint;
+}
+
+
+.multiselect .hover {
+  background-color: $cWhite;
+  border: 1px solid $cFourth !important;
+  padding-top: 2px !important;
+  padding-left: 7px !important;
+  color: $cSecondarySeventyFive !important;
+}
+
+.multiselect .button-frame {
+  height: 30px !important;
+  background-color: $cWhite;
+  border: 1px solid $cFourth;
+  padding: 0;
+  cursor: context-menu;
+  margin-top: 0;
+  &:focus{
+    outline: 0;
+  }
+}
+
+.multiselect .button-frame-disabled{
+  border: 1px solid $cForthHint !important;
+}
+
+.multiselect .button-frame-hover {
+  border: 1px solid $cSecondary;
+  //background-color: rgba(255, 255, 255, 0.4);
+}
+
+.multiselect .button-frame-hover-open {
+  border-top: 1px solid $cSecondary;
+  border-left: 1px solid $cSecondary;
+  border-right: 1px solid $cSecondary;
+  border-bottom-width: 1px;
+ // background-color: rgba(255, 255, 255, 0.4);
+}
+
+.multiselect .button-frame-open {
+
+  height: 30px !important;
+  background-color: $cWhite;
+  border-left: 1px solid $cSecondary;
+  border-right: 1px solid $cSecondary;
+  border-top: 1px solid $cSecondary;
+  padding: 0;
+  margin-top: 0;
+  &:focus{
+    outline: 0;
+  }
+}
+
+.multiselect .wrapper {
+  background: #fff;
+  border: 1px solid $cSecondary;
+  box-shadow: 0 4px 5px rgba(0,0,0,.15);
+  z-index: 1010;
+  position: absolute;
+  top: 28px;
+  left: -1px;
+}
+
+.multiselect li {
+  position:relative;
+  line-height: 30px;
+  padding-left: 8px;
+}
+
+.multiselect .li-hover{
+  background-color: $cForthHint;
+}
+
+.multiselect ul{
+  list-style-type: none;
+  overflow: auto;
+  max-height: 200px;
+  padding-left: 0px;
+  margin: 0;
+}
+
+.multiselect input[type="checkbox"]{
+  margin: 0;
+  margin-bottom: 3px;
+  margin-right: 3px;
+  vertical-align: middle;
+}
+
+
+.multiselect .checkbox{
+  margin-top: 5px;
+  margin-bottom: 5px;
+  padding-left: 8px;
+}
+
+.selected-item{
+  background-color: $cSecondary;
+  color: $cWhite;
+  opacity: 0.9;
+  &:hover{
+    background-color: $cSecondary !important;
+  }
+}
+
+.search-box-icon{
+  position: absolute;
+  background-image: image-url('si_search_fourth.png');
+  width: 16px;
+  height: 16px;
+  top: 11px;
+  right: 12px;
+}
+
+.search-box-icon-add-new{
+  position: absolute;
+  background-image: image-url('si_search_fourth.png');
+  width: 16px;
+  height: 16px;
+  top: 5px;
+  right: 8px;
+}
+
+
+.search-box-clear-icon{
+  position: absolute;
+  background-image: image-url('si_x.png');
+  cursor: pointer;
+  width: 16px;
+  height: 16px;
+  top: 11px;
+  right: 12px;
+}
+
+.multiselect .span-separator {
+  background-color: $cFourth;
+  width: 1px;
+  height: 28px;
+  margin-top: -2px;
+  margin-right: 8px;
+  float: right;
+}
+
+.multiselect .bottom-separator {
+  background-color: $cFourth;
+  height: 1px;
+  width: 100%;
+  position: relative;
+  top:27px
+}
+
+.multiselect .button-label {
+  @extend .pull-left;
+  text-align: left !important;
+  padding-right: 28px;
+  margin-left: 7px;
+  text-overflow: ellipsis;
+  height: 30px;
+  line-height: 24px;
+  overflow: hidden;
+  margin-top: 2px;
+}
+
+.multiselect .button-up {
+  float: right;
+  position: absolute;
+  right: 0;
+  margin-right: 8px;
+  margin-top: 10px;
+  width: 12px;
+  height: 7px;
+  background: image-url('SI_arrow_up_fourth.png') no-repeat;
+}
+
+.multiselect .button-down {
+  float: right;
+  position: absolute;
+  right: 0;
+  margin-right: 8px;
+  margin-top: 10px;
+  width: 12px;
+  height: 7px;
+  background: image-url('SI_arrow_down_fourth.png') no-repeat;
+}
+
+.multiselect .label-button-down {
+  float: right;
+  position: absolute;
+  right: 11px;
+  top: 1px;
+  margin-right: 8px;
+  margin-top: 10px;
+  width: 12px;
+  height: 7px;
+  background: image-url('SI_arrow_down_fourth.png') no-repeat;
+}
+
+.multiselect .button-separator {
+  background-color: $cFourth;
+  position: absolute;
+  top: 0;
+  right: 20px;
+  width: 1px;
+  height: 28px;
+  margin-top: 0;
+  margin-right: 8px;
+  float: right;
+}
+
+.multiselect .label-button-separator {
+  background-color: $cFourth;
+  position: absolute;
+  top: 1px;
+  right: 31px;
+  width: 1px;
+  height: 28px;
+  margin-top: 0;
+  margin-right: 8px;
+  float: right;
+}
+
+.multiselect .search-frame{
+  height: 36px;
+  padding: 5px;
+  background-color: $cForthBorder;
+  border-bottom: 1px solid $cFourth;
+}
+
+.add-new-search-frame{
+  padding-left: 14px;
+  padding-right: 9px;
+  float: right;
+  width:76px;
+  padding-top: 4px;
+}
+
+.add-new-link-search-frame{
+  color: $cMain;
+  font-family: arial, sans-serif;
+  font-size: 13px;
+  &:hover {
+    color: $cMain;
+    text-decoration: underline;
+    cursor: pointer;
+  }
+}
+
+
+.multiselect .add-new{
+  height: 35px;
+  padding-left: 8px;
+  border-bottom: 1px solid $cFourth;
+}
+
+.add-new-link{
+  color: $cMain;
+  font-family: arial, sans-serif;
+  font-size: 13px;
+  position: relative;
+  top: 7px;
+  &:hover {
+    color: $cMain;
+    text-decoration: underline;
+    cursor: pointer;
+  }
+}
+
+.multiselect .search-box{
+  width: 100%;
+  box-sizing: border-box;
+  margin-top: 1px;
+  padding: 0;
+  padding-right: 25px;
+  padding-left: 5px;
+  outline: 0;
+  height: 24px;
+  background-color: $cWhite;
+  border: 1px solid $cFourth;
+}
+
+.multiselect .search-box-add-new{
+  position: absolute;
+  right: 80px;
+  left: 5px;
+}
+.multiselect .scroller-items {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
+
+.multiselect .with-search-box{
+  top: 36px !important;
+}
+
+.multiselect .with-add-new{
+  top: 35px !important;
+}
+
+.multiselect .scrollerBoxItems {
+   @extend .scrollerBoxItems;
+   margin-bottom: 5px;
+ }
+
+li>span{
+  left: 29px;
+  right: 0;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
+li>div{
+  right: 0;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  text-align: left;
+}
+
+.multiselect .item-label{
+  position: absolute;
+}
+
+.mm-checkbox-hover{
+  border:solid 1px $cSecondary;
+  cursor:pointer
+}
+
+.multiselect-show{
+  height: 30px;
+}

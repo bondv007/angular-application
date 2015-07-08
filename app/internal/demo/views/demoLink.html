@@ -1,0 +1,13 @@
+<hr style="border-top: solid 1px #ffffff;"/>
+<mm-row>
+  <mm-text mm-model="demoModel.url" mm-error="error.name" mm-caption="Simple Link"
+           mm-is-link="true"></mm-text>
+  <mm-text mm-model="demoModel.name" mm-caption="Entity Link" mm-entity-type="account" mm-entity-id="'IF6780DF'"
+           mm-is-link="true"></mm-text>
+</mm-row>
+<mm-row>
+ <mm-drop-down mm-error="error.name" mm-caption="Ad Option" mm-disable="false" mm-is-link="true"
+                  mm-data-model="demoModel.listOfOptions" mm-model="demoModel.listOfOptions[0][id]" mm-entity-type="ad"
+                  show-search-box></mm-drop-down>
+</mm-row>
+

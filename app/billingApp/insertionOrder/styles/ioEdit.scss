@@ -1,0 +1,142 @@
+.ioEdit {
+
+  background-color: $cWhite;
+  position: relative;
+  min-height: 100%;
+  height: auto;
+
+  .leftStripe {
+    background: image-url('hole.png') repeat-y;
+    background-position: 19px 20px;
+    min-height: 100%;
+    width: 56px;
+    position: absolute;
+    border-right: 1px dashed rgb(190, 190, 190);
+    z-index: 0;
+  }
+
+  .rightStripe {
+    background: image-url('hole.png') repeat-y;
+    background-position: 19px 20px;
+    min-height: 100%;
+    width: 56px;
+    position: absolute;
+    right: 0px;
+    border-left: 1px dashed rgb(190, 190, 190);
+    z-index: 0;
+  }
+
+  .mainContent {
+
+    margin-left: 55px;
+    margin-right: 55px;
+
+    .ioLogo {
+      background: image-url('Sizmek_MDX.png') no-repeat 30px 16px;
+      width: 208px;
+      height: 62px;
+      width: 170px;
+      float: left;
+    }
+
+    .ioHeader {
+      padding: 10px;
+      text-align: right;
+
+      .ioHistory {
+        color: blue;
+      }
+
+      .ioHeaderEle {
+        margin-right: 10px;
+      }
+    }
+
+    .ioBody {
+      position: relative;
+      padding-bottom: 120px;
+
+      .ioEditTitle {
+        font-family: 'Titillium';
+        font-size: 16px;
+        color: $cSecondary;
+        padding-top: 60px;
+        padding-left: 20px;
+        padding-bottom: 25px;
+        font-weight: 400;
+      }
+
+      .ioEditSubTitle {
+        font-family: 'Titillium';
+        font-size: 14px;
+        color: $cSecondary;
+        opacity: 0.75;
+        padding-top: 20px;
+        padding-bottom: 10px;
+      }
+      .ioEditSubTitleGroup {
+        font-family: 'Titillium';
+        font-size: 14px;
+        color: $cSecondary;
+        opacity: 0.75;
+        padding-top: 20px;
+      }
+      .ioEditContent {
+        padding-left: 30px;
+        padding-right: 20px;
+        //        padding-bottom: 28px;
+
+        .ioEditNote, .ioEditStopServing {
+          opacity: 0.75;
+          font-family: arial, sans-serif;
+          font-size: 13px;
+          color: #0d2a4d;
+        }
+      }
+    }
+
+    .ioFooter {
+      padding: 10px;
+      bottom: 0px;
+      margin-left: 10px;
+      right: auto;
+      left: auto;
+      background-color: white;
+      z-index: 50;
+      overflow: visible;
+      position: fixed;
+
+      .ioDisclaimer {
+
+        .ioDisclaimerBox {
+          height: 45px;
+          border-style: solid;
+          border-width: thin;
+          padding-left: 15px;
+          border-color: #C8C8C8;
+
+          .ioDisclaimerTextBox {
+            margin-top: 6px;
+            position: relative;
+            float: left;
+          }
+        }
+      }
+
+      .ioActionBar {
+        height: 35px;
+        margin: 15px 0 0 0;
+        width: 100%;
+        padding: 0px 20px;
+      }
+
+      .ioActionButtons {
+        position: relative;
+        top: 5px;
+        display: inline-block;
+      }
+    }
+  }
+}
+
+

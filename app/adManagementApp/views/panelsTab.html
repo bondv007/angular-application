@@ -1,0 +1,42 @@
+<mm-row>
+  <mm-grid
+      items=ad.panels
+      selected-items=ad.selectedPanels
+      cols=gridColumns.panelsColumns
+      is-cell-edit="true"
+      is-show-menu="false"
+      is-single-select="false"
+      is-sort="true"
+      is-setting-icon-disable="false"
+      is-search-icon-disable="false"
+      show-footer="false"
+      show-group-panel="false"
+      show-selection-checkbox="true"
+      show-filter="false"
+      enable-column-resize="true"
+      is-column-reorder="false"
+      is-show-tool-tip="true"
+      is-central-grid="false"
+      db-click-handler=""
+      grid-height="300px"
+      generic-validation-handler="panelValidationHandler"
+      grid-button-actions="gridActions.panelsGridButtonActions"></mm-grid>
+</mm-row>
+<mm-mini-section ng-if="ad.adFormat != 'SINGLE_EXPANDABLE_BANNER_AD'" mm-caption="'Advanced Panel Settings'"
+                 mm-start-open="toggleHandler.showToggleAdvancedPanelSettings" mm-is-modal="true">
+  <div ng-include="'adManagementApp/views/SettingsPanelsTab.html'"></div>
+  <mm-row ng-if="ad.adFormat != 'PUSHDOWN_BANNER_AD'">
+    <mm-check-box mm-model="ad.panelsSettings.multiplePanels"
+                  mm-caption="Multiple Panels"
+                  mm-description="Show Single Panel at a Time"
+                  mm-label-width="{{labelWidth2}}"
+                  mm-edit-multiple="isMultiple != undefined && isMultiple.indexOf('multiplePanels') != -1">
+    </mm-check-box>
+  </mm-row>
+</mm-mini-section>
+<mm-mini-section ng-if="ad.adFormat == 'SINGLE_EXPANDABLE_BANNER_AD'" mm-caption="'Advanced Panel Settings'"
+                 mm-start-open="toggleHandler.showToggleAdvancedPanelSettings" mm-is-modal="true">
+  <div ng-include="'adManagementApp/views/advancedMultiPanelsSettings.html'"></div>
+</mm-mini-section>
+
+

@@ -1,0 +1,650 @@
+<!doctype html>
+<!--[if lt IE 7]>
+<html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>
+<html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>
+<html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html lang="en" id="ng-app" ng-app="MediaMindApp">
+<!--<![endif]-->
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title ng-bind="'Sizmek ' + title">Sizmek MDx</title>
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width">
+  <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+
+  <!-- build:css(.tmp) styles/main.css -->
+
+  <link rel="stylesheet" href="styles/main.css">
+  <link rel="stylesheet" href="bower_components/ui-layout/ui-layout.css">
+  <link rel="stylesheet" href="bower_components/angular-treeview/css/angular.treeview.css">
+  <link rel="stylesheet" href="bower_components/ng-grid/ng-grid.css">
+  <link rel="stylesheet" href="bower_components/angular-ui-tree/source/angular-ui-tree.css">
+  <link rel="stylesheet" href="bower_components/spectrum/spectrum.css">
+  <link rel="stylesheet" href="bower_components/angular-bootstrap-colorpicker/css/colorpicker.css">
+  <link rel="stylesheet" href="bower_components/jstree/dist/themes/default/style.css">
+  <link rel="stylesheet" href="bower_components/wijmo-spread-css/index.css">
+  <link rel="stylesheet" href="bower_components/google-code-prettify/src/prettify.css">
+    <!-- endbuild -->
+
+</head>
+
+<body >
+    <script type="text/javascript">
+  (function (i, s, o, g, r, a, m) {
+    i['GoogleAnalyticsObject'] = r;
+    i[r] = i[r] || function () {
+      (i[r].q = i[r].q || []).push(arguments)
+    }, i[r].l = 1 * new Date();
+    a = s.createElement(o),
+        m = s.getElementsByTagName(o)[0];
+    a.async = 1;
+    a.src = g;
+    m.parentNode.insertBefore(a, m)
+  })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+
+  ga('create', 'MediaMind 3.0');
+  ga('send', 'pageview');
+
+
+  //_gaq.push(['_trackPageview']);
+    </script>
+
+    <!--[if lt IE 7]>
+<p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade
+  your browser</a> to improve your experience.</p>
+<![endif]-->
+    <!--[if lt IE 9]>
+<script src="bower_components/es5-shim/es5-shim.js"></script>
+<script src="bower_components/json3/lib/json3.min.js"></script>
+<![endif]-->
+
+    <div id="mmMain" ui-view></div>
+
+    <!-- build:js({.tmp,app}) scripts/modules.js -->
+    <script src="bower_components/jquery/dist/jquery.js"></script>
+    <script src="bower_components/jquery-ui/ui/jquery-ui.js"></script>
+    <script src="bower_components/jquery-ui/ui/jquery.ui.datepicker.js"></script>
+    <script src="bower_components/angular/angular.js"></script>
+    <script src="bower_components/angular-file-upload/angular-file-upload.min.js"></script>
+    <script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
+    <script src="bower_components/angular-http-auth/src/http-auth-interceptor.js"></script>
+    <script src="bower_components/ng-grid/build/ng-grid.js"></script>
+    <script src="bower_components/lodash/dist/lodash.js"></script>
+    <script src="bower_components/restangular/dist/restangular.js"></script>
+    <script src="bower_components/angular-webstorage/angular-webstorage.js"></script>
+    <script src="bower_components/moment/moment.js"></script>
+    <script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js"></script>
+    <script src="bower_components/angular-loading-bar/build/loading-bar.js"></script>
+    <script src="bower_components/ui-layout/ui-layout.js"></script>
+    <script src="bower_components/angular-dragdrop/src/angular-dragdrop.js"></script>
+    <script src="bower_components/angular-translate/angular-translate.js"></script>
+    <script src="bower_components/angular-translate-loader-static-files/angular-translate-loader-static-files.js"></script>
+    <script src="bower_components/angular-translate-storage-local/angular-translate-storage-local.js"></script>
+    <script src="bower_components/angular-translate-storage-cookie/angular-translate-storage-cookie.js"></script>
+    <script src="bower_components/angular-resource/angular-resource.js"></script>
+    <script src="bower_components/angular-cookies/angular-cookies.js"></script>
+    <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
+    <script src="bower_components/angular-animate/angular-animate.js"></script>
+    <script src="bower_components/angular-spinkit/build/angular-spinkit.min.js"></script>
+    <script src="bower_components/angular-treeview/angular.treeview.js"></script>
+    <script src="bower_components/angular-ui-tree/dist/angular-ui-tree.js"></script>
+    <script src="bower_components/zeroclipboard/ZeroClipboard.js"></script>
+    <script src="bower_components/ng-clip/dest/ng-clip.js"></script>
+    <script src="bower_components/ng-grid/plugins/ng-grid-reorderable.js"></script>
+    <script src="bower_components/swfobject/swfobject/swfobject.js"></script>
+    <script src="bower_components/FileSaver/FileSaver.js"></script>
+    <script src="bower_components/angular-bootstrap-colorpicker/js/bootstrap-colorpicker-module.js"></script>
+    <script src="bower_components/spectrum/spectrum.js"></script>
+    <script src="bower_components/angular-spectrum-colorpicker/dist/angular-spectrum-colorpicker.js"></script>
+    <script src="bower_components/textAngular/src/textAngular.js"></script>
+    <script src="bower_components/textAngular/src/textAngularSetup.js"></script>
+    <script src="bower_components/textAngular/src/textAngular-sanitize.js"></script>
+    <script src="bower_components/jstree/dist/jstree.js"></script>
+    <script src="bower_components/x2js/xml2json.js"></script>
+    <script src="bower_components/angular-x2js/src/x2js.js"></script>
+    <script src="bower_components/mustache/mustache.min.js"></script>
+    <script src="bower_components/ngInfiniteScroll/build/ng-infinite-scroll.js"></script>
+    <script src="infra/directives/script/base/angucomplete-alt.js"></script>
+    <script src="infra/scroller/scripts/scroller.js"></script>
+    <script src="bower_components/google-code-prettify/src/prettify.js"></script>
+    <script src="media/scripts/jquery-ui-autocomplete-fixed/jquery.ui.autocomplete.js"></script>
+    <script src="bower_components/wijmo-spread-js/index.js"></script>
+    <script src="media/scripts/wijmo-spread-angular-js/index.js"></script>
+    <!-- endbuild -->
+
+    <script src="bower_components/papa-parse/papaparse.js"></script>
+    <script src="bower_components/js-xlsx/jszip.js"></script>
+    <script src="bower_components/js-xlsx/xlsx.js"></script>
+
+    <!-- build:js({.tmp,app}) scripts/scripts.js -->
+    <script src="scripts/compatibilityCheck.js"></script>
+    <script src="scripts/app.js"></script>
+    <script src="scripts/routes.js"></script>
+    <script src="scripts/constants/entityMetaData.js"></script>
+    <script src="scripts/constants/cacheMap.js"></script>
+    <script src="infra/services/userSettings.js"></script>
+    <script src="infra/services/defaultEntities.js"></script>
+    <script src="scripts/constants/enums.js"></script>
+    <script src="scripts/constants/infraEnums.js"></script>
+    <script src="scripts/prototype.js"></script>
+    <script src="scripts/backStretch.js"></script>
+    <script src="scripts/interactionMonitor3-0.js"></script>
+
+    <script src="infra/directives/resizeCol.js"></script>
+
+    <!-- CSB -->
+    <!-- init -->
+    <script src="csbApp/app/init.js"></script>
+    <script src="csbApp/app/csb.js"></script>
+    <!-- CSB -->
+
+    <!-- endbuild -->
+
+    <!-- build:js({.tmp,app}) scripts/configuration.js -->
+    <script src="scripts/constants/config.js"></script>
+    <!-- endbuild -->
+
+    <!-- build:js({.tmp,app}) scripts/infra.js -->
+    <script src="common/common.js"></script>
+    <script src="common/constants/commonEnums.js"></script>
+    <script src="common/constants/const.js"></script>
+    <script src="common/directives/delegateAttribute.js"></script>
+    <script src="common/directives/mmFormControl.js"></script>
+    <script src="common/directives/mmText.js"></script>
+    <script src="common/filters/t.js"></script>
+
+    <script src="infra/directives/clickAccumulator.js"></script>
+    <script src="infra/directives/script/datePicker.js"></script>
+    <script src="infra/directives/script/mmDatePickerBase.js"></script>
+    <script src="infra/directives/script/mmRangeDatePicker.js"></script>
+    <script src="infra/directives/script/mmSingleDatePicker.js"></script>
+      <script src="infra/directives/script/mmVisible.js"></script>
+    <script src="infra/directives/mmHistory.js"></script>
+    <script src="infra/directives/mmFeatureFlag.js"></script>
+    <script src="infra/directives/mmFlash.js"></script>
+    <script src="infra/directives/mmSplitter.js"></script>
+    <script src="infra/directives/mmShield.js"></script>
+    <script src="infra/services/mmFeatureFlag.js"></script>
+    <script src="infra/services/mmMediaTypeIcon.js"></script>
+    <script src="infra/central/scripts/central.js"></script>
+		<script src="infra/central/scripts/centralGridRow.js"></script>
+    <script src="infra/central/scripts/centralEvents.js"></script>
+    <script src="infra/central/scripts/centralDataIndexer.js"></script>
+    <script src="infra/entityLayout/scripts/entityLayout.js"></script>
+    <script src="infra/entityLayout/scripts/entityLayoutView.js"></script>
+    <script src="infra/directives/friendlyGridRow.js"></script>
+    <script src="infra/directives/event.js"></script>
+    <script src="infra/directives/autoFocus.js"></script>
+    <script src="infra/directives/endlessScroll.js"></script>
+    <script src="infra/filters/moment.js"></script>
+    <script src="infra/filters/trustUrl.js"></script>
+    <script src="infra/filters/groupFilter.js"></script>
+    <script src="infra/filters/uniqueFilter.js"></script>
+    <!--<script src="infra/filters/t.js"></script>-->
+    <script src="infra/services/clickAccumulator.js"></script>
+    <script src="infra/services/search.js"></script>
+    <script src="infra/services/mmSession.js"></script>
+    <script src="infra/services/mmRest.js"></script>
+    <script src="infra/services/advancedSearch.js"></script>
+    <script src="infra/services/recentItems.js"></script>
+    <script src="infra/services/mmUser.js"></script>
+    <script src="infra/services/mmContext.js"></script>
+    <script src="infra/services/mmPermissions.js"></script>
+    <script src="infra/services/mmUtils.js"></script>
+    <script src="infra/services/ec2Restangular.js"></script>
+    <script src="infra/services/ec2AMSRestangular.js"></script>
+    <script src="infra/controllers/navBar.js"></script>
+    <script src="infra/controllers/menuSearch.js"></script>
+    <script src="infra/controllers/main.js"></script>
+    <script src="infra/controllers/advancedSearch.js"></script>
+    <script src="infra/controllers/mmLogin.js"></script>
+    <script src="infra/controllers/mmOverwriteChangesDialog.js"></script>
+    <script src="infra/controllers/accessDenied.js"></script>
+    <!--script src="infra/controllers/mmConfrimDiscardChanges.js"></script-->
+    <script src="infra/controllers/mmHistory.js"></script>
+    <script src="infra/controllers/mmDiscardDialog.js"></script>
+    <script src="infra/directives/script/mmToggleContainer.js"></script>
+<script src="infra/controllers/mmDeleteDialog.js"></script>
+    <script src="infra/filters/parseUrl.js"></script>
+    <script src="infra/directives/mmEssential.js"></script>
+    <script src="infra/pageLayout/mmLayout.js"></script>
+    <script src="infra/directives/script/mmButton.js"></script>
+    <script src="infra/directives/script/mmLabel.js"></script>
+    <script src="infra/directives/script/mmText.js"></script>
+    <script src="infra/directives/script/mmTextArea.js"></script>
+    <script src="infra/directives/script/mmAutoComplete.js"></script>
+    <script src="infra/directives/script/mmControlBase.js"></script>
+    <script src="infra/directives/script/mmSearchableList.js"></script>
+    <script src="infra/directives/script/mmMultiSelect.js"></script>
+    <script src="infra/directives/script/mmSingleSelect.js"></script>
+    <script src="infra/directives/script/mmDropDown.js"></script>
+    <!--<script src="infra/directives/script/mmSelect.js"></script>-->
+    <script src="infra/directives/script/mmSelectList.js"></script>
+    <script src="infra/directives/script/mmCheckBoxBase.js"></script>
+    <script src="infra/directives/script/mmCheckList.js"></script>
+    <script src="infra/directives/script/mmHasPermission.js"></script>
+    <script src="infra/directives/script/mmInfoBox.js"></script>
+    <script src="infra/directives/script/mmInfoLabel.js"></script>
+    <script src="infra/services/mmAlert.js"></script>
+    <script src="infra/directives/services/datePickerHelper.js"></script>
+    <script src="infra/directives/services/searchHelper.js"></script>
+    <script src="infra/directives/script/mmCheckBox.js"></script>
+    <script src="infra/directives/script/mmRadioButton.js"></script>
+    <script src="infra/directives/script/mmFocus.js"></script>
+    <script src="infra/directives/script/mmRequired.js"></script>
+    <script src="infra/directives/script/mmMiniSection.js"></script>
+    <script src="infra/directives/script/mmButtonDropDown.js"></script>
+    <script src="infra/directives/script/mmWizard.js"></script>
+    <script src="infra/directives/services/wizardHelper.js"></script>
+    <script src="infra/directives/script/mmCodeBlock.js"></script>
+
+    <script src="infra/grid/scripts/mmGrid.js"></script>
+    <script src="infra/grid/scripts/mmGridCustomDirectives.js"></script>
+    <script src="infra/grid/scripts/customCheckBox.js"></script>
+    <!--<script src="infra/grid/scripts/resizePlugin.js"></script>-->
+    <script src="infra/grid/scripts/singleClick.js"></script>
+
+    <script src="infra/services/mmModal.js"></script>
+    <script src="infra/controllers/dirtyDialog.js"></script>
+    <script src="infra/directives/script/sticky.js"></script>
+    <script src="infra/directives/script/mmAlert.js"></script>
+    <script src="infra/directives/script/mmError.js"></script>
+    <script src="infra/directives/script/mmToolTip.js"></script>
+    <script src="infra/directives/script/mmBlur.js"></script>
+    <script src="infra/directives/script/mmFocusIn.js"></script>
+    <script src="infra/directives/script/mmDraggable.js"></script>
+    <script src="infra/directives/script/mmExternalId.js"></script>
+    <script src="infra/directives/previewImage.js"></script>
+    <script src="infra/filters/genericSearchFilter.js"></script>
+    <script src="infra/treeView/scripts/mmTreeView.js"></script>
+
+    <!-- CSB -->
+    <!-- application services -->
+    <script src="csbApp/app/services/utilities/permissions.js"></script>
+    <script src="csbApp/app/services/entities/strategies.js"></script>
+    <script src="csbApp/app/services/entities/campaigns.js"></script>
+    <script src="csbApp/app/services/entities/advertisers.js"></script>
+    <script src="csbApp/app/services/entities/geo.js"></script>
+    <script src="csbApp/app/services/entities/targetAudiences.js"></script>
+    <script src="csbApp/app/services/entities/deliveryGroups.js"></script>
+    <script src="csbApp/app/services/utilities/pdf.js"></script>
+    <script src="csbApp/app/services/entities/categories.js"></script>
+    <script src="csbApp/app/services/decisionTree/appService.js"></script>
+    <script src="csbApp/app/services/decisionTree/GraphFactory.js"></script>
+<script src="csbApp/app/services/decisionTree/ruleFactory.js"></script>
+    <script src="csbApp/app/services/entities/audienceSegmentFactory.js"></script>
+    <script src="csbApp/app/services/entities/adsFactory.js"></script>
+    <script src="csbApp/app/services/rightPanel/panelFactory.js"></script>
+    <script src="csbApp/app/services/header/headerService.js"></script>
+    <script src="csbApp/app/services/header/saveDecisionDiagramService.js"></script>
+    <script src="csbApp/app/services/utilities/modalFactory.js"></script>
+    <script src="csbApp/app/services/funnel/funnelService.js"></script>
+    <script src="csbApp/app/services/trafficking/traffickingService.js"></script>
+    <script src="csbApp/app/services/utilities/unSavedChangesService.js"></script>
+    <!-- CSB -->
+
+    <!-- CSB -->
+    <!-- application directives -->
+    <script src="csbApp/app/directives/canvas/arrowItem.js"></script>
+    <script src="csbApp/app/directives/canvas/noteItem.js"></script>
+    <script src="csbApp/app/directives/canvas/textBoxItem.js"></script>
+    <script src="csbApp/app/directives/canvas/decisionTree.js"></script>
+    <script src="csbApp/app/directives/canvas/decisionTreeItem.js"></script>
+    <script src="csbApp/app/directives/rightPanel/staticRetargetingPanel.js"></script>
+    <script src="csbApp/app/directives/rightPanel/controllers/geoAdvancedSearch.js"></script>
+    <script src="csbApp/app/directives/rightPanel/geoTargetingPanel.js"></script>
+    <script src="csbApp/app/directives/rightPanel/geoTargetingGlobalSearchPanel.js"></script>
+    <script src="csbApp/app/directives/rightPanel/siteKeywordsPanel.js"></script>
+    <script src="csbApp/app/directives/rightPanel/externalAudiencePanel.js"></script>
+    <script src="csbApp/app/directives/rightPanel/audienceSegmentPanel.js"></script>
+    <script src="csbApp/app/directives/rightPanel/dynamicRetargetingPanel.js"></script>
+    <script src="csbApp/app/directives/rightPanel/contextualTargetingPanel.js"></script>
+    <script src="csbApp/app/directives/rightPanel/notePanel.js"></script>
+    <script src="csbApp/app/directives/rightPanel/textBoxPanel.js"></script>
+    <script src="csbApp/app/directives/rightPanel/filteredSelect.js"></script>
+    <script src="csbApp/app/directives/rightPanel/decisionNotAvailable.js"></script>
+    <script src="csbApp/app/directives/leftPanel/deleteDecisionDiagramTemplate.js"></script>
+    <script src="csbApp/app/directives/header/goToServingStrategy.js"></script>
+    <script src="csbApp/app/directives/header/goToAudienceStrategy.js"></script>
+    <script src="csbApp/app/directives/header/saveDecisionDiagramAsTemplate.js"></script>
+    <script src="csbApp/app/directives/header/updateDecisionDiagramTemplate.js"></script>
+    <script src="csbApp/app/directives/header/saveDecisionDiagramToCampaign.js"></script>
+    <script src="csbApp/app/directives/header/exportTree.js"></script>
+    <script src="csbApp/app/directives/header/shareUrl.js"></script>
+    <script src="csbApp/app/directives/footer/footerToolbar.js"></script>
+    <script src="csbApp/app/directives/utilities/selectAllText.js"></script>
+
+    <!--TODO: probably deprecated. Will be deleted upon next push-->
+    <!--<script src="csbApp/app/directives/tagValueSelect/tagValueSelect.js"></script>-->
+
+    <script src="csbApp/app/directives/trafficking/funnel/dragAndDropTargetAudience.js"></script>
+    <script src="csbApp/app/directives/trafficking/funnel/audienceSegments.js"></script>
+    <script src="csbApp/app/directives/trafficking/traffickingHeader.js"></script>
+    <script src="csbApp/app/directives/trafficking/traffickingAdCentral.js"></script>
+    <!-- CSB -->
+
+    <!-- CSB -->
+    <!-- constants -->
+    <script src="csbApp/app/constants/mdx2.js"></script>
+    <!-- CSB -->
+
+    <!-- CSB -->
+    <!-- some utils -->
+    <script src="csbApp/app/utils/WatcherUtils.js" type="text/javascript"></script>
+    <script src="csbApp/app/utils/polyfills.js" type="text/javascript"></script>
+    <script src="csbApp/app/utils/indexOfObjectByKey.js" type="text/javascript"></script>
+    <script src="csbApp/app/utils/emptyArray.js"></script>
+    <!-- CSB -->
+    <!-- endbuild -->
+
+    <!--build:js({.tmp,app}) scripts/controllers.js-->
+    <script src="campaignManagementApp/scripts/controllers/campaignsList.js"></script>
+    <script src="campaignManagementApp/scripts/controllers/placement/placementCentral.js"></script>
+    <script src="campaignManagementApp/scripts/controllers/deliveryGroups.js"></script>
+    <script src="campaignManagementApp/scripts/controllers/deliveryGroup.js"></script>
+    <script src="campaignManagementApp/scripts/controllers/deliveryGroupEdit.js"></script>
+    <script src="campaignManagementApp/directives/dg/dg/directiveScripts/dg.js"></script>
+    <script src="campaignManagementApp/scripts/controllers/attachment/attachmentCentral.js"></script>
+    <script src="campaignManagementApp/scripts/controllers/attachment/placementDeliveryGroup.js"></script>
+    <script src="campaignManagementApp/scripts/services/placement/placementRest.js"></script>
+    <script src="campaignManagementApp/scripts/services/placement/placementJsonObjects.js"></script>
+    <script src="campaignManagementApp/directives/dg/settings/directiveScripts/dgSettings.js"></script>
+    <script src="campaignManagementApp/directives/dg/settings/services/dgSettingsService.js"></script>
+    <script src="campaignManagementApp/directives/dg/dgs/services/dgsService.js"></script>
+    <script src="campaignManagementApp/directives/funnel/mv/services/mvFunnelTaService.js"></script>
+    <script src="campaignManagementApp/directives/funnel/mv/services/mvFunnelTaRestService.js"></script>
+    <script src="campaignManagementApp/directives/dg/dgs/directiveScripts/dgs.js"></script>
+    <script src="campaignManagementApp/directives/dg/dgs/services/dgPreviewHelperService.js"></script>
+    <script src="campaignManagementApp/directives/funnel/mv/directiveScripts/mvSortDropDown.js"></script>
+    <script src="campaignManagementApp/directives/funnel/mv/directiveScripts/mvFunnelTa.js"></script>
+    <script src="campaignManagementApp/scripts/services/placementService.js"></script>
+    <script src="campaignManagementApp/scripts/services/tagGenerationService.js"></script>
+    <script src="campaignManagementApp/scripts/services/deliveryGroupService.js"></script>
+    <script src="campaignManagementApp/scripts/controllers/dgTimeBaseSetUp.js"></script>
+    <script src="campaignManagementApp/scripts/controllers/packagesCentral.js"></script>
+    <script src="campaignManagementApp/scripts/controllers/placementPackage.js"></script>
+    <script src="campaignManagementApp/scripts/controllers/placementPackageEdit.js"></script>
+    <script src="adManagementApp/scripts/controllers/adList.js"></script>
+    <script src="adManagementApp/scripts/controllers/adsCentral.js"></script>
+    <script src="adManagementApp/scripts/controllers/creativeCentralMain.js"></script>
+    <script src="adManagementApp/scripts/controllers/assetList.js"></script>
+    <script src="adManagementApp/scripts/directives/clickthroughItem.js"></script>
+    <script src="adManagementApp/scripts/directives/thirdPartyItem.js"></script>
+    <script src="adManagementApp/scripts/controllers/placementAdList.js"></script>
+    <script src="adManagementApp/scripts/controllers/placementAdsAssetsCentral.js"></script>
+    <script src="adManagementApp/scripts/services/adService.js"></script>
+    <script src="adManagementApp/scripts/services/creativeJsonObjects.js"></script>
+    <script src="adManagementApp/scripts/services/ad/validation/adValidator.js"></script>
+    <script src="adManagementApp/scripts/services/ad/validation/adValidationFactory.js"></script>
+    <script src="adManagementApp/scripts/services/ad/validation/html5RichMediaValidator.js"></script>
+    <script src="adManagementApp/scripts/services/ad/validation/standardBannerValidator.js"></script>
+<script src="adManagementApp/scripts/services/ad/validation/singleExpandableBannerValidator.js"></script>
+
+    <script src="adManagementApp/scripts/services/ad/bl/adBlFactory.js"></script>
+    <script src="adManagementApp/scripts/services/ad/bl/baseAdBl.js"></script>
+    <script src="adManagementApp/scripts/services/ad/bl/standardBannerBl.js"></script>
+    <script src="adManagementApp/scripts/services/ad/bl/enhancedStandardBl.js"></script>
+    <script src="adManagementApp/scripts/services/ad/bl/richMediaBannerBl.js"></script>
+    <script src="adManagementApp/scripts/services/ad/bl/expandableBannerBl.js"></script>
+    <script src="adManagementApp/scripts/services/ad/bl/html5RichMediaBl.js"></script>
+<script src="adManagementApp/scripts/services/ad/bl/html5ExpandableBl.js"></script>
+<script src="adManagementApp/scripts/services/ad/bl/singleExpandableBannerBl.js"></script>
+    <script src="adManagementApp/scripts/services/ad/bl/pushdownBannerBl.js"></script>
+    <script src="adManagementApp/scripts/services/ad/bl/inStreamAdBl.js"></script>
+    <script src="adManagementApp/scripts/services/ad/massCreate/massCreateLogic.js"></script>
+    <script src="adManagementApp/scripts/services/ad/massCreate/matchingAlgorithm.js"></script>
+    <script src="adManagementApp/scripts/services/creativeConsts.js"></script>
+    <script src="adManagementApp/scripts/controllers/adEdit.js"></script>
+    <script src="adManagementApp/scripts/controllers/ad.js"></script>
+    <script src="adManagementApp/scripts/controllers/placementAd.js"></script>
+    <script src="adManagementApp/scripts/controllers/assetManageModal.js"></script>
+    <script src="adManagementApp/scripts/controllers/uploadAsset.js"></script>
+    <script src="adManagementApp/scripts/controllers/assetList.js"></script>
+    <script src="adManagementApp/scripts/controllers/assetsList.js"></script>
+    <script src="adManagementApp/scripts/controllers/assetEdit.js"></script>
+    <script src="adManagementApp/scripts/controllers/asset.js"></script>
+    <script src="adManagementApp/scripts/services/assetService.js"></script>
+    <script src="adManagementApp/scripts/controllers/attachAdToCampaign.js"></script>
+    <script src="adManagementApp/scripts/controllers/attachAdToCampaignManager.js"></script>
+    <script src="adManagementApp/scripts/controllers/submitAdsToQA.js"></script>
+    <script src="adManagementApp/scripts/controllers/destinationModal.js"></script>
+    <script src="adManagementApp/scripts/directives/destinationLocationDirectives.js"></script>
+    <script src="adManagementApp/scripts/controllers/closeUploadAssetModal.js"></script>
+    <script src="adManagementApp/scripts/controllers/uploadEBS.js"></script>
+    <script src="adManagementApp/scripts/controllers/adPreviewLayout.js"></script>
+    <script src="adManagementApp/scripts/controllers/adPreview.js"></script>
+    <script src="adManagementApp/scripts/controllers/massCreateAd.js"></script>
+    <script src="adManagementApp/scripts/controllers/uploadFromWorkShop.js"></script>
+    <script src="adManagementApp/scripts/controllers/uploadFromWorkShopModal.js"></script>
+    <script src="adManagementApp/scripts/controllers/generateTestTag.js"></script>
+    <script src="adManagementApp/scripts/controllers/massCreate/alertMessage.js"></script>
+    <script src="adManagementApp/scripts/controllers/assetsLibrary.js"></script>
+    <script src="adManagementApp/scripts/services/assetsLibraryService.js"></script>
+    <script src="internal/configuration/scripts/controllers/configurationEdit.js"></script>
+    <script src="campaignManagementApp/scripts/controllers/campaignList.js"></script>
+    <script src="campaignManagementApp/scripts/services/campaignService.js"></script>
+    <script src="campaignManagementApp/scripts/services/servingAndCostService.js"></script>
+    <script src="campaignManagementApp/scripts/services/deliveryGroup/secConversionService.js"></script>
+    <script src="campaignManagementApp/scripts/services/deliveryGroup/calculateAdGroupRotation.js"></script>
+    <script src="campaignManagementApp/scripts/services/deliveryGroup/dgAdCalculate/dgAdCalculateHelper.js"></script>
+    <script src="campaignManagementApp/scripts/services/deliveryGroup/dgAdCalculate/dgAdCalculate.js"></script>
+    <script src="campaignManagementApp/scripts/services/deliveryGroup/dgAdCalculate/dgAdCalculateDecision.js"></script>
+    <script src="campaignManagementApp/scripts/services/deliveryGroup/dgAdCalculate/mm2DgAdCalculate.js"></script>
+    <script src="campaignManagementApp/scripts/services/deliveryGroup/deliveryGroupJsonObjects.js"></script>
+    <script src="campaignManagementApp/scripts/services/deliveryGroup/dgValidation.js"></script>
+    <script src="campaignManagementApp/scripts/services/deliveryGroup/dgHelper.js"></script>
+    <script src="campaignManagementApp/scripts/constants/dgConstants.js"></script>
+    <script src="media/scripts/constants/placementConstants.js"></script>
+    <script src="campaignManagementApp/scripts/services/deliveryGroup/dgAdArea.js"></script>
+    <script src="campaignManagementApp/scripts/services/placement/placementHelper.js"></script>
+    <script src="campaignManagementApp/scripts/services/placement/placementCentralService.js"></script>
+    <script src="campaignManagementApp/scripts/services/placement/placementValidation.js"></script>
+    <script src="scripts/services/flowToolBarService.js"></script>
+    <script src="scripts/services/validationHelper.js"></script>
+    <script src="campaignManagementApp/scripts/controllers/placement/placementEdit.js"></script>
+    <script src="campaignManagementApp/scripts/controllers/publishPlacements.js"></script>
+
+    <script src="admin/scripts/controllers/admin.js"></script>
+    <script src="admin/scripts/controllers/accountEdit.js"></script>
+    <script src="admin/scripts/controllers/account.js"></script>
+    <script src="admin/scripts/controllers/targetAudienceEdit.js"></script>
+    <script src="admin/scripts/controllers/strategies.js"></script>
+    <script src="admin/scripts/controllers/strategy.js"></script>
+
+    <script src="admin/scripts/directives/mmAnalytics.js"></script>
+    <script src="admin/scripts/directives/mmCampaignSettings.js"></script>
+    <script src="admin/scripts/directives/mmContacts.js"></script>
+    <script src="admin/scripts/directives/mmCreativeAgencyGrid.js"></script>
+    <script src="admin/scripts/services/adminUtils.js"></script>
+    <script src="admin/scripts/services/site/siteService.js"></script>
+    <script src="admin/scripts/services/contacts/contactsService.js"></script>
+    <script src="admin/scripts/controllers/accounts.js"></script>
+    <script src="admin/scripts/controllers/site.js"></script>
+    <script src="admin/scripts/controllers/sites.js"></script>
+    <script src="admin/scripts/controllers/user.js"></script>
+    <script src="admin/scripts/controllers/users.js"></script>
+    <script src="admin/scripts/controllers/siteEdit.js"></script>
+    <script src="admin/scripts/controllers/userEdit.js"></script>
+    <script src="admin/scripts/controllers/siteSiteSection.js"></script>
+    <script src="admin/scripts/controllers/sitesections.js"></script>
+    <script src="admin/scripts/controllers/sitesection.js"></script>
+    <script src="admin/scripts/controllers/sitesectionEdit.js"></script>
+    <script src="admin/scripts/controllers/creativeAccountSelector.js"></script>
+
+    <script src="campaignManagementApp/scripts/controllers/placement.js"></script>
+    <script src="campaignManagementApp/scripts/controllers/tagGenerationSettings.js"></script>
+    <script src="campaignManagementApp/scripts/controllers/tagGenerationIONotSigned.js"></script>
+    <script src="campaignManagementApp/scripts/controllers/newBannerSize.js"></script>
+    <script src="campaignManagementApp/directives/dg/dgs/controllers/existingDgCtrl.js"></script>
+    <script src="campaignManagementApp/directives/dg/dgs/controllers/removeDgsDialog.js"></script>
+    <script src="campaignManagementApp/directives/dg/dgs/services/existingDgService.js"></script>
+    <script src="campaignManagementApp/scripts/controllers/smartAttachDgsToAds.js"></script>
+    <script src="campaignManagementApp/scripts/controllers/scheduledSwap.js"></script>
+    <script src="campaignManagementApp/scripts/directives/dg/timeBaseRotation.js"></script>
+    <script src="campaignManagementApp/directives/dg/tree/directiveScripts/dgTree.js"></script>
+    <script src="campaignManagementApp/directives/dg/tree/services/dgTreeHelper.js"></script>
+    <script src="campaignManagementApp/scripts/services/deliveryGroup/smartAttach/smartAttach.js"></script>
+    <script src="campaignManagementApp/scripts/services/attach/adsToPlacements/adsToPlacements.js"></script>
+    <script src="campaignManagementApp/scripts/controllers/adsToPlacements.js"></script>
+    <script src="campaignManagementApp/scripts/services/deliveryGroup/findReplaceAdsInDGsService.js"></script>
+    <script src="campaignManagementApp/scripts/controllers/findReplaceAdsInDGCtrl.js"></script>
+    <script src="campaignManagementApp/scripts/services/placement/findReplaceAdsInPlacement.js"></script>
+    <script src="campaignManagementApp/scripts/controllers/findReplaceAdsInPlacement.js"></script>
+    <script src="media/scripts/controllers/media.js"></script>
+    <script src="media/scripts/controllers/placement/placementEditCtrl.js"></script>
+    <script src="media/scripts/controllers/advertiser.js"></script>
+    <script src="media/scripts/controllers/advertiserEdit.js"></script>
+    <script src="media/scripts/controllers/advertisers.js"></script>
+    <script src="media/scripts/controllers/brand.js"></script>
+    <script src="media/scripts/controllers/brandEdit.js"></script>
+    <script src="media/scripts/controllers/brands.js"></script>
+    <script src="media/scripts/controllers/campaign.js"></script>
+    <script src="media/scripts/controllers/campaignEdit.js"></script>
+    <script src="media/scripts/controllers/campaigns.js"></script>
+    <script src="media/scripts/controllers/placementSpreadsheet.js"></script>
+    <script src="media/scripts/controllers/clickThroughsAndEvents.js"></script>
+    <script src="media/scripts/services/MediaValidationService.js"></script>
+    <script src="media/scripts/services/SpreadsheetService.js"></script>
+    <script src="media/scripts/services/placement/placementFactoryService.js"></script>
+    <script src="media/scripts/services/placement/placementHelperService.js"></script>
+    <script src="media/scripts/services/placement/placementRestService.js"></script>
+    <script src="media/scripts/services/placement/placementValidationService.js"></script>
+    <script src="media/scripts/services/placement/placementTypeHelperService.js"></script>
+    <script src="media/scripts/services/placement/placementSaveService.js"></script>
+
+    <script src="media/scripts/services/placement/placementTrackingService.js"></script>
+
+    <script src="billingApp/insertionOrder/scripts/controllers/insertionOrder.js"></script>
+    <script src="billingApp/insertionOrder/scripts/controllers/insertionOrderEdit.js"></script>
+    <script src="billingApp/insertionOrder/scripts/controllers/ioCommentModal.js"></script>
+
+
+    <script src="internalApp/scripts/featureFlagsManagement.js"></script>
+    <script src="internalApp/scripts/addFeature.js"></script>
+    <script src="internalApp/scripts/editFeatureRules.js"></script>
+
+    <script src="csbPreviewApp/scripts/controllers/csbAd.js"></script>
+    <script src="csbPreviewApp/scripts/controllers/csbAdPreview.js"></script>
+    <script src="csbPreviewApp/scripts/controllers/shareModal.js"></script>
+    <script src="csbPreviewApp/scripts/directives/manageIFrameContent.js"></script>
+    <script src="csbPreviewApp/scripts/filters/startFrom.js"></script>
+    <script src="csbPreviewApp/scripts/filters/filterAdsOnLiveView.js"></script>
+    <script src="csbPreviewApp/scripts/filters/customSearch.js"></script>
+    <script src="csbPreviewApp/scripts/directives/closeOnEscape.js"></script>
+    <script src="csbPreviewApp/scripts/directives/keyShortcuts.js"></script>
+    <script src="csbPreviewApp/scripts/directives/loadOnScroll.js"></script>
+    <script src="adPreviewApp/scripts/controllers/adPreview.js"></script>
+    <script src="adPreviewApp/scripts/controllers/interactionMonitor.js"></script>
+    <!--<script src="adPreviewApp/scripts/directives/autoPositionAd.js"></script>-->
+    <script src="adPreviewApp/scripts/services/monitorService.js"></script>
+    <script src="adPreviewApp/scripts/services/adPreviewService.js"></script>
+    <script src="adPreviewApp/scripts/controllers/singleAssetPreview.js"></script>
+
+    <!-- CONFIGURATION -->
+    <script src="configurationManagementApp/scripts/controllers/configuration.js"></script>
+    <script src="configurationManagementApp/scripts/controllers/inStreamTemplates/inStreamTemplates.js"></script>
+    <script src="configurationManagementApp/scripts/controllers/inStreamTemplates/inStreamTemplate.js"></script>
+    <script src="configurationManagementApp/scripts/controllers/inStreamTemplates/inStreamTemplateEdit.js"></script>
+    <script src="configurationManagementApp/scripts/services/inStreamTemplateBl.js"></script>
+    <script src="configurationManagementApp/scripts/directives/fileRead.js"></script>
+    <script src="configurationManagementApp/scripts/services/inStreamTemplatesValidator.js"></script>
+    <script src="configurationManagementApp/scripts/services/inStreamTemplateService.js"></script>
+    <script src="configurationManagementApp/scripts/controllers/inStreamTemplates/inStreamRule.js"></script>
+    <script src="configurationManagementApp/scripts/services/inStreamTemplateJson.js"></script>
+
+    <script src="configurationManagementApp/permission/scripts/controllers/permissions.js"></script>
+    <script src="configurationManagementApp/permission/scripts/controllers/permissionEdit.js"></script>
+    <script src="configurationManagementApp/permission/scripts/controllers/userPermissions.js"></script>
+    <script src="configurationManagementApp/permission/scripts/controllers/permissionSettingsEdit.js"></script>
+    <script src="configurationManagementApp/permission/scripts/controllers/permission.js"></script>
+    <script src="configurationManagementApp/permission/scripts/controllers/permissionSets.js"></script>
+    <script src="configurationManagementApp/permission/scripts/controllers/permissionSetEdit.js"></script>
+    <script src="configurationManagementApp/permission/scripts/controllers/permissionSet.js"></script>
+    <!-- CONFIGURATION -->
+
+    <!-- CSB -->
+    <!-- application controllers -->
+    <script src="csbApp/app/controllers/navController.js"></script>
+    <script src="csbApp/app/controllers/canvasController.js"></script>
+    <script src="csbApp/app/controllers/treeviewController.js"></script>
+    <script src="csbApp/app/services/decisionTree/decisionTreeService.js"></script>
+    <!-- CSB -->
+
+    <!-- CSB -->
+    <!-- routes -->
+    <script src="csbApp/app/routes/decision-diagram/decisionDiagram.js"></script>
+    <script src="csbApp/app/routes/trafficking/trafficking.js"></script>
+    <script src="csbApp/app/routes/decision-diagram-share/decisionDiagramShare.js"></script>
+    <!-- CSB -->
+    <script src="billingApp/insertionOrder/scripts/directives/rateProducts.js"></script>
+    <script src="billingApp/insertionOrder/scripts/directives/tierProducts.js"></script>
+    <!-- application directives -->
+
+    <!-- VERSATAG: CONTROLLERS -->
+    <script src="versaTag/app/controllers/vtAdvertisersCtrl.js"></script>
+    <script src="versaTag/app/controllers/vtVersaTagsCtrl.js"></script>
+    <script src="versaTag/app/controllers/vtVersaTagEdit.js"></script>
+    <script src="versaTag/app/controllers/versaTagFull.js"></script>
+    <script src="versaTag/app/controllers/versaTagSpreadsheetCtrl.js"></script>
+    <script src="versaTag/app/controllers/vtAdvertiserFull.js"></script>
+    <script src="versaTag/app/controllers/vtAdvertiserTagEdit.js"></script>
+    <script src="versaTag/app/controllers/main.js"></script>
+    <script src="versaTag/app/controllers/vtFiringConditions.js"></script>
+    <script src="versaTag/app/controllers/vtFiringConditionsFull.js"></script>
+    <script src="versaTag/app/controllers/vtFiringConditionsEdit.js"></script>
+    <script src="versaTag/app/controllers/landingUrlsCtrl.js"></script>
+    <script src="versaTag/app/controllers/fireTagsCtrl.js"></script>
+    <script src="versaTag/app/controllers/thirdPartyCtrl.js"></script>
+    <script src="versaTag/app/controllers/thirdPartyTagEditCtrl.js"></script>
+    <script src="versaTag/app/controllers/thirdPartyTagFullCtrl.js"></script>
+
+    <!-- VERSATAG: SERVICES -->
+    <script src="versaTag/app/services/conversionTagService.js"></script>
+    <script src="versaTag/app/services/viewStateFactory.js"></script>
+    <script src="versaTag/app/services/thirdPartyTagService.js"></script>
+    <script src="versaTag/app/services/firingConditionsService.js"></script>
+    <script src="versaTag/app/services/VersatagService.js"></script>
+    <script src="versaTag/app/services/tagGroupService.js"></script>
+    <script src="versaTag/app/services/advertiserService.js"></script>
+
+<!-- VERSATAG: DIRECTIVES -->
+    <script src="versaTag/app/directives/scripts/mmSpreadsheet.js"></script>
+    <script src="versaTag/app/directives/scripts/mmUrlList.js"></script>
+    <script src="versaTag/app/directives/scripts/groupsGrid.js"></script>
+    <script src="versaTag/app/directives/scripts/mmGearMenu.js"></script>
+
+<!-- VERSTAG: CONSTANTS -->
+<script src="versaTag/app/constants/versaTag.js"></script>
+
+<!-- endbuild -->
+
+
+    <!--build:js({.tmp,app}) scripts/old.js-->
+    <!--<script src="tempApp/scripts/controllers/cloudAccount.js"></script>-->
+    <!--<script src="tempApp/scripts/controllers/createCloudAccount.js"></script>-->
+    <!--<script src="tempApp/scripts/controllers/cloudAccountsType.js"></script>-->
+    <!--<script src="tempApp/scripts/controllers/order.js"></script>-->
+    <!--<script src="tempApp/scripts/controllers/campaign.js"></script>-->
+    <!--<script src="tempApp/scripts/controllers/placementsList.js"></script>-->
+    <!--<script src="tempApp/scripts/controllers/editPlacement.js"></script>-->
+    <!--<script src="tempApp/scripts/controllers/placements.js"></script>-->
+    <!--<script src="tempApp/scripts/controllers/groupedPlacements.js"></script>-->
+    <!--<script src="tempApp/scripts/services/campaignsData.js"></script>-->
+    <!--<script src="tempApp/scripts/services/accountTypeData.js"></script>-->
+    <!--<script src="tempApp/scripts/services/placementService.js"></script>-->
+    <!--<script src="tempApp/scripts/model/placementModel.js"></script>-->
+    <script src="internal/demo/scripts/controllers/mmEssential.js"></script>
+    <script src="internal/demo/scripts/controllers/mmTester.js"></script>
+    <script src="internal/demo/scripts/controllers/main.js"></script>
+    <script src="internal/demo/scripts/controllers/simpleNgGrid.js"></script>
+    <script src="internal/demo/scripts/controllers/advanceNgGrid.js"></script>
+    <script src="internal/demo/scripts/controllers/sampleGridModal.js"></script>
+
+    <!-- endbuild -->
+
+</body>

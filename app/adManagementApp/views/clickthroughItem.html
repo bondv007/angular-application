@@ -1,0 +1,52 @@
+<div class="row" style="padding:5px">
+  <div onclick="window.event.stopPropagation();">
+    <div class="col-md-1" style="float: left;width: 2%" ng-click="showCTUrlData = !showCTUrlData" ng-show="showCTUrlData"><i ng-class="{'glyphicon glyphicon-chevron-down' : showCTUrlData}"></i></div>
+		<div class="col-md-1" style="float: left;width: 2%" ng-click="showCTUrlData = !showCTUrlData" ng-show="!showCTUrlData"><i ng-class="{'glyphicon glyphicon-chevron-right' : !showCTUrlData}"></i></div>
+    <div class="col-md-3" style="float: left;width: 14%">
+			<span>{{ getClickthroughUrlType(urlType).name }}</span>
+
+    </div>
+    <div class="col-md-4" style="float: left;width: 50%">
+      <mm-text mm-model="ngModel.url"
+							 mm-layout-type="medium"
+         			 mm-placeholder="Enter URL"
+				 			 mm-is-edit-mode="ad.id" ></mm-text>
+    </div>
+    <div class="col-md-2" style="float: left;width: 32%"><a href="{{ ngModel.url | parseUrl }}" target="_blank">Preview</a></div>
+  </div>
+  <div style="clear: both"></div>
+  <div  ng-show="showCTUrlData" style="padding:10px" onclick="window.event.stopPropagation();">
+    <div  style="background-color: #F9F9F9;padding: 10px 10px 10px 40px">
+      <mm-row>
+          <mm-drop-down mm-model="ngModel.targetWindowType" mm-data-model="lookups.targetWindowTypes"
+													mm-layout-type="medium"
+													mm-caption="Target Window" mm-is-edit-mode="ad.id"></mm-drop-down>
+			</mm-row>
+			<mm-row>
+			<div class="col-md-2">
+		      <mm-row>
+						<span>New Window Options</span>
+					</mm-row>
+			</div>
+			<div class="col-md-8">
+
+				<mm-row>
+					<mm-check-box  mm-model="ngModel.showAddressBar"
+												mm-caption="Show Address Bar"
+												></mm-check-box>;
+				</mm-row>
+				<mm-row>
+          <mm-check-box mm-model="ngModel.showMenuBar"
+												mm-caption="Show Menu Bar"
+												></mm-check-box>;
+				</mm-row>
+				<!--mm-row>
+          <mm-check-box mm-control-layout-class="col-lg-1 col-md-1" mm-model="ngModel.closeAllAdParts" mm-caption="Close All Ad Parts"/>;
+				</mm-row-->
+
+    </div>
+			</mm-row>
+		</div>
+
+  </div>
+</div>

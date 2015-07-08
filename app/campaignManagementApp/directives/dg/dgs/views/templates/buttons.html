@@ -1,0 +1,18 @@
+<div class="dgsButtonsContainer">
+  <div class="dgTraffickingWrapButtons">
+    <mm-button-drop-down id="dgs_new_existing_delivery_group_drop_down_button" ng-if="!isDefaultTaSelected" ng-class="{'newDeliveryGroupButton':!isMM2,'newDeliveryGroupButtonMM2':isMM2}" mm-style="{'opacity':1}"
+                         mm-model="dgDropDownButton"></mm-button-drop-down>
+    <button id="dgs_new_delivery_group_button" ng-if="isDefaultTaSelected" type="button" class="treeButton btn btn-xs" ng-click="callCreateNewDg()"
+            ng-bind="'dg_trafficking_New_Dg' | T"></button>
+    <button id="dgs_preview_button" type="button" ng-disabled="previewButton.disable" class="treeButton btn btn-xs" ng-click="preview()"
+            ng-bind="'dg_tree_buttons_preview' | T"></button>
+    <button id="dgs_new_sub_group_button" type="button" ng-disabled="newSubgroupButton.disable" class="treeButton btn btn-xs"
+            ng-click="createSubGroup()" ng-bind="'dg_tree_buttons_new_subgroup' | T"></button>
+    <button id="dgs_enable_disable_button" type="button" class="treeButton btn btn-xs disableEnableButtonStyle" ng-click="enableDisableAds()"
+            ng-disabled="buttonState.text == 'Disable/Enable' || disableEnableButton.disable"
+            ng-bind="buttonState.text | T">
+    </button>
+    <button id="dgs_remove_button" type="button" ng-disabled="removeButton.disable" class="treeButton btn btn-xs" ng-click="remove()"
+            ng-bind="'dg_tree_buttons_remove' | T"></button>
+  </div>
+</div>

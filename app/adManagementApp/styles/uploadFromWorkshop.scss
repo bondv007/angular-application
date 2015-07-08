@@ -1,0 +1,71 @@
+$subHeaderHeight: 34px;
+$cSelected :#bac9e3;
+$cHeader: #e4e4e4;
+
+@mixin ad-format-logo($url,$hUrl){
+  width: 150px;
+  height: 100px;
+  margin-bottom: 7px;
+  background-image: image-url($url);
+  display: inline-block;
+
+  &:hover{
+    cursor: pointer;
+    background-image: image-url($hUrl);
+  }
+}
+.workShopThumbnail{
+  margin: 10px;
+}
+.buildAdsGrid{
+  padding: 15px;
+  display: block;
+  border: $cHeader;
+
+  td{
+    padding: 5px;
+  }
+
+  .name-link{
+    display: inherit;
+    max-width: 240px;
+    padding-top: 4px;
+    padding-right: 5px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+  }
+
+  .header {
+    background-color: $cHeader;
+    text-align: left;
+  }
+
+  .previewIcon{
+    float: right;
+    margin-right: 20px;
+    margin-top: 5px;
+  }
+
+  .assignIcon{
+    float: right;
+    margin-right: 20px;
+    margin-top: 5px;
+  }
+
+  .cellAlign{
+    //padding-top: 25px;
+  }
+
+  .bannerCell{
+    background-color: $cGrey;
+  }
+}
+.uploadAlert{
+  padding-left: 20px;
+  margin-top: 120px;
+  .advancedfeatures{
+    list-style-type: circle;
+  }
+}
+
+

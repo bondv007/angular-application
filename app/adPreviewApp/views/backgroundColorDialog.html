@@ -1,0 +1,98 @@
+<div class="modal-dialog set-background">
+    <div class="modal-content">
+        <div class="mmmodal-header">
+            <div class="close">
+                <div ng-click="adPreviewCommonModel.showBackgroundColorDialog=false" class="close-button"></div>
+            </div>
+            <div class="mmmodal-title">Set Background</div>
+        </div>
+        <!--<div class="mmmodal-header">-->
+        <!--<button type="button" class="close-button" ng-click="showBackgroundColorDialog=false">-->
+        <!--&times;-->
+        <!--</button>-->
+        <!--<h4 class="mmmodal-title"><i class="fa fa-barcode"></i> Set Background</h4>-->
+        <!--</div>-->
+        <div class="modal-body">
+
+            <div class="top-opt">
+
+                <div class="my-background">
+                    <div class="bg-opt-btns">
+                        <!--<button ng-click="clearUrlField();adPreviewCommonModel.applyBackground();adPreviewCommonModel.showBackgroundColorDialog=false"
+                                class="btn">
+                            <i class="fa fa-upload"></i> &nbsp; &nbsp; Upload Background
+                        </button>-->
+                        <button ng-if="!isMDX2" ng-click="showUploadModal();" class="btn">
+                            <i class="fa fa-upload"></i> &nbsp; &nbsp; Upload Background
+                        </button>
+
+                        <div class="btn-group">
+                            <button pick-color type="button"
+                                    ng-model="adPreviewCommonModel.selectedBackgroundColor" class="btn"
+                                    data-toggle="dropdown">
+                                Add Custom Color
+                                <span class="caret"></span>
+
+                            </button>
+                            <!--<spectrum-colorpicker-->
+                            <!--ng-model="adPreviewCommonModel.selectedBackgroundColor">-->
+                            <!--</spectrum-colorpicker>-->
+                            <ul class="dropdown-menu">
+                                <!-- dropdown menu links -->
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="search">
+                        <input click-elem-id="bckgrndSearch" class="form-control" ng-model="adPreviewCommonModel.searchColor" type="text" placeholder="Search background...">
+                        <i class="background preview-icon-search flipped-v"></i>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="choose-color">
+                <div ng-class="{'active':color.isSelected}" class="color1"
+                     ng-repeat="color in colors | filter : {title: adPreviewCommonModel.searchColor} track by $index">
+                    <div ng-click="selectBg(color);"
+                         ng-style="{'background':color.color, 'background-size': '75px 75px'}"
+                         ng-dblclick="selectBg(color);"
+                         class="box"> &nbsp;
+                      <a ng-if="color.isEditable" ng-click="removeColor(color)" class="cross"><i class="preview-icon-close1"></i></a>
+                    </div>
+                    <label ng-if="color.isImage"><span ng-show="!color.isEditMode">{{color.title}} </span>
+                      <a ng-show="color.isEditable && !color.isEditMode" ng-click="color.isEditMode=!color.isEditMode" class="edit-btn">
+                        <i class="preview-icon-edit largeicon"></i>
+                      </a>
+                      <span ng-show="color.isEditable && color.isEditMode">
+                      <input type="text" ng-model="color.title" class="text-box" value="color.title"/>
+                      </span>
+                      <a ng-show="color.isEditable && color.isEditMode" ng-click="color.isEditMode=!color.isEditMode" class="save-btn">
+                        <i class="fa fa-check"></i>
+                      </a>
+                    </label>
+                    <label ng-if="!color.isImage"><span ng-show="!color.isEditMode">{{color.title}}</span>
+                      <a ng-show="color.isEditable && !color.isEditMode" ng-click="color.isEditMode=!color.isEditMode" class="edit-btn">
+                        <i class="preview-icon-edit largeicon"></i></a>
+                        <span ng-show="color.isEditable && color.isEditMode">
+                        <input type="text" ng-model="color.title" class="text-box" value="color.title"/>
+                        </span>
+                      <a ng-show="color.isEditable && color.isEditMode" ng-click="color.isEditMode=!color.isEditMode" class="save-btn">
+                        <i class="fa fa-check"></i>
+                      </a>
+                    </label>
+                </div>
+            </div>
+
+        </div>
+        <div class="modal-footer">
+            <button ng-click="applyColorBackground()"
+                    type="button" class="btn btn-default btn-primary">
+                APPLY BACKGROUND
+            </button>
+            <button type="button" class="btn" ng-click="adPreviewCommonModel.showBackgroundColorDialog=false">
+                CANCEL
+            </button>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,13 @@
+<div class="{{mmControlClass}}" ng-show="visible">
+	<div ng-model="model" class="mm_checkbox" ng-class="{'disableCB':disable,'isMouseHoverCB':mouseIsOverCB}" mm-tool-tip="{{mmTextTooltip | T}}"
+			 ng-click="onClick()">
+		<span ng-class="{'selectedCB':trueValue === mmModel, 'disableSelectedCB':trueValue === mmModel && disable}"></span>
+	</div>
+  <span ng-mouseover="onMouseOver()"
+				ng-mouseleave="onMouseOut()"
+				ng-class="{'disableCheckBoxLabel':disable}"
+				class="checkBoxLabel"
+				ng-click="onClick()"
+				width="{{labelWidth}}"
+				class="mm-control-label {{mmLabelClass}}">{{mmCaption}}</span>
+</div>

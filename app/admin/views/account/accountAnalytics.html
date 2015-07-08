@@ -1,0 +1,87 @@
+<mm-toggle-container mm-caption="Analytics">
+    <tabset justified="false">
+        <tab heading="General" active="tabsHandler.general.active">
+            <mm-row>
+                <mm-check-box
+                        mm-model="analytics.overDelivery"
+                        mm-description="Ignore for cost calculations"
+                        mm-caption="Over delivery"
+                        mm-layout-type="large"
+                        mm-label-width="{{labelWidth}}"></mm-check-box>
+            </mm-row>
+        </tab>
+        <tab heading="Viewability" active="tabsHandler.viewability.active">
+            <mm-row>
+                <mm-drop-down mm-caption="Viewability data collection mode"
+                              mm-model="analytics.ViewabilityDataCollectionModeDefault"
+                              mm-data-model="viewabilityDataCollectionMode"
+                              mm-label-width="{{labelWidth}}"
+                              mm-layout-type="custom"
+                              mm-custom-control-width="{{dropDownWidth}}"
+                              mm-select-change-func="onViewabilityDataCollectionModeChange()"></mm-drop-down>
+            </mm-row>
+          <span ng-if="displayViewabilityProperties">
+          <mm-row>
+            <mm-text mm-caption="Display Minimum Surface Threshold"
+                     mm-model="analytics.DisplayMinimumSurfaceThreshold"
+                     mm-input-type="number"
+                     mm-layout-type="custom"
+                     mm-custom-control-width="{{textBoxWidth}}"
+                     mm-label-width="{{labelWidth}}"
+                     mm-error="validation.DisplayMinimumSurfaceThreshold"
+                     mm-change="onDisplayMinimumSurfaceThresholdChange()"></mm-text>
+            <mm-label mm-caption="%"></mm-label>
+          </mm-row>
+          <mm-row>
+            <mm-text mm-caption="Display Minimum Duration Threshold"
+                     mm-model="analytics.DisplayMinimumDurationThreshold"
+                     mm-input-type="number"
+                     mm-layout-type="custom"
+                     mm-custom-control-width="{{textBoxWidth}}"
+                     mm-label-width="{{labelWidth}}"
+                     mm-error="validation.DisplayMinimumDurationThreshold"></mm-text>
+            <mm-label mm-caption="Seconds"></mm-label>
+          </mm-row>
+          <mm-row>
+            <mm-text mm-caption="Display Quality Rate"
+                     mm-model="analytics.DisplayQualityRate"
+                     mm-input-type="number"
+                     mm-layout-type="custom"
+                     mm-custom-control-width="{{textBoxWidth}}"
+                     mm-label-width="{{labelWidth}}"
+                     mm-error="validation.DisplayQualityRate"></mm-text>
+            <mm-label mm-caption="%"></mm-label>
+          </mm-row>
+          </span>
+          <mm-row>
+            <mm-check-box mm-caption="Video Viewability"
+                          mm-model="analytics.videoViewAbility"
+                          mm-description="Collect Video Viewability"
+                          mm-layout-type="large"
+                          mm-label-width="{{labelWidth}}"></mm-check-box>
+          </mm-row>
+          <span ng-if="analytics.videoViewAbility">
+          <mm-row>
+            <mm-text mm-caption="Video Minimum Surface Threshold"
+                     mm-model="analytics.VideoMinimumSurfaceThreshold"
+                     mm-input-type="number"
+                     mm-layout-type="custom"
+                     mm-custom-control-width="{{textBoxWidth}}"
+                     mm-label-width="{{labelWidth}}"
+                     mm-error="validation.VideoMinimumSurfaceThreshold"></mm-text>
+            <mm-label mm-caption="%"></mm-label>
+          </mm-row>
+          <mm-row>
+            <mm-text mm-caption="Video Minimum Duration Threshold"
+                     mm-model="analytics.VideoMinimumDurationThreshold"
+                     mm-input-type="number"
+                     mm-layout-type="custom"
+                     mm-custom-control-width="{{textBoxWidth}}"
+                     mm-label-width="{{labelWidth}}"
+                     mm-error="validation.VideoMinimumDurationThreshold"></mm-text>
+            <mm-label mm-caption="Seconds"></mm-label>
+          </mm-row>
+          </span>
+        </tab>
+    </tabset>
+</mm-toggle-container>

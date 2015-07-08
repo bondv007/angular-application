@@ -1,0 +1,96 @@
+mm-link {
+
+  .mm-text-box {
+    border: 1px solid $cSecondary;
+  }
+}
+
+.mm-entity-link{
+  @extend .mm-nowrap;
+  display: inline-block;
+  position: relative;
+}
+
+.mm-entity-link-padding{
+  top: 2px;
+}
+
+.mm-link-label {
+  @extend .mm-nowrap;
+  display: block;
+  height: 30px;
+  margin-left: -1px;
+  padding-top: 2px;
+  padding-bottom: 3px;
+  border: 0;
+  width: 100%;
+  min-width: 50px;
+  border: 1px solid transparent;
+}
+
+.linkColor {
+  @include tArialText;
+  color: #0068ff !important;
+  overflow: hidden;
+  text-overflow: ellipsis;;
+  color: $cMain;
+  max-width: 195px;
+  padding-left: 4px;
+  &:hover {
+    color: $cMain;
+  }
+
+  &:focus {
+    outline: 0 !important;
+    outline-offset: 0px !important;
+  }
+}
+
+.mm-link-label .si-edit-normal {
+  position: absolute !important;
+  width: 24px !important;
+  height: 24px !important;
+  background: image-url('si_edit_normal.png') no-repeat 16px 16px;
+  background-position: left;
+  margin-left: 10px;
+  display: none;
+
+  &:hover {
+    cursor: pointer;
+    background: image-url('si_edit_hover.png') no-repeat 16px 16px;
+    background-position: left;
+    margin-left: 10px;
+    display: inline-block;
+  }
+}
+
+.mm-link-label:hover .si-edit-normal {
+  display: inline-block;
+}
+
+.mm-link-additional-text {
+  @include tArialText;
+  display: inline-block;
+  overflow: hidden;
+  opacity: 0.75;
+  margin-left: 10px;
+  position: relative;
+  top: 1px;
+}
+
+.mm-link-additional-text:hover {
+  cursor: default;
+  text-decoration: none;
+  color: $cSecondary;
+}
+
+
+
+
+
+
+
+
+
+
+

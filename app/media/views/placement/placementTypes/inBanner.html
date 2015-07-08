@@ -1,0 +1,16 @@
+<mm-row>
+  <mm-drop-down
+    mm-caption="dg_Dimensions"
+    mm-data-model="dimensions"
+    mm-model="placementData.dimensionsId"
+    mm-is-required="true"
+    mm-label-width="{{placementViewSettings.labelWidth}}"
+    mm-layout-type="medium"
+    mm-select-change-func="onBannerSizeSelected()"
+    mm-error="placementEdit.errors.dimensions.text"
+    show-search-box
+    mm-tab-index="60"
+    mm-show-add-new="true"
+    new-entity-type="bannerSize"
+    entity-obj="entityObj"></mm-drop-down>
+</mm-row>

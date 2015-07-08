@@ -1,0 +1,64 @@
+.mainAdsToPlacement{
+
+  .warning {
+    @include tArialText;
+    opacity: 0.75;
+    background-color: #fbf7e3;
+    line-height: 40px;
+    position: absolute;
+    border: solid 1px rgba(192, 152, 83, .9);
+    top:0;
+    left: 0;
+    right: 0;
+    vertical-align: middle;
+    .warningIcon{
+      background-image: image-url('si_warning_page.png');
+      position: relative;
+      left: 14px;
+      margin-right: 15px;
+      top: 5px;
+      display: inline-block;
+      width: 20px;
+      height: 20px;
+    }
+  }
+
+  .subTitle {
+    position: relative;
+    right: 5px;
+    top:18px;
+  }
+
+  .attachAdsToPlacementsTable{
+    border: $cHeader;
+
+    .header {
+      background-color: $cHeader;
+      text-align: center;
+    }
+
+    .column{
+      padding: 0 5px;
+    }
+
+    .centerMiddleText {
+      vertical-align: middle;
+      text-align: center;
+    }
+
+    .gap {
+      margin: 5px 0 20px 0;
+    }
+
+    .alignCheckBoxParent{
+      padding-left: 22px;
+    }
+
+    .cellEllipsis{
+      white-space: nowrap;
+      max-width: 200px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+  }
+}

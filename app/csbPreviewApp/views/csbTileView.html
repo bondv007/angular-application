@@ -1,0 +1,187 @@
+
+<div class="initialView">
+  <header class="top-nav-bar" ng-show="!showSpinner">
+    <div class="container-fluid">
+      <div class="col-sm-12">
+        <ul class="topBar-action pull-left">
+          <li>
+            <h2 class="pull-left">{{selectedCheckBoxCount()>0 ? count+' ads selected' : 'Preview :
+              ('+filtered.filteredAds.length+'
+              ads)'}}</h2>
+
+          </li>
+          <li>
+            <label class="label-control filterSrchLabel">Search</label>
+
+            <div class="search-bar">
+              <div class="filter-select" ng-click="searchActionOnTileView=!searchActionOnTileView">
+                {{selectedSearchActionOnTileView}} <i class="fa fa-caret-down"></i>
+
+                <div class="filterSelectDown" ng-show="searchActionOnTileView">
+                  <ul>
+                    <li ng-repeat="action in searchActions"><a
+                        ng-class="{'active':action.isSelected}" ng-click="setSearchActionOnTileView(action)">{{action.displayName}}</a>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+              <input ng-model="searchCriteria.search" type="text" class="form-control col-xs-10"/>
+              <button class="search-btn "><i class="fa fa-search"></i></button>
+            </div>
+          </li>
+          <li>
+            <ul class="nav nav-tabs pull-left add-btns">
+              <li><a ng-click="showShareDialog()"><i class="cbs_shareIcon"></i>
+                {{selectedCheckBoxCount()>0 ? 'Share ('+count+')' : 'Share All'}}</a></li>
+              <li class=""><a style="cursor: pointer;" ng-click="redirectToLiveView()"><i class="cbs_playIcon"></i>
+                {{count>0?'Preview ('+count+')' : 'Preview All'}} </a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+        <ul class="nav nav-tabs pull-right">
+          <li class="active"><a><i
+              class="fa fa-th-large"></i></a></li>
+          <li><a ng-click="changeViews(true)"><i
+              class="fa fa-list"></i> </a></li>
+        </ul>
+
+        <div class="shareAdd-popup shareOne" style="z-index:9999;" ng-if="showShareAdDialogOnTileView">
+          <a ng-click="toggleShareAdDialogOnTileView()" class="pull-right close"><i
+              class="fa fa-times-circle"></i></a>
+
+          <h3>Share Ad's Assets </h3>
+          <ul class="share-form">
+            <li>
+              <label>Link to share</label>
+
+              <div class="input-wrapper">
+                <input type="text" ng-model="previewLink"/>
+                <button class="button-class">Copy url</button>
+              </div>
+            </li>
+            <li class="access-pwd">
+              <label>Preview Access Password (optional)</label>
+
+              <div class="input-wrapper">
+                <input type="text" ng-model="shareinfo.password"/>
+              </div>
+            </li>
+            <li class="strength-row">
+              <label>Strength</label>
+              <ul class="strengths">
+                <li class="active"></li>
+                <li class="active"></li>
+                <li class="active"></li>
+                <li></li>
+              </ul>
+            </li>
+          </ul>
+          <div class="clear"></div>
+          <div class="text-right popup-footer">
+            <button ng-click="toggleShareAdDialogOnTileView()" class="button-class gray">Cancel</button>
+            <button ng-click="sendEmail();" class="button-class yellow">Generate url to share
+            </button>
+          </div>
+        </div>
+      </div>
+      <!--<mm-alert></mm-alert>-->
+    </div>
+  </header>
+
+  <div ng-style="{'height':containerHeight}" class="tileContainer">
+    <section class="titles-container dvTile" ng-class="fromLiveView ? 'pageSlide' :'pageFade'">
+
+<div ng-if="searchCriteria.search!=''" class="filtering-section">
+	<div class="inner-section">
+		<div class="left-heading"> FILTERING RESULTS</div>
+		<div class="right-tag-section">
+			<a class="tags">
+				<div class="left-section">
+					<span class="tagText">{{searchCriteria.search}}</span>
+				</div>
+				<span><i ng-click="clearSearch()" class="fa fa-times"></i> </span><!-- end ngIf: !isMDX2 -->
+			</a>
+		</div>
+	</div>
+</div>
+<div class="container-fluid">
+	<div class="row">
+		<!--<div class="col-sm-11 col-sm-offset-1">-->
+		<!--&lt;!&ndash;<label class="selectAll-titles"><input type="checkbox" ng-click="toggleAllCheckBoxesOnGridView()" ng-model="isSelectAll"/> All </label>&ndash;&gt;
+		-->
+		<!--<div style="cursor: pointer;" ng-if="searchCriteria.search!=''" class="view-info-box tile-view-tag">-->
+		<!--<span>Filtering Results : {{searchCriteria.search}}</span>-->
+		<!--<i ng-click="clearSearch()" class="csbMargin-top fa fa-times pull-right"></i>-->
+		<!--</div>-->
+		<!--</div>-->
+		<div class="col-sm-12">
+			<div ng-show="filtered.filteredAds.length>0" class='check-wrap allCheck'>
+        <input type="checkbox" ng-model="isSelectAll"/>
+        <label ng-click='toggleAllCheckBoxesOnGridView()' class='mmGrid-customCheckbox'>
+          <i class='glyphicon glyphicon-ok'></i></i></label>&nbsp;&nbsp;<strong>All</strong>
+      </div>
+			<ul load-on-scroll='nextChunk()' container-class="tileContainer" class="ads-tiles single-adds">
+				<li id="{{ad.id}}" ng-click="ad.isChecked=!ad.isChecked" ng-class="{'selected':ad.isChecked}" class="add-tile"
+						ng-repeat="ad in filtered.filteredAds track by $index">
+					<div class="tages-sec" ng-class="{'tag-hover':!ad.isChecked}">
+						<div class='check-wrap'><input type="checkbox" ng-model="ad.isChecked"/><label
+							class='mmGrid-customCheckbox'><i class='glyphicon glyphicon-ok'></i></i></label></div>
+						<ul class="tags">
+							<li ng-click="$event.stopPropagation()" tooltip="{{tag.toolTip}}" ng-repeat="tag in ad.tags"><a
+								ng-click="tag.toggleClick();searchByTag(tag)" data-ng-class="{'active':tag.isClicked}"
+								class="color-{{tag.tagColor}}"><span><i class="fa fa-tag"></i> {{tag.tagName}}</span></a></li>
+						</ul>
+					</div>
+					<div class="figure-img" ng-class="{'centerImg':ad.scaledHeight<=168}">
+						<img ng-src="{{getImage(ad)}}" alt=""/>
+					</div>
+					<div ng-if="!ad.isChecked" class="hover-effect">
+						<!--<a ng-click="toggleView(ad)">View Assets</a>-->
+						<a class="buttonOverlay" ng-click="redirectToLiveView(ad)">Play Ad</a>
+                        <a ng-if="!isMDX2Share" class="buttonOverlay" ng-click="redirectToAdPreview(ad.id)">Test Ad</a>
+					</div>
+					<div class="ads-discrip">
+						<div class="ads-discrip-inner">
+							<!--<h3>{{ad.name}}<span>{{ad.dimension}}</span></h3>-->
+							<div class="primary">
+								<p class="wrapper"><span class="truncate">{{ad.name}}</span></p>
+
+								<p class="details">{{ad.adDimension}}</p>
+							</div>
+							<div class="secondary">
+								<p>{{ad.viewAdType}}</p>
+								<ul ng-click="$event.stopPropagation()" class="actions">
+									<li><a ng-click="toggleDetailBoxes(ad,'showAdDetailBox')">
+                    <i class="fa fa-info-circle" ng-class="{'yellow-clr':ad.showAdDetailBox}"></i></a>
+                  </li>
+									<!--<li><a ng-click="ad.showCommentBox=!ad.showCommentBox"><i class="fa fa-comments"></i> 1</a></li>-->
+								</ul>
+							</div>
+						</div>
+					</div>
+					<div ng-switch="ad.clickthrough" ng-click="$event.stopPropagation()" class="ads-info-box"
+							 ng-class="{'opacity':ad.showAdDetailBox}" ng-show="ad.showAdDetailBox">
+						<span class="close-ads-info" ng-click="ad.showAdDetailBox=!ad.showAdDetailBox">X</span>
+						<p><label>Name:</label><span>{{ad.name}}</span></p>
+						<p><label>ID:</label><span>{{ad.id}}</span></p>
+						<p ng-if="ad.placementId"><label>Master Ad:</label><span>{{ad.masterAdId}}</span></p>
+						<p><label>Size:</label><span>{{ad.size}}</span></p>
+						<p><label>Dimensions:</label><span>{{ad.adDimension}}</span></p>
+						<p><label>Format:</label><span>{{ad.viewAdType}}</span></p>
+						<p><label>Clickthrough:</label><span ng-switch-when="">-</span><span ng-switch-default><a
+							href="{{ad.clickthrough}}" target="_blank">{{ad.clickthrough}}</a></span></p>
+					</div>
+				</li>
+
+			</ul>
+		</div>
+	</div>
+</div>
+
+    </section>
+    <div class="clear"></div>
+
+  </div>
+
+</div>

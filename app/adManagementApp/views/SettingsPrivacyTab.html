@@ -1,0 +1,16 @@
+<mm-row >
+    <mm-check-box mm-model="ad.adChoicesStatus" mm-caption="AdChoices Icon"
+                  mm-label-width={{::labelWidth2}}
+                  mm-layout-type="medium"
+                  mm-description= "IncludeAdChoicesIcon"
+                  mm-edit-multiple="isMultiple != undefined && isMultiple.indexOf('adChoicesStatus') != -1">
+    </mm-check-box>
+</mm-row>
+<mm-row>
+    <mm-drop-down mm-model="ad.adChoicesLocation"   mm-data-model="lookups.adChoicesLocations"
+                  mm-caption="Icon Position"
+                  mm-label-width = {{::labelWidth2}}
+                  mm-layout-type="medium"
+                  mm-edit-multiple="isMultiple != undefined && isMultiple.indexOf('adChoicesLocation') != -1">
+    </mm-drop-down>
+</mm-row>

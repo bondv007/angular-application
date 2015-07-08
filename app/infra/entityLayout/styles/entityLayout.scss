@@ -1,0 +1,1743 @@
+$entityTitleHeight: 0px;
+$entityToolbarHeightClose: 34px;
+
+.dropDownSaveMenu {
+  display: inline-block;
+  margin-left: 7px;
+}
+
+.dropDownSaveMenuBorder:nth-child(n+2){
+  border-top:1px solid $cFourth;
+}
+
+.dropDownSaveMenuTitle{
+  font-family: "Titillium Semibold";
+  font-size: 13px;
+  text-transform: uppercase;
+  color:$cSecondary;
+}
+
+.dropDownSaveMenuText{
+  font-family: "Arial";
+  font-size: 12px;
+  color:$cSecondary;
+  opacity: 0.7;
+}
+
+.dropdown-menu-save {
+  @extend .dropdown-menu;
+  padding: 0 !important;
+  border: 1px solid $cSecondary !important;
+  left: inherit !important;
+  right: 0px !important;
+  text-transform: none;
+  color: $cSecondary !important;
+  background-color: $cWhite !important;
+  > li > span {
+    text-transform: none !important;
+    color: $cSecondary !important;
+  }
+  > li > a {
+    text-transform: none !important;
+    color: $cSecondary !important;
+    display: inline-table;
+    width: 100%;
+  }
+}
+
+.dropdown-menu-additional {
+  @extend .dropdown-menu;
+  padding: 0 !important;
+  border: 1px solid $cSecondary !important;
+  left: inherit !important;
+  text-transform: none;
+  color: $cSecondary !important;
+  background-color: $cWhite !important;
+  > li > span {
+    text-transform: none !important;
+    color: $cSecondary !important;
+  }
+  > li > a {
+    text-transform: none !important;
+    color: $cSecondary !important;
+    display: inline-table;
+    width: 100%;
+  }
+}
+
+.btn-menu-save {
+  margin: 3px 0 3px 0;
+  color: $cSecondary;
+  @include tMenuGroupTitles;
+}
+
+.entityLayoutTitleColLeft {
+  float: left;
+}
+
+.entityLayoutTitleColWrap {
+  overflow: hidden;
+  height: 34px;
+}
+
+.entityLayoutTitleColRight {
+  width: 70px;
+  float: right;
+  padding-left: 10px;
+}
+
+.entityLayoutHistory{
+  padding-left: 14px !important;
+  padding-right: 10px !important;
+  font-size: 13px;
+  text-transform: uppercase;
+  padding: 7px 0 9px 0;
+  background-color: #fff;
+  font-family: "Titillium Semibold";
+  color: #0d2a4d;
+  margin: 0 !important;
+  border-radius: 0px;
+  border: 0;
+  position: relative;
+  float: right;
+  font-weight: normal;
+  text-align: center;
+  vertical-align: middle;
+  cursor: pointer;
+  background-image: none;
+  display: inline-block;
+  &:hover {
+    color: #0068ff;
+    z-index: 0;
+  }
+}
+@media screen and (max-width: 1279px) {
+
+  .entityLayoutTitleColCenter {
+    max-width: 150px;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+  }
+
+  .entity-layout {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+  }
+
+  .elementHeader {
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    height: $entityTitleHeight;
+    background-color: $cSecondary;
+    @include tMenuTitles;
+    color: $cWhite;
+    padding: 8px 0 0 20px;
+    z-index: 100;
+    .star {
+      z-index: 101;
+      cursor: pointer;
+      width: 20px;
+      position: absolute;
+      background: image-url("si_star_white.png") no-repeat 0 0 $cSecondary;
+      &:hover {
+        background: image-url("si_star_main.png") no-repeat 0 0 $cSecondary;
+      }
+    }
+    .title {
+      padding-left: 30px;
+      opacity: 0.5;
+    }
+    .idName {
+      padding-left: 10px;
+    }
+  }
+
+  .elementHeaderToolBarMenu.miniheader {
+
+    .showhide.btn {
+      height: 32px;
+    }
+
+    .mm-btn-discard.btn-group, .mm-btn-save.btn-group {
+      height: 30px;
+    }
+  }
+
+  .elementHeaderToolBarMenu {
+    padding: 0 20px 0 0;
+    height: $entityToolbarHeightClose;
+    top: $entityTitleHeight;
+    right: 0;
+    left: 0;
+    background-color: $cWhite;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, .2);
+    z-index: 50;
+    overflow: visible;
+
+    .dropdown-menu {
+      padding: 10px 12px;
+      margin: 0 0 0 -1px;
+      background-color: $cWhite;
+      border: solid 1px $cSecondary;
+      min-width: 127px;
+      z-index: 1001;
+      a {
+        height: 30px;
+        text-transform: none;
+        color: $cSecondary;
+        font-family: "Arial";
+        font-size: 13px;
+        padding-top: 6px;
+        padding-left: 25px;
+        &:hover {
+          background-color: $cFifth;
+        }
+      }
+    }
+
+    .fa {
+      color: $cSecondary;
+      border-radius: 0px;
+      border: 0;
+      &:hover {
+        color: $cMain;
+        border-radius: 0px;
+        border: 0;
+      }
+    }
+
+    .btn-group, .btn-group-vertical {
+      position: relative;
+      display: inline-block;
+      vertical-align: inherit !important;
+    }
+
+    .goto.btn-group {
+      margin: 0 0px !important;
+    }
+
+    .gotoSeparator {
+      border-right: solid 1px $cFourth;
+      width: 0px;
+      height: 12px;
+      position: inherit;
+      top: 11px;
+      left: 57px;
+      display: block;
+      z-index: 10;
+    }
+
+    @mixin hoverclick($image) {
+      background: image-url($image) no-repeat center 9px $cSecondary;
+      color: $cWhite;
+      border-radius: 0px;
+      border: 0;
+      .caret {
+        border-top-color: $cWhite;
+      }
+    }
+
+    .btn-group.mm-btn-save, .btn-group.mm-btn-discard {
+      float: right;
+      .caret {
+        border-top-color: $cSecondary;
+      }
+    }
+
+    .btn {
+      @include tMenuLinks;
+      padding: 7px 0 9px 0;
+      background-color: $cWhite;
+      font-family: "Titillium Semibold";
+      color: $cSecondary;
+      margin: 0 !important;
+      border-radius: 0px;
+      border: 0;
+      &:hover {
+        color: $cMain;
+        z-index: 0;
+      }
+      &:active {
+        box-shadow: none;
+        z-index: 0;
+      }
+      &:focus {
+        color: $cMain;
+        z-index: 0;
+      }
+    }
+
+    .selectedMenuButton {
+      outline: none;
+      color: $cMain;
+      box-shadow: inset 0 -3px 0 0 $cMain !important;
+    }
+
+    .open {
+      .selectedMenuButton{
+        box-shadow: inset 0 3px 0 0 $cMain !important;
+      }
+    }
+
+
+    .disableButton {
+      color: $cSecondary;
+      opacity: 0.4;
+      &:hover {
+        color: $cSecondary;
+        opacity: 0.4;
+      }
+    }
+
+    .btn-group.open .dropdown-toggle {
+//      box-shadow: none;
+    }
+    .dropdown-toggle {
+      padding-left: 7px !important;
+      padding-right: 3px !important;
+    }
+
+    .showhide.btn {
+      margin: 0 !important;
+      padding: 0 16px !important;
+    }
+
+    .mm-btn-save.btn-group {
+      @include tLargeText;
+      color: $cSecondary;
+      background-color: $cThird;
+      width: 92px;
+      margin-right: 5px !important;
+      margin-left: 5px !important;
+      height: 38px;
+      padding: 0 !important;
+      &:hover {
+        color: $cWhite;
+        background-color: $cSecondary;
+        .caret {
+          border-top-color: $cWhite;
+        }
+      }
+      &:active {
+        color: $cThird;
+      }
+    }
+
+    .mm-btn-discard.btn-group {
+      @include tLargeText;
+      color: $cSecondary;
+      background-color: $cGrey;
+      width: 92px;
+      margin-right: 5px !important;
+      margin-left: 5px !important;
+      height: 38px;
+      padding: 0 !important;
+      &:hover {
+        color: $cWhite;
+        background-color: $cSecondary;
+      }
+      &:active {
+        color: $cThird;
+      }
+    }
+
+    .goto.btn {
+      margin-right: 20px !important;
+      color: $cSecondary;
+      .caret {
+        border-top-color: $cSecondary;
+      }
+    }
+  }
+
+  .elementContainer.full {
+    top: $entityTitleHeight + $entityToolbarHeightClose;
+  }
+
+  .elementContainer {
+    background-color: #eef1f8;
+    position: absolute;
+    top: $entityTitleHeight + $entityToolbarHeightClose;
+    right: 0;
+    left: 0;
+    bottom: 0;
+  }
+
+  .elementInnerView {
+    padding: 10px;
+  }
+
+  .mmSubMenuItem:hover {
+    color: $dropdown-link-hover-color;
+    background-color: $dropdown-link-hover-bg;
+    text-decoration: none;
+  }
+
+  .mmSubMenuItem > a {
+    text-decoration: none;
+    display: block;
+    padding: 3px 20px;
+    clear: both;
+    font-weight: normal;
+    line-height: 1.42857;
+    color: $dropdown-link-color;
+    white-space: nowrap;
+  }
+  .mmSubMenuItem > a:hover {
+    color: $dropdown-link-hover-color;
+    background-color: $dropdown-link-hover-bg;
+  }
+
+  .mmSubMenu {
+    position: absolute;
+    float: right;
+    left: 100%;
+    cursor: pointer;
+    z-index: 2000;
+    min-width: 160px;
+    padding: 5px 0;
+    margin: -25px 0 0;
+    list-style: none;
+    font-size: 14px;
+    background-color: $cWhite;
+    border: 1px solid #000000 !important;
+    border-radius: 0px;
+    box-shadow: 0 0 0;
+    background-clip: padding-box;
+  }
+
+  .right-caret {
+    border-bottom: 4px solid transparent;
+    border-top: 4px solid transparent;
+    border-left: 4px solid #ffffff;
+    display: inline-block;
+    height: 0;
+    opacity: 0.3;
+    width: 0;
+    vertical-align: middle;
+    left: 10px;
+    position: relative;
+  }
+
+  @mixin entityTitle {
+    display: inline-block;
+    overflow: hidden;
+    color: $cSecondary;
+  }
+
+  $entityTitleFontSize: 14px;
+
+  .entityType {
+    @include entityTitle;
+    font-family: "Titillium Semibold";
+    font-size: $entityTitleFontSize;
+    text-transform: uppercase;
+    margin-right: 7px;
+  }
+
+  .entityName {
+    @include entityTitle;
+    font-family: "Titillium";
+    font-size: 13px;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    margin-right: 2px;
+  }
+
+  .entityId {
+    @include entityTitle;
+    font-family: "Arial";
+    font-size: $entityTitleFontSize;
+    opacity: 0.5;
+    text-transform: uppercase;
+    position: relative;
+    top: 1px;
+    margin-right: 3px;
+  }
+
+  @mixin activeButton {
+    font-family: "Titillium Semibold";
+    font-size: 14px;
+    border: 0;
+    color: #0d2a4d;
+    height: 30px;
+    text-align: center;
+    vertical-align: middle;
+    width: 92px;
+    &:focus {
+      outline: none;
+    }
+    &:hover {
+      color: $cWhite;
+      background-color: $cSecondary;
+    }
+  }
+
+  .primaryButton {
+    background-color: $cThird;
+    @include bButtons;
+  }
+
+  .secondaryButton {
+    background-color: $cGrey;
+    @include bButtons;
+  }
+
+  .subMenuTitle {
+    position: relative;
+    top: -3px;
+    font-family: "Titillium Semibold";
+    font-size: 13px;
+    color: $cSecondary;
+    text-transform: uppercase;
+    padding-left: 14px;
+  }
+
+  .subMenuSeparator {
+    border-right: 1px solid $cFourth;
+    width: 1px;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    padding: 0;
+  }
+
+  .flowToolbarBottomBorder {
+    width: 100%;
+    position: absolute;
+    border-top: 1px solid $cFourth;
+  }
+
+  .entityTitleIcon {
+    display: inline-block;
+    width: 11px;
+    height: $entityToolbarHeightClose;
+    background-image: image-url('si_flow_arrow.png');
+  }
+
+  .subMenuUL {
+    padding-left: 0;
+    list-style: none;
+    padding-top: 5px;
+  }
+
+  .entityLayoutTitle {
+    position: relative;
+    top: 0px;
+    line-height: $entityToolbarHeightClose;
+    height: $entityToolbarHeightClose;
+  }
+
+  .mainEntityLayoutTitle {
+    display: inline-block;
+    line-height: $entityToolbarHeightClose;
+    height: $entityToolbarHeightClose;
+  }
+
+  .separator {
+    min-width: 16px;
+    display: inline-block;
+  }
+
+  .actionLayoutButtons {
+    position: relative;
+    top: 5px;
+  }
+
+  .margin-right {
+    margin-right: 10px;
+  }
+}
+
+@media screen and (min-width: 1280px) and (max-width: 1679px) {
+
+  .entityLayoutTitleColCenter {
+    max-width: 150px;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+  }
+
+  .entity-layout {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+  }
+
+  .elementHeader {
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    height: $entityTitleHeight;
+    background-color: $cSecondary;
+    @include tMenuTitles;
+    color: $cWhite;
+    padding: 8px 0 0 20px;
+    z-index: 100;
+    .star {
+      z-index: 101;
+      cursor: pointer;
+      width: 20px;
+      position: absolute;
+      background: image-url("si_star_white.png") no-repeat 0 0 $cSecondary;
+      &:hover {
+        background: image-url("si_star_main.png") no-repeat 0 0 $cSecondary;
+      }
+    }
+    .title {
+      padding-left: 30px;
+      opacity: 0.5;
+    }
+    .idName {
+      padding-left: 10px;
+    }
+  }
+
+  .elementHeaderToolBarMenu.miniheader {
+
+    .showhide.btn {
+      height: 32px;
+    }
+
+    .mm-btn-discard.btn-group, .mm-btn-save.btn-group {
+      height: 30px;
+    }
+  }
+
+  .elementHeaderToolBarMenu {
+    padding: 0 20px 0 0;
+    height: $entityToolbarHeightClose;
+    top: $entityTitleHeight;
+    right: 0;
+    left: 0;
+    background-color: $cWhite;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, .2);
+    z-index: 50;
+    overflow: visible;
+
+    .dropdown-menu {
+      padding: 10px 0 10px 0;
+      margin: 0 0 0 -1px;
+      background-color: $cWhite;
+      border: solid 1px $cSecondary;
+      min-width: 127px;
+      z-index: 1001;
+      a {
+        height: 30px;
+        text-transform: none;
+        color: $cSecondary;
+        font-family: "Arial";
+        font-size: 13px;
+        padding-top: 6px;
+        padding-left: 25px;
+        &:hover {
+          background-color: $cFifth;
+        }
+      }
+    }
+
+    .fa {
+      color: $cSecondary;
+      border-radius: 0px;
+      border: 0;
+      &:hover {
+        color: $cMain;
+        border-radius: 0px;
+        border: 0;
+      }
+    }
+
+    .btn-group, .btn-group-vertical {
+      position: relative;
+      display: inline-block;
+      vertical-align: inherit !important;
+    }
+
+    .goto.btn-group {
+      margin: 0 0px !important;
+    }
+
+    .gotoSeparator {
+      border-right: solid 1px $cFourth;
+      width: 0px;
+      height: 12px;
+      position: inherit;
+      top: 11px;
+      left: 70px;
+      display: block;
+      z-index: 10;
+    }
+
+    @mixin hoverclick($image) {
+      background: image-url($image) no-repeat center 9px $cSecondary;
+      color: $cWhite;
+      border-radius: 0px;
+      border: 0;
+      .caret {
+        border-top-color: $cWhite;
+      }
+    }
+
+    .btn-group.mm-btn-save, .btn-group.mm-btn-discard {
+      float: right;
+      .caret {
+        border-top-color: $cSecondary;
+      }
+    }
+
+    .btn {
+      @include tMenuLinks;
+      padding: 7px 0 9px 0;
+      background-color: $cWhite;
+      font-family: "Titillium Semibold";
+      color: $cSecondary;
+      margin: 0 !important;
+      border-radius: 0px;
+      border: 0;
+      &:hover {
+        color: $cMain;
+        z-index: 0;
+      }
+      &:active {
+        box-shadow: none;
+        z-index: 0;
+      }
+      &:focus {
+        color: $cMain;
+        z-index: 0;
+      }
+    }
+
+    .selectedMenuButton {
+      outline: none;
+      color: $cMain;
+      box-shadow: inset 0 -3px 0 0 $cMain !important;
+    }
+
+    .open {
+      .selectedMenuButton{
+        box-shadow: inset 0 3px 0 0 $cMain !important;
+      }
+    }
+
+
+    .disableButton {
+      color: $cSecondary;
+      opacity: 0.4;
+      &:hover {
+        color: $cSecondary;
+        opacity: 0.4;
+      }
+    }
+
+    .btn-group.open .dropdown-toggle {
+      box-shadow: none;
+    }
+    .dropdown-toggle {
+      padding-left: 14px !important;
+      padding-right: 10px !important;
+    }
+
+    .showhide.btn {
+      margin: 0 !important;
+      padding: 0 16px !important;
+    }
+
+    .mm-btn-save.btn-group {
+      @include tLargeText;
+      color: $cSecondary;
+      background-color: $cThird;
+      width: 92px;
+      margin-right: 5px !important;
+      margin-left: 5px !important;
+      height: 38px;
+      padding: 0 !important;
+      &:hover {
+        color: $cWhite;
+        background-color: $cSecondary;
+        .caret {
+          border-top-color: $cWhite;
+        }
+      }
+      &:active {
+        color: $cThird;
+      }
+    }
+
+    .mm-btn-discard.btn-group {
+      @include tLargeText;
+      color: $cSecondary;
+      background-color: $cGrey;
+      width: 92px;
+      margin-right: 5px !important;
+      margin-left: 5px !important;
+      height: 38px;
+      padding: 0 !important;
+      &:hover {
+        color: $cWhite;
+        background-color: $cSecondary;
+      }
+      &:active {
+        color: $cThird;
+      }
+    }
+
+    .goto.btn {
+      margin-right: 20px !important;
+      color: $cSecondary;
+      .caret {
+        border-top-color: $cSecondary;
+      }
+    }
+  }
+
+  .elementContainer.full {
+    top: $entityTitleHeight + $entityToolbarHeightClose;
+  }
+
+  .elementContainer {
+    position: absolute;
+    top: $entityTitleHeight + $entityToolbarHeightClose;
+    right: 0;
+    left: 0;
+    bottom: 0;
+  }
+
+  .elementInnerView {
+    padding: 10px;
+  }
+
+  .mmSubMenuItem:hover {
+    color: $dropdown-link-hover-color;
+    background-color: $dropdown-link-hover-bg;
+    text-decoration: none;
+  }
+
+  .mmSubMenuItem > a {
+    text-decoration: none;
+    display: block;
+    padding: 3px 20px;
+    clear: both;
+    font-weight: normal;
+    line-height: 1.42857;
+    color: $dropdown-link-color;
+    white-space: nowrap;
+  }
+  .mmSubMenuItem > a:hover {
+    color: $dropdown-link-hover-color;
+    background-color: $dropdown-link-hover-bg;
+  }
+
+  .mmSubMenu {
+    position: absolute;
+    float: right;
+    left: 100%;
+    cursor: pointer;
+    z-index: 2000;
+    min-width: 160px;
+    padding: 5px 0;
+    margin: -25px 0 0;
+    list-style: none;
+    font-size: 14px;
+    background-color: $cWhite;
+    border: 1px solid #000000 !important;
+    border-radius: 0px;
+    box-shadow: 0 0 0;
+    background-clip: padding-box;
+  }
+
+  .right-caret {
+    border-bottom: 4px solid transparent;
+    border-top: 4px solid transparent;
+    border-left: 4px solid #ffffff;
+    display: inline-block;
+    height: 0;
+    opacity: 0.3;
+    width: 0;
+    vertical-align: middle;
+    left: 10px;
+    position: relative;
+  }
+
+  @mixin entityTitle {
+    display: inline-block;
+    overflow: hidden;
+    color: $cSecondary;
+  }
+
+  $entityTitleFontSize: 14px;
+
+  .entityType {
+    @include entityTitle;
+    font-family: "Titillium Semibold";
+    font-size: $entityTitleFontSize;
+    text-transform: uppercase;
+    margin-right: 7px;
+  }
+
+  .entityName {
+    @include entityTitle;
+    font-family: "Titillium";
+    font-size: 13px;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    margin-right: 2px;
+  }
+
+  .entityId {
+    @include entityTitle;
+    font-family: "Arial";
+    font-size: $entityTitleFontSize;
+    opacity: 0.5;
+    text-transform: uppercase;
+    position: relative;
+    top: 1px;
+    margin-right: 3px;
+  }
+
+  @mixin activeButton {
+    font-family: "Titillium Semibold";
+    font-size: 14px;
+    border: 0;
+    color: #0d2a4d;
+    height: 30px;
+    text-align: center;
+    vertical-align: middle;
+    width: 92px;
+    &:focus {
+      outline: none;
+    }
+    &:hover {
+      color: $cWhite;
+      background-color: $cSecondary;
+    }
+  }
+
+  .primaryButton {
+    background-color: $cThird;
+    @include bButtons;
+  }
+
+  .secondaryButton {
+    background-color: $cGrey;
+    @include bButtons;
+  }
+
+  .subMenuTitle {
+    position: relative;
+    top: -3px;
+    font-family: "Titillium Semibold";
+    font-size: 13px;
+    color: $cSecondary;
+    text-transform: uppercase;
+    padding-left: 14px;
+  }
+
+  .subMenuSeparator {
+    border-right: 1px solid $cFourth;
+    width: 1px;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    padding: 0;
+  }
+
+  .flowToolbarBottomBorder {
+    width: 100%;
+    position: absolute;
+    border-top: 1px solid $cFourth;
+  }
+
+  .entityTitleIcon {
+    display: inline-block;
+    width: 11px;
+    height: $entityToolbarHeightClose;
+    background-image: image-url('si_flow_arrow.png');
+  }
+
+  .subMenuUL {
+    padding-left: 0;
+    list-style: none;
+    padding-top: 5px;
+  }
+
+  .entityLayoutTitle {
+    position: relative;
+    top: 0px;
+    line-height: $entityToolbarHeightClose;
+    height: $entityToolbarHeightClose;
+  }
+
+  .mainEntityLayoutTitle {
+    display: inline-block;
+    line-height: $entityToolbarHeightClose;
+    height: $entityToolbarHeightClose;
+  }
+
+  .separator {
+    min-width: 25px;
+    display: inline-block;
+  }
+
+  .actionLayoutButtons {
+    position: relative;
+    top: 5px;
+  }
+
+  .margin-right {
+    margin-right: 10px;
+  }
+}
+
+@media screen and (min-width: 1680px) {
+
+  .entityLayoutTitleColCenter {
+    max-width: 500px;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+  }
+
+  .entity-layout {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+  }
+
+  .elementHeader {
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    height: $entityTitleHeight;
+    background-color: $cSecondary;
+    @include tMenuTitles;
+    color: $cWhite;
+    padding: 8px 0 0 20px;
+    z-index: 100;
+    .star {
+      z-index: 101;
+      cursor: pointer;
+      width: 20px;
+      position: absolute;
+      background: image-url("si_star_white.png") no-repeat 0 0 $cSecondary;
+      &:hover {
+        background: image-url("si_star_main.png") no-repeat 0 0 $cSecondary;
+      }
+    }
+    .title {
+      padding-left: 30px;
+      opacity: 0.5;
+    }
+    .idName {
+      padding-left: 10px;
+    }
+  }
+
+  .elementHeaderToolBarMenu.miniheader {
+
+    .showhide.btn {
+      height: 32px;
+    }
+
+    .mm-btn-discard.btn-group, .mm-btn-save.btn-group {
+      height: 30px;
+    }
+  }
+
+  .elementHeaderToolBarMenu {
+    padding: 0 20px 0 0;
+    height: $entityToolbarHeightClose;
+    top: $entityTitleHeight;
+    right: 0;
+    left: 0;
+    background-color: $cWhite;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, .2);
+    z-index: 50;
+    overflow: visible;
+
+    .dropdown-menu {
+      padding: 10px 0 10px 0;
+      margin: 0 0 0 -1px;
+      background-color: $cWhite;
+      border: solid 1px $cSecondary;
+      min-width: 127px;
+      z-index: 1001;
+      a {
+        height: 30px;
+        text-transform: none;
+        color: $cSecondary;
+        font-family: "Arial";
+        font-size: 13px;
+        padding-top: 6px;
+        padding-left: 25px;
+        &:hover {
+          background-color: $cFifth;
+        }
+      }
+    }
+
+    .fa {
+      color: $cSecondary;
+      border-radius: 0px;
+      border: 0;
+      &:hover {
+        color: $cMain;
+        border-radius: 0px;
+        border: 0;
+      }
+    }
+
+    .btn-group, .btn-group-vertical {
+      position: relative;
+      display: inline-block;
+      vertical-align: inherit !important;
+    }
+    .goto.btn-group {
+      margin: 0 0px !important;
+    }
+
+    .gotoSeparator {
+      border-right: solid 1px $cFourth;
+      width: 0px;
+      height: 12px;
+      position: inherit;
+      top: 11px;
+      left: 70px;
+      display: block;
+      z-index: 10;
+    }
+
+    @mixin hoverclick($image) {
+      background: image-url($image) no-repeat center 9px $cSecondary;
+      color: $cWhite;
+      border-radius: 0px;
+      border: 0;
+      .caret {
+        border-top-color: $cWhite;
+      }
+    }
+
+    .btn-group.mm-btn-save, .btn-group.mm-btn-discard {
+      float: right;
+      .caret {
+        border-top-color: $cSecondary;
+      }
+    }
+
+    .btn {
+      @include tMenuLinks;
+      padding: 7px 0 9px 0;
+      background-color: $cWhite;
+      font-family: "Titillium Semibold";
+      color: $cSecondary;
+      margin: 0 !important;
+      border-radius: 0px;
+      border: 0;
+      &:hover {
+        color: $cMain;
+        z-index: 0;
+      }
+      &:active {
+        box-shadow: none;
+        z-index: 0;
+      }
+      &:focus {
+        color: $cMain;
+        z-index: 0;
+      }
+    }
+
+    .selectedMenuButton {
+      outline: none;
+      color: $cMain;
+      box-shadow: inset 0 -3px 0 0 $cMain !important;
+    }
+
+    .open {
+      .selectedMenuButton{
+        box-shadow: inset 0 3px 0 0 $cMain !important;
+      }
+    }
+
+    .disableButton {
+      color: $cSecondary;
+      opacity: 0.4;
+      &:hover {
+        color: $cSecondary;
+        opacity: 0.4;
+      }
+    }
+
+    .btn-group.open .dropdown-toggle {
+      box-shadow: none;
+    }
+    .dropdown-toggle {
+      padding-left: 14px !important;
+      padding-right: 10px !important;
+    }
+
+    .showhide.btn {
+      margin: 0 !important;
+      padding: 0 16px !important;
+    }
+
+    .mm-btn-save.btn-group {
+      @include tLargeText;
+      color: $cSecondary;
+      background-color: $cThird;
+      width: 92px;
+      margin-right: 5px !important;
+      margin-left: 5px !important;
+      height: 38px;
+      padding: 0 !important;
+      &:hover {
+        color: $cWhite;
+        background-color: $cSecondary;
+        .caret {
+          border-top-color: $cWhite;
+        }
+      }
+      &:active {
+        color: $cThird;
+      }
+    }
+
+    .mm-btn-discard.btn-group {
+      @include tLargeText;
+      color: $cSecondary;
+      background-color: $cGrey;
+      width: 92px;
+      margin-right: 5px !important;
+      margin-left: 5px !important;
+      height: 38px;
+      padding: 0 !important;
+      &:hover {
+        color: $cWhite;
+        background-color: $cSecondary;
+      }
+      &:active {
+        color: $cThird;
+      }
+    }
+
+    .goto.btn {
+      margin-right: 20px !important;
+      color: $cSecondary;
+      .caret {
+        border-top-color: $cSecondary;
+      }
+    }
+  }
+
+  .elementContainer.full {
+    top: $entityTitleHeight + $entityToolbarHeightClose;
+  }
+
+  .elementContainer {
+    position: absolute;
+    top: $entityTitleHeight + $entityToolbarHeightClose;
+    right: 0;
+    left: 0;
+    bottom: 0;
+  }
+
+  .elementInnerView {
+    padding: 10px;
+  }
+
+  .mmSubMenuItem:hover {
+    color: $dropdown-link-hover-color;
+    background-color: $dropdown-link-hover-bg;
+    text-decoration: none;
+  }
+
+  .mmSubMenuItem > a {
+    text-decoration: none;
+    display: block;
+    padding: 3px 20px;
+    clear: both;
+    font-weight: normal;
+    line-height: 1.42857;
+    color: $dropdown-link-color;
+    white-space: nowrap;
+  }
+  .mmSubMenuItem > a:hover {
+    color: $dropdown-link-hover-color;
+    background-color: $dropdown-link-hover-bg;
+  }
+
+  .mmSubMenu {
+    position: absolute;
+    float: right;
+    left: 100%;
+    cursor: pointer;
+    z-index: 2000;
+    min-width: 160px;
+    padding: 5px 0;
+    margin: -25px 0 0;
+    list-style: none;
+    font-size: 14px;
+    background-color: $cWhite;
+    border: 1px solid #000000 !important;
+    border-radius: 0px;
+    box-shadow: 0 0 0;
+    background-clip: padding-box;
+  }
+
+  .right-caret {
+    border-bottom: 4px solid transparent;
+    border-top: 4px solid transparent;
+    border-left: 4px solid #ffffff;
+    display: inline-block;
+    height: 0;
+    opacity: 0.3;
+    width: 0;
+    vertical-align: middle;
+    left: 10px;
+    position: relative;
+  }
+
+  @mixin entityTitle {
+    display: inline-block;
+    overflow: hidden;
+    color: $cSecondary;
+  }
+
+  $entityTitleFontSize: 14px;
+
+  .entityType {
+    @include entityTitle;
+    font-family: "Titillium Semibold";
+    font-size: $entityTitleFontSize;
+    text-transform: uppercase;
+    margin-right: 7px;
+  }
+
+  .entityName {
+    @include entityTitle;
+    font-family: "Titillium";
+    font-size: 13px;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    margin-right: 2px;
+  }
+
+  .entityId {
+    @include entityTitle;
+    font-family: "Arial";
+    font-size: $entityTitleFontSize;
+    opacity: 0.5;
+    text-transform: uppercase;
+    position: relative;
+    top: 1px;
+    margin-right: 3px;
+  }
+
+  @mixin activeButton {
+    font-family: "Titillium Semibold";
+    font-size: 14px;
+    border: 0;
+    color: #0d2a4d;
+    height: 30px;
+    text-align: center;
+    vertical-align: middle;
+    width: 92px;
+    &:focus {
+      outline: none;
+    }
+    &:hover {
+      color: $cWhite;
+      background-color: $cSecondary;
+    }
+  }
+
+  .primaryButton {
+    background-color: $cThird;
+    @include bButtons;
+  }
+
+  .secondaryButton {
+    background-color: $cGrey;
+    @include bButtons;
+  }
+
+  .subMenuTitle {
+    position: relative;
+    top: -3px;
+    font-family: "Titillium Semibold";
+    font-size: 13px;
+    color: $cSecondary;
+    text-transform: uppercase;
+    padding-left: 14px;
+  }
+
+  .subMenuSeparator {
+    border-right: 1px solid $cFourth;
+    width: 1px;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    padding: 0;
+  }
+
+  .flowToolbarBottomBorder {
+    width: 100%;
+    position: absolute;
+    border-top: 1px solid $cFourth;
+  }
+
+  .entityTitleIcon {
+    display: inline-block;
+    width: 11px;
+    height: $entityToolbarHeightClose;
+    background-image: image-url('si_flow_arrow.png');
+  }
+
+  .subMenuUL {
+    padding-left: 0;
+    list-style: none;
+    padding-top: 5px;
+  }
+
+  .entityLayoutTitle {
+    position: relative;
+    top: 0px;
+    line-height: $entityToolbarHeightClose;
+    height: $entityToolbarHeightClose;
+  }
+
+  .mainEntityLayoutTitle {
+    display: inline-block;
+    line-height: $entityToolbarHeightClose;
+    height: $entityToolbarHeightClose;
+  }
+
+  .separator {
+    min-width: 25px;
+    display: inline-block;
+  }
+
+  .actionLayoutButtons {
+    position: relative;
+    top: 5px;
+  }
+
+  .margin-right {
+    margin-right: 10px;
+  }
+}
+
+.removePadding {
+  padding: 0 !important;
+}
+
+.subSubMenu {
+  padding-left: 15px !important;
+}
+
+.elementContainer {
+  background-color: #eef1f8;
+}
+
+.layoutContainer {
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  left: 0px;
+  bottom: 3px;
+  line-height: 25px;
+  min-width: 600px;
+  min-height: 1px;
+}
+
+.editContainer {
+  scrollbar-face-color: grey;
+  scrollbar-shadow-color: transparent;
+  scrollbar-highlight-color: transparent;
+  scrollbar-3dlight-color: transparent;
+  scrollbar-darkshadow-color: transparent;
+  scrollbar-track-color: transparent;
+  scrollbar-arrow-color: transparent;
+}
+.editContainer::-webkit-scrollbar {
+  width: 8px;
+}
+.editContainer::-webkit-scrollbar-thumb {
+  -webkit-border-radius: 10px;
+  border-radius: 10px;
+  background: #808080;
+}
+
+.goToButton {
+  width:330px;
+  padding-left: 0 !important;
+}
+
+.goToMenu{
+//  opacity:0.9;
+  width: 450px;
+  padding: 0;
+  border: none;
+  top: 0;
+  box-shadow: 2px 3px 4px rgba(0,0,0,0.2);
+
+  table {
+    white-space: nowrap;
+    table-layout: fixed
+  }
+}
+
+.goToLinkMenu{
+  width: 240px;
+  max-width:240px;
+  background-color:#207bd9;
+
+  li{
+    height: 50px;
+    padding: 12px 8px;
+    list-style-type: none;
+
+    .click{
+      height: 38px;
+      padding-left: 20px;
+    }
+  }
+  .goToLinkLi{
+    list-style-type: none;
+    height: 50px;
+    position: relative;
+    .click{
+      height:50px;
+      position: absolute;
+      top:0;
+      bottom:1px;
+      right:0;
+      left:0;
+      padding: 12px 8px 9px 8px;
+      cursor: pointer;
+    }
+    .goToLinkName{
+      font-family: 'Titillium Semibold';
+      line-height: 13px;
+      height: 14px;
+      display: block;
+      margin-top: 4px;
+      width: 210px;
+      color:white;
+      font-size:13px;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      overflow: hidden;
+    }
+    .goToLinkSeperator{
+      height:1px;
+      width:230px;
+      margin-top: 7px;
+      background-image: linear-gradient(to right, rgba(93,158,221,1), rgba(36,111,220,1));
+    }
+  }
+  .goToLinkLi:hover{
+    height: 50px;
+    width: 240px;
+    background-image: linear-gradient(to right,
+      rgba(54,135,221,0.9),
+      rgba(74,148,225,0.9) 10%,
+      rgba(74,148,225,0.9) 80%,
+      rgba(54,135,221,0.9) 99%);
+  }
+  .goToLinkLi:active{
+    height: 50px;
+    width: 240px;
+    background-image: linear-gradient(to right,
+      rgba(54,135,221,0.9),
+      rgba(49,122,200,0.9) 10%,
+      rgba(49,122,200,0.9) 80%,
+      rgba(54,135,221,0.9) 99%);
+  }
+}
+
+//.open{
+//  .goToButton{
+//    width: 450px !important;
+//  }
+//}
+
+.goToLinkType{
+  font-family: 'Titillium';
+  font-size: 12px;
+  text-transform: uppercase;
+  color: #e1edfa;
+  line-height: 12px;
+}
+
+
+.goToContainer{
+  height:34px;
+  color:White;
+  position:relative;
+  z-index: 1;
+  background-image: radial-gradient(ellipse at top,rgba(17,163,208,1),rgba(36,111,220,1));
+
+
+//  box-sizing: border-box;
+
+//  line-height: 34px;
+  list-style-image: none;
+  list-style-position: outside;
+  list-style-type: none;
+  position: relative;
+  text-align:left;
+}
+.goToIcon{
+  width:34px;
+  background: image-url("Hamburger_icon.png") no-repeat 0 0 transparent;
+  background-position-x: 2px;
+  background-position-y: 0px;
+  position:absolute;
+  top:12px;
+  bottom:0;
+  left:7px;
+}
+.goToBorder{
+  position:absolute;
+  top:0;
+  bottom:0;
+  left:34px;
+  width:2px;
+  background-color: white;
+  opacity:0.25;
+}
+
+.centralTd{
+  .goToText{
+    background-color: #ffffff;
+    color: #0068ff;
+    .goToName{
+      font-weight: bold;
+    }
+  }
+}
+
+.goToText{
+  position:absolute;
+  top:0;
+  bottom:0;
+  left:36px;
+  right:0;
+  padding-left:10px;
+  padding-right:10px;
+}
+.goToType{
+  font-family: 'Titillium';
+  line-height: 35px;
+  font-size:12px;
+  text-transform: uppercase;
+  max-width: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  -ms-text-overflow: ellipsis;
+  float: left;
+  margin-right: 10px;
+}
+.goToName{
+  font-family: 'Titillium Semibold';
+  font-size:13px;
+  text-transform: none;
+  white-space:nowrap;
+  overflow:hidden;
+  text-overflow:ellipsis;
+  -ms-text-overflow:ellipsis;
+  text-align: left;
+}
+
+  .gotomenuaction{
+    list-style-type: none;
+  }
+
+  .goToMenuAction{
+    list-style-type: none;
+    height: 30px;
+    padding: 10px 19px;
+  }
+  .goToMenuAction:hover{
+    color: #0d2a4d;
+    height: 30px;
+    width: 210px;
+    background: linear-gradient(to left, rgba(36,111,220,0.1) 92%, rgba(255,255,255,0.1));
+  }
+  .goToMenuAction:active{
+    color: #0d2a4d;
+    height: 30px;
+    width: 210px;
+    background: linear-gradient(to left, rgba(0,104,255,0.2) 92%, rgba(255,255,255,0.2));
+  }
+
+.goToMenuActionText{
+  cursor:pointer;
+  font-family: 'Titillium Semibold';
+  font-size: 13px;
+  height: 20px;
+  vertical-align: top;
+  color: #0d2a4d;
+  line-height: 13px;
+}
+.goToActionBottomSeparate{
+  height: 1px;
+  width: 230px;
+  background-image: linear-gradient(to right,rgba(13,42,77,0.1), rgba(255,255,255,0.1));
+}
+.goToMenu{
+  .goToMainLi:first-of-type{
+    opacity: 1;
+  }
+  .goToMainLi{
+    opacity: 0.9;
+  }
+}
+
+.btn-group:hover {
+  .goToMenu{
+    display: block;
+    opacity: 1;
+    -webkit-transition: all .5s ease;
+    -moz-transition: all .5s ease;
+    -ms-transition: all .5s ease;
+    -o-transition: all .5s ease;
+    transition: all .5s ease;
+  }
+
+  .flowLayoutLists{
+    display: block !important;
+  }
+
+  .selectedMenuButton {
+    box-shadow: inset 0 3px 0 0 #0068ff !important;
+  }
+}
+
+ul{
+ .goToContainer{
+   left: 1px;
+ }
+}
+
+.flowLayoutButtonsContainer{
+  .open {
+    .dropdown-menu{
+      display: none;
+    }
+  }
+}

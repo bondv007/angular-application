@@ -1,0 +1,303 @@
+html, body
+{
+    margin: 0px;
+    padding: 0px;
+    background-color: white;
+    font-family: arial;
+}
+
+#header
+{
+    background-color: #0068ff;
+    height: 50px;
+}
+
+#logo
+{
+    position: absolute;
+    top: 12px;
+    left: 15px;
+}
+
+#player-container
+{
+    background-color: #262626;
+}
+
+#player
+{
+    width: 640px;
+    height: 360px;
+    background-color: black;
+    margin: 0px auto;
+}
+
+#player iframe
+{
+    width: 100%;
+    height: 100%;
+}
+
+#menu
+{
+    border-bottom: 1px solid #ACACAC;
+    background-color: #F8F8F8;
+}
+
+#menu .section
+{
+    vertical-align: top;
+}
+
+#ad-url
+{
+    width: 75%;
+}
+
+#header .btn
+{
+    width: 115px;
+    height: 32px;
+    padding-top: 18px;
+    text-align: center;
+    float: right;
+    font-size: 14px;
+    cursor: pointer;
+    background-color: transparent;
+    color: white;
+}
+
+#header .btn.over
+{
+    background-color: #0d2a4d;
+    color: #0068ff;
+}
+
+#header .btn.click
+{
+    background-color: #0d2a4d;
+    color: #faf000;
+}
+
+.text-field
+{
+    height: 20px;
+}
+
+#ad-config .text-field
+{
+    width: 50%;
+}
+
+#player-config select
+{
+    width: 125px;
+}
+
+.section .title-bar
+{
+    cursor: pointer;
+    font-size: 15px;
+    padding: 5px 7px 7px 10px;
+    background-image: url(../assets/images/accordian-btn-bg.png);
+    color: #555555;
+    border-top: 1px solid #ACACAC;
+}
+
+.section .title-bar .expand-btn
+{
+    float: right;
+}
+
+.section .content
+{
+    font-size: 16px;
+    padding: 15px;
+    color: black;
+}
+
+.section .content .label
+{
+    width: 150px;
+    display: inline-block;
+    font-size: 13px;
+}
+
+.section .content .item
+{
+    margin: 15px;
+}
+
+.raw-output
+{
+    min-height: 250px;
+    max-height: 600px;
+    margin: 10px;
+    padding: 10px;
+    background-color: white;
+    border: 1px solid silver;
+    font-family: Consolas;
+    font-size: 12px;
+    overflow: scroll;
+    word-wrap: break-word;
+}
+
+#reporting .item
+{
+    margin: 5px;
+}
+
+#reporting .column
+{
+    display: inline-block;
+    vertical-align: top;
+}
+
+#reporting .count
+{
+    border: 1px solid rgb(219, 219, 219);
+    width: 25px;
+    height: 18px;
+    display: inline-block;
+    text-align: center;
+    background-color: white;
+    padding-top: 2px;
+}
+
+.section .content span
+{
+    margin-left: 5px;
+    margin-right: 5px;
+}
+
+#player-config .text-field
+{
+    width: 37px;
+}
+
+#companion-container
+{
+    font-size: 14px;
+    padding: 10px;
+    margin-bottom: 500px;
+}
+
+
+#companion-container .ad
+{
+    margin-bottom: 10px;
+    border: 1px solid #ACACAC;
+}
+
+
+
+
+
+/* ----------------------------  MOBILE -------------------------------- */
+/* http://css-tricks.com/snippets/css/media-queries-for-standard-devices */
+
+@media
+only screen and (min-device-width : 320px) and (max-device-width : 480px),
+only screen and (-webkit-min-device-pixel-ratio : 1.5),
+only screen and (min-device-pixel-ratio : 1.5)
+{
+
+    #header
+    {
+        height: 125px;
+    }
+
+    #logo
+    {
+        top: 45px;
+        left: 45px;
+        width: 400px;
+    }
+
+    #header .btn
+    {
+        width: 20%;
+        padding-top: 50px;
+        font-size:25px;
+        height: 75px;
+    }
+
+    .section .title-bar
+    {
+        background-size: 100% 100%;
+        font-size:25px;
+        padding: 35px;
+    }
+
+    .text-field
+    {
+        height: auto;
+        font-size: 25px;
+    }
+
+    #ad-url
+    {
+        width: 75%;
+    }
+
+    #ad-config .text-field
+    {
+        width: 50%;
+    }
+
+    .select
+    {
+        min-width: 100px;
+        width: ;
+    }
+
+    .section .content
+    {
+        font-size: 16px;
+        padding: 15px;
+        color: black;
+        background-color: #F8F8F8;
+    }
+
+    .section .content .label
+    {
+        width: 30%;
+        display: inline-block;
+        font-size: 25px;
+    }
+
+    #player-config .text-field
+    {
+        width: 75px;
+    }
+
+    #player-config select
+    {
+        font-size: 25px;
+        width: 25%;
+    }
+
+
+    #reporting .item
+    {
+        margin: 10px;
+        font-size: 25px;
+    }
+
+    #reporting .count
+    {
+        width: 50px;
+        height: 36px;
+        padding-top: 4px;
+    }
+
+    #companion-container
+    {
+        font-size: 25px;
+    }
+
+    .raw-output
+    {
+        font-size: 25px;
+    }
+}

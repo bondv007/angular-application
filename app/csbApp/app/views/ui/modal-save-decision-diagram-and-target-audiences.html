@@ -1,0 +1,48 @@
+<div>
+  <div>
+    <div class="csb-alert alert alert-danger" role="alert" ng-show="saveErrorText">{{ saveErrorText }}</div>
+    <p ng-show="!campaignID">You are about to save the following target audiences to the campaign you choose.</p>
+    <p ng-show="campaignID">You are about to save your Campaign with the following Target Audiences.</p>
+    <div class="row" ng-show="showCampaignSelection == true || campaigns.length > 0">
+      <div ng-show="campaigns">
+        <div class="form-group col-md-6">
+          <p><br>Select a campaign</p>
+          <select class="form-control" ng-model="selected.campaign" ng-change="selectCampaign()"
+                  ng-options="campaign.name for campaign in campaigns | orderBy: 'name' track by campaign.id">
+          </select>
+        </div>
+      </div>
+      <div ng-hide="campaigns">
+        <div class="form-group col-md-6">
+          <span class="spin-360 glyphicon glyphicon-repeat"></span>&nbsp;&nbsp;Loading campaigns...
+        </div>
+      </div>
+    </div>
+    <table class="sizmek-table table table-bordered">
+      <thead>
+      <tr>
+        <th>Target Audiences</th>
+        <th>Status</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr ng-repeat="ta in tas.save">
+        <td>{{ta.name}}</td>
+        <td>NEW</td>
+      </tr>
+      <tr ng-repeat="ta in tas.update">
+        <td>{{ta.name}}</td>
+        <td>EXISTING</td>
+      </tr>
+      <tr ng-repeat="ta in tas.delete">
+        <td>{{ta.TargetAudienceName}}</td>
+        <td>DELETING</td>
+      </tr>
+      </tbody>
+    </table>
+    <div class="csb-alert alert alert-warning"><strong>Note:</strong> The default target audience
+      {{defaultTargetAudienceName? ('"' + defaultTargetAudienceName + '"'):'' }} can't be saved as a target audience
+      because it doesn't match any criteria.
+    </div>
+  </div>
+</div>

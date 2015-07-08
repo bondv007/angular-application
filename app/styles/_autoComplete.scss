@@ -1,0 +1,215 @@
+.mm-auto-complete{
+
+  .csb-autocomplete{
+    right: 15px;
+  }
+
+  .ac-total-link{
+    font-family: Titillium SemiBold;
+    font-size: 13px;
+    color: $cMain;
+  }
+
+  .ac-view-all-link{
+    font-family: Titillium;
+    font-size: 12px;
+    color: $cMain;
+  }
+
+  .ac-item-id{
+    font-size: 11px !important;
+    color: $cMidGrey;
+  }
+
+  .search-box-icon{
+    position: absolute;
+    background-image: image-url('si_search_fourth.png');
+    width: 16px;
+    height: 16px;
+    top: 5px;
+    right: 7px;
+  }
+
+  .search-box-clear-icon{
+    position: absolute;
+    background-image: image-url('clean_icon.png');
+    cursor: pointer;
+    width: 12px;
+    height: 12px;
+    top: 6px;
+    right: 8px;
+  }
+
+  .angucomplete-holder {
+    position: relative;
+  }
+
+  .angucomplete-dropdown {
+    border: 1px solid $cSecondary;
+    width: 100%;
+    max-height: 529px;
+    cursor: pointer;
+    z-index: 9999;
+    position: absolute;
+    margin-top: 0px;
+    background-color: #ffffff;
+  }
+
+  .angucomplete-searching {
+    padding-left: 7px;
+    color: $cSecondarySeventyFive;
+    font-size: 13px;
+  }
+
+  .angucomplete-separator{
+     width: 100%;
+     height: 1px;
+     background-color: $cSecondary;
+   }
+
+  .angucomplete-items-separator{
+    width: 100%;
+    height: 1px;
+    background-color: $cForthBorder;
+  }
+
+  .angucomplete-tip-separator{
+    height: 1px;
+    margin-top: 14px;
+    width: 329px;
+    margin-left: 2px;
+    background-color: $cForthBorder;
+  }
+
+  .angucomplete-description {
+    font-size: 13px;
+  }
+
+  .angucomplete-title {
+    font-family:arial;
+    font-size: 12px;
+    height: 24px;
+    padding-left: 8px;
+    padding-right: 8px;
+    color: $cSecondary;
+    padding-top: 5px;
+    clear: both;
+    &:hover{
+      background-color: $cForthHint;
+    }
+
+
+
+
+
+    .angucomplete-image-holder {
+      padding-top: 2px;
+      float: left;
+      margin-right: 10px;
+      margin-left: 5px;
+    }
+
+    .angucomplete-image {
+      height: 34px;
+      width: 34px;
+      border-radius: 50%;
+      border-color: #ececec;
+      border-style: solid;
+      border-width: 1px;
+    }
+
+    .angucomplete-image-default {
+      /* Add your own default image here
+       background-image: url('/assets/default.png');
+      */
+      background-position: center;
+      background-size: contain;
+      height: 34px;
+      width: 34px;
+    }
+  }
+
+  .autocomplete-box{
+    width: 100%;
+  }
+
+  .autocomplete-box-open{
+    width: 100%;
+    border: 1px solid $cSecondary;
+  }
+
+  .angucomplete-type{
+    float: right;
+    position: relative;
+    right: 8px;
+    top: 0px;
+  }
+
+  .search-box{
+    font-family:arial, sans-serif;
+    font-size: 13px;
+    padding-left: 7px;
+    padding-top: 3px;
+    min-width: 30px;
+    line-height: 1.42857;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    border: 1px solid $cFourth;
+    border-radius: 0px;
+    padding-bottom: 3px;
+    background-color: $cWhite;
+    &:focus {
+      outline: 0;
+    }
+  }
+
+  .global-search{
+    .search-box{
+      font-family:arial;
+      font-size: 12px;
+      font-style: italic;
+      padding-left: 7px;
+      padding-top: 3px;
+      min-width: 30px;
+      line-height: 1.42857;
+      text-overflow: ellipsis;
+      overflow: hidden;
+      border: 1px solid $cForthBorder;
+      border-radius: 0px;
+      padding-bottom: 3px;
+      background-color: $cSecondary;
+      color: $cWhite !important;
+      &:focus {
+        outline: 0;
+      }
+    }
+
+    .autocomplete-box-open{
+      width: 100%;
+      border: 1px solid $cWhite !important;
+    }
+
+    .angucomplete-dropdown {
+      border: 2px solid $cSecondary;
+      box-shadow: 0 4px 5px rgba(0,0,0,.15);
+      width: 100%;
+      cursor: pointer;
+      z-index: 9999;
+      position: absolute;
+      /*top: 32px;
+      left: 0px;
+      */
+      margin-top: 0px;
+      background-color: #ffffff;
+    }
+  }
+}
+
+.angucomplete-selected-row {
+  background-color: $cForthHint;
+  color: #ffffff;
+}
+
+.angucomplete-match{
+  font-weight: bold;
+}

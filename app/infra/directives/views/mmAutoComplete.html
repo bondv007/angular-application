@@ -1,0 +1,68 @@
+<div class="angucomplete-holder {{searchBoxClass}}" ng-class="{'angucomplete-dropdown-visible': showDropdown}">
+    <input id="{{id}}_value"
+           ng-model="searchStr"
+           ng-disabled="disableInput"
+           type="text"
+           placeholder="{{placeholder}}"
+           ng-focus="onFocusHandler();resetHideResults()"
+           ng-click="tipFocus = true"
+           class="search-box {{inputClass}}"
+           ng-blur="hideResults($event)"
+           autocapitalize="off"
+           autocorrect="off"
+           autocomplete="off"
+           ng-style="{'max-height': wrapperHeight}"
+           ng-change="inputChangeHandler(searchStr);clear = searchStr.length == 0;"/>
+    <div ng-class="{'search-box-icon': clear, 'search-box-clear-icon': !clear}"
+         ng-click="preventClick($event); clear = true; searchStr = '';"
+         ng-init="clear = true"></div>
+    <div class="angucomplete-dropdown angucomplete-searching" style="padding: 0"
+         ng-style="{width: resultsWidth}"
+         ng-show="showTip && tipFocus && (searchStr.length < 3 || searchStr == null)">
+      <div class="angucomplete-tip-separator"></div>
+      <div style="margin-top: 8px; margin-bottom: 8px; padding-left: 25px; padding-right: 25px; text-align: left"><b>{{'Tip:' | T}}</b> {{'You can use keywords, for example, "campaign: xxx" to specify your search criteria.' | T}}</div>
+    </div>
+    <div id="{{id}}_dropdown" class="angucomplete-dropdown" ng-show="showDropdown" ng-style="{width: resultsWidth}">
+        <div class="angucomplete-searching" ng-show="searching" ng-bind="textSearching"></div>
+        <div class="angucomplete-searching" ng-show="!searching && (!results || results.length == 0)"
+           ng-bind="textNoResults"></div>
+        <div ng-if="!showGroupBy"
+             ng-repeat="result in results"
+             ng-click="selectResult(result)"
+             ng-mouseenter="hoverRow($index)">
+            <div class="angucomplete-title"
+                 ng-if="matchClass"
+                 ng-class="{'angucomplete-selected-row': $index == currentIndex || ($index == 0 && currentIndex == -1)}">
+                <div ng-bind-html="result.title" title="{{result.toolTip}}" class=" mm-nowrap mm-ellipsis" style="display: inline-block; width: 225px"></div>
+                <div class="angucomplete-type">{{result.type}}</div>
+            </div>
+            <div class="angucomplete-title"
+                 ng-class="{'angucomplete-selected-row': $index == currentIndex || ($index == 0 && currentIndex == -1)}"
+                 ng-if="!matchClass">{{ result.title }}
+                <div class="angucomplete-type">{{result.type}}</div>
+            </div>
+        </div>
+        <div ng-if="showGroupBy">
+          <div ng-repeat="(key, value) in results"
+               ng-click="selectResult(result)"
+               ng-mouseenter="hoverRow($index)">
+            <span style="padding-left: 8px;">
+              <a ng-click="goToCentral(value[0].groupTitle, searchStr)" class="ac-total-link">
+                {{ key }} <span class="ac-view-all-link">(View All {{value[0].total}})</span></a>
+            </span>
+            <div ng-if="matchClass"
+                 class="angucomplete-title mm-nowrap mm-ellipsis"
+                 ng-repeat="result in value"
+                 ng-bind-html="result.title + '<span class=ac-item-id> ' + result.id + '</span>'"
+                 title="{{result.toolTip}}"
+                 style="padding-left: 16px" ng-click="goToEntity(result.id, result.groupTitle, result.additionalId, result.additionalIdName)">
+            </div>
+            <div ng-if="!matchClass" class="angucomplete-title" ng-repeat="result in value" style="padding-left: 16px"
+                 ng-click="goToEntity(result.id, result.groupTitle)">
+              <div title="{{result.toolTip}}">{{ result.title + ' ' + result.id }}</div>
+            </div>
+            <div class="angucomplete-items-separator"></div>
+          </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,56 @@
+<div class="gridExpansionRow">
+    <mm-shield  enable-shield="true" flip-offset="20" on-touch="closeTooltipOnShieldTouch(event)">
+  <!--   <div class="expansionBg"></div> -->
+    <div class="expansionInner">
+        <mm-row>
+            <mm-drop-down mm-data-model="row.entity['positionTypesLookup']"
+                          mm-model="row.entity['positionType']"
+                          mm-is-required="true"
+                          mm-is-edit-mode="!!entityId"
+                          mm-layout-type="medium"
+                          mm-label-width="120"
+                          mm-caption="position Types"
+                          mm-placeholder="Enter Position Type"
+                          mm-error="errors.positionTypes"></mm-drop-down>
+        </mm-row >
+        <mm-row>
+            <mm-check-box
+                    mm-caption="Auto Expand"
+                    mm-model="row.entity['autoExpand']"
+                    mm-description = ""
+                    mm-label-width="120"
+                    mm-layout-type="medium">
+            </mm-check-box>
+        </mm-row>
+        <mm-row>
+            <mm-check-box
+                    mm-caption="Delay Expansion"
+                    mm-model="row.entity['delayedExpansion']"
+                    mm-description = ""
+                    mm-label-width="120"
+                    mm-layout-type="medium">
+            </mm-check-box>
+        </mm-row>
+        <mm-row>
+            <mm-drop-down mm-data-model="row.entity['retractionLookup']"
+                          mm-model="row.entity['retraction']"
+                          mm-is-required="true"
+                          mm-is-edit-mode="!!entityId"
+                          mm-layout-type="medium"
+                          mm-label-width="120"
+                          mm-caption="Retractions"
+                          mm-placeholder="Enter Retractions"
+                          mm-error="errors.positionTypes"></mm-drop-down>
+        </mm-row >
+        <mm-row>
+            <mm-check-box
+                    mm-caption="Transparency"
+                    mm-model="row.entity['transparent']"
+                    mm-description = ""
+                    mm-label-width="120"
+                    mm-layout-type="medium">
+            </mm-check-box>
+        </mm-row>
+    </div>
+        </mm-shield >
+</div>

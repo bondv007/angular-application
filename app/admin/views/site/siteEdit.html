@@ -1,0 +1,21 @@
+<div class="editContainer" xmlns="http://www.w3.org/1999/html">
+	<!-- Essentials Start -->
+	<mm-row>
+		<div class="mm-entity-fields-container">
+			<mm-row>
+				<div class="mm-entity-fields-container-single">
+					<span ng-include="'admin/views/site/siteEssential.html'"> </span>
+				</div>
+			</mm-row>
+		</div>
+	</mm-row>
+	<!-- Essentials End -->
+	<mm-row>
+		<div class="mm-entity-fields-container-single">
+			<span ng-include="'admin/views/site/settings/siteSettings.html'"></span>
+      <span ng-include="'admin/views/site/accountsSiteConnection.html'"></span>
+			<span ng-include="'admin/views/site/siteContacts.html'"></span>
+			<mm-external-id></mm-external-id>
+		</div>
+	</mm-row>
+</div>

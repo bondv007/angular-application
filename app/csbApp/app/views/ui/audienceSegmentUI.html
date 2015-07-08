@@ -1,0 +1,54 @@
+<div class="mdxUI mdxUIContainer" ng-class="{ 'active' : showUI, 'mdx3': csb.config.env == 'mdx3' }">
+
+    <div class="header">
+        <h1>Audience Segment <span ng-click="cancel()" class="pull-right glyphicon glyphicon-remove"></span></h1>
+    </div>
+
+    <div class="body-wrapper">
+
+        <div class="body clearfix">
+            <div class="mm-entity-fields-container-single">
+
+              <mm-row>
+                <mm-text
+                  mm-layout-type="custom"
+                  mm-custom-control-width="272"
+                  mm-caption="Segment Name"
+                  mm-model="segmentName.text"
+                ></mm-text>
+              </mm-row>
+
+              <mm-row>
+
+                  <h3 class="audience-segment-label">Target Audiences</h3>
+
+                  <div class="audience-segment-rules">
+                    <div ng-repeat="rules in decision.allRules">
+                        <div class="rules-wrapper">
+                            <div class="audience-segment-rule" ng-repeat="rule in rules.tarules">
+                                <span>{{rule.exposure}} </span>
+                                <span>{{rule.name}}</span>
+                                <span class="audience-segment-operator">{{rule.logicalOperatorID}}</span>
+                                <br>
+                            </div>
+                        </div>
+                        <span class="audience-segment-separator">AND</span>
+                    </div>
+                  </div>
+
+              </mm-row>
+                <div class="audience-segment-no-rule" ng-hide="decision.allRules">
+                    <span>Default Segment</span>
+                </div>
+            </div>
+
+            <div class="footer">
+                <div class="form-buttons pull-right">
+                    <button class="btn mdx-btn mdx-save-btn" ng-click="save()">Save</button>
+                    <button class="btn mdx-btn mdx-close-btn" ng-click="cancel()">Cancel</button>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>

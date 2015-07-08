@@ -1,0 +1,149 @@
+<div class="upload-close shareCsbModal new-folder-modal">
+    <div class="mmmodal-header">
+        <div class="close">
+            <div class="close-button" ng-click="close(true)"></div>
+        </div>
+        <div class="mmmodal-title">EDIT</div>
+    </div>
+    <div class="mmmodal-body">
+        <div>
+            <mm-toggle-container  mm-caption="Creative Assets"  start-open="toggleHandler.showToggleCreativeAssets">
+                <mm-row>
+                    <mm-error-div error-text="errors.creativeAssets">  </mm-error-div>
+                </mm-row>
+                <div class="tab-sec">
+                    <div class="top-section gry-bg">
+                        <ul class="form-section">
+                            <li> <span class="left-heading"> Format </span> <span> Mpeg-2 HD</span> </li>
+                            <li> <span class="left-heading"> Duration </span> <span> 00:00:30 </span> </li>
+                            <li> <span class="left-heading"> Format </span> <span> Mpeg-2 HD</span> </li>
+                            <li> <span class="left-heading"> Format </span> <span> Mpeg-2 HD</span> </li>
+                            <li> <span class="left-heading"> Format </span> <span> Mpeg-2 HD</span> </li>
+                            <li> <span class="left-heading"> Format </span> <span> Mpeg-2 HD</span> </li>
+                        </ul>
+                        <figure> <img src="http://images.qa.videofusion.com/new/461e2c0a-969d-4d8e-b4bb-d57fcdf39e8c.jpg" alt="" /></figure>
+                    </div>
+                </div>
+            </mm-toggle-container>
+        </div>
+        <div>
+            <mm-toggle-container  mm-caption="Creative Assets"  start-open="toggleHandler.showToggleCreativeAssets">
+                <mm-row>
+                    <mm-error-div error-text="errors.creativeAssets">  </mm-error-div>
+                </mm-row>
+                <tabset>
+                    <tab id="Base" heading="{{'Base' |T}} " class="{{!errors.creativeAssets  ? '' : 'tabWithErrors'}}" select="focusedTab('creativeAssetsBase')">
+                        <mm-row>
+                            <mm-grid
+                                    items="commonModel.foldersData"
+                                    cols="columnDefs"
+                                    is-cell-edit="false"
+                                    is-show-menu="false"
+                                    is-single-select="true"
+                                    is-sort="false"
+                                    is-setting-icon-disable= "false"
+                                    is-search-icon-disable="false"
+                                    show-footer="false"
+                                    show-group-panel="false"
+                                    show-selection-checkbox="false"
+                                    show-filter="false"
+                                    enable-column-resize="true"
+                                    is-column-reorder = "false"
+                                    is-show-tool-tip="true"
+                                    is-central-grid="false"
+                                    grid-height="140"
+                                    generic-validation-handler="creativeAssetBaseValidationHandler"
+                                    grid-button-actions=""></mm-grid>
+                        </mm-row>
+                    </tab>
+                    <tab id="assetshtml5assets" heading="{{'HTML5 Assets' |T}}" select="focusedTab('html5')"
+                         ng-if="ad.html5 && ad.html5 && ad.html5.assetId" >
+                        <div ng-include="'adManagementApp/views/html5Assets.html'"></div>
+                    </tab>
+                </tabset>
+            </mm-toggle-container>
+        </div>
+        <div>
+            <mm-toggle-container mm-caption="Settings" mm-is-dirty="" mm-error="error.name" start-open="toggleHandler.showToggleSettings">
+                <tabset>
+                    <tab id="assetsGeneral" heading="General">
+                        <div style="padding-top: 20px">
+                            <mm-row>
+                                <mm-text mm-caption="Default image alternate text" mm-model="ad.tooltip"
+                                         mm-layout-type="medium"
+                                         mm-label-width = {{labelWidth4}} mm-is-edit-mode="!!entityId"
+                                         mm-placeholder="Type Default image alternate text"
+                                         mm-edit-multiple="isMultiple != undefined && isMultiple.indexOf('tooltip') != -1"></mm-text>
+                            </mm-row>
+                        </div>
+                    </tab>
+                    <tab id="assetsprivacy" heading="Privacy">
+                        <div style="padding-top: 20px">
+                            <div  ng-include="'adManagementApp/views/SettingsPrivacyTab.html'"></div>
+                        </div>
+                    </tab>
+                </tabset>
+            </mm-toggle-container>
+        </div>
+        <section class="">
+            <h3 class="blue-heading"> <i class="fa fa-angle-right"></i> Asset Info </h3>
+            <div class="tab-sec">
+                <div class="top-section gry-bg">
+                    <ul class="form-section">
+                        <li> <span class="left-heading"> Format </span> <span> Mpeg-2 HD</span> </li>
+                        <li> <span class="left-heading"> Duration </span> <span> 00:00:30 </span> </li>
+                        <li> <span class="left-heading"> Format </span> <span> Mpeg-2 HD</span> </li>
+                        <li> <span class="left-heading"> Format </span> <span> Mpeg-2 HD</span> </li>
+                        <li> <span class="left-heading"> Format </span> <span> Mpeg-2 HD</span> </li>
+                        <li> <span class="left-heading"> Format </span> <span> Mpeg-2 HD</span> </li>
+                    </ul>
+<figure> <img src="http://images.qa.videofusion.com/new/461e2c0a-969d-4d8e-b4bb-d57fcdf39e8c.jpg" alt="" /></figure>
+                </div>
+            </div>
+        </section>
+
+
+        <section class="">
+            <h3 class="blue-heading"> <i class="fa fa-angle-right"></i> Asset Info </h3>
+            <div class="tab-sec">
+                <div class="tabpanel">
+                    <ul class="form-section">
+                        <li> <span class="left-heading"> Format </span> <span> Mpeg-2 HD</span> </li>
+                        <li> <span class="left-heading"> Duration </span> <span> 00:00:30 </span> </li>
+                        <li> <span class="left-heading"> Format </span> <span> Mpeg-2 HD</span> </li>
+                        <li> <span class="left-heading"> Format </span> <span> Mpeg-2 HD</span> </li>
+                        <li> <span class="left-heading"> Format </span> <span> Mpeg-2 HD</span> </li>
+                        <li> <span class="left-heading"> Format </span> <span> Mpeg-2 HD</span> </li>
+                    </ul>
+                    <ul class="form-section">
+                        <li> <span class="left-heading"> Format </span> <span> Mpeg-2 HD</span> </li>
+                        <li> <span class="left-heading"> Duration </span> <span> 00:00:30 </span> </li>
+                        <li> <span class="left-heading"> Format </span> <span> Mpeg-2 HD</span> </li>
+                        <li> <span class="left-heading"> Format </span> <span> Mpeg-2 HD</span> </li>
+                        <li> <span class="left-heading"> Format </span> <span> Mpeg-2 HD</span> </li>
+                        <li> <span class="left-heading"> Format </span> <span> Mpeg-2 HD</span> </li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section class="">
+            <h3 class="blue-heading"> <i class="fa fa-angle-right"></i> Asset Info </h3>
+            <div class="tab-sec">
+                <div class="tabpanel">
+                    <ul class="form-section full-width">
+                        <li> <span class="left-heading"> Format </span> <span> <input type="text" class="text-box" /></span> </li>
+                        <li> <span class="left-heading"> Duration </span> <span><select class="select-box"> <option></option></select> </span> </li>
+                        <li> <span class="left-heading"> Duration </span> <span><select class="select-box"> <option></option></select> </span> </li>
+                        <li> <span class="left-heading"> Format </span> <span> Video starts on <label> <input type="radio" /> User Start </label> <label> <input type="radio" /> Auto Start </label></span> </li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+    </div>
+    <div class="clear"></div>
+    <div class="modal-footer">
+        <button class="mm-save-button btn btn-primary" ng-click="renameFolder()">RENAME</button>
+        <button class="mm-discard-button btn btn-warning" ng-click="close(true)">CANCEL</button>
+    </div>
+</div>

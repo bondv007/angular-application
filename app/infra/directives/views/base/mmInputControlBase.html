@@ -1,0 +1,30 @@
+<div style="display: inline-block; vertical-align: top; float: left;">
+    <div style="display: inline" ng-include="'infra/directives/views/template/label.html'"></div>
+    <div class="{{mmAdditionalClass}}" ng-class="{'text-edit-mode': mmShowAsLabel, 'text-new-mode': !mmShowAsLabel}" style="display: inline-block">
+        <div class="control-container">
+            <div ng-if="controlType == 'text'">
+                <div ng-include="'infra/directives/views/template/text.html'"></div>
+            </div>
+            <div ng-if="controlType == 'textArea'">
+                <div ng-include="'infra/directives/views/template/textArea.html'"></div>
+            </div>
+            <div ng-if="controlType == 'single' || controlType == 'multi'">
+                <div ng-include="'infra/directives/views/template/singleselect.html'" ng-class="{'multiselect-show': isShowControl && mmShowAsLabel}"></div>
+            </div>
+            <div>
+                <mm-error-div mm-min-width="mmMinWidth" error-text="mmError"></mm-error-div>
+            </div>
+        </div>
+        <div ng-if="(!isShowControl && !mmIsLink && (mmError === undefined || mmError == '')) || (mmDisable && !mmIsLink && mmShowAsLabel && !mmForceHide)" ng-click="$parent.isShowControl=true && !mmDisable;(controlType == 'multi' || controlType == 'single') ? toggleSelect() : 1==1;" ng-mouseover="hover=true && !mmDisable" ng-mouseleave="hover=false" style="position: relative; display: inline-block;">
+            <div class="{{mmControlClass}} mm-label-value mm-ellipsis" ng-class="{hover: hover, hint: (!mmModel && mmPlaceholder), disable: mmDisable, 'mm-label-padding' :(controlType == 'multi' || controlType == 'single')}" style="{{mmControlWidth}}">
+                {{(controlType == 'multi' || controlType == 'single') ? mmModelText || mmPlaceholder : mmModel || mmPlaceholder | T}}
+            </div>
+            <div class="label-button-down" ng-if="hover && (controlType == 'multi' || controlType == 'single')"></div>
+            <div class="label-button-separator" ng-show="hover && (controlType == 'multi' || controlType == 'single')"></div>
+        </div>
+        <div ng-if="(!isShowControl && mmIsLink && mmShowAsLabel && (mmError === undefined || mmError == '')) || (mmDisable && mmIsLink && mmShowAsLabel)" class="{{mmControlClass}} mm-link-label" style="position: relative; display: inline-block;{{mmControlWidth}}" ng-mouseover="hover=true" ng-mouseleave="hover=false; ">
+            <div ng-if="mmSimpleLink" ng-include="'infra/directives/views/link/simpleLink.html'"></div>
+            <div ng-if="!mmSimpleLink" ng-include="'infra/directives/views/link/entityLink.html'"></div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,17 @@
+<mm-row>
+  <mm-check-box mm-model="ad.panelsSettings.autoExpandDefaultPanel" mm-caption="Auto Expand"
+                mm-description="Auto Expand Default Panel when Ad is Loaded"
+                mm-label-width="{{labelWidth2}}"
+                mm-change="autoExpandClick()"
+                mm-edit-multiple="isMultiple != undefined && isMultiple.indexOf('autoExpandDefaultPanel') != -1"></mm-check-box>
+</mm-row>
+<div ng-include="'adManagementApp/views/panelFrequency.html'"></div>
+<mm-row ng-if="ad.adFormat != 'HTML5_EXPANDABLE_BANNER_AD'">
+  <mm-check-box mm-model="ad.panelsSettings.preloadPanels"
+                mm-caption="Pre-load Panels"
+                mm-description="Load panels when ad is loaded"
+                mm-label-width="{{labelWidth2}}"
+                mm-edit-multiple="isMultiple != undefined && isMultiple.indexOf('preloadPanels') != -1"></mm-check-box>
+</mm-row>
+
+

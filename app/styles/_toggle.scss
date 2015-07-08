@@ -1,0 +1,86 @@
+.central { // entral toggle wrapper
+  .toggleWrapper {
+    background-color: white;
+    position:relative;
+    left:0;
+    margin-right: 4px;
+    margin-bottom: 20px;
+  }
+}
+.toggleWrapper {
+  background-color: white;
+  position:relative;
+  left:10px;
+  margin-right: 20px;
+  margin-bottom: 20px;
+}
+.toggleHeaderWrapper {
+  height:48px;
+  padding: 10px 0px;
+  position: relative;
+  right: 10px;
+
+}
+.parent .toggleArrowWrapper {
+  width: 28px;
+  height: 28px;
+  background-color: $cThird;
+  float:left;
+}
+
+.parent {
+  display: inline-block;
+  &:hover .toggleArrowWrapper{
+    box-shadow: 0 0 0 1px $cSecondary inset;
+    cursor: pointer;
+  }
+  &:active .toggleArrowWrapper{
+    box-shadow: 0 0 0 2px $cSecondary inset;
+  }
+}
+
+.toggleContentWrapper{
+  display: inline;
+}
+
+.toggleArrowUp {
+  margin: 11px auto;
+  width: 10px;
+  height: 6px;
+  background-image: image-url('si_expand.png');
+}
+.toggleArrowDown {
+  margin: 11px auto;
+  width: 10px;
+  height: 6px;
+  background-image: image-url('si_collapse.png');
+}
+
+.toggleHeader {
+  height: 28px;
+  background-color: #0d2a4d;
+  color: #faf000;
+  font-family: "Titillium";
+  font-size: 12px;
+  display: inline-block;
+  padding: 0px 14px;
+  vertical-align: middle;
+  line-height: 25px;
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+.toggleContent {
+  padding: 10px 18px;
+  line-height: 12px;
+}
+
+.cssSlideUp {
+  transition: .4s linear all;
+//  overflow: hidden;
+}
+.cssSlideUp.ng-hide {
+  max-height: 0;
+}
+

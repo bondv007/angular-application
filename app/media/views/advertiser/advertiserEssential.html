@@ -1,0 +1,81 @@
+<mm-row ng-if="isModal && context == 'brand'">
+  <mm-drop-down mm-is-edit-mode="isEditMode"
+                mm-caption="Account"
+                mm-model="editObject.relationsBag.parents.account.id"
+                mm-data-model="accounts"
+                lazy-type="lazyTypeParams"
+                mm-error="validation.accountName"
+                mm-is-required="{{isRequired}}"
+                mm-label-width="{{labelWidth}}"
+                mm-layout-type="medium"
+                mm-select-change-func="onAccountNameModified()"
+                show-search-box></mm-drop-down>
+</mm-row>
+<mm-row>
+  <mm-text mm-is-edit-mode="isEditMode"
+           mm-caption="Name"
+           mm-model="editObject.name"
+           mm-placeholder="Enter Name"
+           mm-is-required="{{isRequired}}"
+           mm-error="validation.advertiserName"
+           mm-label-width="{{labelWidth}}"
+           text-tooltip="Enter name"
+           mm-layout-type="medium"
+           mm-change="onAdvNameChange()"></mm-text>
+</mm-row>
+<mm-row>
+  <mm-drop-down mm-is-edit-mode="isEditMode"
+                mm-caption="Vertical"
+                mm-model="editObject.vertical"
+                mm-data-model="verticals"
+                mm-is-required="{{isRequired}}"
+                mm-error="validation.vertical"
+                mm-label-width="{{labelWidth}}"
+                mm-layout-type="medium"
+                mm-select-change-func="onVerticalSelected()"></mm-drop-down>
+</mm-row>
+<span ng-if="!isModal">
+ <mm-row ng-if="!isEditMode && isMultipleAccounts && preSaveStatus && (!editObject.accountId || !accountId)">
+   <mm-drop-down mm-is-edit-mode="isEditMode"
+                 mm-caption="Account"
+                 mm-model="editObject.relationsBag.parents.account.id"
+                 mm-data-model="accounts"
+                 lazy-type="lazyTypeParams"
+                 mm-error="validation.accountName"
+                 mm-is-required="{{isRequired}}"
+                 mm-label-width="{{labelWidth}}"
+                 mm-layout-type="medium"
+                 mm-select-change-func="onAccountNameModified()"
+                 show-search-box></mm-drop-down>
+ </mm-row>
+  <mm-row ng-if="isAccountContext || !preSaveStatus || !isMultipleAccounts">
+    <mm-label mm-is-edit-mode="isEditMode"
+              mm-model="editObject.relationsBag.parents.account.name"
+              mm-caption="Account"
+              mm-is-required="{{isRequired}}"
+              mm-error="validation.accountName"
+              mm-layout-type="medium"
+              mm-label-width="{{labelWidth}}"
+              mm-change="onAccountNameModified()"></mm-label>
+  </mm-row>
+	<div ng-repeat="entity in centralLinks">
+		<mm-row ng-if="isEditMode && entity.hasPermission">
+			<mm-text mm-caption="{{entity.caption}}"
+							 mm-label-width="{{labelWidth}}"
+							 mm-layout-type="small"
+							 mm-custom-control-width="0"
+							 mm-is-required="{{!isRequired}}"
+							 mm-show-as-label="showAsLabel.central"
+							 mm-entity-type="{{'advertiser'}}"
+							 mm-is-custom-link="true"
+							 mm-custom-link="{{entity.link}}"
+							 mm-entity-id="editObject.id"
+							 mm-input-type="link"
+							 mm-is-link="true"
+							 mm-simple-link="'true'"
+							 mm-disable="true"
+							 mm-model="entity.text"></mm-text>
+		</mm-row>
+	</div>
+</span>
+

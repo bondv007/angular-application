@@ -1,0 +1,16 @@
+<div class="modal-header">
+    New Delivery Group
+</div>
+<div class="modal-body">
+
+    <form action="" class="form-inline">
+        <label for="dg-name">Delivery Group Name</label>
+        <input type="text" id="dg-name" ng-model="dg.name" autofocus>
+        <input type="checkbox" id="another-dg" ng-model="dg.anotherDg"> <label for="another-dg">Create another Delivery Group.</label>
+    </form>
+
+</div>
+<div class="modal-footer">
+    <button class="btn mdx-btn mdx-save-btn" ng-disabled="!dg.name" ng-click="saveNewDG(dg)">Next</button>
+    <button class="btn mdx-btn mdx-close-btn" ng-click="modal.dismiss()">Cancel</button>
+</div>

@@ -1,0 +1,95 @@
+<mm-row>
+  <mm-text mm-caption="Name"
+           mm-model="editObject.name"
+           mm-placeholder="Enter Name"
+           mm-is-required="{{isRequired}}"
+           mm-error="validation.accountName"
+           mm-label-width="{{labelWidth}}"
+           text-tooltip="Enter name"
+           mm-layout-type="medium"
+           mm-change="onAccountNameChange()"
+           mm-disable="!editAccount"
+           mm-tab-index="1"></mm-text>
+</mm-row>
+<mm-row>
+  <mm-check-box
+			mm-title="This is a Campaign Manager account type"
+      mm-model="editObject.accountTypes.campaignManager"
+      mm-caption="Account Types"
+      mm-description="Campaign Manager"
+      mm-layout-type="medium"
+      mm-label-width="{{labelWidth}}"
+      mm-change="onCampainManagerToggle()"
+      mm-tab-index="2"
+      mm-disable="!!editObject.relationsBag.children.advertisers.count || !editAccount || !permissions.entity.editAdvanced">
+  </mm-check-box>
+  <!--<span ng-if="!!editObject.relationsBag.children.advertiser.count" style="float:left; padding-top: 5px">(contains advertisers)</span>-->
+</mm-row>
+<mm-row>
+  <mm-check-box
+      mm-model="editObject.accountTypes.creativeManager"
+      mm-caption=""
+      mm-description="Creative Manager"
+      mm-layout-type="medium"
+      mm-label-width="{{labelWidth}}"
+      mm-change="onCreativeManagerToggle()"
+      mm-disable="!!editObject.relationsBag.creativeAccountContact || !editAccount || !permissions.entity.editAdvanced"
+      mm-tab-index="3">
+  </mm-check-box>
+</mm-row>
+<mm-row>
+  <mm-check-box
+      mm-model="editObject.accountTypes.payingAccount"
+      mm-caption=""
+      mm-description="Paying Account"
+      mm-layout-type="medium"
+      mm-label-width="{{labelWidth}}"
+      mm-change="onPayingAccountToggle()"
+      mm-disable="disablePayingAccount || !editAccount || !permissions.entity.editAdvanced"
+      mm-tab-index="4">
+  </mm-check-box>
+</mm-row>
+<mm-row>
+  <mm-drop-down mm-caption="Office"
+                mm-model="editObject.office.id"
+                mm-error="validation.office"
+                mm-is-required="{{isRequired}}"
+                mm-label-width="{{labelWidth}}"
+                mm-layout-type="medium"
+                show-search-box
+                lazy-type="'accounts/offices'"
+                mm-select-change-func="onOfficeSelected()"
+                mm-disable="!editAccount"
+                mm-tab-index="5"></mm-drop-down>
+</mm-row>
+<mm-row ng-if="isEditMode && editObject.status == 'Archived'">
+  <mm-label
+      mm-is-edit-mode="isEditMode"
+      mm-model="editObject.status"
+      mm-is-required="{{isRequired}}"
+      mm-caption="Status"
+      mm-is-required="{{isRequired}}"
+      mm-layout-type="medium"
+      mm-label-width="{{labelWidth}}"
+      mm-tab-index="6"></mm-label>
+</mm-row>
+<div ng-repeat="entity in relatedEntities">
+  <mm-row ng-if="isEditMode && entity.hasPermission && (postSave || entity.type == 'user')">
+    <mm-text mm-caption="{{entity.caption}}"
+             mm-label-width="{{labelWidth}}"
+             mm-layout-type="small"
+             mm-custom-control-width="0"
+             mm-is-required="{{!isRequired}}"
+             mm-show-as-label="showAsLabel.central"
+             mm-entity-type="{{'account'}}"
+             mm-entity-id="editObject.id"
+             mm-is-custom-link="true"
+             mm-custom-link="{{entity.centralLink}}"
+             mm-input-type="link"
+             mm-is-link="true"
+             mm-disable="true"
+             mm-simple-link="'true'"
+             mm-model="entity.amountText"></mm-text>
+  </mm-row>
+</div>
+

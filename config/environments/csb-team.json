@@ -1,0 +1,7 @@
+{
+    "env": "development-csb-team",
+    "ec2": "https://dev4.eyeblaster.com/MediaMind.InternalAPI.Web/CSBService.svc/",
+    "loginPath": "https://dev4.dev.sizmdx.com/rest/login/",
+    "resource": "http://54.201.243.190:8080/_/",
+    "mdx2Api" : "https://dev4.eyeblaster.com/MediaMind.InternalAPI.Web/CSBService.svc/"
+}

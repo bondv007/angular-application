@@ -1,0 +1,21 @@
+<div class="editContainer" sticky sticky-object="stickyObject">
+
+    <!--Essentials-->
+    <div ng-include="'campaignManagementApp/views/deliveryGroup/dgEdit/templates/dgEssentials.html'"></div>
+
+    <!--Buttons-->
+    <div ng-include="'campaignManagementApp/views/deliveryGroup/dgEdit/templates/dgButtons.html'"></div>
+
+    <!--Settings-->
+    <div ng-include="'campaignManagementApp/views/deliveryGroup/dgEdit/templates/dgSettings.html'"></div>
+
+    <!--DG Ads Tree-->
+    <dg-tree
+            mm-delivery-group="mainEntityEdit"
+            mm-default-ads-cb="defaultAdsCB"
+            mm-enable-disable-state="enableDisableState"
+            mm-hide-disabled="hideDisabled"
+            mm-disable="{{hasDGManagementPermission}}">
+    </dg-tree>
+
+</div>

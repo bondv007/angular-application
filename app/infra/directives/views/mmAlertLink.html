@@ -1,0 +1,3 @@
+{{mmAlert.msg | T}}
+<a ng-if="mmAlert.linkText != 'undefined' && mmAlert.href" class="linkColor" ui-sref="{{mmAlert.href}}">{{mmAlert.linkText | T}}</a>
+<a ng-if="mmAlert.linkText != 'undefined' && mmAlert.func" class="linkColor" ng-click="mmAlert.func()">{{mmAlert.linkText | T}}</a>

@@ -1,0 +1,13 @@
+<div class="mmStretched">
+	<div class="mmStretched">
+		<div class="mmStretched scrollerBox scrollerBoxItems">
+			<div class="scrollerBoxItem" ng-repeat="_mmItem_ in visiblescrollerItems">
+				<span ng-init="this[indexString] = _mmItem_" scroller-transclude></span>
+				<!--<span ng-init="this[indexString] = _mmItem_" ng-transclude></span>-->
+			</div>
+		</div>
+		<div scroll-event="loadData()" class="scrollerBox scrollerBoxScroll">
+			<div class="scroller"></div>
+		</div>
+	</div>
+</div>

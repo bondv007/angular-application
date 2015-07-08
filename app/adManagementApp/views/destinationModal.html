@@ -1,0 +1,45 @@
+<div class="select-file-dest">
+	<div class="modal-header">
+		<!--<a class="close" data-dismiss="modal"></a>-->
+		<div class="close">
+			<div class="close-button" ng-click="cancel()" data-dismiss="modal"></div>
+		</div>
+		<div class="modal-title">Select Destination</div>
+	</div>
+	<div class="modal-body">
+		<div class="top-folder-search">
+			<!--<ul class="rename-dirt">
+				<li><a new-node>New</a></li>
+				<li>|</li>
+				<li><a rename-node>Rename</a></li>
+			</ul>-->
+      <span> <a href="" ng-click="newNode(selectedFolder.id)">New Folder</a></span>
+			<div class="mmGridSearch-box pull-right">
+				<input type="text" search-node tree-id="dvTreeView" placeholder="type a folder name">
+				<!--<button class="active"><i class="search"></i></button>-->
+			</div>
+			<div class="clear"></div>
+		</div>
+		<div class="folder-search-area">
+			<div class="treeview-wrapper-div">
+				<mm-tree-view
+					class="destTree"
+					data="data"
+					rename-node-handler="renameNode"
+					new-node-handler="newNodeHandler"
+					selected-node-handler="selectedNode"
+          current-parent-id="{{selectedFolder.id}}"
+					tree-id="dvTreeView">
+				</mm-tree-view>
+			</div>
+		</div>
+		<div class="clear"></div>
+
+	</div>
+	<div class="clear"></div>
+	<div class="modal-footer">
+		<button ng-class="{'primaryButton':true}" class="btn-group mm-btn-save" ng-click="ok()">SELECT</button>
+		<button class="btn btn-group mm-btn-discard" ng-click="cancel()">Cancel</button>
+	</div>
+
+</div>

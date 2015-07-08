@@ -1,0 +1,23 @@
+<div class="upload-close">
+	<div class="mmmodal-header">
+		<div class="close">
+			<div class="close-button" ng-click="cancel()" data-dismiss="modal"></div>
+		</div>
+		<div class="mmmodal-title">Close</div>
+	</div>
+	<div class="mmmodal-body" ng-if="getTotalAssetsToUpload()>0">
+		<div class="mmmodal-content">
+			Are you sure you want to cancel the upload of {{getTotalAssetsToUpload()}} files?
+		</div>
+	</div>
+	<div class="mmmodal-body" ng-if="getTotalAssetsToUpload()<=0">
+		<div class="mmmodal-content">
+			Are you sure you want to close the asset uploader modal?
+		</div>
+	</div>
+	<div class="clear"></div>
+	<div class="modal-footer">
+		<button class="mm-save-button btn btn-primary" ng-click="close()">CLOSE</button>
+		<button class="mm-discard-button btn btn-warning" ng-click="cancel()">CANCEL</button>
+	</div>
+</div>

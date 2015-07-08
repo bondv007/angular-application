@@ -1,0 +1,34 @@
+.wrapButtons {
+  margin-bottom: 20px;
+  .treeButton {
+    height: 24px;
+    border: solid 1px black;
+    border-radius: 0px;
+    background-color: $white;
+    padding: 0px 10px 0px 10px;
+    color: #4a5f7a;
+    border: 1px solid rgba(13, 41, 77, .3);
+    &:hover {
+      background-color: $cFifth;
+      border: 1px solid $cSecondary;
+      opacity: 1;
+      color: $cSecondary;
+    }
+    &:focus {
+      outline: 0;
+      box-shadow: 0;
+    }
+    &:active {
+      outline: 0;
+      box-shadow: 0;
+      background-color: $cSecondary;
+      color: $cWhite;
+    }
+    .btn {
+      &:active {
+        outline: 0;
+        box-shadow: 0;
+      }
+    }
+  }
+}

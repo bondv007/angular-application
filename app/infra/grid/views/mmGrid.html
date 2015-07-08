@@ -1,0 +1,9 @@
+<div class="container-fluid mmGrid-buttons-line  mmGridHeader" ng-if="!isCentralGrid" data-ng-include="'infra/grid/views/mmGridHeader.html'"></div>
+<div ng-show="!IsColumnsEmpty" class="grid-body">
+	<div class="gridStyle common-grid" ng-grid="options" data-ng-style="{'width':gridWidth,'height':gridHeight}" id="{{mmId}}" ng-if="options"></div>
+	<div class="mt20 grid-footer" data-ng-style="{'width':gridWidth}" data-ng-if="showFooter" data-ng-include="'infra/grid/views/mmGridFooter.html'"></div>
+</div>
+<div ng-if="items.length<=0 && items.gridAddName" class="grid-empty" data-ng-include="'infra/grid/views/mmGridEmptyDiv.html'"></div>
+<div data-ng-if="IsColumnsEmpty">
+	Please pass columns inside grid!
+</div>

@@ -1,0 +1,145 @@
+<mm-toggle-container mm-id="settings" mm-caption="Settings" start-open="settingsDisplay">
+  <tabset>
+    <tab id="tabSettings" heading="TAG SETTINGS">
+      <div ng-if="editObject.placementType == IN_BANNER || editObject.placementType == TRACKING_ONLY || editObject.placementType == IN_STREAM_VIDEO">
+        <mm-row>
+          <mm-drop-down
+            mm-id="protocol"
+            mm-label-width="{{placementViewSettings.settingsLabelWidth}}"
+            mm-layout-type="medium"
+            mm-caption="Protocol"
+            mm-data-model="placementViewSettings.httpTypes"
+            mm-tab-index="69"
+            mm-model="editObject.tagBuilderParams.siteServing.secureServingProtocol">
+          </mm-drop-down>
+        </mm-row>
+        <mm-row>
+          <mm-check-box
+            mm-id="escapeNoScript"
+            mm-model="editObject.tagBuilderParams.siteServing.escapeNoScript"
+            mm-caption="Escape No Script Tags"
+            mm-label-width="{{placementViewSettings.settingsLabelWidth}}"
+            mm-description="Clear Escaping">
+          </mm-check-box>
+        </mm-row>
+      </div>
+      <div ng-if="editObject.placementType == TRACKING_ONLY">
+        <mm-row>
+          <mm-text
+            mm-id="FirstPartyAdIDToken"
+            mm-caption="1st Party Ad ID Token"
+            mm-error="firstPartyAdIdTokenError.text"
+            mm-model="editObject.tagBuilderParams.siteServing.firstPartyAdIdToken"
+            mm-tab-index="80"
+            mm-disable="editObject.tagBuilderParams.siteServing.generateMultipleTags"
+            mm-label-width="{{placementViewSettings.settingsLabelWidth}}"
+            mm-layout-type="medium"></mm-text>
+        </mm-row>
+        <mm-row>
+          <mm-check-box
+            mm-id="generalImageTag"
+            mm-caption="Generate IMG tag"
+            mm-model="editObject.tagBuilderParams.siteServing.generateIMGTag"
+            mm-label-width="{{placementViewSettings.settingsLabelWidth}}"
+            mm-tab-index="77"
+            mm-layout-type="medium">
+          </mm-check-box>
+        </mm-row>
+        <mm-row>
+          <mm-check-box mm-caption="Generate Multiple Tags"
+                        mm-model="editObject.tagBuilderParams.siteServing.generateMultipleTags"
+                        mm-label-width="{{placementViewSettings.settingsLabelWidth}}"
+                        mm-tab-index="83"
+                        mm-layout-type="medium"
+                        mm-change="onGenerateMultiChange()">
+          </mm-check-box>
+        </mm-row>
+      </div>
+    </tab>
+    <tab id="tabTrackingAndTargetting" heading="TRACKING & TARGETING">
+      <div ng-if="editObject.placementType == IN_BANNER || editObject.placementType == TRACKING_ONLY || editObject.placementType == IN_STREAM_VIDEO">
+        <mm-row>
+          <mm-text
+            mm-id="CustomPublisherParameter"
+            mm-caption="Custom Publisher Parameter"
+            mm-model="editObject.tagBuilderParams.siteServing.publisherCustomParam"
+            mm-tab-index="71"
+            mm-label-width="{{placementViewSettings.settingsLabelWidth}}"
+            mm-layout-type="medium">
+          </mm-text>
+        </mm-row>
+        <mm-row>
+          <mm-text
+            mm-id="LineID"
+            mm-caption="Line ID"
+            mm-model="editObject.tagBuilderParams.siteServing.lineIdToken"
+            mm-tab-index="73"
+            mm-label-width="{{placementViewSettings.settingsLabelWidth}}"
+            mm-layout-type="medium">
+          </mm-text>
+        </mm-row>
+      </div>
+      <div ng-if="editObject.placementType == IN_BANNER">
+        <mm-row>
+          <mm-drop-down mm-label-width="{{placementViewSettings.settingsLabelWidth}}"
+                        mm-caption="Cache Busting Token"
+                        mm-model="editObject.tagBuilderParams.siteServing.customToken"
+                        mm-data-model="placementViewSettings.cacheBustingTokenTypes"
+                        mm-tab-index="69"
+                        mm-custom-control-width="{{cacheBustingTokenWidth}}"
+                        mm-layout-type="custom">
+          </mm-drop-down>
+          <mm-text
+            mm-id="CacheBustingToken"
+            mm-model="editObject.tagBuilderParams.siteServing.cacheBustingToken"
+            mm-tab-index="61"
+            mm-hide-label="true"
+            mm-custom-control-width="{{cacheBustingTokenWidth}}"
+            mm-layout-type="custom">
+          </mm-text>
+        </mm-row>
+        <mm-row >
+          <mm-text
+            mm-id="ImpressionTrackingToken"
+            mm-caption="Impression Tracking Token"
+            mm-model="editObject.tagBuilderParams.siteServing.impTracking"
+            mm-tab-index="57"
+            mm-label-width="{{placementViewSettings.settingsLabelWidth}}"
+            mm-layout-type="medium"></mm-text>
+        </mm-row>
+        <mm-row>
+          <mm-text
+            mm-id="ClickTrackingToken"
+            mm-caption="Click Tracking Token"
+            mm-model="editObject.tagBuilderParams.siteServing.clickTracking"
+            mm-tab-index="59"
+            mm-label-width="{{placementViewSettings.settingsLabelWidth}}"
+            mm-layout-type="medium"></mm-text>
+        </mm-row>
+      </div>
+    </tab>
+    <tab ng-if="editObject.placementType == IN_BANNER" id="tabAdDelivery" heading="AD DELIVERY">
+      <div>
+        <mm-row>
+          <mm-text mm-caption="Minimum Z-Index"
+                   mm-model="editObject.tagBuilderParams.siteServing.minZIndex"
+                   mm-tab-index="67"
+                   mm-label-width="{{placementViewSettings.settingsLabelWidth}}"
+                   mm-change="onMinZIndexChange()"
+                   mm-layout-type="medium"></mm-text>
+        </mm-row>
+        <mm-row>
+          <mm-drop-down
+            mm-layout-type="medium"
+            mm-caption="In-App SDK"
+            mm-label-width="{{placementViewSettings.settingsLabelWidth}}"
+            mm-model="editObject.mobileApplicationAdEnabler"
+            mm-error="placementTypeError.text"
+            mm-data-model="placementViewSettings.inAppTypes"
+            mm-tab-index="56">
+          </mm-drop-down>
+        </mm-row>
+      </div>
+    </tab>
+  </tabset>
+</mm-toggle-container>

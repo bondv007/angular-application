@@ -1,0 +1,51 @@
+<div class="central">
+	<div ng-show="centralDataObject.length>1">
+		<div ng-include="'infra/central/views/centralShowBy.html'" class="pull-left"></div>
+	</div>
+	<div ng-class="{'centralBody':displayData.remainingShowBys.length>0}">
+		<div>
+			<div class="entityActionsBar">
+                    <div ng-include="'infra/central/views/centralMasterToolBar.html'" class="pull-left"></div>
+				<div ng-include="'infra/central/views/centralViewBy.html'" class="pull-right"></div>
+			</div>
+		</div>
+		<div class="centralMainTable mmStretched" style="top:38px;">
+			<div class="mmStretchedCentral centralTableStretch">
+				<table cellpadding="0" cellspacing="0" class="centralTableStretch">
+					<tr class="centralTableStretch">
+						<td ng-repeat="centralIndex in displayData.selectedShowBys" ng-include="'infra/central/views/centralDataList.html'" class="centralTd" style="position: relative;height: 100%;min-height: 1px;"></td>
+						<td id="entralRightEdit" ng-if="displayData.showEdit&&!disableEdit" class="centralTd" style="width:50%;min-width: 640px;height: 100%;">
+							<div class="centralEntityResize" resize-col use-parent="true" is-reverted="true" min-width="640">&nbsp;</div>
+							<div class="centralEntityWrapper">
+								<div class="centralHeader">
+									<a ng-if="displayData.isSelectedItem" class="centralFriendlyGridItemIcon"
+                     ng-class="{'centralGoToEntityIcon': !displayData.dataObj.allowNewInEntral}" ng-click="goToFullPage(true)"></a>
+									<a ng-click="closeEntral()"><i class="centralCloseEntityIcon"></i></a>
+								</div>
+								<entity-layout ng-if="displayData.isSelectedItem"
+                               class="centralEntityWrapperShadow"
+                               entral-entity="displayData.dataObj"
+                               entity-type="displayData.dataObj.type"
+                               is-entral="true"
+                               style="top:61px;"
+                               go-to-data="displayData.dataObj.goToData"
+                               entity-id="displayData.dataObj.selectedItem.id"
+                               entity-actions="editButtons"
+                               hide-go-to="hideGoTo"
+                               view="displayData.dataObj.editPage"></entity-layout>
+								<div class="centralEntityWrapper" ng-if="!displayData.isSelectedItem" style="top:60px;right:0;left:0;">
+									<div class="mmStretched entralEmptyStateWrapper">
+									<span class="entralEmptyState">
+										<div class="entralEmptyIcon" style="display: inline-block"></div><br>
+										<div class="emptyStateText">{{'SELECT AN ENTITY TO PREVIEW' | T}}</div>
+									</span>
+									</div>
+								</div>
+							</div>
+						</td>
+					</tr>
+				</table>
+			</div>
+		</div>
+	</div>
+</div>

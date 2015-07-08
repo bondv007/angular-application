@@ -1,0 +1,9 @@
+<div ng-if="textTooltip.length > 0" ng-show="showTooltip || tooltipDwell" class="mmtooltip" ng-style="mousePosition"
+		 ng-mouseenter="tooltipDwell = true" ng-mouseleave="hideTooltipAfterDwell()">
+	<h6 ng-show="tooltipTitle">{{tooltipTitle}}</h6>
+
+	<p ng-bind-html="textTooltip"></p>
+</div>
+<span ng-mouseenter="displayTooltip($event)" ng-mouseleave="hideTooltip()" class="popoverMouse" ng-transclude></span>
+
+

@@ -1,0 +1,267 @@
+<div ng-show="!showSPinner" class="editContainer">
+
+	<div class="modal-body">
+		<!--Placement fields-->
+		<div style="padding-top: 20px">
+			<mm-row>
+				<mm-text mm-model="placement.name" mm-error="error.name" mm-caption="Name" mm-placeholder="Enter Placement Name" mm-is-required="true"
+										 mm-label-width="165" mm-layout-type="custom" mm-outer-control-class="col-md-12" mm-label-layout-class="col-md-2" mm-control-layout-class="col-md-4"
+										 text-tooltip="Enter placement name" mm-is-edit-mode="!newMode" mm-disable="false"></mm-text>
+			</mm-row>
+				<!--<mm-multiselect mm-is-required="true" mm-label-layout-class="col-md-2" mm-error="error.account" mm-caption="Account"-->
+				<!--mm-data-model="accounts" mm-model="placement.accountId" show-search-box></mm-multiselect>-->
+				<!--
+				Uncomment after campaign entity has accountId
+				<mm-row>
+					<mm-label mm-label-layout-class="col-md-2" mm-show-label="true" mm-model="{{ accountName }}" mm-caption="Account"></mm-label>
+				</mm-row> -->
+			<mm-row>
+				<mm-label
+						mm-label-width="165"
+						mm-layout-type="custom"
+						mm-outer-control-class="col-md-12"
+						mm-label-layout-class="col-md-2"
+						mm-control-layout-class="col-md-4"
+						mm-show-label="true" mm-model="campaignName" mm-error="error.campaign" mm-caption="Campaign"></mm-label>
+			</mm-row>
+			<mm-row>
+				<mm-multiselect
+						mm-label-width="165"
+						mm-layout-type="custom"
+						mm-outer-control-class="col-md-12"
+						mm-label-layout-class="col-md-2"
+						mm-control-layout-class="col-md-4"
+						mm-is-edit-mode="!newMode" mm-disable="false"
+						mm-is-required="true" mm-error="error.sites" mm-caption="Site" mm-placeholder="Select site"
+						mm-data-model="sites" mm-model="placement.siteId" mm-change="changeSectionsBySiteId()" show-search-box></mm-multiselect>
+			</mm-row>
+			<mm-row>
+				<mm-multiselect
+						mm-label-width="165"
+						mm-layout-type="custom"
+						mm-outer-control-class="col-md-12"
+						mm-label-layout-class="col-md-2"
+						mm-control-layout-class="col-md-4"
+						mm-is-required="true"  mm-error="error.siteSection" mm-caption="Section" mm-placeholder="Select section"
+												mm-data-model="siteSections" mm-model="placement.sectionId"></mm-multiselect>
+			</mm-row>
+
+			<mm-row>
+				<mm-multiselect
+						mm-label-width="165"
+						mm-layout-type="custom"
+						mm-outer-control-class="col-md-12"
+						mm-label-layout-class="col-md-2"
+						mm-control-layout-class="col-md-4"
+						mm-is-required="true"
+						mm-error="error.placementType"
+						mm-caption="Placement Type"
+						mm-placeholder="Select placement type"
+						mm-data-model="types"
+						mm-option-id="placementType"
+						mm-model="placement.placementType"
+						mm-select-change-func="changePlacementType()"
+						></mm-multiselect>
+			</mm-row>
+
+			<div data-ng-include="'campaignManagementApp/views/placement/placementTypeDecision.html'"></div>
+
+			<mm-row>
+				<mm-multiselect
+						mm-label-width="165"
+						mm-layout-type="custom"
+						mm-outer-control-class="col-md-12"
+						mm-label-layout-class="col-md-2"
+						mm-control-layout-class="col-md-4"
+						mm-error="error.package" mm-caption="Package" mm-placeholder="Select package"
+												mm-data-model="selectedPackages" mm-model="placement.packageId" mm-select-change-func="changePackage()"></mm-multiselect>
+			</mm-row>
+
+			<mm-toggle-container mm-caption="Serving and Cost" start-open="servingAndCostDisplay">
+				<tabset>
+					<tab heading="Serving">
+						<div style="padding-left: 15px">
+							<mm-row>
+								<div style="display: inline-block">Start Date </div>
+								<mm-single-date-picker  mm-disable="isPackageSelected" mm-model="placement.servingAndCostData.mediaServingData.startDate"></mm-single-date-picker>
+							</mm-row>
+							<mm-row>
+								<div	style="display: inline-block">End Date </div>
+								<mm-single-date-picker  mm-disable="isPackageSelected" mm-model="placement.servingAndCostData.mediaServingData.endDate"></mm-single-date-picker>
+							</mm-row>
+						</div>
+						<mm-row>
+
+
+							<mm-text mm-label-width="155"
+									mm-disable="isPackageSelected"
+									mm-is-required="true"
+									mm-caption="Booked Impressions:"
+									mm-model="placement.servingAndCostData.mediaServingData.units" mm-placeholder="Enter booked impressions" mm-error="error.bookedImpressions"
+									mm-is-edit-mode="!newMode"></mm-text>
+
+						</mm-row>
+					</tab>
+					<tab heading="Cost">
+						<mm-row>
+							<mm-multiselect
+									mm-disable="isPackageSelected"
+									mm-caption="Cost Model"
+									mm-error="error.costModel"
+									mm-placeholder="Select cost model"
+									mm-data-model="costModels"
+									mm-model="placement.servingAndCostData.mediaCostData.costModel"></mm-multiselect>
+						</mm-row>
+
+						<mm-row>
+							<mm-text mm-disable="isPackageSelected" mm-caption="Ordered Units" mm-model="placement.servingAndCostData.mediaCostData.orderedUnits"
+											 mm-placeholder="Enter ordered units" mm-error="error.orderedUnits" text-tooltip="Enter ordered units" mm-is-edit-mode="!newMode"></mm-text>
+						</mm-row>
+						<mm-row>
+							<mm-text mm-disable="isPackageSelected" mm-caption="Rate" mm-model="placement.servingAndCostData.mediaCostData.rate" mm-placeholder="Enter rate"
+											 mm-error="error.rate" text-tooltip="Enter rate" mm-is-edit-mode="!newMode"></mm-text>
+						</mm-row>
+						<mm-row>
+							<div style="padding-left:15px">
+								<mm-checkbox
+										mm-disable="isPackageSelected"
+										mm-caption="Ignore over Delivery"
+										mm-model="placement.servingAndCostData.mediaCostData.ignoreOverDelivery"
+										mm-control-layout-class="col-md-3">
+								</mm-checkBox>
+							</div>
+						</mm-row>
+						<mm-row>
+							<mm-multiselect
+									mm-caption="Action Type"
+									mm-error="error.actionType"
+									mm-placeholder="Select action type"
+									mm-data-model="costActionTypes"
+									mm-control-layout-class="col-md-12"
+									mm-disable="isPackageSelected"
+									mm-model="placement.servingAndCostData.mediaCostData.actionType"></mm-multiselect>
+						</mm-row>
+
+					</tab>
+
+				</tabset>
+
+			</mm-toggle-container>
+
+			<mm-toggle-container mm-caption="Settings" start-open="servingAndCostDisplay">
+				<tabset>
+					<tab heading="Serving">
+						<mm-row>
+							<mm-multiselect
+									mm-disable="isPackageSelected"
+									mm-is-required="true"
+									mm-label-width="180"
+									mm-error="error.servingCompletedMethod"
+									mm-caption="Serving complete method"
+									mm-placeholder="Select complete method "
+									mm-data-model="servingCompleteMethods"
+									mm-model="placement.servingAndCostData.mediaServingData.servingCompletedMethod"></mm-multiselect>
+						</mm-row>
+					</tab>
+					<tab heading="Tagging" disabled="true"></tab>
+					<tab heading="Classifications"></tab>
+				</tabset>
+			</mm-toggle-container>
+
+
+		</div>
+	</div>
+</div>
+
+<wave-spinner ng-show="showSPinner"></wave-spinner>
+
+<!-- Serving and cost - Table
+<mm-toggle-container mm-caption="Serving and Cost" start-open="servingAndCostDisplay">
+
+
+<div style="width:1050px;overflow-x:auto;overflow-y:hidden;height:200px">
+<table border="1" style="border: 1px solid darkgray;border-collapse:collapse;height: 70px;">
+	<tr>
+		<th >Start Date</th>
+		<th >End Date</th>
+		<th >Booked Impressions</th>
+		<th >Cost Model</th>
+		<th >Ordered Units</th>
+		<th >Rate ($)</th>
+		<th >Total Cost</th>
+		<th >Ignore Over Delivery</th>
+		<th >Action Type</th>
+	</tr>
+	<tr>
+		<td >
+			<mm-single-date-picker  mm-model="placement.servingAndCostData.mediaServingData.startDate"></mm-single-date-picker>
+		</td>
+		<td >
+			<mm-single-date-picker  mm-model="placement.servingAndCostData.mediaServingData.endDate"></mm-single-date-picker>
+		</td>
+		<td >
+			<mm-row>
+				<mm-text  mm-model="placement.servingAndCostData.mediaServingData.units" mm-placeholder="Enter booked impressions" mm-error="error.bookedImpressions" text-tooltip="Enter booked impressions" mm-show-edit-mode="newMode" mm-show-label="false"></mm-text>
+			</mm-row>
+		</td>
+		<td>
+
+			<mm-multiselect
+					mm-layout-type="custom"
+					mm-outer-control-class="col-lg-12"
+					mm-close-mode-class="width150"
+					mm-error="error.costModel"
+					mm-placeholder="Select cost model"
+					mm-data-model="costModels"
+					mm-show-label="false"
+					mm-model="placement.servingAndCostData.mediaCostData.costModel"></mm-multiselect>
+
+		</td>
+		<td >
+
+			<mm-row>
+				<mm-text mm-model="placement.servingAndCostData.mediaCostData.orderedUnits" mm-placeholder="Enter ordered units" mm-error="error.orderedUnits" text-tooltip="Enter ordered units" mm-show-edit-mode="newMode" mm-show-label="false"></mm-text>
+			</mm-row>
+		</td>
+		<td >
+			<mm-text  mm-model="placement.servingAndCostData.mediaCostData.rate" mm-placeholder="Enter rate" mm-error="error.rate" text-tooltip="Enter rate" mm-show-edit-mode="newMode" mm-show-label="false"></mm-text>
+		</td>
+		<td >{{ placement.servingAndCostData.mediaCostData.rate * placement.servingAndCostData.mediaCostData.orderedUnits }}</td> <!-- total cost
+		<td >
+			<mm-checkbox
+					mm-model="placement.servingAndCostData.mediaCostData.ignoreOverDelivery"
+					mm-control-layout-class="col-md-1">
+			</mm-checkBox>
+		</td>
+		<td >
+			<mm-multiselect
+					mm-error="error.actionType"
+					mm-placeholder="Select action type"
+					mm-data-model="costActionTypes"
+					mm-control-layout-class="col-md-12"
+					mm-show-label="false"
+					mm-model="placement.servingAndCostData.mediaCostData.actionType"></mm-multiselect>
+		</td>
+	</tr>
+</table>
+</div>
+
+<mm-row>
+<mm-text mm-model="placement.servingAndCostData.mediaCostData.orderedUnits" mm-placeholder="Enter ordered units" mm-error="error.orderedUnits" text-tooltip="Enter ordered units" mm-show-edit-mode="newMode" mm-show-label="false"></mm-text>
+</mm-row>
+<mm-row>
+<mm-text  mm-model="placement.servingAndCostData.mediaCostData.rate" mm-placeholder="Enter rate" mm-error="error.rate" text-tooltip="Enter rate" mm-show-edit-mode="newMode" mm-show-label="false"></mm-text>
+</mm-row>
+<mm-row>
+<mm-multiselect
+		mm-error="error.costModel"
+		mm-placeholder="Select cost model"
+		mm-data-model="costModels"
+		mm-show-label="false"
+		mm-control-layout-class="col-md-12"
+		mm-model="placement.servingAndCostData.mediaCostData.costModel"></mm-multiselect>
+</mm-row>
+
+
+</mm-toggle-container>
+-->

@@ -1,0 +1,58 @@
+<div>
+    <mm-two-columns>
+
+        <h2>If A User</h2>
+        <mm-drop-down
+                mm-model="condition.urlThat"
+                mm-error="validation.advertiser"
+                mm-data-model="urlOption"
+                mm-layout-type="medium"
+                mm-placeholder="Enter Ad Format"
+                mm-caption="Landed on"
+                mm-label-width="{{labelWidth}}"
+                mm-id="url_that">
+
+        </mm-drop-down>
+
+        <mm-text ng-if="condition.urlThat !== 'Any'"
+                 mm-is-edit-mode="isEditMode"
+                 mm-model="condition.urlList[0]"
+                 mm-label-width="{{labelWidth}}"
+                 mm-error="validation.basicUrl"
+                 mm-layout-type="medium" ng-model="condition.urlList[0]"></mm-text>
+                  <span ng-if="condition.urlThat !== 'Any'" class="centralEntitylLink">
+                      <a class="tbd" test-url="{{condition.urlList[0]}}">Test Url</a>
+                  </span>
+    </mm-two-columns>
+    <mm-two-columns>
+        <h2>Then</h2>
+
+        <mm-drop-down ng-if="editObject.advertiserId"
+                mm-model="editObject.actions[0].tags[0].id"
+                mm-data-model="advertisersTags"
+                mm-layout-type="medium"
+                mm-caption="Fire The Tag {{isLoading ? ' ..loading' : ''}}"
+                mm-error="validation.advertisersTags"
+                mm-select-change-func="changeInternalNameTag(editObject.actions[0].tags[0].id, 0)"
+                mm-label-width="{{labelWidth}}"
+                mm-id="reporting_name"></mm-drop-down>
+    </mm-two-columns>
+    <div class="clearfix"></div>
+    <mm-row class="col-md-6">
+        <h2>This firing condition occurs</h2>
+        <mm-drop-down
+                mm-model="editObject.occurs"
+                mm-data-model="conditions"
+                mm-layout-type="medium"
+                mm-error="validation.occurs"
+                mm-label-width="{{labelWidth}}" mm-id="occurs"></mm-drop-down>
+    </mm-row>
+    <mm-row class="col-md-12">
+        <div style="border: 1px solid black; padding: 10px" class="">
+            <div style="display: inline-block; padding: 5px 0"> For Advanced Conditions (multiple Urls, Tag exposure and more)</div>
+            <mm-button mm-action="switchToAdvance()" mm-caption="Move to Advanced Mode"  class="pull-right"></mm-button>
+        </div>
+    </mm-row>
+    <div class="clearfix"></div>
+    <mm-gear-menu mm-model="condition" ng-if="condition.ifUser == 'LandedOn'"></mm-gear-menu>
+</div>

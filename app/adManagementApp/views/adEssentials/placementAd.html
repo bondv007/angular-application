@@ -1,0 +1,16 @@
+<mm-row>
+    <mm-drop-down mm-data-model="lookups.adFormats"
+                  show-search-box
+                  mm-model="ad.adFormat"
+                  mm-is-required="true"
+                  mm-is-edit-mode="isEditMode"
+                  mm-disable ="isEditMode"
+                  mm-layout-type="medium"
+                  mm-label-width={{::labelWidth}}
+                  mm-caption="Ad Format"
+                  mm-placeholder="Enter Ad Format"
+                  mm-select-change-func="changeAdType()"
+                  mm-tab-index="2"
+                  mm-error="errors.adFormat"></mm-drop-down>
+</mm-row >
+

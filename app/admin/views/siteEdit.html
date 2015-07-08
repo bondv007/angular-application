@@ -1,0 +1,60 @@
+<div class="editContainer">
+    <mm-row>
+        <div class="mm-entity-fields-container-single">
+            <mm-row>
+                <mm-text mm-model="siteEdit.name"
+                         mm-placeholder="Enter Site Name"
+                         mm-error="validation.name"
+                         mm-caption="Name"
+                         mm-is-required="true"
+                         mm-is-edit-mode="isEditMode"
+                         mm-change="onNameChange()"
+                         mm-label-width="{{labelWidth}}"
+                         mm-layout-type="medium">
+                </mm-text>
+            </mm-row>
+        </div>
+    </mm-row>
+    <!--<mm-toggle-container mm-caption="Accounts"-->
+                         <!--start-open="accountsSectionStartOpen">-->
+        <!--<mm-row>-->
+            <!--<mm-text mm-model="filter.accountId"-->
+                     <!--mm-is-edit-mode="false"-->
+                     <!--mm-label-width="0"-->
+                     <!--mm-change="filterDataModel()"-->
+                     <!--mm-tab-index="3"></mm-text>-->
+            <!--&lt;!&ndash; Currently commented out due to lack of support in quick create process for account entity &ndash;&gt;-->
+            <!--&lt;!&ndash;<span class="newSectionLink" data-ng-click="createNewAccountModal();">{{'New Account' | T}}</span>&ndash;&gt;-->
+        <!--</mm-row>-->
+        <!--<mm-row>-->
+            <!--<mm-select-list mm-data-model="accounts"-->
+                            <!--mm-model="siteEdit.relations.accountIds"-->
+                            <!--mm-force-init="accountsSectionStartOpen"-->
+                            <!--mm-available-title="TOTAL Accounts">-->
+            <!--</mm-select-list>-->
+        <!--</mm-row>-->
+    <!--</mm-toggle-container>-->
+
+    <!-- SITE SETTINGS -->
+    <mm-toggle-container
+            mm-caption="Settings"
+            start-open="settingsToggelsStartOpen.main">
+        <tabset justified="false">
+            <tab heading="Tracking & Targeting" active="settingsTabsStatus.isTrackingTargetingActive"><span ng-include="'admin/views/site/settings/trackingTargeting.html'"/></tab>
+            <tab heading="Tag Settings" active="settingsTabsStatus.isTagSettingsActive"><span ng-include="'admin/views/site/settings/tagSettings.html'"/></tab>
+            <tab heading="Ad Delivery"
+                 ng-attr-class="{{validation !== undefined && validation.minimumZIndex !== undefined && validation.minimumZIndex !== '' ? 'tabWithErrors' : ''}}"
+                 active="settingsTabsStatus.isAdDeliveryActive">
+                <span ng-include="'admin/views/site/settings/adDelivery.html'"/>
+            </tab>
+            <tab heading="In-Stream Rules" active="settingsTabsStatus.isInStreamRulesActive">
+                <span ng-include="'admin/views/site/settings/inStreamRules.html'"/>
+            </tab>
+            <!--TODO tab commented out because it's currently without content-->
+            <!--<tab heading="Trafficking & Approval" active="settingsTabsStatus.isTraffickingApprovalActive"><span ng-include="'admin/views/site/settings/TraffickingApproval.html'"/></tab>-->
+        </tabset>
+    </mm-toggle-container>
+    <!-- SITE CONTACTS -->
+    <span ng-include="'admin/views/site/contacts/siteContactsGrid.html'"/>
+    <mm-external-id></mm-external-id>
+</div>

@@ -1,0 +1,323 @@
+<div class="editContainer">
+  <mm-row>
+    <div class="mm-entity-fields-container">
+      <mm-row>
+        <mm-text
+            mm-id="PlacementName"
+            mm-model="editObject.name"
+            mm-error="placementNameError.text"
+            mm-caption="Name"
+            mm-placeholder="Enter Placement Name"
+            mm-is-required="true"
+            mm-label-width="{{labelWidth}}"
+            mm-layout-type="medium"
+            mm-tab-index="1"
+            mm-disable="false">
+        </mm-text>
+      </mm-row>
+      <mm-row>
+        <mm-label
+            mm-label-width="{{labelWidth}}"
+            mm-layout-type="medium"
+            mm-show-label="true"
+            mm-model="campaignName"
+            mm-tab-index="3"
+            mm-caption="Campaign">
+        </mm-label>
+      </mm-row>
+      <mm-row>
+        <mm-drop-down
+            mm-id="siteName"
+            mm-error="placementSiteError.text"
+            mm-label-width="{{labelWidth}}"
+            mm-layout-type="medium"
+            mm-disable="false"
+            mm-is-required="true"
+            mm-caption="Site"
+            mm-placeholder="Select site"
+            mm-model="editObject.siteId"
+            mm-select-change-func="changeSectionsBySiteId()"
+            mm-data-model="sites"
+            mm-tab-index="5"
+            show-search-box>
+        </mm-drop-down>
+      </mm-row>
+      <mm-row>
+        <mm-drop-down
+            mm-id="siteSection"
+            mm-error="placementSiteSectionError.text"
+            mm-label-width="{{labelWidth}}"
+            mm-layout-type="medium"
+            mm-disable="!editObject.siteId"
+            mm-is-required="true"
+            mm-caption="Section"
+            mm-placeholder="Select section"
+            mm-model="editObject.sectionId"
+            mm-data-model="siteSections"
+            new-entity-type="sitesection"
+            entity-obj="entityObj"
+            mm-tab-index="7"
+            show-search-box
+            mm-show-add-new="true">
+        </mm-drop-down>
+      </mm-row>
+      <mm-row>
+        <mm-drop-down
+            mm-id="siteContacts"
+            mm-data-model="siteContacts.siteContacts"
+            mm-model="siteContacts.selectedContacts"
+            control-type="multi"
+            mm-caption="Site Contacts"
+            mm-layout-type="medium"
+            mm-label-width="{{labelWidth}}"
+            mm-error="editObject.errors.siteContacts.text"
+            mm-tab-index="9"
+            show-search-box>
+        </mm-drop-down>
+        <span ng-if="displayAdvertiserLink" class="newBannerSizeLink" ng-click="updateAdvertiserSiteContacts()">{{'placementEdit_SetAsAdvertisersDefault' | T}}</span>
+      </mm-row>
+      <mm-row>
+        <mm-drop-down
+            mm-id="sitePlacementType"
+            mm-label-width="{{labelWidth}}"
+            mm-layout-type="medium"
+            mm-is-required="true"
+            mm-error="placementTypeError.text"
+            mm-caption="Placement Type"
+            mm-placeholder="Select placement type"
+            mm-data-model="types"
+            mm-option-id="placementType"
+            mm-model="editObject.placementType"
+            mm-tab-index="12"
+            mm-disable="isEditMode"
+            mm-select-change-func="changePlacementType()">
+        </mm-drop-down>
+      </mm-row>
+      <span ng-include="'campaignManagementApp/views/placement/placementTypeDecision.html'"></span>
+      <mm-row>
+        <mm-drop-down
+          mm-id="placementPackage"
+          mm-label-width="{{labelWidth}}"
+          mm-layout-type="medium"
+          mm-caption="Package"
+          mm-placeholder="Select package"
+          mm-data-model="selectedPackages"
+          mm-model="editObject.packageId"
+          mm-select-change-func="changePackage()"
+          entity-obj="entityObj"
+          new-entity-type="placementPackage"
+          mm-tab-index="30"
+          mm-show-add-new="true"
+          show-search-box>
+        </mm-drop-down>
+      </mm-row>
+    </div>
+    <div class="mm-entity-info-box-container-right">
+      <mm-info-box num-of-info-lines="6">
+        <mm-info-label mm-model="editObject.status"
+                       mm-label-width={{infoBoxLabelWidth}}
+                       mm-caption="{{'Status' | T}}:"></mm-info-label>
+        <mm-info-label mm-model="isEditMode ? editObject.analyticsData.impressions : null"
+                       mm-label-width={{infoBoxLabelWidth}}
+                       mm-caption="{{'Total Impressions' | T}}:"></mm-info-label>
+        <mm-info-label mm-model="isEditMode ? editObject.analyticsData.clicks : null"
+                       mm-label-width={{infoBoxLabelWidth}}
+                       mm-caption="{{'Total Clicks' | T}}:"></mm-info-label>
+        <mm-info-label mm-model="isEditMode ? editObject.analyticsData.ctr : null"
+                       mm-label-width={{infoBoxLabelWidth}}
+                       mm-caption="{{'CTR' | T}}:"></mm-info-label>
+        <mm-info-label mm-model=""
+                       mm-label-width={{infoBoxLabelWidth}}
+                       mm-caption="{{'Last Served Impression' | T}}:"></mm-info-label>
+        <mm-info-label mm-model="isEditMode ? editObject.analyticsData.lastUpdated : null"
+                       mm-label-width={{infoBoxLabelWidth}}
+                       mm-caption="{{'Last updated' | T}}:"></mm-info-label>
+      </mm-info-box>
+    </div>
+  </mm-row>
+  <mm-row>
+  <div class="mm-entity-fields-container-single">
+    <mm-toggle-container mm-id="servingAndSetting" mm-caption="Serving and Cost" start-open="servingAndCostDisplay">
+				<div ng-include="'campaignManagementApp/views/templates/servingAndCost.html'"></div>
+    </mm-toggle-container>
+  </div>
+</mm-row>
+  <mm-row>
+    <div ng-if="editObject.placementType=='TRACKING_ONLY'" class="mm-entity-fields-container-single">
+      <mm-toggle-container mm-id="trackingAndMapping" mm-caption="Tracking Ads" start-open="trackingAdsToggleOpen">
+        <mm-row>
+          <mm-grid items=editObject.trackingAds
+                   selected-items=selectedAds
+                   cols=trackingAdsTableColumns
+                   is-cell-edit="true"
+                   is-single-select="false"
+                   is-sort="true"
+                   show-footer="false"
+                   is-groupable="false"
+                   show-selection-checkbox="true"
+                   show-filter="false"
+                   enable-column-resize="true"
+                   is-column-reorder="false"
+                   is-column-freeze="false"
+                   is-show-menu="false"
+                   grid-height="200"
+                   is-central-grid="false"
+                   is-grid-loading="false"
+                   grid-button-actions="trackingAdsTableActions"
+                   generic-validation-handler="trackingAdsValidationHandler"
+                   selected-row-handler="onTrackingAdRowSelected">
+          </mm-grid>
+        </mm-row>
+      </mm-toggle-container>
+    </div>
+  </mm-row>
+  <mm-row>
+  <div class="mm-entity-fields-container-single">
+    <mm-toggle-container mm-id="settings" mm-caption="Settings" start-open="settingsDisplay">
+      <tabset>
+        <tab id="tabSettings" heading="TAG SETTINGS">
+          <div ng-if="editObject.placementType == IN_BANNER || editObject.placementType == TRACKING_ONLY || editObject.placementType == IN_STREAM_VIDEO">
+            <mm-row>
+              <mm-drop-down
+                mm-id="protocol"
+                mm-label-width="{{settingsLabelWidth}}"
+                mm-layout-type="medium"
+                mm-caption="Protocol"
+                mm-data-model="httpTypes"
+                mm-tab-index="69"
+                mm-model="editObject.tagBuilderParams.siteServing.secureServingProtocol">
+              </mm-drop-down>
+            </mm-row>
+            <mm-row>
+              <mm-check-box
+                mm-id="escapeNoScript"
+                mm-model="editObject.tagBuilderParams.siteServing.escapeNoScript"
+                mm-caption="Escape No Script Tags"
+                mm-label-width="{{settingsLabelWidth}}"
+                mm-description="Clear Escaping">
+              </mm-check-box>
+            </mm-row>
+          </div>
+          <div ng-if="editObject.placementType == TRACKING_ONLY">
+            <mm-row>
+              <mm-text
+                mm-id="FirstPartyAdIDToken"
+                mm-caption="1st Party Ad ID Token"
+                mm-error="firstPartyAdIdTokenError.text"
+                mm-model="editObject.tagBuilderParams.siteServing.firstPartyAdIdToken"
+                mm-tab-index="80"
+                mm-disable="editObject.tagBuilderParams.siteServing.generateMultipleTags"
+                mm-label-width="{{settingsLabelWidth}}"
+                mm-layout-type="medium"></mm-text>
+            </mm-row>
+            <mm-row>
+              <mm-check-box
+                mm-id="generalImageTag"
+                mm-caption="Generate IMG tag"
+                mm-model="editObject.tagBuilderParams.siteServing.generateIMGTag"
+                mm-label-width="{{settingsLabelWidth}}"
+                mm-tab-index="77"
+                mm-layout-type="medium">
+              </mm-check-box>
+            </mm-row>
+            <mm-row>
+              <mm-check-box mm-caption="Generate Multiple Tags"
+                            mm-model="editObject.tagBuilderParams.siteServing.generateMultipleTags"
+                            mm-label-width="{{settingsLabelWidth}}"
+                            mm-tab-index="83"
+                            mm-layout-type="medium"
+                            mm-change="onGenerateMultiChange()">
+              </mm-check-box>
+            </mm-row>
+          </div>
+        </tab>
+        <tab id="tabTrackingAndTargetting" heading="TRACKING & TARGETING">
+          <div ng-if="editObject.placementType == IN_BANNER || editObject.placementType == TRACKING_ONLY || editObject.placementType == IN_STREAM_VIDEO">
+            <mm-row>
+              <mm-text
+                mm-id="CustomPublisherParameter"
+                mm-caption="Custom Publisher Parameter"
+                mm-model="editObject.tagBuilderParams.siteServing.publisherCustomParam"
+                mm-tab-index="71"
+                mm-label-width="{{settingsLabelWidth}}"
+                mm-layout-type="medium">
+              </mm-text>
+            </mm-row>
+            <mm-row>
+              <mm-text
+                mm-id="LineID"
+                mm-caption="Line ID"
+                mm-model="editObject.tagBuilderParams.siteServing.lineIdToken"
+                mm-tab-index="73"
+                mm-label-width="{{settingsLabelWidth}}"
+                mm-layout-type="medium">
+              </mm-text>
+            </mm-row>
+          </div>
+          <div ng-if="editObject.placementType == IN_BANNER">
+            <mm-row>
+              <mm-drop-down mm-label-width="{{settingsLabelWidth}}"
+                            mm-caption="Cache Busting Token"
+                            mm-model="editObject.tagBuilderParams.siteServing.customToken"
+                            mm-data-model="cacheBustingTokenTypes"
+                            mm-tab-index="69"
+                            mm-custom-control-width="{{cacheBustingTokenWidth}}"
+                            mm-layout-type="custom">
+              </mm-drop-down>
+              <mm-text
+                mm-id="CacheBustingToken"
+                mm-model="editObject.tagBuilderParams.siteServing.cacheBustingToken"
+                mm-tab-index="61"
+                mm-hide-label="true"
+                mm-custom-control-width="{{cacheBustingTokenWidth}}"
+                mm-layout-type="custom">
+              </mm-text>
+            </mm-row>
+            <mm-row >
+              <mm-text
+                mm-id="ImpressionTrackingToken"
+                mm-caption="Impression Tracking Token"
+                mm-model="editObject.tagBuilderParams.siteServing.impTracking"
+                mm-tab-index="57"
+                mm-label-width="{{settingsLabelWidth}}"
+                mm-layout-type="medium"></mm-text>
+            </mm-row>
+            <mm-row>
+              <mm-text
+                mm-id="ClickTrackingToken"
+                mm-caption="Click Tracking Token"
+                mm-model="editObject.tagBuilderParams.siteServing.clickTracking"
+                mm-tab-index="59"
+                mm-label-width="{{settingsLabelWidth}}"
+                mm-layout-type="medium"></mm-text>
+            </mm-row>
+          </div>
+        </tab>
+        <tab ng-if="editObject.placementType == IN_BANNER" id="tabAdDelivery" heading="AD DELIVERY">
+          <div>
+            <mm-row>
+              <mm-text mm-caption="Minimum Z-Index"
+                       mm-model="editObject.tagBuilderParams.siteServing.minZIndex"
+                       mm-tab-index="67"
+                       mm-label-width="{{settingsLabelWidth}}"
+                       mm-change="onMinZIndexChange()"
+                       mm-layout-type="medium"></mm-text>
+            </mm-row>
+            <mm-row>
+              <mm-drop-down
+                mm-layout-type="medium"
+                mm-caption="In-App SDK"
+                mm-label-width="{{settingsLabelWidth}}"
+                mm-model="editObject.mobileApplicationAdEnabler"
+                mm-error="placementTypeError.text"
+                mm-data-model="inAppTypes"
+                mm-tab-index="56">
+              </mm-drop-down>
+            </mm-row>
+          </div>
+        </tab>
+      </tabset>
+    </mm-toggle-container>
+  </div>
+</mm-row>
+</div>

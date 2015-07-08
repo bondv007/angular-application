@@ -1,0 +1,50 @@
+<div class="ioEditTitle">
+    <p><span>PAYER INFO</span></p>
+</div>
+<div class="ioEditContent">
+    <div class="row">
+        <div class="col-lg-6 col-md-6 col-xs-6">
+            <mm-row ng-if="ioDetails.payerInfo.name">
+                <mm-label mm-model="ioDetails.payerInfo.name" mm-caption="Name:"></mm-label>
+            </mm-row>
+            <mm-row ng-if="ioDetails.payerInfo.address.addressline1">
+                <mm-label mm-model="ioDetails.payerInfo.address.addressline1" mm-caption="Address:"></mm-label>
+            </mm-row>
+            <mm-row ng-if="ioDetails.payerInfo.address.addressline2">
+                <mm-label mm-model="ioDetails.payerInfo.address.addressline2" mm-caption=""></mm-label>
+            </mm-row>
+            <mm-row ng-if="ioDetails.payerInfo.address.addressline3">
+                <mm-label mm-model="ioDetails.payerInfo.address.addressline3" mm-caption=""></mm-label>
+            </mm-row>
+            <mm-row ng-if="ioDetails.payerInfo.address.addressline4">
+                <mm-label mm-model="ioDetails.payerInfo.address.addressline4" mm-caption=""></mm-label>
+            </mm-row>
+        </div>
+
+        <div class="col-lg-6 col-md-6 col-xs-6">
+            <mm-row ng-if="ioDetails.payerInfo.billingContact[0].name">
+                <mm-label mm-model="ioDetails.payerInfo.billingContact[0].name"
+                          mm-caption="Billing Contact:"></mm-label>
+            </mm-row>
+            <mm-row ng-if="ioDetails.payerInfo.contactDetails.email">
+                <mm-label mm-model="ioDetails.payerInfo.contactDetails.email" mm-caption="Email:"></mm-label>
+            </mm-row>
+            <mm-row ng-if="ioDetails.payerInfo.contactDetails.phone">
+                <mm-label mm-model="ioDetails.payerInfo.contactDetails.phone" mm-caption="Phone:"></mm-label>
+            </mm-row>
+            <mm-row ng-if="ioDetails.payerInfo.contactDetails.fax">
+                <mm-label mm-model="ioDetails.payerInfo.contactDetails.fax" mm-caption="Fax:"></mm-label>
+            </mm-row>
+
+            <mm-row>
+                <mm-text mm-model="ioDetails.poNumber"
+                         mm-layout-type="custom"
+                         mm-custom-control-width="220"
+                         mm-caption="Payer PO#: "
+                         mm-placeholder="Enter Number"
+                         mm-disable="!hasBillingIoEditPermission"></mm-text>
+            </mm-row>
+        </div>
+    </div>
+</div>
+

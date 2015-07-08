@@ -1,0 +1,65 @@
+.mm-dropdown-toggle{
+  width: 100%;
+  border-radius: $border-radius-small;
+  &:hover,
+  &:focus{
+    border-color: $input-border-focus;
+    border-width: $border-width-small;
+  }
+}
+.mm-dropdown-menu{
+  @extend .dropdown-menu;
+  left: 15px;
+  width: 100%;
+  background-color: $cWhite;
+  border-color: $input-border-focus;
+  border-width: $border-width-small;
+
+  .span { cursor: pointer; }
+
+  // Items within the dropdown menu
+  > li > span {
+    display: block;
+    padding: 3px 20px;
+    clear: both;
+    font-weight: normal;
+    line-height: $line-height-base;
+    white-space: nowrap; // prevent links from randomly breaking onto new lines
+  }
+}
+
+// Hover/Focus state
+.mm-dropdown-menu > li > span {
+  &:hover,
+  &:focus {
+    cursor: pointer;
+    text-decoration: none;
+    color: $dropdown-link-hover-color;
+    background-color: $cGrey;
+  }
+}
+
+span.error {
+  border: solid 1px red;
+  &:hover {
+    border: solid 1px darkred;
+  }
+}
+span.regular {
+  border: solid 1px transparent;
+  &:hover {
+    border: solid 1px #808080;
+  }
+}
+span.dirty {
+  color: #80ff80;
+  border: solid 1px transparent;
+  &:hover {
+    border: solid 1px #80ff80;
+  }
+}
+
+span.mm-label-combo{
+  @extend .mm-label;
+  padding-left: 10px;
+}

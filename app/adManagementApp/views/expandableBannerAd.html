@@ -1,0 +1,67 @@
+<div>
+  <mm-toggle-container mm-caption="Creative Assets" mm-error="creativeError.name"
+                       start-open="toggleHandler.showToggleCreativeAssets">
+    <mm-row ng-if="errors.creativeAssets">
+      <mm-error-div error-text="errors.creativeAssets"></mm-error-div>
+    </mm-row>
+    <mm-row ng-if="errors.panels">
+      <mm-error-div error-text="errors.panels"></mm-error-div>
+    </mm-row>
+    <mm-row ng-if="errors.additionalAssets">
+      <mm-error-div error-text="errors.additionalAssets"></mm-error-div>
+    </mm-row>
+    <tabset>
+      <tab id="creativeassetsbase" class="{{!errors.creativeAssets  ? '' : 'tabWithErrors'}}"
+           select="focusedTab('creativeAssetsBase')">
+        <tab-heading>{{'Main Assets' | T}}</tab-heading>
+        <div ng-if="tabsFocused.creativeAssetsBase" ng-include="'adManagementApp/views/creativeAssetsBase.html'"></div>
+      </tab>
+      <tab id="panels" class="{{!errors.panels  ? '' : 'tabWithErrors'}}" select="focusedTab('panels')">
+        <tab-heading>{{'Panels' | T}} <span class="badge">{{ad.panels == null ? 0 : ad.panels.length}}</span>
+        </tab-heading>
+        <div ng-if="tabsFocused.panels" ng-include="'adManagementApp/views/panelsTab.html'"></div>
+      </tab>
+      <tab id="additionalassets" class="{{!errors.additionalAssets  ? '' : 'tabWithErrors'}}"
+           select="focusedTab('additionalAssetsTab')">
+        <tab-heading>{{'Additional Assets' | T }} <span class="badge">{{ad.additionalAssets == null ? 0 : ad.additionalAssets.length}}</span>
+        </tab-heading>
+        <div ng-if="tabsFocused.additionalAssetsTab"
+             ng-include="'adManagementApp/views/additionalAssetsTab.html'"></div>
+      </tab>
+    </tabset>
+  </mm-toggle-container>
+</div>
+<div ng-include="'adManagementApp/views/clickthrough&ThirdPartyURLs.html'"></div>
+<div ng-include="'adManagementApp/views/customInteractions.html'"></div>
+
+<div>
+  <mm-toggle-container mm-caption="Settings" mm-is-dirty="" mm-error="error.name"
+                       start-open="toggleHandler.showToggleSettings">
+    <tabset>
+      <tab heading="General" select="focusedTab('general')" id="general">
+        <div style="padding-top: 20px">
+          <div ng-if="tabsFocused.general" ng-include="'adManagementApp/views/SettingsGeneralTab.html'"></div>
+          <mm-row>
+            <mm-drop-down mm-data-model="lookups.hides" mm-model="ad.hides" mm-required="true" mm-disabled="!!ad.id"
+                          mm-caption="Hide" mm-placeholder="Enter Ad Format" mm-is-edit-mode="ad.id"
+                          mm-layout-type="medium" mm-label-width={{::labelWidth3}}
+                          mm-error="error.name"
+                          control-type="multi"
+                          mm-edit-multiple="isMultiple != undefined && isMultiple.indexOf('hides') != -1"></mm-drop-down>
+          </mm-row>
+        </div>
+      </tab>
+      <tab heading="Privacy" id="privacy">
+        <div style="padding-top: 20px">
+          <div ng-include="'adManagementApp/views/SettingsPrivacyTab.html'"></div>
+        </div>
+      </tab>
+      <!--tab heading="Classifications">
+        <div style="padding-top: 20px">
+          Classifications
+        </div>
+      </tab-->
+    </tabset>
+  </mm-toggle-container>
+</div>
+

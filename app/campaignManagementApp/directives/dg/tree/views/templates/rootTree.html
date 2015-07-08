@@ -1,0 +1,53 @@
+<span ng-show="mmModel.subContainers.length > 0">
+<mm-row>
+		<mm-drop-down
+				class="rootRotationPosition"
+				mm-layout-type="custom"
+				mm-label-width="70"
+				mm-custom-control-width="170"
+				mm-caption="Rotation"
+				mm-select-change-func="onSubGroupRotationChange(mmModel)"
+				mm-data-model="rotations"
+				mm-model="mmModel.rotationType"></mm-drop-down>
+	</mm-row>
+<!--Root Rotation Ads-->
+<div ui-tree="rotationTreeOptions" data-empty-place-holder-enabled="false">
+	<ol ui-tree-nodes="" ng-model="mmModel.subContainers">
+		<li ng-if="(item.type =='AdContainer') ? true : item.rotationSetting.enabled || !mmHideDisabled.val" ng-repeat="item in mmModel.subContainers" ui-tree-node
+				ng-include="'campaignManagementApp/directives/dg/tree/views/templates/nodes_renderer.html'">
+		</li>
+	</ol>
+</div>
+</span>
+
+<!--Root Default Serve-->
+<div ng-show="mmDisplayDefaultServe">
+	<div ui-tree="defaultServetreeOptions">
+		<ol ui-tree-nodes="" ng-model="ds">
+			<li ng-repeat="rootContainer in ds" ui-tree-node>
+				<div data-nodrag ui-tree-handle>
+
+					<!--Open\Close Icon Container-->
+					<div class="middleElement notVisibleDragIcon"></div>
+					<a data-nodrag class="middleElement wrapContainerToggleIcon" ng-click="toggle()">
+						<div ng-class="{'containerOpenIcon':!collapsed, containerCloseIcon:collapsed}" class="middleElement containerOpenIconDim"></div>
+					</a>
+
+					<!--Check Box []-->
+					<div data-nodrag class="mm_checkbox middleElement" ng-model="mmDefaultAdsCb.isSelected" ng-click="mmDefaultAdsCb.isSelected=!mmDefaultAdsCb.isSelected; selectAllEnableDefaultServeAds()">
+						<span ng-class="{'selectedCB': mmDefaultAdsCb.isSelected}"></span>
+					</div>
+
+					<!--Item Type Icon-->
+					<div class="defaultServeIcon middleElement"></div>
+
+					<!--Name-->
+					<div class="middleElement itemNameText" ng-bind="'Default Serve' | T"></div>
+				</div>
+				<span ng-class="{hidden: collapsed}">
+					<div ng-include="'campaignManagementApp/directives/dg/tree/views/templates/defaultServe/node.html'"></div>
+				</span>
+			</li>
+		</ol>
+	</div>
+</div>

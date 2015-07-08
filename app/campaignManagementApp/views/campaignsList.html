@@ -1,0 +1,115 @@
+<style>
+	.campaignListRow > td {
+		text-decoration: none;
+		border:none;
+	}
+</style>
+<div style="background-color: rgb(205, 202, 212);">
+	<div class="centralDockedMenu">
+		<div class="advancedSearchButtonCenterlize advancedSearchSelector centralDockedScrollMenuButtons">
+			<div class="btn-group">
+				<div class="menuButtonColor">
+					<span class="menuButtonColorButton">Campaigns</span>
+					<span class="arrow-right"></span>
+				</div>
+			</div>
+		</div>
+		<div class="centralDockedMenuDelim">&nbsp</div>
+		<div class="advancedSearchButtonCenterlize advancedSearchButtons">
+			<div>
+				<button type="button" class="centralMasterToolBarButton" href="#campaign_modal" data-toggle="modal">Add Campaign</button>
+			</div>
+		</div>
+	</div>
+</div>
+<br><br>
+<table class="table table-hover table-striped">
+	<thead>
+	<tr>
+		<th style="width: 20px;"></th>
+		<th><a ng-click="orderBy('id')"># <i
+				ng-class="{'icon-circle-arrow-up' : orderObj==='id' && !reversed, 'icon-circle-arrow-down' : orderObj==='id' && reversed}"></i></a>
+		</th>
+		<th><a ng-click="orderBy('name')">Name <i
+				ng-class="{'icon-circle-arrow-up' : orderObj==='name' && !reversed, 'icon-circle-arrow-down' : orderObj==='name' && reversed}"></i></a>
+		</th>
+		<th><a ng-click="orderBy('accountName')">Account Name <i
+				ng-class="{'icon-circle-arrow-up' : orderObj==='accountName' && !reversed, 'icon-circle-arrow-down' : orderObj==='accountName' && reversed}"></i></a>
+		</th>
+		<th><a ng-click="orderBy('type')">Start Date <i
+				ng-class="{'icon-circle-arrow-up' : orderObj==='startDate' && !reversed, 'icon-circle-arrow-down' : orderObj==='startDate' && reversed}"></i></a>
+		</th>
+		<th><a ng-click="orderBy('type')">End Date <i
+				ng-class="{'icon-circle-arrow-up' : orderObj==='endDate' && !reversed, 'icon-circle-arrow-down' : orderObj==='endDate' && reversed}"></i></a>
+		</th>
+		<th><a ng-click="orderBy('type')">Type <i
+				ng-class="{'icon-circle-arrow-up' : orderObj==='type' && !reversed, 'icon-circle-arrow-down' : orderObj==='type' && reversed}"></i></a>
+		</th>
+		<th><a ng-click="orderBy('type')">Advertiser Name <i
+				ng-class="{'icon-circle-arrow-up' : orderObj==='advertiserName' && !reversed, 'icon-circle-arrow-down' : orderObj==='advertiserName' && reversed}"></i></a>
+		</th>
+		<th><a ng-click="orderBy('type')">Alive <i
+				ng-class="{'icon-circle-arrow-up' : orderObj==='isAlive' && !reversed, 'icon-circle-arrow-down' : orderObj==='isAlive' && reversed}"></i></a>
+		</th>
+		<th><a ng-click="orderBy('type')">Status <i
+				ng-class="{'icon-circle-arrow-up' : orderObj==='status' && !reversed, 'icon-circle-arrow-down' : orderObj==='status' && reversed}"></i></a>
+		</th>
+	</tr>
+	</thead>
+	<tbody>
+	<tr class="campaignListRow" ng-repeat="camp in campaigns | orderBy: campaignsOrderBy: reversed">
+		<td><i class="icon-trash" ng-click="deleteCampaign(camp)"></i></td>
+		<td><a ng-href="#/spa/campaignsCentral/{{camp.id}}">{{camp.id}}</a></td>
+		<td><a editable-text="camp.name" onbeforesave="checkName($data, camp.id)">{{camp.name}}</a></td>
+		<td><a editable-select="camp.accountId" e-ng-options="a.id as a.name for a in accounts" onbeforesave="checkAccount($data, camp.id)">{{getAccountById(camp.accountId).name}}</a></td>
+		<td editable-date="camp.startDate" onbeforesave="checkDate($data, camp.id, true)">{{camp.startDate}}</td>
+		<td editable-date="camp.endDate" onbeforesave="checkDate($data, camp.id, false)">{{camp.endDate}}</td>
+		<td editable-text="camp.type">{{camp.type}}</td>
+		<td editable-text="camp.advertiserName" onbeforesave="checkAdvertiserName($data, camp.id)">{{camp.advertiserName}}</td>
+		<td editable-select="camp.isAlive" onbeforesave="saveCampaign($data, camp.id)" e-ng-options="a.id as a.name for a in [{id: true, name: 'true'},{id: false, name: 'false'}]">{{camp.isAlive}}</td>
+		<td>{{camp.status}}</td>
+	</tr>
+	</tbody>
+</table>
+
+<div class="modal hide" id="campaign_modal">
+	<div class="modal-header"><a class="close" data-dismiss="modal">&nbsp;</a><h3>Campaign</h3></div>
+	<div class="modal-body">
+		<form editable-form name="myForm">
+			<div class="control-group" ng-class="{error: myForm.name.$invalid}">
+				<label>Name</label>
+				<input type="text" name="name" ng-model="newCampaign.name" required ng-minlength="3" ng-maxlength="20">
+				<span class="help-inline" ng-show="myForm.name.$error.required">Required</span>
+				<span class="help-inline" ng-show="myForm.name.$error.minlength">Too short!</span>
+				<span class="help-inline" ng-show="myForm.name.$error.maxlength">Too long!</span>
+			</div>
+			<div class="control-group" ng-class="{error: myForm.accountId.$invalid}">
+			<label>Account</label>
+			<span><select name="accountId" ng-model="newCampaign.accountId" ng-options="a.id as a.name for a in accounts" required></select></span>
+			<span ng-show="myForm.accountId.$error.required" class="help-inline">Required</span>
+			</div>
+
+			<!--<div class="control-group" ng-class="{error: myForm.startDate.$invalid}">-->
+				<!--<label>Start Date</label>-->
+				<!--<input datepicker name="startDate" type="text" ng-model="newCampaign.startDate" required>-->
+				<!--<span class="help-inline" ng-show="myForm.startDate.$error.required">Required</span>-->
+			<!--</div>-->
+			<!--<div class="control-group" ng-class="{error: myForm.endDate.$invalid}">-->
+				<!--<label>End Date</label>-->
+				<!--<input datepicker name="endDate" type="text" ng-model="newCampaign.endDate" required>-->
+				<!--<span class="help-inline" ng-show="myForm.endDate.$error.required">Required</span>-->
+			<!--</div>-->
+
+			<div class="control-group" ng-class="{error: myForm.advertiserName.$invalid}">
+				<label>Advertiser Name</label>
+				<input type="text" name="advertiserName" ng-model="newCampaign.advertiserName" required ng-minlength="3" ng-maxlength="20">
+				<span class="help-inline" ng-show="myForm.advertiserName.$error.required">Required</span>
+				<span class="help-inline" ng-show="myForm.advertiserName.$error.minlength">Too short!</span>
+				<span class="help-inline" ng-show="myForm.advertiserName.$error.maxlength">Too long!</span>
+			</div>
+			<br>
+			<button type="button" ng-click="closeNewCampaign()" data-dismiss="modal" class="btn">Cancel</button>
+			<button type="submit" ng-click="createCampaign()" data-dismiss="modal" ng-disabled="myForm.$invalid" class="btn btn-primary">Save</button>
+		</form>
+	</div>
+</div>

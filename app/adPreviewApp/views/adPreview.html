@@ -1,0 +1,129 @@
+<div id="adPreviewContainer" class="AdPreviewOpt">
+    <script>
+      var setDataCaptureFormValues = function(){ return true; };
+    </script>
+    <div class="csbPreviewCls">
+      <mm-alert></mm-alert>
+        <div ng-if="true">
+            <header class="top-nav-bar live-View-header" ng-include="'adPreviewApp/views/adPreviewHeader.html'"></header>
+            <div ng-style="{'background': (adPreviewCommonModel.isBackgroundImage && adPreviewCommonModel.bgImageUrl != '') ? '' : adPreviewCommonModel.currentlySetColor}" style="height: 747px;"
+                 ng-style="{'height':containerHeight}" class="tileContainer slide-left">
+                <section ng-style="{'background': (adPreviewCommonModel.isBackgroundImage && adPreviewCommonModel.bgImageUrl != '') ? '' : adPreviewCommonModel.currentlySetColor}"
+                         class="titles-container new-title-cont">
+
+                    <!--<a ng-if="adPreviewCommonModel.enableDrag" ng-click="adPreviewCommonModel.enableDrag=false"
+                       class="disable-add-btn">Disable
+                        Ad Positioning</a>
+                    <a ng-if="!adPreviewCommonModel.enableDrag" ng-click="adPreviewCommonModel.enableDrag=true"
+                       class="disable-add-btn">Enable
+                        Ad Positioning</a>-->
+
+                  <div class="test-site-option modal-content" ng-class="{'bottom-on':adPreviewCommonModel.showTestSiteDialog}">
+                    <div class="move-cursor"
+                         title="{{adPreviewCommonModel.enableDrag ? 'Disable Ad Positioning': 'Enable Ad Positioning'}}"
+                         ng-click="adPreviewCommonModel.enableDrag=!adPreviewCommonModel.enableDrag">
+                      <i class="preview-icon-positioning"></i></div>
+                    <input type="text" ng-model="adPreviewCommonModel.url" class="input-text" placeholder="Type the site's Url"/>
+
+                    <mm-button mm-btn-type="save" mm-action="downloadBackgroundUrlContent()" mm-caption="TEST URL"></mm-button>
+                    <mm-button mm-btn-type="cancel" mm-action="clearBackgroundUrlContent();" mm-caption="STOP TEST"></mm-button>
+                    <a class="close" ng-click="adPreviewCommonModel.showTestSiteDialog=false; adPreviewCommonModel.enableDrag=false;"></a>
+                  </div>
+
+                  <div class="test-site-option bckgrnd-color"
+                       ng-class="{'bottom-on':adPreviewCommonModel.showApplyBackgroundColorDialog}">
+                    <div class="move-cursor" title="{{adPreviewCommonModel.enableDrag ? 'Disable Ad Positioning': 'Enable Ad Positioning'}}"
+                         ng-click="adPreviewCommonModel.enableDrag=!adPreviewCommonModel.enableDrag">
+                      <i class="preview-icon-positioning"></i></div>
+                    <label>
+                      <div class="set-bg"><i class="preview-icon-backgroung"></i></div>
+                      <input type="button" class="btn" value="Set Background" ng-click="setBackground();"/>
+                    </label>
+                    <label>
+                      <div class="clear-bg"><img src="/ignoreImages/clear-bg.png"></div>
+                      <input type="button" class="btn" value="Clear Background" ng-click="clearBackground()"/>
+                    </label>
+                    <a class="close" ng-click="closeBgToolbar()"></a>
+                  </div>
+
+                    <div ng-style="{'height':containerHeight}" style=" position: relative; /*max-height: 741px*/ overflow: auto;" class="container-fluid">
+
+                      <img ng-src="{{adPreviewCommonModel.bgImageUrl}}" class="bg_image" ng-if="adPreviewCommonModel.isBackgroundImage && adPreviewCommonModel.bgImageUrl != ''" />
+                        <div enable="adPreviewCommonModel.enableDrag" mm-draggable ng-style="{'height':divHeight}">
+                            <div ng-style="{'height':ad.height+6,'width':ad.width+6, 'margin-left': marginLeft}" ng-class="{'mover' : adPreviewCommonModel.enableDrag, 'hideHover' : !adPreviewCommonModel.enableDrag}">
+                                <!--<iframe id="{{ad.id}}"
+                                        ng-if="ad.adFormat != 'In-Stream Video' && ad.adFormat != 'InStreamAd' && ad.adFormat != 'InStreamInteractiveAd'"
+                                        adjust-preview-iframe
+                                        scrolling="no"
+                                        height="{{ad.height}}"
+                                        width="{{ad.width}}"
+                                        srcdoc="{{renderAdForPlay()}}" class="add-iframe-moving-box"></iframe>-->
+                              <iframe id="{{ad.id}}"
+                                      ng-if="ad.adFormat != 'In-Stream Video' && ad.adFormat != 'InStreamAd' && ad.adFormat != 'InStreamInteractiveAd'"
+                                      adjust-preview-iframe
+                                      scrolling="no"
+                                      height="1024"
+                                      width="1024"
+                                      src="{{ad.displayTag}}" class="add-iframe-moving-box"></iframe>
+                              <iframe id="{{ad.id}}"
+                                      ng-if="ad.adFormat == 'In-Stream Video' || ad.adFormat == 'InStreamAd' || ad.adFormat == 'InStreamInteractiveAd'" ng-style="frameStyle"
+                                      style="border-left: 0px; border-top: 0px; border-right: 0px; border-bottom: 0px"
+                                      scrolling="no"
+                                      height="{{ad.height}}"
+                                      width="{{ad.width}}"
+                                      src="{{ad.displayTag}}"></iframe>
+                                <div class="clear"> &nbsp; </div>
+                            </div>
+                            <!-- Modal -->
+                        </div>
+
+                        <div class="shareDiv" ng-show="adPreviewCommonModel.showShareItemDialog"
+                             ng-include="'adPreviewApp/views/shareItemDialog.html'"></div>
+
+                        <!--<div ng-show="adPreviewCommonModel.showTestSiteDialog" class="testSiteDiv" id="myModal"
+                             tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"
+                             ng-include="'adPreviewApp/views/testSiteDialog.html'"></div>-->
+
+                        <div ng-show="adPreviewCommonModel.showBackgroundColorDialog" class="backColorDiv"
+                             id="myModalSetBG" tabindex="-1" role="dialog"
+                             ng-include="'adPreviewApp/views/backgroundColorDialog.html'">
+                        </div>
+
+
+                    </div>
+                    <div class="overlay-popup"
+                         ng-show="adPreviewCommonModel.showShareItemDialog || adPreviewCommonModel.showBackgroundColorDialog"></div>
+                </section>
+
+            </div>
+
+            <div ng-class="{'active':adPreviewCommonModel.isDebugClicked}" class="addside-option">
+
+                <div class="panel-group" id="accordion">
+                    <div class="panel panel-default"
+                         ng-include="'adPreviewApp/views/generalPanel.html'"></div>
+                    <div class="panel panel-default interation-monitor"
+                         ng-include="'adPreviewApp/views/interactionMonitorPanel.html'"></div>
+                    <div class="panel panel-default" ng-if="!isMDX2"
+                         ng-include="'adPreviewApp/views/assetPanel.html'"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $(".add-tags .add").click(function () {
+            $('.add-tags .add-tags-box').toggle();
+        });
+//		$(document).on('click', '#testSpectrum', function () {
+//			$(this).spectrum();
+//		});
+
+        $(".AdPreviewOpt .search-btn2").click(function () {
+          $(this).parents().find('.AdPreviewOpt .addside-option .search-box-hide,.csbPreviewCls .addside-option .search-bar').toggle();
+        });
+    });
+
+</script>

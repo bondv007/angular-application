@@ -1,0 +1,23 @@
+
+<div ng-if="feature.versaTag && permission.view">
+    <central central-data-object="centralDataObject" entity-id="entityId" central-main-entity-type="versaTag" go-to-data="goToData"></central>
+</div>
+
+<div ng-if="feature.versaTag && permission.view === false">
+    <mm-row>
+        <mm-one-column>
+            <h1>Permission Denied</h1>
+            <p>We're sorry, you do not have permission to view this page. Please contact your account administrator if you think this is an error.</p>
+        </mm-one-column>
+    </mm-row>
+</div>
+
+<div ng-if="feature.versaTag === false">
+    <mm-row>
+        <mm-one-column>
+            <h1>This feauture is unavailable</h1>
+            <p>We're sorry, this feature is not turned on for your account. Please contact your account administrator if you think this is an error.</p>
+        </mm-one-column>
+    </mm-row>
+</div>
+

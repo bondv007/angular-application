@@ -1,0 +1,28 @@
+<div ng-init="dataObj=centralDataObject[centralIndex]" class="centralColumnResizePosition" style="position: relative;right: 0;">
+	<div class="mmStretched" style="bottom: 32px;">
+		<table cellpadding="0" cellspacing="0" class="centralMainTable" style="table-layout:fixed;height: 100%;">
+			<tr style="height: auto;">
+				<td style="position: relative;min-height: 1px;height:100%;">
+					<div style="height: 100%;width: 100%;top: 0;bottom: 0;">
+						<div ng-init="groupedColumn=false" ng-include="'infra/central/views/centralDataListHeader.html'"></div>
+						<div class="mmStretched centralDataListColumnBorder">
+							<table cellpadding="0" cellspacing="0" class="centralMainTable" style="table-layout:fixed;height: 100%;">
+								<tr style="height: auto;">
+									<td ng-if="dataObj.isGrouped" style="width: 218px;position: relative;min-height: 1px;height:100%;" ng-include="'infra/central/views/centralGroupByColumn.html'"></td>
+									<td style="position: relative;min-height: 1px;height:100%;">
+										<div class="mmStretched">
+											<div ng-attr-data-nodrag="{{dataObj.removeNoDrag}}" ng-attr-ui-tree="dataObj.dragFunction" data-empty-place-holder-enabled="false"
+													 ng-include="'infra/central/views/centralDataListGrid.html'" style="position:relative;height: 100%;"></div>
+										</div>
+									</td>
+								</tr>
+							</table>
+						</div>
+					</div>
+				</td>
+			</tr>
+		</table>
+	</div>
+	<div style="position: absolute;bottom: 0;left: 0;right: 0;height: 32px;"><div style="height: 100%;width: 100%;top: 0;bottom: 0;"><div ng-include="'infra/central/views/centralDataListFooter.html'"></div></div></div>
+</div>
+<div class="centralEntityResize" resize-col use-parent="true" min-width="300" ng-if="!$last" style="right:-2px;"></div>

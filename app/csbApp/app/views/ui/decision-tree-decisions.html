@@ -1,0 +1,11 @@
+<!-- decision tree item directive -->
+<div decision-tree-item decision="decision" class="decision-item yes"></div>
+
+<!-- recursive template for inner decisions -->
+<ul class="yes-branch" ng-if="decision.yesDecisions.length > 0" ng-class="{ 'multi': decision.yesDecisions.length > 1 }">
+    <li ng-repeat="decision in decision.yesDecisions" ng-include="'csbApp/app/views/ui/decision-tree-decisions.html'"></li>
+</ul>
+
+<ul class="no-branch" ng-if="decision.noDecisions.length > 0">
+    <li ng-repeat="decision in decision.noDecisions" ng-include="'csbApp/app/views/ui/decision-tree-decisions.html'"></li>
+</ul>

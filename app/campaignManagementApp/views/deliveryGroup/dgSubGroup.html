@@ -1,0 +1,44 @@
+<div class="adContainer" ng-model='container.subContainers' data-drop="{{true}}"
+		  jqyoui-droppable="{onDrop:'adDrop(container)',onOver:'adOverDrop(container)',onOut:'adOutDrop()'}">
+
+	<span ng-init="tempContainer=container"></span>
+
+	<!--Ad Rotation-->
+	<div ng-include="'campaignManagementApp/views/deliveryGroup/ads/area/active/rotationType/dgRotationDecision.html'"></div>
+
+	<mm-row>
+		<div class="mm-entity-fields-container-single adContainerDetails">
+			<mm-row>
+				<mm-check-box style="position: relative;top: 6px;left: 11px"
+						mm-change="onSubGroupSelected(parentContainer.subContainers[$index])"
+						mm-show-label="false"
+						mm-label-width="0"
+						mm-model="container.selected"
+						mm-layout-type="custom"
+						mm-custom-control-width="30"></mm-check-box>
+				<mm-text
+						mm-show-label="false"
+						mm-model="container.name"
+						mm-show-edit-mode="essentialArea.dgName.open"
+						mm-placeholder="Enter name"
+						mm-layout-type="custom"
+						mm-label-width="0"
+						mm-custom-control-width="100"></mm-text>
+				<mm-drop-down
+						mm-caption="Rotation"
+						mm-select-change-func="onSubGroupRotationChange(parentContainer.subContainers[$index])"
+						mm-layout-type="custom"
+						mm-label-width="70"
+						mm-custom-control-width="170"
+						mm-data-model="rotations"
+						mm-option-id="type"
+						mm-model="parentContainer.subContainers[$index].rotationType"></mm-drop-down>
+			</mm-row>
+		</div>
+	</mm-row>
+
+	<div class="subContainers" ng-init="parentContainer=tempContainer"
+			 ng-repeat="container in container.subContainers" ng-include="'campaignManagementApp/views/deliveryGroup/dgAdSubGroupDecision.html'"></div>
+	<div ng-if="parentContainer.subContainers[$index].rotationType == 'Weighted'" class="successTotalWeight">Total Weight {{parentContainer.subContainers[$index].totalWeight}}%	</div>
+
+</div>

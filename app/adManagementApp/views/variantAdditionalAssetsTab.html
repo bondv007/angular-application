@@ -1,0 +1,26 @@
+
+	<mm-row ng-if="tabsFocused.additionalAssetsTab">
+		<mm-grid
+			items=variants.additionalAssets
+			selected-items=ad.selectedAdditionalAssets
+			cols=gridColumns.additionalAssetsColumns
+			is-cell-edit="true"
+			is-show-menu="false"
+			is-single-select="false"
+			is-sort="true"
+			is-setting-icon-disable= "false"
+			is-search-icon-disable="false"
+			show-footer="false"
+			show-group-panel="false"
+			show-selection-checkbox="true"
+			show-filter="false"
+			enable-column-resize="true"
+			is-column-reorder = "false"
+			is-show-tool-tip="true"
+			is-central-grid="false"
+			db-click-handler=""
+			grid-height="200px"
+			grid-button-actions="gridActions.additionalAssetsGridButtonActions"
+      grid-select-actions="gridActions.additionalAssetsSelectGridButtonActions"
+      selected-row-handler="adVariantStatus"></mm-grid>
+	</mm-row>

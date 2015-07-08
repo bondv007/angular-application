@@ -1,0 +1,231 @@
+<div style="position:absolute; bottom:2px; top:2px; left : 0px; right:0px;">
+    <div ng-class="{editContainer : !isModal}">
+        <div class="mm-entity-fields-container-single">
+            <mm-row>
+                <mm-text mm-is-edit-mode="isEditMode"
+                        mm-caption="3rd Party Tag Name"
+                        mm-model="editObject.reportingName"
+                        mm-placeholder="Enter Tag Name"
+                        mm-is-required="{{isRequired}}"
+                        mm-error="validation.tagName"
+                        mm-label-width="{{labelWidth}}"
+                        text-tooltip="Enter tag name"
+                        mm-layout-type="medium">
+
+                </mm-text>
+            </mm-row>
+            <mm-row>
+                <mm-drop-down mm-caption="Account" mm-label-width="{{labelWidth}}" mm-is-required="{{isRequired}}" mm-data-model="accounts"></mm-drop-down>
+            </mm-row>
+            <mm-row>
+                <mm-drop-down mm-caption="Advertiser" mm-label-width="{{labelWidth}}" mm-is-required="{{isRequired}}"></mm-drop-down>
+            </mm-row>
+            <mm-row>
+                <mm-text-area mm-caption="Tag Code"
+                        mm-placeholder="Enter tag code from third party"
+                        mm-is-required="{{isRequired}}"
+                        mm-label-width="{{labelWidth}}"
+                        mm-model="editObject.tagCode"
+                        text-tooltip="Copy tag code"
+                        mm-layout-type="medium">
+
+                </mm-text-area>
+            </mm-row>
+            <mm-row>
+                <mm-check-box mm-caption="No Script Mode"
+                        mm-label-width="{{labelWidth}}"
+                        mm-model="editObject.noScriptMode"
+                        mm-description="Fire this tag in no script mode (override other 3rd party tags no script mode)">
+
+                </mm-check-box>
+            </mm-row>
+
+
+            <mm-row>
+                <mm-toggle-container mm-caption="Firing Conditions & Scheduling" start-open="false">
+                    <mm-row>
+                        <mm-drop-down mm-caption="Fire This Tag"
+                                      mm-model="editObject.fireThisTag"
+                                      mm-data-model="fireTagOptions" mm-label-width="{{firingConditionsLabelWidth}}"></mm-drop-down>
+                    </mm-row>
+
+
+                    <mm-row ng-if="editObject.fireThisTag == 'WithFireCondition'">
+
+                        <!--<mm-grid-->
+                        <!--mm-id="firing_conditions_grid"-->
+                        <!--show-selection-checkbox="false"-->
+                        <!--items="firingConditions.items"-->
+                        <!--selected-items="firingConditions.selected"-->
+                        <!--grid-height="250"-->
+                        <!--grid-width="100%"-->
+                        <!--cols="firingConditions.columns"-->
+                        <!--is-cell-edit="false"-->
+                        <!--show-footer="true"-->
+                        <!--is-sort="true"-->
+                        <!--is-single-select="true"-->
+                        <!--filtered-items=""-->
+                        <!--is-groupable="false"-->
+                        <!--show-filter="true"-->
+                        <!--enable-column-resize="false"-->
+                        <!--is-column-reorder="true"-->
+                        <!--is-column-freeze="true"-->
+                        <!--is-show-menu="false"-->
+                        <!--is-show-tool-tip="true"-->
+                        <!--is-central-grid="false"-->
+                        <!--is-grid-toolbar="false"-->
+                        <!--is-grid-loading="isGridLoading">-->
+                        <!--</mm-grid>-->
+
+                    </mm-row>
+
+                    <mm-row ng-if="editObject.fireThisTag == 'WhenConversion'">
+
+                        <mm-row>
+                            <mm-drop-down mm-caption="Select Conversion Tag" mm-label-width="{{firingConditionsLabelWidth}}"></mm-drop-down>
+                            <mm-drop-down mm-caption="AND when a conversion was triggered from"
+                                          mm-model="editObject.conversionFireSettings.site"
+                                          mm-data-model="sites" mm-label-width="{{firingConditionsLabelWidth}}"></mm-drop-down>
+                            <mm-drop-down mm-caption="Status" mm-model="editObject.enabled" mm-data-model="statusOptions" mm-label-width="{{firingConditionsLabelWidth}}"></mm-drop-down>
+                        </mm-row>
+
+                        <mm-mini-section
+                                mm-is-modal="false"
+                                mm-caption="miniSectionTitle"
+                                mm-start-open="start.open">
+
+                            <mm-row>
+                                <mm-drop-down mm-is-edit-mode="isEditMode"
+                                              mm-caption="Attribute Conversion according to"
+                                              mm-model="editObject.conversionAttributionModel"
+                                              mm-data-model="conversionAttributionOptions"
+                                              mm-error="validation.conversionAttributionModel"
+                                              mm-is-required="{{isRequired}}"
+                                              mm-label-width="{{firingConditionsLabelWidth}}"
+                                              mm-layout-type="medium"
+                                              mm-select-change-func=""></mm-drop-down>
+                            </mm-row>
+
+                            <mm-row>
+                                <mm-text mm-is-edit-mode="isEditMode"
+                                         mm-caption="Attribute if Impression Happened Up To"
+                                         mm-model="editObject.cookieWindowImpressions"
+                                         mm-placeholder=""
+                                         mm-is-required="{{isRequired}}"
+                                         mm-error="validation.cookieWindowImpressions"
+                                         mm-label-width="{{firingConditionsLabelWidth}}"
+                                         text-tooltip="Enter number of impressions"
+                                         mm-layout-type="small">
+
+                                </mm-text>
+                            </mm-row>
+
+                            <mm-row>
+                                <mm-text mm-is-edit-mode="isEditMode"
+                                         mm-caption="Attribute if Click Happened Up To"
+                                         mm-model="editObject.cookieWindowClicks"
+                                         mm-placeholder=""
+                                         mm-is-required="{{isRequired}}"
+                                         mm-error="validation.cookieWindowClicks"
+                                         mm-label-width="{{firingConditionsLabelWidth}}"
+                                         text-tooltip="Enter number of clicks"
+                                         mm-layout-type="small">
+
+                                </mm-text>
+                            </mm-row>
+
+                        </mm-mini-section>
+
+                    </mm-row>
+                </mm-toggle-container>
+            </mm-row>
+
+
+
+
+
+            <!--<mm-row>
+                <mm-toggle-container
+                        mm-caption="Deduplication"
+                        start-open="true">
+                    <mm-row>
+                        <mm-drop-down mm-is-edit-mode="isEditMode"
+                                      mm-caption="Deduplication Type"
+                                      mm-model="editObject.deduplicationType"
+                                      mm-data-model="deduplicationOptions"
+                                      mm-error="validation.deduplicationtype"
+                                      mm-is-required="{{isRequired}}"
+                                      mm-label-width="{{labelWidth}}"
+                                      mm-layout-type="medium"
+                                      mm-select-change-func=""></mm-drop-down>
+                    </mm-row>
+                    <mm-row>
+                        <mm-drop-down
+                                ng-if="editObject.deduplicationType != 'None'"
+                                mm-is-edit-mode="isEditMode"
+                                      mm-caption="Site"
+                                      mm-model="editObject.site"
+                                      mm-data-model="sites"
+                                      mm-error="validation.site"
+                                      mm-is-required="{{isRequired}}"
+                                      mm-label-width="{{labelWidth}}"
+                                      mm-layout-type="medium"
+                                      mm-select-change-func=""></mm-drop-down>
+                    </mm-row>
+
+                    <mm-row>
+                        <mm-check-box mm-caption="Derive Tag Activation Settings"
+                                      mm-label-width="{{labelWidth}}"
+                                      mm-model="editObject.deriveTagAttributionSettings">
+
+                        </mm-check-box>
+                    </mm-row>
+
+                </mm-toggle-container>
+                <mm-toggle-container ng-if="editObject.deduplicationType && editObject.deduplicationType != 'None'" mm-caption="Conversion Attribution Settings" mm-open="true">
+
+                    <mm-row>
+                        <mm-text mm-is-edit-mode="isEditMode"
+                                 mm-caption="Cookie Window - Impressions"
+                                 mm-model="editObject.cookieWindowImpressions"
+                                 mm-placeholder=""
+                                 mm-is-required="{{isRequired}}"
+                                 mm-error="validation.cookieWindowImpressions"
+                                 mm-label-width="{{labelWidth}}"
+                                 text-tooltip="Enter number of impressions"
+                                 mm-layout-type="small">
+
+                        </mm-text>
+                    </mm-row>
+
+                    <mm-row>
+                        <mm-text mm-is-edit-mode="isEditMode"
+                                 mm-caption="Cookie Window - Clicks"
+                                 mm-model="editObject.cookieWindowClicks"
+                                 mm-placeholder=""
+                                 mm-is-required="{{isRequired}}"
+                                 mm-error="validation.cookieWindowClicks"
+                                 mm-label-width="{{labelWidth}}"
+                                 text-tooltip="Enter number of clicks"
+                                 mm-layout-type="small">
+
+                        </mm-text>
+                    </mm-row>
+
+                    <mm-row>
+                        <mm-drop-down mm-is-edit-mode="isEditMode"
+                                      mm-caption="Attribute Conversion according to"
+                                      mm-model="editObject.conversionAttributionModel"
+                                      mm-data-model="conversionAttributionOptions"
+                                      mm-error="validation.deduplicationtype"
+                                      mm-is-required="{{isRequired}}"
+                                      mm-label-width="{{labelWidth}}"
+                                      mm-layout-type="medium"
+                                      mm-select-change-func=""></mm-drop-down>
+                    </mm-row>
+
+                </mm-toggle-container>
+            </mm-row>-->
+        </div>
+    </div>
+</div>

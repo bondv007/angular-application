@@ -1,0 +1,81 @@
+<div id="mmHeader">
+	<div class="navbar navbar-default" role="navigation">
+		<div class="navbar-header">
+			<a tooltip-popup-delay="2500" tooltip-placement="bottom" tooltip="{{env}}" class="navbar-brand" href="#"></a>
+		</div>
+		<div>
+			<form class="navbar-form navbar-left" role="search">
+				<div class="form-group">
+					<input type="text" class="form-control" placeholder="Search">
+				</div>
+			</form>
+			<ul class="nav navbar-nav">
+				<li class="dropdown">
+					<a class="dropdown-toggle">Menu <b class="caret"></b></a>
+					<ul class="dropdown-menu">
+						<li class="dropdown-header">Analytics Suite</li>
+						<li><a ui-sref="spa.campaignList">Campaigns</a></li>
+						<!--<li><a ui-sref=".campaignsList">Campaigns</a></li>-->
+						<!--<li><a ui-sref=".campaignsCentral">Campaigns Central</a></li>-->
+						<li><a ui-sref=".accountsList">Accounts</a></li>
+						<li><a ui-sref=".usersList">Users</a></li>
+						<li><a ui-sref=".advertisersList">Advertisers</a></li>
+						<li><a ui-sref=".sitesList">Sites</a></li>
+            <li><a ui-sref=".adList">Ads</a></li>
+						<li><a href="#">Something else here</a></li>
+						<li class="divider"></li>
+						<li class="dropdown-header">Custom Reports & Apps</li>
+						<li><a href="#">Separated link</a></li>
+						<li><a href="#">One more separated link</a></li>
+						<li><a ui-sref=".adList">Creative List</a></li>
+						<li><a ui-sref=".admin">Admin</a></li>
+					</ul>
+				</li>
+			</ul>
+			<ul class="nav navbar-nav navbar-right">
+
+                <li class="dropdown" ng-show="showFlyoutProgress">
+                    <a class="dropdown-toggle refresh-icon"></a>
+                    <ul class="dropdown-menu messages arrow refresh-sec">
+                        <li>Ongoing processes
+                            <div class="process-link" >
+                                <a ng-click="showAssetPopup()">Uploading {{uploader.queue.length}} files</a>
+                                <div class="progress">
+                                    <div class="progress-bar" role="progressbar" ng-style="{ 'width': uploader.progress + '%' }"><b>{{uploader.progress}}%</b>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </li>
+				<li class="dropdown">
+					<a class="dropdown-toggle si_globe"></a>
+					<ul class="dropdown-menu">
+						<li><a ng-click="changeLanguage('english')">English<span ng-if="currentLanguage=='english'">&nbsp;&nbsp;&nbsp;V</span></a></li>
+						<li><a ng-click="changeLanguage('spanish')">Spanish<span ng-if="currentLanguage=='spanish'">&nbsp;&nbsp;&nbsp;V</span></a></li>
+						<li><a ng-click="changeLanguage('chinese')">Chinese<span ng-if="currentLanguage=='chinese'">&nbsp;&nbsp;&nbsp;V</span></a></li>
+					</ul>
+				</li>
+				<li class="dropdown">
+					<a class="dropdown-toggle si_user"></a>
+					<ul class="dropdown-menu">
+						<li class="dropdown-header">{{userName}}</li>
+						<li ng-switch="userName">
+							<a ng-switch-when="Guest" ng-click="openLogInModal()">Log in</a>
+							<a ng-switch-default ng-click="logOut()">Log out</a>
+						</li>
+						<li ng-if="userName != 'Guest'"><a>Settings</a></li>
+					</ul>
+				</li>
+			</ul>
+		</div>
+	</div>
+</div>
+<div id="mmLeftPanel"></div>
+<div id="mmRightPanel"></div>
+<div id="mmMainContainer">
+  <div><toaster-container toaster-options="{'position-class': 'toast-top-full-width'}"></toaster-container></div>
+  <div ui-view></div>
+</div>
+<div id="mmFooter"></div>
+

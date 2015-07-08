@@ -1,0 +1,12 @@
+<div class="traffickingFilterContainer">
+  <div class="csb_funnel_buttons_wrapper">
+    <button id="{{button.id}}" ng-click="button.func()" ng-disabled="button.disable"
+            ng-class="{'centralMasterToolBarButton': !button.disable, 'disableCentralMasterToolBarButton':button.disable}"
+      ng-show="button.display" ng-repeat="button in mmButtons" type="button" ng-bind="button.name |T"></button>
+  </div>
+  <span class="csb-trafficking-title" ng-bind="mmTitle | T"></span>
+  <span class="csb_searchTextBox_wrapper">
+    <input id="{{'csb_search_' + mmFilterId}}" type="text" ng-model="mmFilter" class="csb_searchTextBox form-control" placeholder="{{'Search...'| T}}"/>
+  </span>
+  <i id="{{'csb_collapsible_' + mmFilterId}}" ng-if="mmCollapsibleState != undefined" ng-click="mmCollapsibleState.open = false" class="funnelArrowLeftIcon"></i>
+</div>

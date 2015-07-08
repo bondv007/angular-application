@@ -1,0 +1,45 @@
+
+<div class="entityActionsBar">
+    <div class="advancedSearchButtonCenterlize advancedSearchButtons">
+        <div>
+                <span ng-repeat="acFunc in mmButtons" mm-tooltip="{{acFunc.toolTip.text}}" tooltip-title="{{acFunc.toolTip.title}}">
+                    <button ng-if="acFunc.items === undefined" type="button" ng-class="{'centralMasterToolBarButton':!acFunc.disable,'disableCentralMasterToolBarButton':acFunc.disable}"
+                            ng-click="acFunc.disabled ? null : acFunc.func()">{{acFunc.name | T}}</button>
+                    <mm-button-drop-down ng-if="acFunc.items !== undefined && acFunc.items.length > 0" mm-model="acFunc"></mm-button-drop-down>
+                </span>
+        </div>
+    </div>
+    <div class="pull-right spreadsheet-errors" ng-show="errorCount > 0"><span class="error-count">{{ errorCount }}</span> error<span ng-if="errorCount > 1">s</span> to fix</div>
+    <!-- TODO: implement some kind of search capability -->
+    <!--<input ng-change="searchSheet( searchVal )" ng-model="searchVal">-->
+</div>
+
+<div class="editContainer">
+
+    <input ng-model="fileToImport" type="file" id="excel-file" name="files" accept=".xlsx" ng-change="console.log('changed')" onchange="angular.element(this).scope().importXLSXFile(this)" style="display:none">
+
+    <div class="mm-spreadsheet-wrapper" ng-class="{ 'with-tabs': mmSheets.length > 1 }">
+        <div class="mm-spreadsheet-loader" ng-show="loading && initialLoad">
+            <span>Loading Spreadsheet...</span>
+        </div>
+        <div class="mm-spreadsheet-loader" ng-show="loading && !initialLoad">
+            <span>Updating Spreadsheet...</span>
+        </div>
+        <div class="mm-spreadsheet-loader" ng-show="importing">
+            <span>Importing File...</span>
+        </div>
+        <div class="mm-spreadsheet-loader" ng-show="mmSaveFlag">
+            <span>Saving Spreadsheet...</span>
+        </div>
+        <div class="mm-spreadsheet" ng-class="{ 'with-tabs': mmSheets.length > 1 }" ng-attr-id="{{ mmId }}"></div>
+        <div class="mm-spreadsheet-sheet-tabs" ng-show="mmSheets.length > 1">
+            <div class="tab-label">Sheets: </div>
+            <div class="tab" ng-class="{ 'active': $index == spread.getActiveSheetIndex(), 'first': $index == 0 }" ng-repeat="sheet in mmSheets" ng-click="goToSheet( $index )">{{sheet.name}}</div>
+        </div>
+        <div class="mm-spreadsheet-tooltip" ng-show="errorTooltip" ng-style="errorTooltipStyle">
+            <p>{{errorTooltipMessage}}</p>
+            <div class="mm-spreadsheet-tooltip-caret"></div>
+        </div>
+    </div>
+
+</div>

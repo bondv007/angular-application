@@ -1,0 +1,123 @@
+<div class="mdxUI mdxUIContainer" ng-class="{ 'active' : showUI, 'mdx3': csb.config.env == 'mdx3' }">
+    <div class="header">
+        <h1>Audience Manager <span ng-click="cancelChanges()" class="pull-right glyphicon glyphicon-remove"></span></h1>
+    </div>
+
+    <div class="body-wrapper">
+        <div class="body clearfix">
+
+            <div ng-show="loading">
+                <span><i class="glyphicon glyphicon-refresh spin-360"></i> Loading Audience Manager options...</span>
+            </div>
+
+            <div ng-hide="loading">
+
+                <div ng-hide="dmpAvailable">
+                    <div decision-not-available decision="decision" decision-type="DMP Targeting" decision-error="Advertiser" close-panel="closePanelUi()"></div>
+                </div>
+
+                <div ng-show="dmpAvailable">
+
+                    <div class="form-group mm-entity-fields-container-single">
+
+                        <div class="form-group" ng-show="errorText">
+                            <div class="csb-alert alert alert-danger">{{errorText}}</div>
+                        </div>
+
+                        <mm-row>
+                            <mm-text
+                                mm-layout-type="custom"
+                                mm-custom-control-width="272"
+                                mm-label-width="200"
+                                mm-is-required="true"
+                                mm-caption="Decision Rule Name:"
+                                mm-model="name.text"
+                                mm-custom-label-padding="0"
+                            ></mm-text>
+                        </mm-row>
+
+                        <mm-row>
+                            <mm-drop-down
+                                mm-layout-type="custom"
+                                mm-custom-control-width="272"
+                                mm-caption="Decision Rule Type:"
+                                mm-data-model="ruleTypeOptions"
+                                mm-model="ruleType.id"
+                                mm-select-change-func="changeRuleType()"
+                                mm-custom-label-padding="0"
+                                >
+                            </mm-drop-down>
+                        </mm-row>
+
+                        <mm-row>
+                            <mm-drop-down
+                                mm-layout-type="custom"
+                                mm-custom-control-width="272"
+                                mm-caption="Advertiser:"
+                                mm-data-model="advertisers"
+                                mm-model="advertiser.value"
+                                mm-return-full-object="true"
+                                mm-disable="csb.params.advertiserID"
+                                mm-select-change-func="updateProviderValues()"
+                                mm-custom-label-padding="0"
+                                >
+                            </mm-drop-down>
+                        </mm-row>
+
+                        <mm-row>
+                            <mm-drop-down
+                                mm-layout-type="custom"
+                                mm-custom-control-width="272"
+                                mm-caption="Data Provider:"
+                                mm-data-model="providers"
+                                mm-model="provider.value"
+                                mm-return-full-object="true"
+                                mm-disable="!providers.length && !advertiser.id"
+                                mm-custom-label-padding="0"
+                                >
+                            </mm-drop-down>
+                        </mm-row>
+
+                        <mm-row>
+                            <label>Segments:</label>
+                                <div ng-repeat="segment in segments">
+                                    <div ng-class="{ 'external-audience-content': ruleType.id == 'multi' }" class="clearfix">
+                                        <!--<input class="form-control external-audience-segment" type="text" placeholder="Ex: Male, Music Lover, Money, Health, etc...." style="margin-bottom:5px" ng-model="segment.string">-->
+                                        <mm-text
+                                                mm-layout-type="custom"
+                                                mm-custom-control-width="272"
+                                                mm-is-required="true"
+                                                mm-placeholder="Ex: Male, Music Lover, Money, Health, etc...."
+                                                mm-model="segment.string"
+                                                mm-hide-label="{{true}}"
+                                                ></mm-text>
+                                        <i ng-show="segments.length > 1" ng-click="removeSegment($index)" class="csb-icon csb-icon-remove-btn remove-group-icon"></i>
+
+                                    </div>
+                                    <span class="group-logical-separator" ng-hide="decision.ruleType == 'yes-no' || $index == segments.length - 1">OR</span>
+                                </div>
+                        </mm-row>
+
+
+                        <mm-row><a ng-if="ruleType.id == 'multi'" ng-click="addSegment()" class="add-rule"><i class="csb-icon csb-icon-add-btn"></i> Add new segment</a></mm-row>
+
+                    </div>
+
+                    <mm-row>
+                        <div class="alert csb-alert alert-info">You can use commas(,) to separate OR logic and ampersands(&) to separate AND logic.</div>
+                    </mm-row>
+
+                    <div class="footer">
+                        <div class="form-buttons pull-right">
+                            <button class="btn mdx-btn mdx-save-btn" ng-click="save(model)">Save</button>
+                            <button class="btn mdx-btn mdx-close-btn" ng-click="cancelChanges()">Cancel Changes</button>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+</div>

@@ -1,0 +1,51 @@
+<!-- position in negative horizontal place -->
+<div ng-show="pageReady" class="advertiserSelector" style="position: fixed; top: 65px; right: 60px; z-index: 900; color: #ffffff; font-size: 14px;">
+	Account:
+	<select ng-model="accountId" ng-options="a.accountId as a.accountId + ' - ' + accounts.getById(a.accountId).name for a in advertiser.advertiserAccounts">
+		<option value="">main</option>
+	</select>
+</div>
+<div ng-show="pageReady" class="editContainer">
+	<div class="row">
+		<div class="col-md-2">Advertiser Name</div>
+		<div class="col-md-3">
+			<span ng-if="!advRoot">{{advertiserEdit.name}}</span>
+			<mm-essential-text ng-if="advRoot" mm-model="advertiserModel.name" mm-placeholder="Enter Name" mm-error="validation.name"></mm-essential-text>
+		</div>
+	</div>
+	<div ng-if="!advRoot" class="row">
+		<div class="col-md-2">Advertiser Display Name</div>
+		<div class="col-md-3">
+			<mm-essential-text mm-model="advertiserModel.name" mm-placeholder="Enter Name" mm-error="validation.name"></mm-essential-text>
+		</div>
+	</div>
+	<div ng-if="!advRoot" class="row">
+		<div class="col-md-2">Account Name</div>
+		<div class="col-md-3">{{accounts.getById(accountId).name}}</div>
+	</div>
+	<div class="row">
+		<div class="col-md-2">Status</div>
+		<div class="col-md-3">{{advertiserModel.status}}</div>
+	</div>
+	<div class="row">
+		<div class="col-md-2">Vertical</div>
+		<div class="col-md-3">{{advertiserModel.vertical}}</div>
+	</div>
+	<div class="row">
+		<div class="col-md-2">Last updated by</div>
+		<div class="col-md-3">---</div>
+	</div>
+	<div class="row">
+		<div class="col-md-2">Last updated on</div>
+		<div class="col-md-3">---</div>
+	</div>
+
+
+	<div ng-if="debug" class="debug">
+		{{advertiserEdit}}
+		<br><br>
+		<br><br>
+		{{$parent.mainEntity}}
+	</div>
+</div>
+<wave-spinner ng-show="!pageReady"></wave-spinner>

@@ -1,0 +1,36 @@
+<div style="max-width: 350px">
+    <mm-row-container>
+        <mm-row ng-show="!toggleTextArea.show">
+            <span ng-show="mmModel.length < 1 && !toggleTextArea.show" class="centralEntitylLink pull-left" data-ng-click="toggleTextArea.show = !toggleTextArea.show">
+                Click to {{mmClickToMessage}}
+            </span>
+
+            <div ng-show="mmModel.length > 0" style="position:relative;">
+                <a class="margin-right" style="position:absolute; right:0; top:0;" ng-click="toggleTextArea.show = !toggleTextArea.show" >
+                    <i class="fa fa-pencil"></i>
+                </a>
+
+                <div ng-repeat="url in mmModel track by $index">
+                    <span ><a test-url="{{url}}">{{url}}</a>  </span>
+                </div>
+            </div>
+
+        </mm-row>
+
+        <mm-row ng-show="toggleTextArea.show ">
+            <textarea id="ta"
+                      ng-trim="false"
+                      ng-list="&#10"
+                      ng-model="list.data"
+                      ng-blur="toggleTextArea.show = !toggleTextArea.show"
+                      name="tagTextArea"
+                      cols="80"
+                      rows="8"
+                      title="{{mmPlaceholder}}"
+                      style="width: 97%; margin-left: 4px; margin-right: 4px"
+                      ng-change="mmModelChange()"
+                      html-text>
+            </textarea>
+        </mm-row>
+    </mm-row-container>
+</div>

@@ -1,0 +1,75 @@
+<div>
+	<mm-toggle-container mm-caption="Creative Assets"   mm-error="creativeError.name" start-open="toggleHandler.showToggleCreativeAssets">
+		<mm-row ng-if="errors.inStream">
+			<mm-error-div error-text="errors.inStream">  </mm-error-div>
+		</mm-row>
+		<tabset>
+			<tab id="linear" class="{{!errors.inStream ? '' : 'tabWithErrors'}}"
+					 select="focusedTab('linears')">
+				<tab-heading>
+					Linear <span class="badge">{{ad.masterAdId &&  ad.linears && variants.linears && variants.linears.length > 0 ?  variants.linears.length :
+					!ad.masterAdId || ad.linears == null || ad.linears .length == 0  ? '' : ad.linears .length}}</span></tab-heading>
+				<div ng-if="tabsFocused.linears && ad.masterAdId" ng-include="'adManagementApp/views/variantInStreamCreativeAssetsLinear.html'"></div>
+				<div ng-if="tabsFocused.linears && !ad.masterAdId" ng-include="'adManagementApp/views/inStreamCreativeAssetsLinear.html'"></div>
+
+			</tab>
+			<!--tab id="nonlinear"  select="focusedTab('nonLinears')">
+				<tab-heading>Non Linear <span class="badge">{{ad.nonLinears  == null  || ad.nonLinears .length == 0 ? '' : ad.nonLinears.length}}</span></tab-heading>
+				<div ng-if="tabsFocused.nonLinears" ng-include="'adManagementApp/views/inStreamCreativeAssetsNonLinear.html'"></div>
+			</tab-->
+			<tab id="companion" select="focusedTab('companions')">
+				<tab-heading>Companion <span class="badge">{{ad.companions == null  || ad.companions .length == 0 ? '' : ad.companions.length}}</span></tab-heading>
+				<div ng-if="tabsFocused.companions" ng-include="'adManagementApp/views/inStreamCreativeAssetsCompanion.html'"></div>
+			</tab>
+			<!--tab id="advancedcompanions" select="focusedTab('advancedCompanions')">
+				<tab-heading>Advanced companion <span class="badge">{{ad.advancedCompanions == null  || ad.advancedCompanions .length == 0 ? '' :ad.advancedCompanions.length}}</span></tab-heading>
+				<div ng-if="tabsFocused.advancedCompanions" ng-include="'adManagementApp/views/inStreamCreativeAssetsAdvancedCompanion.html'"></div>
+			</tab-->
+			<tab id="additionalassets" select="focusedTab('additionalAssetsTab')">
+				<tab-heading>Additional Assets <span class="badge">{{ad.masterAdId ? variants.additionalAssets == null || variants.additionalAssets.length == 0 ? '': variants.additionalAssets.length : ad.additionalAssets == null  || ad.additionalAssets.length == 0 ? '' : ad.additionalAssets.length}}</span></tab-heading>
+				<div  ng-if="tabsFocused.additionalAssetsTab && ad.masterAdId"  ng-include="'adManagementApp/views/variantAdditionalAssetsTab.html'"></div>
+				<div  ng-if="tabsFocused.additionalAssetsTab&& !ad.masterAdId"  ng-include="'adManagementApp/views/additionalAssetsTab.html'"></div>
+			</tab>
+		</tabset>
+		<div  ng-if="tabsFocused.linears" ng-include="'adManagementApp/views/linearSettingsSections.html'"></div>
+		<div  ng-if="tabsFocused.nonLinears" ng-include="'adManagementApp/views/nonLinearSettingsSections.html'"></div>
+	</mm-toggle-container>
+</div>
+<div  ng-include="'adManagementApp/views/clickthrough&ThirdPartyURLs.html'"></div>
+<div  ng-include="'adManagementApp/views/customInteractions.html'"></div>
+<div>
+	<mm-toggle-container mm-caption="Settings" mm-is-dirty="" mm-error="error.name" start-open="toggleHandler.showToggleSettings">
+		<tabset>
+			<tab heading="General" id="general">
+				<div style="padding-top: 20px">
+					<mm-row>
+						<mm-drop-down mm-model="ad.deliveryType"   mm-data-model="lookups.deliveryTypes"
+													mm-caption="Delivery Type"
+													mm-label-width = {{labelWidth4}} mm-layout-type="medium"
+													mm-edit-multiple="isMultiple != undefined && isMultiple.indexOf('deliveryType') != -1"
+													mm-placeholder="URL Type" ></mm-drop-down>
+					</mm-row>
+					<mm-row ng-if="!ad.masterAdId" >
+						<mm-check-box mm-model="ad.performAutoVideoTranscoding" mm-caption="Video Auto-Transcoding"
+													mm-label-width={{labelWidth4}}
+													mm-layout-type="medium"
+													mm-description= "Enables Video Auto-Transcoding"
+													mm-edit-multiple="isMultiple != undefined && isMultiple.indexOf('performAutoVideoTranscoding') != -1">
+						</mm-check-box>
+
+					</mm-row>
+					</mm-row>
+				</div>
+			</tab>
+			<tab heading="Privacy" id="privacy">
+				<div style="padding-top: 20px">
+					<div  ng-include="'adManagementApp/views/SettingsPrivacyTab.html'"></div>
+				</div>
+			</tab>
+		</tabset>
+
+	</mm-toggle-container>
+</div>
+
+
+

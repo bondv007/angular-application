@@ -1,0 +1,35 @@
+<div class="centralGridHeaderLine">
+	<div class="centralGridHeader" style="width:30px;">
+		<div ng-if="!dataObj.hideRowCheckbox" class="mm_checkbox" ng-class="{'isMouseHoverCB':checkboxHover}" ng-mouseenter="checkboxHover=true" ng-mouseleave="checkboxHover=false"
+				 ng-click="markAllDataObjItems(dataObj)" style="position:relative;top: 3px;left: 21px;">
+			<span ng-class="{'selectedCB': dataObj.isAllSelected}"></span>
+		</div>
+		<!--<div class="centralGridHeaderSeperator centralEntityResize centralColumnHeaderResize" style="right: -20px;cursor: auto;">|</div>-->
+	</div>
+	<div class="centralGridHeader" style="position: absolute;left:40px;right:0;top:0;">
+    <div ng-repeat="col in dataObj.gridData.columnDefs" ng-style="{width: getColumnWidth(dataObj, col)}" class="resizeCol centralGridHeaderItem {{col.uniqueName}}">
+			<div class="centralGridHeaderText" ng-click="centralOrderBy(dataObj, col.field, true)" title="{{ col.displayName | T}}">{{ col.displayName | T | uppercase}}
+				<i class="fa fa-caret-down ngNewSortButtonDown" ng-show="dataObj.orderedBy==col.field&&!dataObj.orderedByDescending"></i>
+				<i class="fa fa-caret-up ngNewSortButtonUp" ng-show="dataObj.orderedBy==col.field&&dataObj.orderedByDescending"></i>
+			</div>
+			<div ng-show="!$last" class="centralGridHeaderSeperator centralEntityResize centralColumnHeaderResize" resize-col is-double="true" use-parent="true" min-width="100"
+					 use-session="{{ dataObj.type + 'ColumnSizes'}}" left-side="{{ col.uniqueName}}" right-side="{{ dataObj.gridData.columnDefs[$index + 1].uniqueName}}">|</div>
+		</div>
+	</div>
+</div>
+
+<div ng-if="dataObj.showCentralSpinner" ng-include="'infra/central/views/centralSpinner.html'"></div>
+
+<!--<div ng-attr-ui-tree-nodes="{{dataObj.dragFunction}}" data-nodrop ng-show="dataObj.filteredList.length>0" ng-model="dataObj.filteredList" central-arrow-event="centralArrowMove" central-scroll-event="centralScroll(dataObj)"-->
+<div ng-if="!dataObj.showCentralSpinner" ng-attr-ui-tree-nodes="{{ dataObj.dragFunction}}" data-nodrop ng-show="dataObj.filteredList.length>0" ng-model="dataObj.filteredList"
+		 central-arrow-event="centralArrowMove" central-scroll-event="centralScroll(dataObj)"
+		 class="centralScrollBar centralGridColumnPlaceHolder" style="position: absolute;bottom: 0;left: 0;right: 5px;">
+	<!--<div ng-repeat="item in dataObj.filteredList track by item.id">-->
+  <div ng-if="dataObj.isDraggable" ng-repeat="item in dataObj.filteredList | limitTo:dataObj.scrollAmount">
+    <central-grid-row></central-grid-row>
+  </div>
+	<div ng-if="!dataObj.isDraggable" ng-repeat="item in dataObj.filteredList | limitTo:dataObj.scrollAmount track by item.id">
+		<central-grid-row></central-grid-row>
+	</div>
+</div>
+<div class="centralScrollBar mmStretched centralGridColumnPlaceHolder" ng-show="!dataObj.filteredList||dataObj.filteredList.length==0" ng-include="'infra/central/views/centralEmptyStates.html'"></div>

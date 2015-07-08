@@ -1,0 +1,19 @@
+<div class="adContainer" ng-model='container.subContainers' data-drop="{{true}}" jqyoui-droppable="{onDrop:'adDrop(container)',onOver:'adOverDrop(container)'}">
+	<div  class="adWeight">
+		Weight {{ parentContainer.rotationSetting.weight | number: 2}}%
+	</div>
+	<div class="adContainerDetails">
+		<table>
+			<tr>
+				<td><input type="checkbox" ng-model="container.selected"/></td>
+				<td><a editable-text="container.name" e-maxlength="25" e-placeholder="{{'Enter name' | T}}">{{container.name || "Enter name" | T}}</a></td>
+				<td>&nbsp</td>
+				<td>Rotation</td>
+				<td>&nbsp</td>
+				<td>{{container.rotationSetting.type}}</td>
+			</tr>
+		</table>
+	</div>
+	<span ng-init="tempContainer=container"></span>
+	<div class="subContainers" ng-init="parentContainer=tempContainer" ng-repeat="container in container.subContainers track by $index" ng-include="'campaignManagementApp/views/deliveryGroup/deliveryGroupAd.html'"></div>
+</div>

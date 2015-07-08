@@ -1,0 +1,45 @@
+<div>
+
+    <div ng-show="showLoading" class="treeViewLoading">
+        <span class="spin-360 glyphicon glyphicon-repeat"></span>&nbsp;&nbsp;Loading...
+    </div>
+
+    <ul ng-show="!showLoading" id="audienceSegmentsList" target-audience-ids="targetAudienceIDs" dnd-list style="height: 770px">
+
+        <!-- Every single TA-->
+        <li class="segment" ng-class="{'selected-segment': TA.isSelected, 'collapsed-audience-segment': !showRules, 'expanded-audience-segment': showRules}" ng-repeat="TA in targetAudienceIDs">
+
+            <!-- IF expanded: expands the list of TA rules -->
+            <div ng-click="showRules = !showRules" class="fa pull-right indicator" ng-class="{'fa-angle-down': !showRules, 'fa-angle-up': showRules}"></div>
+
+            <div ng-click="selectSegment(TA)">
+                <!-- TA's metadata -->
+                <div class="segment-name">
+                    {{TA.TargetAudienceName}}
+                    <div ng-hide="showRules"></div>
+                    <div ng-repeat="ta in TA.Rules" ng-class="{'collapsed-segment': !showRules}">
+
+                        <div ng-hide="showRules">
+                            <i class="csb-icon csb-icon-{{decisionIconMap[ta.tarules[0].type]}}"></i>
+                        </div>
+
+                        <ul id="segmentRules" ng-class="{ 'expanded' : showRules }">
+                            <li class="segment-rule" ng-repeat="tar in ta.tarules">
+                                <i class="csb-icon csb-icon-{{decisionIconMap[ta.tarules[0].type]}}"></i>
+
+                                <span><strong>{{ tar.type == 'Geo Targeting' ? 'FROM' : tar.exposure }}</strong></span>
+                                <span>{{tar.name}}</span>
+                                <span ng-hide="{{$last}}"><strong>{{tar.logicalOperatorID}}</strong></span>
+                            </li>
+                        </ul>
+                    </div>
+
+                </div>
+            </div>
+
+        </li>
+
+    </ul>
+
+
+</div>

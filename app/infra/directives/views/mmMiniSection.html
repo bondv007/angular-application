@@ -1,0 +1,12 @@
+<div class="mainMiniSection">
+	<span ng-style="!mmIsModal ? {'background-color':'#e3e9f4'}:''" ng-click="mmStartOpen=!mmStartOpen"  ng-class="{mainMiniSectionDisabled :mmStartOpenDisabled}"
+				class="wrapHeaderIcon">
+			<div id="{{mmId}}Arrow" ng-class="{'closeIcon':!mmStartOpen, 'openIcon':mmStartOpen}"></div>
+			<div id="{{mmId}}" class="headerText" ng-bind="mmCaption | T"></div>
+	</span>
+	<div collapse="!mmStartOpen" ng-class="{'stopOpenAnimation':mmStopAnimation}">
+		<div class="border">
+			<div class="mainContent" ng-transclude></div>
+		</div>
+	</div>
+</div>

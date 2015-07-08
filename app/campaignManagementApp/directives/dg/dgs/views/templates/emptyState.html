@@ -1,0 +1,11 @@
+<div ng-show="copyTargetAudienceDgs.length == 0" class="emptyDgTraffickingStateWrap">
+  <div class="emptyDgTraffickingStateText" ng-bind="'dg_trafficking_NO_DELIVERY_GROUPS_YET' | T"></div>
+  <a id="dgs_new_delivery_group_link" ng-click="callCreateNewDg()" class="emptyDgTraffickingStateLinkText" href=""
+     ng-bind="'dg_trafficking_ADD_NEW_DELIVERY_GROUP' | T"></a>
+	<span ng-if="!isDefaultTaSelected">
+     <span class="emptyDgTraffickingStateText" ng-bind="'dg_trafficking_OR' | T"></span>
+     <a id="dgs_existing_delivery_group_link" ng-click="displayExistingDgs()" class="emptyDgTraffickingStateLinkText" href=""
+       ng-bind="'dg_trafficking_SELECT_EXISTING' | T"></a>
+  </span>
+</div>
+

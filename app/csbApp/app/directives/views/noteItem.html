@@ -1,0 +1,16 @@
+<div class="note"
+     id="{{noteItem.id}}"
+     ng-class="noteItem.className"
+     ng-style="noteItem.style"
+     data-drag="true"
+     jqyoui-draggable="elementDraggableSettings()">
+        <div class="inner csb-note-arrow-{{noteItem.arrow}}"
+             ng-class="{'csb-selected-note-border': appService.selectedCanvasItem === noteItem,
+                        'csb-selected-note-arrow-top': appService.selectedCanvasItem === noteItem && noteItem.arrow == 'top',
+                        'csb-selected-note-arrow-bottom': appService.selectedCanvasItem === noteItem && noteItem.arrow == 'bottom',
+                        'csb-selected-note-arrow-left': appService.selectedCanvasItem === noteItem && noteItem.arrow == 'left',
+                        'csb-selected-note-arrow-right': appService.selectedCanvasItem === noteItem && noteItem.arrow == 'right'
+                        }">
+            <span ng-bind-html="noteItem.label"></span>
+        </div>
+</div>

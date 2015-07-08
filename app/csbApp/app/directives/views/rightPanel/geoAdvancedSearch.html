@@ -1,0 +1,129 @@
+<mm-row  ng-init="isMdx3 = (csb.config.env == 'mdx3')">
+  <tabset justified="false">
+    <tab heading="Countries"
+         mm-id="country"
+         ng-click="setSelectedGeo('country')"
+         active="tabHandler.country">
+      <div ng-include="'advancedGeo'"></div>
+    </tab>
+    <tab heading="State/Region"
+         mm-id="state"
+         ng-click="setSelectedGeo('region')"
+         active="tabHandler.region">
+      <div ng-include="'advancedGeo'"></div>
+    </tab>
+    <tab heading="Cities"
+         mm-id="city"
+         ng-click="setSelectedGeo('city')"
+         active="tabHandler.city">
+      <div ng-include="'advancedGeo'"></div>
+    </tab>
+    <tab heading="Nielsen DMA"
+         mm-id="nielsen"
+         ng-click="setSelectedGeo('nielsen')"
+         active="tabHandler.nielsen">
+      <div ng-include="'advancedGeo'"></div>
+    </tab>
+    <tab heading="Area Code"
+         mm-id="areaCode"
+         ng-click="setSelectedGeo('areaCode')"
+         active="tabHandler.areaCode">
+      <div ng-include="'advancedGeo'"></div>
+    </tab>
+    <tab heading="Postal Code"
+         mm-id="postalCode"
+         ng-click="setSelectedGeo('postalCode')"
+         active="tabHandler.postalCode">
+      <div ng-include="'advancedGeo'"></div>
+    </tab>
+    <tab heading="ISP"
+         mm-id="isp"
+         ng-click="setSelectedGeo('isp')"
+         active="tabHandler.isp">
+      <div ng-include="'advancedGeo'"></div>
+    </tab>
+  </tabset>
+</mm-row>
+<script type="text/ng-template" id="advancedGeo">
+  <!-- MDX3 -->
+  <mm-row ng-if="!tabHandler.country && isMdx3">
+    <mm-drop-down
+      mm-layout-type="custom"
+      mm-custom-control-width="210"
+      mm-label-width="130"
+      mm-caption="Select Country"
+      mm-data-model="geoDataSource.country.dataSource"
+      mm-model="geoObj.selectedCountry"
+      mm-select-change-func="pickStateByCountry()"
+      mm-custom-label-padding="0">
+    </mm-drop-down>
+  </mm-row>
+  <mm-row ng-if="(tabHandler.city || tabHandler.nielsen || tabHandler.areaCode) && isMdx3">
+    <mm-drop-down
+      mm-layout-type="custom"
+      mm-custom-control-width="210"
+      mm-label-width="130"
+      mm-caption="Select State"
+      mm-data-model="geoDataSource.region.dataSource"
+      mm-model="geoObj.selectedState"
+      mm-disable="geoObj.selectedCountry.length <= 0"
+      mm-select-change-func="pickEntitySelectedGeo()"
+      mm-custom-label-padding="0">
+    </mm-drop-down>
+  </mm-row>
+  <!-- MDX2 -->
+  <mm-row ng-if="!tabHandler.country && !isMdx3">
+    <mm-drop-down
+      mm-layout-type="custom"
+      mm-custom-control-width="210"
+      mm-label-width="130"
+      mm-caption="Select Country"
+      mm-data-model="geoDataSource.country.dataSource"
+      mm-model="geoObj.selectedCountry"
+      mm-select-change-func="pickStateByCountry()"
+      mm-custom-label-padding="0">
+    </mm-drop-down>
+  </mm-row>
+  <mm-row ng-if="(tabHandler.city || tabHandler.nielsen || tabHandler.areaCode) && !isMdx3">
+    <mm-drop-down
+      mm-layout-type="custom"
+      mm-custom-control-width="210"
+      mm-label-width="130"
+      mm-caption="Select State"
+      mm-data-model="geoDataSource.region.dataSource"
+      mm-model="geoObj.selectedState"
+      mm-disable="geoObj.selectedCountry.length <= 0"
+      mm-select-change-func="pickEntitySelectedGeo()"
+      mm-custom-label-padding="0">
+    </mm-drop-down>
+  </mm-row>
+
+  <mm-row ng-if="!tabHandler.postalCode && isMdx3">
+    <mm-text
+      mm-layout-type="custom"
+      mm-custom-control-width="210"
+      mm-label-width="130"
+      mm-caption="Filter List"
+      mm-change="filterSource()"
+      mm-custom-label-padding="0"
+      mm-model="filter.text">
+    </mm-text>
+  </mm-row>
+  <mm-row ng-if="!tabHandler.postalCode">
+    <mm-select-list mm-data-model="geoDataSource[geoObj.selectedGeoType].dataSource"
+                    mm-model="geoSelectedValues[geoObj.selectedGeoType]"
+                    mm-save-full-object>
+    </mm-select-list>
+  </mm-row>
+  <mm-row ng-if="tabHandler.postalCode">
+    <div class="form-buttons" style="display: inline-block">
+      <mm-text-area mm-model="geoObj.selectedPostalCodes"
+                    mm-rows="12"
+                    mm-label-width="0"
+                    mm-layout-type="custom"
+                    mm-disable="!geoObj.selectedCountry"
+                    mm-custom-control-width="715"></mm-text-area>
+    </div>
+    <p class="text-primary">NOTE: Separate codes with commas.</p>
+  </mm-row>
+</script>

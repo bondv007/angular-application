@@ -1,0 +1,34 @@
+<div class="ioEdit">
+    <div class="leftStripe"></div>
+    <div class="rightStripe"></div>
+
+    <div class="mainContent" ng-if="initialize">
+
+        <div class="ioLogo">
+        </div>
+
+        <div class="ioHeader">
+            <span class="ioHeaderEle" ng-style="{ color: ioDetails.statusColor }">{{ioDetails.status}} </span>
+            <span class="ioHeaderEle">IO Number: {{ioDetails.id}} </span>
+            <span class="ioHeaderEle">  IO Last Update Date: {{ioDetails.statusDate}}</span>
+        </div>
+
+        <div class="ioBody">
+            <div ng-include="'billingApp/insertionOrder/views/campaignInfo.html'" ng-if="ioDetails.campaignInfo"></div>
+            <div ng-include="'billingApp/insertionOrder/views/payerInfo.html'" ng-if="ioDetails.payerInfo"></div>
+            <div ng-include="'billingApp/insertionOrder/views/products.html'"></div>
+            <div ng-include="'billingApp/insertionOrder/views/stopServingDetails.html'"></div>
+            <div ng-include="'billingApp/insertionOrder/views/pleaseNote.html'"></div>
+
+            <div ng-include="'billingApp/insertionOrder/views/whoIsPaying.html'"></div>
+            <div ng-include="'billingApp/insertionOrder/views/otherProducts.html'"></div>
+            <div ng-include="'billingApp/insertionOrder/views/paymentTerms.html'" ng-if="ioDetails.payerInfo.paymentTerm"></div>
+            <div ng-include="'billingApp/insertionOrder/views/termsAndConditions.html'"></div>
+        </div>
+        <div class="ioFooter" ng-style="{ width: isEntral ? '40%' : '90%' }">
+            <div ng-include="'billingApp/insertionOrder/views/disclaimer.html'"
+                 mm-has-permission="{{ioSignPermission}}" ng-if="ioDetails.statusId != 8"></div>
+            <div ng-include="'billingApp/insertionOrder/views/actionButtons.html'"></div>
+        </div>
+    </div>
+</div>

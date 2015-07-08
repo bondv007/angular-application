@@ -1,0 +1,10 @@
+<table>
+	<tr>
+		<td>
+			<div ng-if="sg.type != 'AdContainer'" ng-repeat="ad in sg" ng-bind="ad.masterAdId">
+			</div>
+			<div ng-if="sg.type == 'AdContainer'" ng-repeat="ad in sg.subContainers" ng-bind="ad.masterAdId">
+			</div>
+		</td>
+	</tr>
+</table>

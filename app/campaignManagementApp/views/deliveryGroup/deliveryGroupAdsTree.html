@@ -1,0 +1,62 @@
+<mm-toggle-container title="Ads" start-open="adsArea.open">
+	<div id="adsAreaFrame" class="mainFrame">
+	<div class="subMainFrame">
+		<!--Buttons-->
+		<div id="adsAreaButtons" class="divButton">
+			<button type="button" class="mainButton btn btn-xs" ng-click="action()">
+				Preview
+			</button>
+			<button type="button" class="mainButton  btn btn-xs" ng-click="action()">
+				Disable / Enable
+			</button>
+			<button type="button" class="mainButton  btn btn-xs" ng-click="createSubGroup()">
+				Create Sub Group
+			</button>
+			<button type="button" class="mainButton  btn btn-xs" ng-click="removeAds()">
+				Remove
+			</button>
+			<label class="checkbox-inline">
+				<input style="margin-top: 6px" type="checkbox">
+				Hide Disable
+			</label>
+			<!--*******************************************-->
+			<!--Only for debug mode-->
+			<!--*******************************************-->
+			<!--<button type="button" class="mainButton  btn btn-xs" ng-click="addAd()">-->
+				<!--Add-->
+			<!--</button>-->
+		</div>
+		<!--Active Ads-->
+		<div>
+			<h5 class="dragAdsText" ng-if="activeAds.subContainers.length === 0">
+				Drag ads here to assign them to the delivery group.
+			</h5>
+			<div ng-init="parentContainer=activeAds" ng-repeat="container in activeAds.subContainers" ng-include="'campaignManagementApp/views/deliveryGroup/deliveryGroupAd.html'"></div>
+		</div>
+		<!--Default Ads-->
+		<div class="strikeWithText">
+			<span> <input ng-click="onSelectDefaultAds()" ng-model="defaultAdsCB.isSelected" type="checkbox"/> Default Ads</span>
+		</div>
+		<div>
+			<h5 class="dragAdsText" ng-if="defaultAds.length === 0">
+				Drag ads here to assign them to default ads for serving.
+			</h5>
+			<div ng-repeat="container in defaultAds" ng-include="'campaignManagementApp/views/deliveryGroup/deliveryGroupAd.html'">
+			</div>
+		</div>
+		<!--Draft Ads-->
+		<div class="strikeWithText">
+			<span> <input ng-click="onSelectDraftArea()" ng-model="draftAreaCB.isSelected" type="checkbox"/> Draft Area</span>
+		</div>
+		<div>
+			<h5 class="dragAdsText" ng-if="draftAds.length === 0">
+				Use this area while you work on the delivery group set up. <br/>
+				Ads in this area will not be served.
+			</h5>
+			<div ng-repeat="container in draftAds" ng-include="'campaignManagementApp/views/deliveryGroup/deliveryGroupAd.html'"></div>
+		</div>
+		<div>
+		</div>
+	</div>
+</div>
+</mm-toggle-container>

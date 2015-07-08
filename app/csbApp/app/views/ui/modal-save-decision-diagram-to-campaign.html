@@ -1,0 +1,35 @@
+<div class="modal-header">
+    <h3 class="modal-title">Save your Decision Diagram to a Campaign</h3>
+</div>
+<div class="modal-body">
+    <div>
+
+        <div class="alert alert-danger" role="alert" ng-show="saveErrorText">{{ saveErrorText }}</div>
+
+        <p>Pressing save will attach this to your selected campaign.</p>
+        <input type="text" class="form-control" ng-model="templateName" disabled>
+        <p><br>Select a campaign</p>
+
+        <div class="campaign-picker">
+            <div class="input-group">
+                <div class="input-group-addon"><span class="glyphicon glyphicon-search"></span></div>
+                <input type="search" class="form-control" placeholder="Search for campaigns" ng-model="search">
+            </div>
+            <div class="list-group">
+                <span class="list-group-item" ng-repeat="campaign in campaigns | filter: search" ng-click="appService.selectedCampaign = campaign" ng-class="{ 'active': appService.selectedCampaign.CampainID == campaign.CampainID }">
+                    {{campaign.CampainName}}
+                    <span class="badge"><i class="glyphicon glyphicon-ok"></i></span>
+                </span>
+                <div class="loader centered" ng-show="!campaigns">
+                    <h3>Loading Campaigns...</h3>
+                    <span class="glyphicon glyphicon-refresh large-loading-spinner"></span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+<div class="modal-footer">
+    <button class="btn btn-success" ng-click="save()">{{saveButtonText}}</button>
+    <button class="btn btn-primary" ng-click="modal.dismiss()">Close</button>
+</div>

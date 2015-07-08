@@ -1,0 +1,30 @@
+<div style="width: 200px;min-height: 32px;border: 1px solid;margin: 10px" outside-click="dropDown.open = false;">
+  <div id="'mv_sort_drop_down_'{{mmId}}" ng-click="click();dropDown.open = !dropDown.open; filterOptions.value=dropDown.open?'':filterOptions.value " style="padding: 8px;cursor: pointer;height: 36px" >
+    <div style="display: inline-block;overflow: hidden;width: 146px;text-overflow: ellipsis">
+      <i>{{ dropDown.selected.value ? dropDown.selected.value:'Please Select...'}}</i>
+    </div>
+    <div style="display: inline-block; position: relative; top:4px;" class="glyphicon pull-right"
+         ng-class="{'glyphicon-chevron-down':!dropDown.open,'glyphicon-chevron-up':dropDown.open}"
+         aria-hidden="true">
+    </div>
+  </div>
+  <!--Open Mode-->
+  <div ng-show="dropDown.open" style="min-height: 100px">
+    <!--Search-->
+    <div style="background-color: rgba(186, 202, 228, 0.5);padding: 7px;border-top: 1px solid;border-bottom: 1px solid">
+      <div style="border: 1px solid #bacae4;height: 30px;display: table-cell;padding: 0 5px;background-color: white;vertical-align: middle">
+        <input placeholder="Search" id="'mv_sort_drop_down_search_'{{mmId}}" id="" ng-model="filterOptions.value" class="searchTextBox" type="text"/>
+        <div class="glyphicon glyphicon-search"></div>
+      </div>
+    </div>
+    <!--Options-->
+    <div style="min-height: 30px;overflow-y: auto;overflow-x: hidden; padding: 5px 0">
+      <ul class="mv_sortable" style="padding-left: 10px">
+        <li ng-click="onSelectedItem(item); dropDown.selected.value = item.value;dropDown.open = false" class="liItemHover ui-state-default" ng-repeat="item in mmOptions | filter : filterOptions">
+          {{::item.value}}
+          <!--<a href="" style="display: block;text-decoration:none;color:#000000">{{item}}</a>-->
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>

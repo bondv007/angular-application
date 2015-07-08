@@ -1,0 +1,92 @@
+<!DOCTYPE html >
+<html>
+<head lang="en">
+
+    <meta http-equiv="X-UA-compatible" content="IE=edge">
+
+    <meta charset="UTF-8">
+    <title>Campaign Strategy Builder</title>
+    <link href="bower_components/bootstrap/dist/css/bootstrap.css" type="text/css" rel="stylesheet">
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
+    <link href="css/animate.css" type="text/css" rel="stylesheet">
+    <link href="css/app.css" type="text/css" rel="stylesheet">
+
+    <!--[if gte IE 9]>
+    <style type="text/css">
+        .gradient {
+            filter: none;
+        }
+    </style>
+    <![endif]-->
+
+</head>
+<body>
+
+    <div id="main" ng-app="csbApp">
+        <div ng-view></div>
+    </div>
+
+    <!-- jquery  files -->
+    <script src="bower_components/jquery/dist/jquery.js" type="text/javascript"></script>
+    <script src="bower_components/jquery-ui/jquery-ui.js" type="text/javascript"></script>
+
+    <!-- angular files -->
+    <script src="bower_components/angular/angular.js" type="text/javascript"></script>
+    <script src="bower_components/angular-bootstrap/ui-bootstrap.js" type="text/javascript"></script>
+    <script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.js" type="text/javascript"></script>
+    <script src="bower_components/angular-dragdrop/src/angular-dragdrop.js" type="text/javascript"></script>
+    <script src="bower_components/angular-animate/angular-animate.js" type="text/javascript"></script>
+    <script src="bower_components/angular-route/angular-route.js" type="text/javascript"></script>
+    <script src="bower_components/angular-sanitize/angular-sanitize.js" type="text/javascript"></script>
+
+    <!-- TextAngular files -->
+    <script src="bower_components/textAngular/src/textAngular-sanitize.js" type="text/javascript"></script>
+    <script src="bower_components/textAngular/src/textAngular.js" type="text/javascript"></script>
+    <script src="bower_components/textAngular/src/textAngularSetup.js" type="text/javascript"></script>
+
+    <script src="app/utils/WatcherUtils.js" type="text/javascript"></script>
+    <script src="app/utils/polyfills.js" type="text/javascript"></script>
+    <script src="app/utils/indexOfObjectByKey.js" type="text/javascript"></script>
+    <script src="app/app.js" type="text/javascript"></script>
+    <script src="app/routes/decision-diagram/decisionDiagram.js"></script>
+    <script src="app/routes/trafficking/trafficking.js"></script>
+
+    <!-- application services -->
+    <script src="app/services/appService.js"></script>
+    <script src="app/services/authFactory.js"></script>
+    <script src="app/services/GraphFactory.js" type="text/javascript"></script>
+    <script src="app/services/audienceSegmentFactory.js" type="text/javascript"></script>
+    <script src="app/services/geoFactory.js" type="text/javascript"></script>
+    <script src="app/services/advertiserFactory.js" type="text/javascript"></script>
+    <script src="app/services/contextualTargetingFactory.js" type="text/javascript"></script>
+    <script src="app/services/commonResourcesFactory.js" type="text/javascript"></script>
+    <script src="app/services/deliveryGroupsFactory.js" type="text/javascript"></script>
+    <script src="app/services/adsFactory.js" type="text/javascript"></script>
+    <script src="app/services/panelFactory.js"></script>
+    <script src="app/services/modalFactory.js"></script>
+    <script src="app/services/errorFactory.js"></script>
+
+    <!-- application controllers -->
+    <script src="app/controllers/navController.js" type="text/javascript"></script>
+    <script src="app/controllers/canvasController.js" type="text/javascript"></script>
+    <script src="app/controllers/tabsController.js" type="text/javascript"></script>
+    <script src="app/controllers/mdxUIController.js" type="text/javascript"></script>
+    <script src="app/controllers/treeviewController.js" type="text/javascript"></script>
+    <script src="app/controllers/funnelViewController.js" type="text/javascript"></script>
+    <script src="app/controllers/decisiontree.js"></script>
+    <script src="app/controllers/alertController.js"></script>
+
+    <!-- application directives -->
+    <script src="app/directives/filteredSelect/filteredSelect.js"></script>
+    <script src="app/directives/noteItem/noteItem.js"></script>
+    <script src="app/directives/footerToolbar/footerToolbar.js"></script>
+    <script src="app/directives/selectAllText/selectAllText.js"></script>
+    <script src="app/directives/header/headerSwitcherFromDecisionDiagramToTrafficking.js"></script>
+    <script src="app/directives/tagValueSelect/tagValueSelect.js"></script>
+    <script src="app/directives/trafficking/rightSidebar/rightSidebar.js"></script>
+    <script src="app/directives/trafficking/treeView/treeView.js"></script>
+
+
+
+</body>
+</html>

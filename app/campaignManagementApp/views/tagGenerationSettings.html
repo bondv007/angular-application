@@ -1,0 +1,23 @@
+<div>
+  <mm-row ng-show="!isInStreamType">
+    <mm-drop-down mm-label-width="100"
+                  mm-layout-type="medium"
+                  mm-caption="Tag Type"
+                  mm-data-model="tagTypes"
+                  mm-tab-index="1"
+                  control-type="multi"
+                  mm-model="tagGenerationTypes.value">
+    </mm-drop-down>
+  </mm-row>
+  <mm-row>
+    <textarea ng-model="tagCode" name="tagTextArea" cols="80" rows="12" style="width:575px;" html-text readonly></textarea>
+  </mm-row>
+</div>
+<div class="tag-generation-note">
+  <div style="font-weight: bold">
+    {{'Note' | T}}
+  </div>
+  <div>
+    {{'Only Placements with attached ads will have a tag.' | T}}
+  </div>
+</div>

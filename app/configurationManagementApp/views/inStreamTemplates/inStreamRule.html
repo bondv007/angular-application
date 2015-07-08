@@ -1,0 +1,55 @@
+<div class="editContainer in-stream-rule">
+  <mm-row>
+    <div class="mm-entity-fields-container-single">
+      <mm-drop-down mm-data-model="sections"
+                    show-search-box
+                    mm-model="templateData.sectionId"
+                    mm-error="errorObj.sectionMsg"
+                    mm-layout-type="medium"
+                    mm-label-width={{labelWidth}}
+                    mm-caption="Section"
+                    mm-select-change-func="onSectionSelect()"
+                    mm-tab-index="2"></mm-drop-down>
+    </div>
+  </mm-row>
+  <mm-row>
+    <div class="mm-entity-fields-container-single">
+      <mm-drop-down mm-data-model="baseTemplates"
+                    show-search-box
+                    mm-model="templateData.templateId"
+                    mm-error="errorObj.templateMsg"
+                    mm-layout-type="medium"
+                    mm-label-width={{labelWidth}}
+                    mm-caption="In-Stream Template"
+                    mm-select-change-func="onBaseTemplateSelect()"
+                    mm-tab-index="2"></mm-drop-down>
+      <mm-button  mm-caption="Download XSLT"
+                  mm-btn-type="save"
+                  mm-action=""></mm-button>
+    </div>
+  </mm-row>
+  <mm-row>
+  </mm-row>
+  <mm-row>
+    <div class="mm-entity-fields-container-single">
+      <!--XML Variables -->
+      <mm-grid items=templateData.vastVariables
+               cols=xmlVariablesCols
+               is-cell-edit="true"
+               is-single-select="false"
+               is-sort="true"
+               show-footer="false"
+               is-groupable="false"
+               show-selection-checkbox="false"
+               show-filter="false"
+               enable-column-resize="true"
+               is-column-reorder="false"
+               is-column-freeze="false"
+               is-show-menu="false"
+               grid-height="230"
+               is-central-grid="false"
+               is-grid-loading="false">
+      </mm-grid>
+    </div>
+  </mm-row>
+</div>

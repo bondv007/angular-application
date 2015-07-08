@@ -1,0 +1,38 @@
+<hr style="border-top: solid 1px #ffffff;"/>
+
+<mm-row>
+	<mm-text
+			mm-error="campaignError.text"
+			mm-min-width="700px"
+			mm-model="campaignName.name"
+		  mm-placeholder="Enter Name"
+		  mm-caption="Campaign Name"></mm-text>
+</mm-row>
+
+<mm-row>
+	<mm-drop-down
+			mm-error="sitesError.text"
+			mm-model="site.selectedSite"
+			mm-data-model="demoModel.listOfOptions"
+			mm-caption="Sites"></mm-drop-down>
+</mm-row>
+
+<mm-row>
+	<tabset>
+		<tab heading="1st tab" style="background-color: #ffffff;">
+			<mm-row>
+				<mm-text mm-model="demoModel.url" mm-error="error.name" mm-caption="Link Demo"
+                 mm-is-link="true"
+								 mm-is-dirty="dirtyFlags.tab1"></mm-text>
+			</mm-row>
+
+		</tab>
+		<tab heading="2nd tab" style="background-color: #ffffff;" class="{{adError.text == '' ? '' : 'tabWithErrors'}}">
+			<mm-text mm-model="adName.name"
+							 mm-placeholder="Enter Name"
+							 mm-caption="Ad Name"
+							 mm-error="adError.text"></mm-text>
+		</tab>
+	</tabset>
+</mm-row>
+

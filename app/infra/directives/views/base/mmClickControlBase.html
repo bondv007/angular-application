@@ -1,0 +1,20 @@
+<div style="display: inline-block; vertical-align: top; float: left"
+     ng-style="{'margin-bottom': (mmError !== undefined && mmError !== '') ? '20px' : 0}">
+  <div style="display: inline" ng-include="'infra/directives/views/template/label.html'"></div>
+  <div class="{{mmAdditionalClass}}" ng-class="{'text-edit-mode': mmIsEditMode, 'text-new-mode': !mmIsEditMode}" style="display: inline-block">
+    <div class="control-container">
+      <div ng-if="controlType == 'radio'">
+        <div ng-include="'infra/directives/views/template/radio.html'"></div>
+      </div>
+      <div ng-if="controlType == 'checkbox'">
+        <div ng-include="'infra/directives/views/template/checkbox.html'"></div>
+      </div>
+      <div ng-if="controlType == 'checklist'">
+        <div ng-include="'infra/directives/views/template/checklist.html'"></div>
+      </div>
+      <div>
+        <mm-error-div mm-min-width="mmMinWidth" error-text="mmError"></mm-error-div>
+      </div>
+    </div>
+  </div>
+</div>

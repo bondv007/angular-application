@@ -1,0 +1,65 @@
+<div class="modal-header">
+    Select Existing Delivery Group
+</div>
+<div class="modal-body">
+
+    <div ng-show="loadingGroups">
+        <div class="form-group col-md-6">
+            <span class="spin-360 glyphicon glyphicon-repeat"></span>&nbsp;&nbsp;Loading delivery groups...
+        </div>
+    </div>
+
+    <div ng-show="listOfDeliveryGroups.length == 0 && !loadingGroups">
+        <p>There are no Delivery Groups to show for this Campaign. <br><br>
+        <!-- You can create them by clicking <em>Assing Delivery Group > New Delivery Group</em>. -->
+        </p>
+    </div>
+
+    <div ng-show="listOfDeliveryGroups.length && !loadingGroups">
+        <input type="text" placeholder="Search ID, Name or Size" ng-model="searchQuery" />
+
+        <table class="table table-striped" id="DeliveryGroups">
+            <thead>
+                <tr>
+                    <th></th>
+                    <th>Delivery Group ID</th>
+                    <th>Name</th>
+                    <th>Size</th>
+                    <th>Num. Ads</th>
+                    <th>Rotation</th>
+                    <th>Target Audience</th>
+                    <th>Ads</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="dg in listOfDeliveryGroups | filter: searchQuery " class="selectable" data-dg="{{dg}}" ng-class="{disabled: dg.disabled || dg.checked }">
+                    <td ng-show="!dg.disabled"><input type="checkbox" ng-checked="{{dg.checked}}" ng-disabled="dg.checked"></td>
+                    <td ng-show="dg.disabled"></td>
+                    <td class="text-center">{{dg.DeliveryGroupID}}</td>
+                    <td>{{dg.Name}}</td>
+                    <td>{{dg.Dimension}}</td>
+                    <td class="text-center">{{dg.NumberOfAds}}</td>
+                    <td>{{dg.RotationType}}</td>
+                    <td>{{dg.TargetAudienceName}}</td>
+                    <td><button>Preview</button></td>
+                </tr>
+            </tbody>
+           <!--  <tfoot>
+                <tr>
+                    <td>Total items: </td>
+                    <td>{{groups.length}}</td>
+                    <td>Selected: </td>
+                    <td>{{previewAds.selectedDeliveryGroups.length}}</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+            </tfoot> -->
+        </table>
+    </div>
+    
+</div>
+<div class="modal-footer">
+    <button class="btn mdx-btn mdx-save-btn" ng-disabled="!appService.previewAds.selectedDeliveryGroups.length" ng-click="attachDGtoTA()">Save</button>
+    <button class="btn mdx-btn mdx-close-btn" ng-click="closeExistingDgsModal()">Cancel</button>
+</div>

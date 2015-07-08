@@ -1,0 +1,8 @@
+{
+  "env": "development-yoni",
+  "ec2": "http://localhost:8080/rest/",
+  "loginPath": "http://localhost:8080/rest/login/",
+  "resource": "/_/"
+}
+
+

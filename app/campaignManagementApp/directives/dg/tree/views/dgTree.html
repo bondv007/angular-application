@@ -1,0 +1,8 @@
+<div ng-mouseenter="removeDrop=false" ng-mouseleave="removeDrop=true"  class="treeContainer">
+	<!--Empty Container-->
+	<div style="height: 0" ng-include="'campaignManagementApp/directives/dg/tree/views/templates/emptyContainer.html'"></div>
+	<!--Rotation Root-->
+	<div ng-include="'campaignManagementApp/directives/dg/tree/views/templates/rotationTree/root.html'"></div>
+	<!--Default Serve Root-->
+	<div ng-include="'campaignManagementApp/directives/dg/tree/views/templates/defaultServeTree/root.html'"></div>
+</div>

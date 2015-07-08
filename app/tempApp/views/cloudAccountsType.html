@@ -1,0 +1,21 @@
+<h1>Cloud Accounts.</h1>
+<hr>
+
+Get Accounts <input type="number" ng-model="accountTypeId" ng-change="getAccountsByAccountTypeId()"/> By Account Type Id
+
+<table class="table table-hover table-striped">
+	<thead>
+	<tr>
+		<th><a>#</a></th>
+		<th><a>Name</a></th>
+		<th><a>Type</a></th>
+	</tr>
+	</thead>
+	<tbody>
+	<tr ng-repeat="a in accounts">
+		<td>{{a.entityID}}</td>
+		<td>{{a.name}}</td>
+		<td>{{a.accountType}}</td>
+	</tr>
+	</tbody>
+</table>

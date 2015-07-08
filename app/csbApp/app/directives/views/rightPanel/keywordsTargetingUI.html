@@ -1,0 +1,84 @@
+<div class="mdxUI mdxUIContainer" ng-class="{ 'active' : showUI, 'mdx3': csb.config.env == 'mdx3' }">
+  <div class="header">
+    <h1>Keywords Targeting <span ng-click="closePanel()" class="pull-right glyphicon glyphicon-remove"></span></h1>
+  </div>
+  <div class="body-wrapper" ng-style="csb.config.panelHeight">
+    <div ng-if="maxItems > 0" class="body clearfix">
+      <!--<span>Use commas and ampersands as delimiters between site keywords. Commas represent the OR logic,-->
+      <!--and ampersands represent the AND logic (AND beats OR).</span>-->
+      <div class="form-group" ng-show="errorText">
+        <div class="csb-alert alert alert-danger">{{errorText}}</div>
+      </div>
+      <mm-row>
+        <mm-text
+            mm-layout-type="custom"
+            mm-custom-control-width="210"
+            mm-label-width="130"
+            mm-caption="Decision Rule Name:"
+            mm-model="name.text"
+            ></mm-text>
+      </mm-row>
+      <mm-row>
+        <mm-drop-down
+            mm-layout-type="custom"
+            mm-custom-control-width="210"
+            mm-label-width="130"
+            mm-caption="Decision Rule Type:"
+            mm-data-model="ruleTypeOptions"
+            mm-model="ruleType.id"
+            mm-disable="disableType"
+            mm-select-change-func="changeRuleType()"
+            >
+        </mm-drop-down>
+      </mm-row>
+      <div ng-repeat="segment in segments" class="clearfix" style="margin-right: 15px">
+        <div ng-class="{ 'keywords-content': ruleType.id == 'multi' }" class="clearfix">
+          <div ng-repeat="site in segment.sites" class="clearfix">
+            <div class="keywords-content clearfix" ng-init="showAdditionalKeywords = site.additionalKeywords.length">
+              <mm-text class="clearfix" mm-layout-type="custom"
+                       mm-custom-control-width="250"
+                       mm-placeholder="Site"
+                       mm-hide-label="true"
+                       mm-model="site.site"
+                       mm-custom-label-padding="0"></mm-text>
+              <mm-text class="clearfix" mm-layout-type="custom"
+                       mm-custom-control-width="250"
+                       mm-hide-label="true"
+                       mm-placeholder="Keywords (e.g. Male, Music lover, sports fan)"
+                       mm-model="site.keywords"
+                       mm-custom-label-padding="0"></mm-text>
+              <span ng-click="$parent.showAdditionalKeywords = true" class="who-are-also"
+                    ng-if="!showAdditionalKeywords">Who are also...</span>
+              <mm-text ng-if="showAdditionalKeywords"
+                       mm-layout-type="custom"
+                       mm-custom-control-width="250"
+                       mm-placeholder="Who are also (e.g. Age: 18-25)"
+                       mm-hide-label="true"
+                       mm-model="site.additionalKeywords"
+                       mm-custom-label-padding="0"></mm-text>
+              <span class="glyphicon glyphicon-remove"
+                    ng-click="$parent.showAdditionalKeywords = false;site.additionalKeywords = undefined"
+                    ng-if="showAdditionalKeywords"></span>
+              <i ng-click="removeSite( segment, $index )" ng-show="segment.sites.length > 1"
+                 class="csb-icon csb-icon-remove-btn remove-group-icon"></i>
+            </div>
+          </div>
+          <span ng-click="addSite( segment )" class="add-rule"
+                ng-show="maxItems > 0 && segment.sites.length < maxItems">Add another site</span>
+          <i ng-click="removeSegment( segments, $index )" ng-show="ruleType.id == 'multi' && segments.length > 1"
+             class="csb-icon csb-icon-remove-btn remove-group-icon"></i>
+        </div>
+        <span class="group-logical-separator" ng-hide="decision.ruleType == 'yes-no' || $index == segments.length - 1">OR</span>
+      </div>
+      <span ng-click="addRule()" class="add-rule" ng-show="ruleType.id == 'multi'">Add new segment</span>
+      <div class="footer">
+        <div class="form-buttons pull-right">
+          <button class="btn mdx-btn mdx-save-btn" ng-click="save()">Save</button>
+          <button class="btn mdx-btn mdx-close-btn" ng-click="cancelChanges()">Cancel Changes</button>
+        </div>
+      </div>
+    </div>
+    <div ng-if="maxItems <= 0" class="body clearfix"><span>You have reached the maximum number of sites allowed per single target audience.</span>
+    </div>
+  </div>
+</div>

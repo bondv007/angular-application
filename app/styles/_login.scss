@@ -1,0 +1,125 @@
+.loginBackground {
+  position: absolute;
+  top: 0px;
+  bottom: 51px;
+  left: 0;
+  right: 0;
+
+  background: image-url("bg_image.jpg") no-repeat center fixed;
+  background-size: cover;
+}
+
+.loginFormContainer {
+  display: inline-block;
+  position: relative;
+  height: 100%;
+  padding: 22px 15px;
+
+  background-color: rgba(255, 255, 255, 0.87);
+
+  .mm-text-box {
+    font-size: 14px;
+    height: 32px;
+  }
+
+  .logo {
+    position: relative;
+    height: 24px;
+    background: image-url("loginLogo.png") no-repeat;
+    margin-bottom: 79px;
+  }
+
+  .checkYourMailBoxSign {
+    background: image-url("Check_your_mailbox_image.png") no-repeat center top;
+    padding-top: 35px;
+    margin: 98px 77px 0px;
+  }
+
+  .formTitle {
+    font-family: "Titillium Semibold";
+    font-weight: bold;
+    font-size: 25px;
+    color: $cSecondary;
+
+    position: relative;
+    margin-bottom: 14px;
+  }
+
+  .spaceBetweenInputs {
+    padding-bottom: 13px;
+  }
+
+  .formSubmitButton {
+    width: 99px;
+    height: 32px;
+
+    margin: 0 0 14px 0px !important;
+    line-height: 32px;
+    font-size: 14px;
+
+    .next {
+      padding-right: 10px;
+      background: image-url('arrow_next.png') no-repeat;
+      background-position: right;
+    }
+
+    &:hover {
+      .next {
+        padding-right: 10px;
+        background: image-url('arrow_next_white.png') no-repeat;
+        background-position: right;
+      }
+    }
+  }
+  a {
+    color: $cMain;
+  }
+
+  .passwordRules {
+    width: 279px;
+    display: inline-block;
+    color: $cSecondary;
+    font-size: 14px;
+    font-family: "Titillium Semibold";
+    font-weight: bold;
+    .rulesList {
+      font-family: 'Titillium';
+      font-weight: normal;
+    }
+  }
+}
+
+.contactBar {
+  font-family: 'Titillium';
+  font-size: 14px;
+
+  text-align: center;
+  line-height: 51px;
+  position: absolute;
+  height: 51px;
+  bottom: 0;
+  left: 0;
+  right: 0;
+
+  background-color: $cSecondary;
+
+  .contactTitle {
+    position: relative;
+    right: 47px;
+    font-family: "Titillium Semibold";
+    color: $cMain;
+  }
+
+  .contactDetails {
+    position: relative;
+    color: $cWhite;
+
+    .contactName {
+      font-family: "Titillium Semibold";
+    }
+    .contactDelimiter {
+      margin-right: 11px;
+      margin-left: 11px;
+    }
+  }
+}

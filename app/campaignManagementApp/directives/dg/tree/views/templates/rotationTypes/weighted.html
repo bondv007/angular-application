@@ -1,0 +1,5 @@
+<div ng-init="isInputSelected=false" class="weightedContainer" ng-class="{'inputSelected':isInputSelected}">
+	<input ng-blur="isInputSelected = false;" ng-click="isInputSelected = true;" ng-disabled="!mmDeliveryGroup.isSupportedDg"
+           ng-change="$root.isDirtyEntity = true; onWeightedChange(parent)" class="weightedTextBox rotationText" type="number" ng-model="item.rotationSetting.weight"/>
+	<div class="middleElement rotationText">%</div>
+</div>

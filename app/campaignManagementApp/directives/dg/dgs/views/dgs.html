@@ -1,0 +1,11 @@
+<div ng-include="'campaignManagementApp/directives/dg/dgs/views/templates/headerToolBar.html'"></div>
+<div ng-include="'campaignManagementApp/directives/dg/dgs/views/templates/buttons.html'"></div>
+<wave-spinner ng-show="showSpinner"></wave-spinner>
+<div ng-show="!showSpinner">
+  <div class="dgsWrapper" central-scroll-event="loadMore()">
+    <div class="centerDgs">
+      <delivery-group mm-id="{{$index}}" filter="filter" delivery-group="dg" ng-repeat="dg in copyTargetAudienceDgs | filter:filter.dgs | limitTo:dgLimit track by dg.trackId "></delivery-group>
+    </div>
+    <div ng-include="'campaignManagementApp/directives/dg/dgs/views/templates/emptyState.html'"></div>
+  </div>
+</div>

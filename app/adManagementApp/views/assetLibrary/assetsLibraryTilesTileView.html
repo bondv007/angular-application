@@ -1,0 +1,37 @@
+<!--asset tile-->
+<li class="central-tile" ng-repeat="asset in commonModel.filteredAssets | orderBy:'displayName' track by $index" ng-class="{'active':asset.isChecked}">
+  <div ng-model="asset.isChecked" ng-dblclick="redirectToAssetEdit(asset.id)" ng-click="selectedAssetNodeHandler(asset);$event.stopPropagation();">
+    <div class="central-tile-header">
+      <!--<input type="checkbox" ng-model="asset.isChecked" ng-click="asset.isChecked=!asset.isChecked" />-->
+      <div class="centralRowCheckBoxMarker">
+        <div ng-if="asset.id!=-1&&asset.id!=-2" class="mm_checkbox" ng-click="selectedAssetNodeHandler(asset,'checkbox'); $event.stopPropagation();">
+          <span ng-class="{'selectedCB': asset.isChecked}"></span>
+        </div>
+      </div>
+    </div>
+    <div class="figure-img">
+      <!--<img ng-src="{{getImage(ad)}}" height="170" width="290" alt=""/>-->
+      <img ng-src="{{:: getAssetTileThumbnail(asset) }}" alt=""/>
+    </div>
+    <div class="central-tile-footer">
+      <div class="primary" ng-click="redirectToAssetEdit(asset.id)">
+        <p class="wrapper">
+          <span class="truncate">{{asset.title}}</span>
+          <span class="details">{{(asset.formatContext.fileSize / 1024).toFixed(2)}}Kb</span>
+        </p>
+      </div>
+      <div class="secondary">
+        <!--<p >{{asset.mediaType}}</p>-->
+        <p>{{asset.width != undefined ? asset.width+'X'+asset.height : ''}}</p>
+        <span ng-if="asset.mediaType == 'IMAGE'" class="actions"><i class="assets-icon-Image_icon"></i></span>
+        <span ng-if="asset.mediaType == 'AUDIO'" class="actions"><i class="assets-icon-Sound_icon"></i></span>
+        <span ng-if="asset.mediaType == 'ARCHIVE'" class="actions"><i class="assets-icon-Zip_icon"></i></span>
+        <span ng-if="asset.mediaType == 'VIDEO'" class="actions"><i class="assets-icon-Vidao_icon"></i></span>
+        <span ng-if="asset.mediaType == 'FLASH'" class="actions"><i class="assets-icon-Flash_icon"></i></span>
+        <span ng-if="asset.mediaType == 'UNKNOWN'" class="actions"><i class="assets-icon-Text_icon"></i></span>
+      </div>
+    </div>
+  </div>
+</li>
+
+

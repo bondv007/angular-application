@@ -1,0 +1,32 @@
+<div ng-show="!mmDeliveryGroup.servingSetting.serveDefaultImage">
+	<div ui-tree="defaultServetreeOptions" data-drag-enabled="mmDeliveryGroup.isSupportedDg">
+		<ol ui-tree-nodes="" ng-model="defaultServeRoot">
+			<li ng-class="{'selectedBackgroundColor':mmDefaultAdsCb.isSelected}" ng-repeat="rootContainer in defaultServeRoot" ui-tree-node>
+				<div data-nodrag ui-tree-handle>
+
+					<!--Open\Close Icon Container-->
+					<div class="middleElement notVisibleDragIcon"></div>
+					<a data-nodrag class="middleElement wrapContainerToggleIcon" ng-click="toggle()">
+						<div ng-class="{'containerOpenIcon':!collapsed, containerCloseIcon:collapsed}"
+								 class="middleElement containerOpenIconDim"></div>
+					</a>
+
+					<!--Check Box []-->
+					<div data-nodrag class="mm_checkbox middleElement selectedCBWrapper" ng-model="mmDefaultAdsCb.isSelected"
+							 ng-click="mmDefaultAdsCb.isSelected=!mmDefaultAdsCb.isSelected; selectVisibleServeAds()">
+						<span ng-class="{'selectedCB': mmDefaultAdsCb.isSelected}"></span>
+					</div>
+
+					<!--Item Type Icon-->
+					<div class="defaultServeIcon middleElement"></div>
+
+					<!--Name-->
+					<div class="middleElement itemNameText" ng-bind="'dg_tree_default_serve' | T"></div>
+				</div>
+				<span ng-class="{hidden: collapsed}">
+					<div ng-include="'campaignManagementApp/directives/dg/tree/views/templates/defaultServeTree/node.html'"></div>
+				</span>
+			</li>
+		</ol>
+	</div>
+</div>

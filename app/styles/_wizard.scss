@@ -1,0 +1,129 @@
+$stripHeight: 34px;
+$footerHeight: 44px;
+$cCurrentStep: $cFourth;
+@mixin textStep{
+  font-family:"Titillium Semibold";
+  color: $cSecondary;
+  text-transform: uppercase;
+}
+
+@mixin stepIcon {
+  float: left;
+  display: inline-block;
+  width: 12px;
+  height: $stripHeight;
+}
+
+@mixin wizard-step{
+  float: left;
+  line-height: $stripHeight - 2;
+  vertical-align: middle;
+  text-align: center;
+  padding: 0 28px;
+  display: inline-block;
+}
+
+
+@mixin wizard-index{
+  display: inline-block;
+  margin-right: 5px;
+  @include textStep;
+  font-size: 18px;
+}
+
+@mixin wizard-text{
+  display: inline-block;
+  @include textStep;
+  font-size: 13px;
+}
+
+.wizard{
+
+  .wizardSteps {
+    border-bottom: 1px solid $cFourth;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    .step {
+      @include wizard-step;
+      &:hover {
+        cursor: pointer;
+        .text, .index {
+          color: $cMain;
+        }
+      }
+      .index {
+       @include wizard-index;
+      }
+      .text {
+       @include wizard-text;
+      }
+    }
+    .stepDisable {
+      @include wizard-step;
+      .index {
+        @include wizard-index;
+        color:$cSecondaryDisable;
+      }
+      .text {
+        @include wizard-text;
+        color:$cSecondaryDisable;
+      }
+    }
+    .currentStep {
+      background-color: $cCurrentStep;
+    }
+    .currentStepIcon{
+      @include stepIcon;
+      background-image: image-url('current_future.png');
+    }
+    .futureStep {
+      background-color: $cWhite;
+      opacity: 50%;
+    }
+    .futureStepIcon{
+      @include stepIcon;
+      background-image: image-url('future.png');
+    }
+    .completedStep {
+      background-color: rgba(186, 202, 228, 0.5);
+    }
+    .completedStepIcon{
+      @include stepIcon;
+      background-image: image-url('complete_current.png');
+    }
+    .completedCompletedStepIcon{
+      @include stepIcon;
+      background-image: image-url('complete_complete.png');
+    }
+  }
+
+  .stepView {
+    position: absolute;
+    top: $stripHeight + 1;
+    overflow-y: auto;
+    left: 0;
+    right: 0;
+    bottom: $footerHeight;
+  }
+
+  .footer{
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: $footerHeight;
+    border-top:1px solid #e5e5e5;
+    background-color: $cWhite;
+
+    .rightButtons{
+      position: relative;
+      float: right;
+      top: 10px;
+      margin-right: 18px;
+    }
+
+  }
+}
+

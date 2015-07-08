@@ -1,0 +1,22 @@
+<mm-mini-section
+		mm-is-modal="false"
+		mm-caption="miniSectionTitle"
+		mm-start-open="start.open">
+	<mm-row>
+		<mm-checkbox mm-caption="CheckBox (Click Me) ({{cbEnableNotSelected.selected}})"
+								 mm-true-value="Yes"
+								 mm-false-value="No"
+								 mm-model="cbEnableNotSelected.selected"
+								 mm-is-dirty="cb.isDirty"
+								 mm-control-layout-class="col-lg-3 col-xs-1"
+								 mm-label-layout-class="col-lg-3"
+								 mm-disabled="false"></mm-checkBox>
+	</mm-row>
+	<mm-row>
+		<mm-checkbox mm-caption="Selected CheckBox (Click Me) ({{cbEnableSelected.selected}})"
+								 mm-model="cbEnableSelected.selected"
+								 mm-control-layout-class="col-lg-3 col-xs-1"
+								 mm-label-layout-class="col-lg-3"
+								 mm-caption="" mm-disabled="false"></mm-checkBox>
+	</mm-row>
+</mm-mini-section>

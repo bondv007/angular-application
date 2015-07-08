@@ -1,0 +1,48 @@
+<span id="mainPageContainer" class="pull-left mainRecentlyViewedItems">
+    <h4>Recently Viewed Items</h4><br>
+    <div>
+			<ul>
+				<li class="mainFilterOptions" ng-repeat="filterOption in filterOptions"
+						id="mainPAgeFilter_{{filterOption}}">
+					<a href="javascript: void(0)" ng-click="changeFilter(filterOption)">{{filterOption}} </a>
+				</li>
+				<li class="mainFilterOptions dropdown">
+					<a href="javascript: void(0)" role="button" class="dropdown-toggle" data-toggle="dropdown">
+						More <i class="caret"></i>
+					</a>
+					<ul class="dropdown-menu" role="menu">
+						<li> 1</li>
+						<li> 2</li>
+						<li> 3</li>
+					</ul>
+				</li>
+			</ul>
+		</div>
+    <br>
+    <div style="padding-left: 30px;">
+			<div id="searchObjResults">
+				<p ng-repeat="item in recentlyViewedItems | filter:filterBy">
+                <span style="cursor: pointer;" ng-mouseover="showIcon = 'ok'" ng-mouseleave="showIcon = ''">
+                    <i class="glyphicon glyphicon-{{showIcon}}" ng-hide="item.isPinned" ng-click="item.isPinned = true"></i><i
+										ng-class="{'glyphicon glyphicon-ok': item.isPinned}" ng-click="item.isPinned = false"></i>
+                    <i class="glyphicon glyphicon-folder-close"></i> <a style="text-decoration: none; color: #404040;"
+																												 ng-href="{{item.href}}">{{item.name}} | {{item.type}}</a>
+                </span>
+				</p>
+			</div>
+		</div>
+</span>
+<span class="pull-right mainCommonTasks" style="height:100%;border-left: solid 1px">
+    <div style="padding-left: 20px;">
+			<h4>Common Tasks</h4><br>
+
+			<div ng-repeat="task in tasks">
+				<h5>{{task.name}}</h5>
+
+				<p class="mainActions" ng-repeat="a in task.actions" id="mainPageActions_{{a.name}}">
+					<span ng-click="a.func(a.name)">{{a.name}}</span>
+				</p>
+				<br>
+			</div>
+		</div>
+</span>

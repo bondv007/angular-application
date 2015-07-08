@@ -1,0 +1,45 @@
+
+<mm-row ng-if="!isMultiple || isMultiple.indexOf('name') == -1">
+    <mm-text mm-model="ad.name"
+             mm-blur="onChange('adName')"
+             mm-is-required="true"
+             mm-label-width={{::labelWidth}}
+             mm-layout-type="medium"
+             mm-show-as-label="isMultiple"
+             mm-is-edit-mode="!!entityId"
+             mm-id="adName"
+             mm-caption="Ad Name"
+             mm-placeholder="Enter Name"
+             mm-min-length="300"
+             mm-max-length="300"
+             mm-size="250"
+             mm-error="errors.adName"
+             mm-tab-index="1"
+             mm-edit-multiple="isMultiple != undefined && isMultiple.indexOf('name') != -1"></mm-text>
+</mm-row>
+<mm-row ng-if="isMultiple != undefined && isMultiple.indexOf('name') != -1">
+    <mm-label mm-is-edit-mode="isEditMode"
+              mm-model="'Multiple Values'"
+              mm-caption="Ad Name"
+              mm-layout-type="medium"
+              mm-label-width="{{::labelWidth}}"></mm-label>
+</mm-row>
+<mm-row>
+    <mm-drop-down mm-data-model="lookups.adFormats"
+                  show-search-box
+                  mm-model="ad.adFormat"
+                  mm-is-required="true"
+                  mm-is-edit-mode="isEditMode"
+                  mm-disable ="isEditMode"
+                  mm-layout-type="medium"
+                  mm-label-width={{::labelWidth}}
+                  mm-caption="Ad Format"
+                  mm-placeholder="Enter Ad Format"
+                  mm-select-change-func="changeAdType()"
+                  mm-tab-index="2"
+                  mm-id="adFormat"
+                  mm-error="errors.adFormat"></mm-drop-down>
+</mm-row >
+
+
+

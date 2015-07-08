@@ -1,0 +1,316 @@
+$boxWidth: 130px;
+
+@mixin dpDayText {
+  font-family: arial, sans-serif;
+  font-weight: bold;
+  font-size: 12px;
+  color: $cSecondary;
+}
+
+@mixin dpYearText {
+  font-family: arial, sans-serif;
+  font-weight: bold;
+  font-size: 13px;
+  color: $cWhite;
+}
+
+@mixin dpTextBoxText {
+  font-family: arial, sans-serif;
+  font-size: 12px;
+  color: $cSecondary;
+}
+
+@mixin dpBorderSecondary {
+  border: 1px solid $cSecondary;
+}
+
+@mixin dpChevronIcon {
+  width: 8px;
+  height: 14px;
+}
+
+@mixin dpChevronIconHover {
+  width: 6px;
+  height: 10px;
+  top: 3px;
+}
+
+@mixin dpIconPosition {
+  position: absolute;
+  top: 7px;
+  right: 10px;
+  z-index: $directiveZindex + 1;
+  width: 16px;
+  height: 16px;
+}
+
+.dpErrorText {
+  position: relative;
+  left: 16px;
+  top: 5px;
+}
+
+.mmDatePicker {
+  display: inline-block;
+  line-height: 2;
+  position: relative;
+  bottom: 9px;
+}
+
+.tab-pane
+.mmDatePicker {
+  display: inline-block;
+  line-height: 2;
+  position: relative;
+  bottom: 0px;
+}
+
+.dpFrame 
+{
+  
+    position: absolute;
+    z-index: $directiveZindex+2;
+    border: 1px solid $cFourth;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-bottom: 10px;
+    display: inline-block;
+    background-color: $cWhite;
+    width: 269px;
+    min-height: 230px;
+    height: 266px;
+
+    table {
+      table-layout: fixed;
+    }
+
+
+  /*Day header*/
+  thead {
+    tr:nth-child(2) {
+      background-color: $cFourth;
+      @include dpDayText;
+      height: 20px;
+    }
+  }
+
+  /*day border and text*/
+  .text-center {
+    padding: 0;
+    border: solid 1px $cFourth;
+  }
+
+  /*day buttons*/
+  .btn-default {
+    border: 0;
+    &:focus {
+      outline: 0
+    }
+  }
+
+  .text-center {
+    /*day buttons*/
+    .btn-default {
+      padding: 0;
+    }
+
+  }
+
+  /*Selected day*/
+  .btn-info {
+    color: $cWhite;
+    background-color: $cMain;
+    padding: 0;
+
+    &:hover {
+      background-color: $cMain !important;
+      border-color: $cMain !important;
+      color: $cWhite !important;
+    }
+  }
+
+    table {
+      width: 100% !important;
+      height: 100% !important;
+      min-height: 230px !important;
+    }
+
+  /*Next left + right*/
+  tr {
+    th {
+      button {
+        margin-bottom: 20px !important;
+        background-color: $cThird !important;
+        border: 1px solid $cThird !important;
+        top: 10px;
+        &:hover {
+          border: 1px solid $cSecondary !important;
+        }
+      }
+    }
+  }
+
+  /*Year*/
+  tr {
+    th[colspan] {
+      button {
+        background-color: $cSecondary !important;
+        border: 1px solid $cSecondary !important;
+        @include dpYearText;
+        &:hover {
+          color: $cThird !important;
+        }
+        &:focus {
+          color: $cWhite;
+        }
+      }
+    }
+  }
+
+  .btn-sm, .btn-group-sm > .btn-default {
+    border-radius: 0;
+    position: relative;
+  }
+
+  /*On day hover*/
+  .btn-default:hover, .btn-default:focus, .btn-default:active, .btn-default.active {
+    background-color: $cFifth;
+    color: $cSecondary;
+    box-shadow: 0 0 0 0;
+  }
+
+  /*Left Right Buttons*/
+  .glyphicon-chevron-left {
+    background-image: image-url('arrow_normal.png');
+    @include dpChevronIcon;
+  }
+
+  .glyphicon-chevron-right {
+    background-image: image-url('arrow_right_normal.png');
+    @include dpChevronIcon;
+  }
+
+  .glyphicon-chevron-left:before, .glyphicon-chevron-right:before {
+    content: "a";
+    font-size: 0;
+  }
+
+  thead > tr > th > button[ng-click="move(-1)"], button[ng-click="move(1)"] {
+    width: 33px;
+    height: 31px;
+    top: 9px;
+  }
+
+  tr th[colspan] button {
+    top: 10px !important;
+    left: 43px !important;
+    width: 181px !important;
+    position: absolute !important;
+    z-index: 1 !important;
+  }
+
+  button[ng-click="move(1)"] {
+    &:active {
+      .glyphicon-chevron-right {
+        background-image: image-url('arrow_right_pressed.png');
+        @include dpChevronIconHover;
+      }
+    }
+  }
+
+  button[ng-click="move(-1)"] {
+    &:active {
+      .glyphicon-chevron-left {
+        background-image: image-url('arrow_pressed.png');
+        @include dpChevronIconHover;
+      }
+    }
+  }
+}
+
+.mmDatePicker {
+  
+  .dpMain {
+    position: relative;
+    display: inline-block;
+    width: 270px;
+  }
+
+  .dpTextBoxWithIcon {
+    position: relative;
+    top: 1px;
+  }
+
+  .dpCalendarIconCloseMode {
+    position: absolute;
+    top: 8px;
+    left: 104px;
+    width: 16px;
+    height: 16px;
+    background-image: image-url('Calendar_normal.png');
+  }
+
+  .dpCalendarIconOpenMode {
+    @include dpIconPosition;
+    background-image: image-url('Calendar_hover.png');
+  }
+
+  .dpCalendarIconEditMode {
+    @include dpIconPosition;
+    background-image: image-url('Calendar_pressed.png');
+  }
+
+  .dpMainOpenCloseMode {
+    width: $boxWidth;
+  }
+
+  .dpCloseMode {
+  
+    padding-top: 2px;
+    padding-left: 5px;
+    width: 100%;
+  }
+
+  .dpWrapDateIconCloseMode {
+    position: relative;
+    right: 10px;
+  }
+
+  .dpTextBox {
+    position: relative;
+    width: $boxWidth;
+    border-width:0px;
+     border-width:0px;
+    z-index: $directiveZindex + 1;
+    padding-left: 5px;
+    padding-right: 30px;
+    @include dpTextBoxText;
+    font-size:13px;
+     cursor: pointer;
+      order:inherit;
+      outline:inherit;
+      padding-left:5px !important;
+      padding-top:1px !important;
+  }
+
+  .dpCalendarIconHover {
+    @include dpBorderSecondary;
+    cursor: pointer;
+  }
+
+  
+  .dpDisableMode {
+    opacity: 0.5;
+  }
+
+  button[ng-class] {
+    height: 100%;
+  }
+
+
+}
+
+
+ul[class="dropdown-menu ng-valid ng-valid-date ng-valid-date-disabled"]{
+  display: none !important;
+}

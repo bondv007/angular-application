@@ -1,0 +1,83 @@
+<hr style="border-top: solid 1px #ffffff;"/>
+<mm-row>
+	<mm-check-box mm-caption="CheckBox (Click Me) ({{cbEnableNotSelected.selected}})"
+							 mm-true-value="Yes"
+							 mm-false-value="No"
+							 mm-model="cbEnableNotSelected.selected"
+							 mm-is-dirty="cb.isDirty"
+							 mm-control-layout-class="col-lg-3 col-xs-1"
+							 mm-label-layout-class="col-lg-3"
+							 mm-disabled="false"></mm-check-box>
+	<mm-check-box mm-caption="Disabled CheckBox ({{cbDisableNotSelected.selected}})"
+							 mm-disable="true"
+							 mm-model="cbDisableNotSelected.selected"
+							 mm-control-layout-class="col-lg-3 col-xs-1"
+							 mm-disabled="false"></mm-check-box>
+	<mm-check-box mm-caption="CheckBox with On Click action (Click Me) ({{cbEnableNotSelected2.selected}})"
+							 mm-true-value="Yes"
+							 mm-false-value="No"
+							 mm-model="cbEnableNotSelected2.selected"
+							 mm-change="checkboxClick()"
+							 mm-is-dirty="cb.isDirty"
+							 mm-control-layout-class="col-lg-3 col-xs-1"
+							 mm-label-layout-class="col-lg-3"
+							 mm-disabled="false"></mm-check-box>
+</mm-row>
+<mm-row>
+	<mm-check-box mm-caption="Selected CheckBox (Click Me) ({{cbEnableSelected.selected}})"
+							 mm-model="cbEnableSelected.selected"
+							 mm-control-layout-class="col-lg-3 col-xs-1"
+							 mm-label-layout-class="col-lg-3"
+							 mm-caption="" mm-disabled="false"></mm-check-box>
+	<mm-check-box mm-caption="Selected Disabled CheckBox ({{cbDisableSelected.selected}})"
+							 mm-disable="true"
+							 mm-model="cbDisableSelected.selected"
+							 mm-caption=""
+							 mm-disabled="false"
+							 mm-control-layout-class="col-lg-4 col-xs-1"></mm-check-box>
+</mm-row>
+<hr style="border-top: solid 1px #ffffff;"/>
+
+<mm-row>Edit Multiple</mm-row>
+<mm-row>
+	<mm-check-box mm-caption="CheckBox (Click Me) ({{cbEnableNotSelected.selected}})"
+							 mm-true-value="Yes"
+							 mm-false-value="No"
+							 mm-model="cbEnableNotSelected.selected"
+							 mm-is-dirty="cb.isDirty"
+							 mm-control-layout-class="col-lg-3 col-xs-1"
+							 mm-label-layout-class="col-lg-3"
+							 mm-disable="false"
+							 mm-edit-multiple="true"></mm-check-box>
+	<mm-check-box mm-caption="Disabled CheckBox ({{cbDisableNotSelected.selected}})"
+							 mm-disable="true"
+							 mm-model="cbDisableNotSelected.selected"
+							 mm-control-layout-class="col-lg-3 col-xs-1"
+							 mm-edit-multiple="true"></mm-check-box>
+	<mm-check-box mm-caption="CheckBox with On Click action (Click Me) ({{cbEnableNotSelected2.selected}})"
+							 mm-true-value="Yes"
+							 mm-false-value="No"
+							 mm-model="cbEnableNotSelected2.selected"
+							 mm-change="checkboxClick()"
+							 mm-is-dirty="cb.isDirty"
+							 mm-control-layout-class="col-lg-3 col-xs-1"
+							 mm-label-layout-class="col-lg-3"
+							 mm-disable="false"
+							 mm-edit-multiple="true"></mm-check-box>
+</mm-row>
+<mm-row>
+	<mm-check-box mm-caption="Selected CheckBox (Click Me) ({{cbEnableSelected.selected}})"
+							 mm-model="cbEnableSelected.selected"
+							 mm-control-layout-class="col-lg-3 col-xs-1"
+							 mm-label-layout-class="col-lg-3"
+							 mm-caption="" mm-disabled="false"
+							 mm-edit-multiple="true"></mm-check-box>
+	<mm-check-box mm-caption="Selected Disabled CheckBox ({{cbDisableSelected.selected}})"
+							 mm-disable="true"
+							 mm-model="cbDisableSelected.selected"
+							 mm-caption=""
+							 mm-disabled="false"
+							 mm-control-layout-class="col-lg-4 col-xs-1"
+							 mm-edit-multiple="true"></mm-check-box>
+</mm-row>
+<hr style="border-top: solid 1px #ffffff;"/>

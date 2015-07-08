@@ -1,0 +1,13 @@
+<mm-control>
+  <input type="text"
+				 ng-change="onChange()"
+         class="mm-text-box"
+         ng-class = "{disable: mmDisable, errorInput: mmError}"
+         ng-if="isShowControl || (!!mmError && mmError !='' )"
+         ng-model="mmModelObj.val"
+         mm-focus="isShowControl"
+         ng-click="showControl(true)"
+         ng-disabled="{{mmDisable}}"
+         ng-blur="hideControl()"
+         placeholder="{{mmDisable ? '' : mmPlaceholder | T}}">
+ </mm-control>

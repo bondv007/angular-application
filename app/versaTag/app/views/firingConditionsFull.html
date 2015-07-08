@@ -1,0 +1,372 @@
+<style>
+
+    .mm-control-label{
+        margin-bottom: 10px;
+    }
+
+    .numeric-stepper{
+        display: inline-block;
+        border: 1px solid #bacae4;
+        background-color: #fff;
+        padding: 4px 5px;
+        text-align: center;
+    }
+
+</style>
+
+
+<style>
+    .firing-condition-section{
+        /* $cFourth */
+        border:1px solid #bacae4;
+        padding:15px;
+        margin-bottom:15px;
+    }
+    .firing-condition-section h4{
+        display:inline-block;
+    }
+    .firing-condition-inner-section{
+        padding:15px;
+        /* $cFourth */
+        border:1px solid #bacae4;
+        /* fifth color */
+        background:#eef1f8;
+    }
+    .firing-condition-text-area{
+        display:block;
+        width:100%;
+    }
+    .firing-condition-section .mainMiniSection{
+        margin:0 0 15px;
+    }
+    .firing-condition-section .mainMiniSection .wrapHeaderIcon, .mainMiniSectionDisabled .wrapHeaderIcon{
+        background-color:#fff !important;
+    }
+    .firing-condition-page hr{
+        /* fourth color */
+        color:#bacae4;
+        border-color:#bacae4;
+    }
+    .firing-condition-add{
+        position:relative;
+        z-index:12;
+        display:inline-block;
+    }
+    .firing-condition-options{
+        position:absolute;
+        left:7px;
+        /* $cFourth */
+        border:1px solid #bacae4;
+        border-top:0;
+        right:0;
+        width: calc( 100% - 7px );
+        top:100%;
+    }
+    .firing-condition-options .firing-condition-option{
+        cursor:pointer;
+        color:#0d2a4d;
+        padding:5px 10px;
+        font-family: titillium, "Titillium Web Regular";
+    }
+    .firing-condition-options .firing-condition-option.disabled{
+        cursor:default;
+        color:#bacae4;
+        background:#f4f4f4;
+    }
+    .firing-condition-options .firing-condition-option:hover{
+        /* $cSecondary */
+        background:#0d2a4d;
+        color:white;
+    }
+    .firing-condition-options .firing-condition-option.disabled:hover{
+        color:#bacae4;
+        background:#f4f4f4;
+    }
+    .firing-condition-input-wrapper {
+        display:inline-block;
+    }
+    .firing-condition-more-than .times{
+        position: relative;
+        top: -14px;
+        left: -7px;
+    }
+    .firing-condition-input-wrapper.since{
+        position:relative;
+        top:3px;
+    }
+    .firing-condition-page .glyphicon-remove{
+        cursor:pointer;
+    }
+
+</style>
+
+<div style="position:absolute; bottom:2px; top:2px; left : 0px; right:0px;">
+
+    <div ng-class="{editContainer : !isModal}">
+        <div class="mm-entity-fields-container">
+            <div class="mm-entity-fields-container-left">
+                <div class="mm-entity-fields-container-single">
+                    <mm-row>
+                        <mm-text mm-is-edit-mode="isEditMode"
+                                 mm-caption="Condition Name"
+                                 mm-model="editObject.name"
+                                 mm-placeholder="Enter Condition Name"
+                                 mm-is-required="true"
+                                 mm-error="validation.name"
+                                 mm-label-width="{{labelWidth}}"
+                                 text-tooltip="Enter tag name"
+                                 mm-layout-type="medium"></mm-text>
+                    </mm-row>
+
+                    <mm-row>
+                        <mm-drop-down
+                                mm-model="editObject.advertiserId"
+                                mm-error="validation.advertiserId"
+                                mm-data-model="advertiserList"
+                                mm-layout-type="medium"
+                                mm-caption="Advertiser"
+                                mm-label-width="{{labelWidth}}"
+                                mm-disable="view.advertiserDisabled"
+                                mm-id="advertiser"
+                                mm-select-change-func="onAdvertiserChange()">
+                        </mm-drop-down>
+                    </mm-row>
+
+                    <mm-row>
+                        <mm-radiobutton
+                                mm-model="statusOptions"
+                                mm-visible="true"
+                                mm-is-required="false"
+                                mm-is-vertical="false"
+                                mm-selected="editObject.enabled"
+                                mm-model-id="text"
+                                mm-disabled="false"
+                                mm-caption="Status"
+                                mm-show-label="true"
+                                mm-layout-type="medium"
+                                mm-error="validation.enabled"
+                                mm-is-required="{{isRequired}}"
+                                mm-label-width="{{labelWidth}}">
+                        </mm-radiobutton>
+                    </mm-row>
+                    <mm-row>
+                        <mm-drop-down
+                                mm-model="editObject.hasDuration"
+                                mm-error="validation.hasDuration"
+                                mm-data-model="durationOptions"
+                                mm-layout-type="medium"
+                                mm-placeholder="Duration"
+                                mm-caption="Duration"
+                                mm-label-width="{{labelWidth}}"
+                                mm-id="has_duration">
+                        </mm-drop-down>
+                    </mm-row>
+                    <mm-row ng-if="editObject.hasDuration == true">
+                        <mm-range-date-picker mm-model-start-date="editObject.startDate"
+                                              mm-model-end-date="editObject.expirationDate"
+                                              mm-caption="Date Range"
+                                              mm-label-width="{{labelWidth}}"
+                                              mm-date-format="mm-dd-YYYY">
+                        </mm-range-date-picker>
+                    </mm-row>
+                </div>
+            </div>
+        </div>
+
+          <mm-info-box num-of-info-lines="3">
+            <mm-info-label  mm-model="editObject.status"
+                            mm-label-width={{infoBoxlabelWidth}}
+                            mm-caption="Total Page Views:"></mm-info-label>
+
+            <mm-info-label  mm-model="editObject.startDate | date:'dd/MM/yyyy'"
+                            mm-label-width={{infoBoxlabelWidth}}
+                            mm-caption="Last 24 Hrs Page Views:"></mm-info-label>
+
+            <mm-info-label  mm-model="editObject.expirationDate | date:'dd/MM/yyyy'"
+                            mm-label-width={{infoBoxlabelWidth}}
+                            mm-caption="Last Rule Match:"></mm-info-label>
+          </mm-info-box>
+
+        <div class="mm-entity-fields-container-single">
+            <div ng-if="!editObject.advertiserId"><p>Please select an advertiser..</p></div>
+            <div ng-if="editObject.advertiserId && advertisersTags.length == 0 && !isLoading">No advertiser tags found. Please select a different advertiser.</div>
+            <div ng-if="isLoading"><p>Loading firing conditions ...please wait</p></div>
+          <mm-row ng-if="advertisersTags.length && !isLoading">
+            <mm-toggle-container
+              mm-caption="Firing Conditions"
+              start-open="showUI">
+                <!--<p ng-if="!advertisersTags.length && !isLoading">No advertiser tags results found for the current selected advertiser. Please add advertiser tags to the selected advertiser or select a different advertiser.</p>-->
+
+
+
+
+                <!-------------------------------------------------->
+                <!--------------- ADVANCED MODE -------------------->
+                <!-------------------------------------------------->
+                <div class="firing-condition-page" ng-if="view.mode == 'advanced'">
+
+                    <mm-two-columns>
+
+                        <h3>If A User</h3>
+
+                        <!-- LANDED ON -->
+                        <div class="firing-condition-section" ng-show="editObject.condition.landedOn">
+
+                            <div class="section-header">
+                                <h4 class="section-title">Landed On</h4>
+                                <div class="firing-condition-inner-section clearfix">
+                                    <p><span class="glyphicon glyphicon-info-sign"></span> NOTICE: You can use Regular Expressions as well as fixed URLs</p>
+                                    <textarea class="mm-text-area firing-condition-text-area" ng-model="editObject.condition.landedOn.includeUrls" ng-init="editObject.condition.landedOn.includeUrls = '*'">
+                                    </textarea>
+                                    <br>
+                                    <mm-button mm-caption="+ Excluding" ng-click="editObject.condition.landedOn.excludeUrls = ''" ng-if="editObject.condition.landedOn.excludeUrls == null"></mm-button>
+                                    <div ng-if="editObject.condition.landedOn.excludeUrls != null" >
+                                        <p>Excluding</p>
+                                        <textarea class="mm-text-area firing-condition-text-area" ng-model="editObject.condition.landedOn.excludeUrls">
+                                        </textarea>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <mm-mini-section mm-is-modal="false" mm-caption="'URL Settings'" mm-start-open="false">
+                                <div class="clearfix">
+                                    <mm-drop-down mm-model="editObject.condition.landedOn.trackingProtocol" ng-init="editObject.condition.landedOn.trackingProtocol = editObject.condition.landedOn.trackingProtocol || 'HttpAndHttps'" mm-data-model="parameters.trackingProtocol" mm-caption="Tracking Protocol"></mm-drop-down>
+                                    <mm-check-box mm-model="editObject.condition.landedOn.trackURLParams"  mm-caption="Parameters" mm-show-label="true" mm-description="Enforce tracking on url parameters"></mm-check-box>
+                                    <mm-check-box mm-model="editObject.condition.landedOn.trackAllSubdomains" ng-init="editObject.condition.landedOn.trackAllSubdomains = editObject.condition.landedOn.trackStandardIndexIgnoreSlashes || true" mm-caption="Subdomains" mm-show-label="true" mm-description="Track all subdomains"></mm-check-box>
+                                    <mm-check-box mm-model="editObject.condition.landedOn.trackStandardIndexIgnoreSlashes" ng-init="editObject.condition.landedOn.trackStandardIndexIgnoreSlashes = editObject.condition.landedOn.trackStandardIndexIgnoreSlashes || true" mm-caption="Index Paths" mm-show-label="true" mm-description="Track standard index paths and ignore trailing slashes"></mm-check-box>
+                                </div>
+                            </mm-mini-section>
+
+                        </div>
+
+                        <!-- REFERRED FROM -->
+                        <div class="firing-condition-section" ng-if="editObject.condition.referredFrom">
+                            <div class="section-header">
+                                <h4 class="section-title">Referred From</h4>
+                                <h4 class="section-title pull-right"><span class="glyphicon glyphicon-remove" ng-click="editObject.condition.referredFrom = undefined"></span></h4>
+                                <div class="firing-condition-inner-section clearfix">
+                                    <p><span class="glyphicon glyphicon-info-sign"></span> NOTICE: You can use Regular Expressions as well as fixed URLs</p>
+                                <textarea class="mm-text-area firing-condition-text-area" ng-model="editObject.condition.referredFrom.includeUrls">
+                                </textarea>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- SITE VISIT -->
+                        <div class="firing-condition-section" ng-if="editObject.condition.siteVisit">
+                            <div class="section-header">
+                                <h4 class="section-title">Site Visit</h4>
+                                <h4 class="section-title pull-right"><span class="glyphicon glyphicon-remove" ng-click="editObject.condition.siteVisit = undefined"></span></h4>
+                                <div class="firing-condition-inner-section clearfix">
+                                    <div class="clearfix">
+                                        <mm-drop-down mm-model="editObject.condition.siteVisit.visit" mm-hide-label="true" mm-data-model="siteVisit.visit"></mm-drop-down>
+                                    </div>
+                                    <div ng-if="editObject.condition.siteVisit.visit == 'MoreThan'" class="firing-condition-more-than">
+                                        <div class="firing-condition-input-wrapper clearfix">
+                                            <mm-text mm-model="editObject.condition.siteVisit.numberOfTimes" mm-hide-label="true" mm-control-width="width:60px" mm-input-type="number"></mm-text>
+                                        </div>
+                                        <span class="times">times</span>
+                                        <div class="firing-condition-input-wrapper since clearfix">
+                                            <mm-drop-down mm-model="editObject.condition.siteVisit.sinceTheBeginningOf" mm-data-model="siteVisit.since" mm-hide-label="true"></mm-drop-down>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="firing-condition-add" ng-hide="editObject.condition.landedOn && editObject.condition.referredFrom && editObject.condition.siteVisit">
+                            <mm-button mm-caption="+ Add Condition" ng-click="showConditionOptions = !showConditionOptions"></mm-button>
+                            <div class="firing-condition-options" ng-show="showConditionOptions">
+                                <div class="firing-condition-option" ng-class="{ 'disabled': editObject.condition.landedOn }">Landed On</div>
+                                <div class="firing-condition-option" ng-class="{ 'disabled': editObject.condition.referredFrom }" ng-click="editObject.condition.referredFrom = editObject.condition.referredFrom || {}; showConditionOptions = !showConditionOptions">Referred From</div>
+                                <div class="firing-condition-option" ng-class="{ 'disabled': editObject.condition.siteVisit }" ng-click="editObject.condition.siteVisit = editObject.condition.siteVisit || {}; showConditionOptions = !showConditionOptions">Site Visit</div>
+                            </div>
+                        </div>
+
+
+
+
+
+                    </mm-two-columns>
+
+                    <mm-two-columns>
+                        <h3>Then Do The Following:</h3>
+                        <div class="firing-condition-section">
+
+                            <h4>Fire These Tags </h4>
+                            <mm-row>
+                                <mm-error-div error-text="validation.advertisersTags"></mm-error-div>
+                            </mm-row>
+
+
+                            <div style="position:relative">
+                                <mm-grid
+                                        show-selection-checkbox="true"
+                                        items="tagGrid.list"
+                                        selected-items="tagGrid.selected"
+                                        grid-height="250"
+                                        grid-width="100%"
+                                        cols="tagGrid.cols"
+                                        is-cell-edit="true"
+                                        show-footer="true"
+                                        is-sort="true"
+                                        is-single-select="false"
+                                        is-groupable="false"
+                                        enable-column-resize="true"
+                                        is-column-reorder="true"
+                                        is-column-freeze="false"
+                                        is-show-menu="false"
+                                        is-show-tool-tip="true"
+                                        is-central-grid="false"
+                                        is-grid-toolbar="false"
+                                        is-grid-loading="tagGrid.isGridLoading"
+                                        after-selection-change="tagGrid.afterSelectionChanged"
+                                        grid-button-actions="tagGrid.gridButtonActions">
+                                </mm-grid>
+
+                                <div style="position:absolute; top:0; right:0; bottom:0; left: 0; z-index: 500" ng-show="isLoading">
+
+                                    <div style="width: 100%; height: 100%; background-color: black; opacity: 0.1;"></div>
+
+                                    <p style="text-align: center; position: absolute; top:50%; width: 100%">Loading</p>
+
+                                </div>
+                            </div>
+
+                        </div>
+                    </mm-two-columns>
+
+                    <div class="clearfix"></div>
+                    <hr>
+                    <mm-row class="col-md-6">
+                        <h3>This firing condition occurs</h3>
+                        <mm-drop-down
+                                mm-hide-label="true"
+                                mm-model="editObject.occurs"
+                                mm-data-model="conditions"
+                                mm-layout-type="medium"
+                                mm-error="validation.occurs" mm-id="occurs"></mm-drop-down>
+                    </mm-row>
+
+                    <div class="clearfix"></div>
+
+                </div>
+                <!-------------------------------------------------->
+                <!------------- END ADVANCED MODE ------------------>
+                <!-------------------------------------------------->
+
+
+
+
+
+
+            </mm-toggle-container>
+          </mm-row>
+        </div>
+    </div>
+
+</div>
+
+
+

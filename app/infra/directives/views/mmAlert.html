@@ -1,0 +1,15 @@
+<div class="alertMainDiv">
+
+	<span data-ng-repeat="(_key_, _value_) in alerts">
+		<alert mm-id="{{_key_}}" ng-if="alerts[_key_].length > 0" class="alert{{_key_.charAt(0).toUpperCase()+_key_.substr(1)}}
+		{{(_key_ == 'error')? cssErrorFadeIn?'cAlertFadeIn':'cAlertFadeOut': (_key_ == 'success')?	cssSuccessFadeIn?'cAlertFadeIn':'cAlertFadeOut':
+		(_key_ == 'warning')?	cssWarningFadeIn?'cAlertFadeIn':'cAlertFadeOut': cssInfoFadeIn?'cAlertFadeIn':'cAlertFadeOut'}}" close="closeAlert(_key_)">
+      <span class="{{_key_ + 'Icon'}}"></span>
+      <ul ng-if="alerts[_key_].length > 1" class="ulAlert" ng-include="'infra/directives/views/mmAlerts/mmAlertMultiple.html'"></ul>
+			<span ng-if="alerts[_key_].length == 1" class="alertText" ng-init="alert=alerts[_key_][0]" ng-include="'infra/directives/views/mmAlerts/mmAlertSingle.html'"></span>
+    </alert>
+	</span>
+
+</div>
+
+

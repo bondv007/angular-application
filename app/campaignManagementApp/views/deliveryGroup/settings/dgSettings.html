@@ -1,0 +1,128 @@
+<div class="settingsContainer">
+	<mm-mini-section ng-init="miniSectionSettings = {title:'dg_Settings',startOpen:false,isModal:true}"
+									 mm-caption="miniSectionSettings.title" mm-start-open="miniSectionSettings.startOpen" mm-is-modal="miniSectionSettings.isModal">
+		<tabset justified="false">
+		<!--General-->
+		<tab select="toggleDG(false)">
+			<tab-heading>{{"dg_General"|T}}</tab-heading>
+			<!--Default Serve-->
+			<mm-row>
+				<div class="mm-entity-fields-container-single">
+					<mm-row>
+						<mm-radiobutton
+								mm-caption="dg_Default_Serve"
+								mm-label-width="100"
+								mm-model="defaultServeRadioButton"
+								mm-vertical="true"
+								mm-is-required="false"
+								mm-change="mainEntityEdit.servingSetting.serveDefaultImage ? unCheckALlDefaultServeItems():null"
+								mm-selected="mainEntityEdit.servingSetting.serveDefaultImage"></mm-radiobutton>
+					</mm-row>
+				</div>
+			</mm-row>
+		</tab>
+
+		<!--Frequency Capping-->
+		<tab select="toggleDG(true)" class="{{!errorMinimumTimeBetweenAds.text || errorMinimumTimeBetweenAds.text == '' ? '' : 'tabWithErrors'}}">
+			<tab-heading>{{"dg_Frequency_Capping"|T}}</tab-heading>
+
+			<!--Impressions per User-->
+			<mm-row>
+				<div class="mm-entity-fields-container-single">
+					<mm-row>
+						<mm-check-box
+								mm-label-width="120"
+								mm-caption="dg_Impressions"
+								mm-description="Limit to"
+								mm-model="FrequencyCapping.impressionsPerUser"
+								mm-layout-type="custom"
+								mm-custom-control-width="100"
+								mm-change="onImpressionsPerUserClick()">
+						</mm-check-box>
+						<mm-drop-down
+								mm-disable="!FrequencyCapping.impressionsPerUser"
+								mm-layout-type="custom"
+								mm-custom-control-width="90"
+								mm-show-label="false"
+								mm-data-model="impressionsPerUserDD"
+								mm-model="mainEntityEdit.servingSetting.impressionsPerUser"></mm-drop-down>
+						<mm-label
+								mm-model="'per user'"
+								mm-layout-type="custom"
+								mm-custom-control-width="100"
+								mm-show-label="false"></mm-label>
+					</mm-row>
+				</div>
+			</mm-row>
+			<!--Impressions per User per Day-->
+			<mm-row>
+				<div class="mm-entity-fields-container-single">
+					<mm-row>
+						<mm-check-box
+								mm-label-width="120"
+								mm-caption=""
+								mm-description="Limit to"
+								mm-layout-type="custom"
+								mm-custom-control-width="100"
+								mm-model="FrequencyCapping.impressionsPerDay"
+								mm-change="onImpressionsPerDayClick()"></mm-check-box>
+						<mm-drop-down
+								mm-disable="!FrequencyCapping.impressionsPerDay"
+								mm-layout-type="custom"
+								mm-custom-control-width="90"
+								mm-show-label="false"
+								mm-data-model="impressionsPerUserPerDayDD"
+								mm-model="mainEntityEdit.servingSetting.impressionsPerDay"></mm-drop-down>
+						<mm-label
+								mm-model="'per user per day'"
+								mm-layout-type="custom"
+								mm-custom-control-width="120"
+								mm-show-label="false"></mm-label>
+					</mm-row>
+				</div>
+			</mm-row>
+			<!--Minimum Time Between Ads-->
+			<mm-row>
+				<div class="mm-entity-fields-container-single">
+					<mm-row>
+						<mm-check-box
+								mm-label-width="120"
+								mm-caption="dg_Time_Between_Ads"
+								mm-model="FrequencyCapping.minimumTimeBetweenAds"
+								mm-layout-type="custom"
+								mm-custom-control-width="190"
+								mm-change="onTimeBetweenAdsClick()"
+								mm-description="Minimum time between ads"></mm-check-box>
+						<mm-text
+								mm-model="timeBetweenAds.value"
+								mm-show-label="false"
+								mm-error="errorMinimumTimeBetweenAds.text"
+								mm-layout-type="custom"
+								mm-custom-control-width="70"></mm-text>
+						<mm-drop-down
+								mm-show-label="false"
+								mm-layout-type="small"
+								mm-data-model="timeOptions"
+								mm-model="selectedTimeUnit.id"></mm-drop-down>
+					</mm-row>
+				</div>
+			</mm-row>
+			<!--Frequency Capping Level-->
+			<mm-row>
+				<div class="mm-entity-fields-container-single">
+					<mm-row>
+						<mm-radiobutton
+								mm-caption="dg_Frequency_Capping_Level"
+								mm-vertical="true"
+								mm-model="frequencyCappingLevel"
+								mm-layout-type="custom"
+								mm-label-width="180"
+								mm-selected="mainEntityEdit.servingSetting.frequencyCappingLevel"></mm-radiobutton>
+					</mm-row>
+				</div>
+			</mm-row>
+		</tab>
+
+	</tabset>
+	</mm-mini-section>
+</div>

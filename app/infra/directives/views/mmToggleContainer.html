@@ -1,0 +1,14 @@
+<div class="toggleWrapper">
+	<div class="toggleHeaderWrapper">
+		<div id="{{mmId}}" class="parent">
+			<div id="{{mmId}}Arrow" class="toggleArrowWrapper" ng-click="toggleSection()">
+				<div ng-show="!startOpen" class="toggleArrowUp"></div>
+				<div ng-show="startOpen" class="toggleArrowDown"></div>
+			</div>
+			<div class="toggleHeader" ng-click="toggleSection()">{{:: mmCaption | uppercase}}</div>
+		</div>
+	</div>
+	<div ng-class="{'toggleContentWrapper' : startOpen}" collapse="!startOpen">
+			<div class="toggleContent" ng-transclude></div>
+	</div>
+</div>

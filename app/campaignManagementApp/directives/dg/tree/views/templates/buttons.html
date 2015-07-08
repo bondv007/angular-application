@@ -1,0 +1,17 @@
+<div class="wrapButtons">
+	<button type="button" class="treeButton btn btn-xs" ng-click="mmActions.preview()" ng-bind="'dg_tree_buttons_preview' | T"></button>
+	<button type="button" class="treeButton btn btn-xs" ng-click="createSubGroup()" ng-bind="'dg_tree_buttons_new_subgroup' | T"></button>
+	<button style="min-width: 110px" type="button" class="treeButton btn btn-xs" ng-click="enableDisableAds()"
+					ng-disabled="buttonState.text == 'Disable/Enable'" ng-bind="buttonState.text | T">
+	</button>
+	<button type="button" class="treeButton btn btn-xs" ng-click="remove()" ng-bind="'dg_tree_buttons_remove' | T"></button>
+	<mm-check-box
+			style="display: inline-block;position: relative;top:14px;left:5px;"
+			mm-description="Hide Disabled Ads"
+			mm-model="mmHideDisabled.val"
+			mm-layout-type="custom"
+			mm-custom-control-width="137"
+			mm-label-width="0"
+			mm-change="hideShowDisableAds()">
+	</mm-check-box>
+</div>

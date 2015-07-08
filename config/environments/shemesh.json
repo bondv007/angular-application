@@ -1,0 +1,9 @@
+{
+  "env": "development-shemesh",
+  "ec2": "https://dev3.dev.sizmdx.com/rest/",
+  "ec2ams": "https://dev3.dev.sizmdx.com/rest/ams",
+  "loginPath": "https://dev3.dev.sizmdx.com/rest/login/",
+  "resource": "http://54.201.243.190:8080/_/"
+}
+
+

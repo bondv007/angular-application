@@ -1,0 +1,167 @@
+<div class="panel-heading">
+  <h4 class="panel-title">
+    <a ng-class="{'active':showInteractionMonitor}" data-toggle="collapse" data-parent="#accordion"
+                             ng-click="manageSideBar(sectionType.interactionMonitor,showInteractionMonitor)">
+    <i class="preview-icon-interactionmonitor"></i>
+    INTERACTION MONITOR
+    <!--<i class="fa" ng-class="{'fa-angle-down':!showInteractionMonitor,'fa-angle-up':showInteractionMonitor}"></i>-->
+    <i class="fa fa-angle-down"> </i>
+    <i ng-click="openSeparateWindow()" class="fright preview-icon-pop_up"></i> </a>
+  </h4>
+</div>
+<div ng-show="showInteractionMonitor" class="panel-collapse imPanel">
+
+  <div class="panel-body" ng-style="{'height':panelHeight}">
+    <div class="top-head-box">
+
+      <a ng-show="adPreviewCommonModel.showButtons"
+         ng-click="adPreviewCommonModel.showButtons=false;adPreviewCommonModel.showFilters=true;"
+         class="search-btn2"><i id="srchIco" class="preview-icon-search"></i></a>
+
+      <div ng-show="adPreviewCommonModel.showButtons" class="search-box-hide">
+        <button type="button" class="btns" ng-click="clearInteractions()">
+          Clear
+        </button>
+        <!--<button type="button" class="btns">
+            <i class="fa fa-share"></i> To Excel
+        </button>-->
+      </div>
+      <div ng-show="!adPreviewCommonModel.showButtons" class="search-box-hide">
+        <div class="search-bar-outer">
+          <div class="search-bar2">
+            <div ng-click="adPreviewCommonModel.showFilters=!adPreviewCommonModel.showFilters"
+                 class="filter-select">
+              {{selectedFilter}} <i class="fa fa-caret-down"></i>
+
+              <div class="filterSelectDown" ng-show="adPreviewCommonModel.showFilters">
+                <ul>
+                  <li ng-repeat="filter in searchFilters">
+                    <a ng-class="{'active':filter.isSelected}" ng-click="setSearchFilter(filter)">{{filter.name}}</a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+
+            <input click-elem-id="srchIco" autofocus
+                   type="text"
+                   class="form-control col-xs-10"
+                   ng-model="searchCriteria.searchText"
+                   style="">
+            <a class="cross-icon" ng-show="searchCriteria.searchText.length>0" ng-click="searchCriteria.searchText='';">
+              <i class="preview-icon-close1"></i></a>
+            <button class="search-btn" ng-click="adPreviewCommonModel.showButtons=!adPreviewCommonModel.showButtons;">
+              <i class="preview-icon-search"></i></button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="columns">
+      <div class="col">
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      </div>
+      <div class="col">
+        Name
+      </div>
+    </div>
+    <div ng-style="{'height':userListClassHeight}" class="user-list">
+      <ul>
+        <li ng-repeat="d in filteredData track by $index">
+          <a ng-click="loadInteractionDetails(d)" ng-class="{'select':d.number==selectedInteraction.number}">
+            <i class="panel-icon fa" ng-class="{'fa-user': !selectedInteraction.user, 'fa-android': selectedInteraction.user}"></i>
+            <span class="panel-descrip">{{d.action}}</span>
+          </a>
+
+          <div class="qinfo">
+            <span>Type: {{d.command}}</span>
+            <span>Start Time: {{d.time}}</span>
+          </div>
+        </li>
+      </ul>
+
+    </div>
+    <div class="total">
+      Total Interactions: {{filteredData.length}}
+    </div>
+
+    <div class="additional-info" ng-class="{'disable-data-active': filteredData.length==0}">
+
+      <div class="disable-data">
+        <div class="disable-data-inner"><span>No details to display </span> <i class="preview-icon-interactionmonitor"></i>
+        </div>
+      </div>
+
+      <div class="add-inner-sec">
+        <div class="col-md-12 total-asset">
+          <div class="icon"><span ng-if="selectedInteraction" class="panel-icon fa" ng-class="{'fa-user': !selectedInteraction.user, 'fa-android': selectedInteraction.user}"></span></div>
+          <div class="col-md-8 link" ng-if="selectedInteraction">
+            {{selectedInteraction.action}}
+          </div>
+          <div class="col-md-8 link" ng-if="!selectedInteraction">
+            Interaction Details
+          </div>
+          <span class="arrows" ng-if="filteredData.length > 2">
+            <a ng-click="loadIM(true)"><i class="preview-icon-back"></i></a>
+            <a ng-click="loadIM(false)"><i class="preview-icon-back flipped"></i></a>
+          </span>
+        </div>
+        <!--</div>-->
+        <div ng-style="{'height':bottomClassHeight}" class="col-md-12 bottom-list">
+
+          <ul class="general-info pdt0">
+            <li>
+              <label>Name:</label>
+              <div class="value">
+                <span tooltip-popup-delay="500" tooltip-placement="bottom" tooltip="{{selectedInteraction.action}}" tooltip-trigger="mouseenter" tooltip-animation="false">{{selectedInteraction.action}}</span>
+                <!--{{selectedInteraction.action}}-->
+              </div>
+            </li>
+            <li>
+              <label>Command:</label>
+              <div class="value">
+                {{selectedInteraction.command}}
+              </div>
+            </li>
+            <li>
+              <label>Generator:</label>
+              <div class="value" ng-if="selectedInteraction" >
+                <i class="panel-icon fa" ng-class="{'fa-user': !selectedInteraction.user, 'fa-android': selectedInteraction.user}"></i>
+                <span ng-if="!selectedInteraction.user">&nbsp;&nbsp;&nbsp; User</span><span ng-if="selectedInteraction.user">&nbsp;&nbsp;&nbsp; Automatic</span>
+              </div>
+            </li>
+
+          </ul>
+          <ul class="general-info no-border">
+            <li>
+              <label>Ad Part:</label>
+              <div class="value">
+                <span class="long" tooltip-popup-delay="500" tooltip-placement="part" tooltip="{{selectedInteraction.part | T}}" tooltip-trigger="mouseenter" tooltip-animation="false">{{selectedInteraction.part}}</span>
+              </div>
+            </li>
+            <li>
+              <label>Parameters:</label>
+              <div class="value">
+                {{selectedInteraction.args}}
+              </div>
+            </li>
+            <!--<li>-->
+              <!--<label>Ad Name:</label>-->
+              <!--<div class="value">-->
+                <!--{{ad.name}}-->
+              <!--</div>-->
+            <!--</li>-->
+            <li>
+              <label>Start Time:</label>
+
+              <div class="value">
+                {{selectedInteraction.time}}
+              </div>
+            </li>
+
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>

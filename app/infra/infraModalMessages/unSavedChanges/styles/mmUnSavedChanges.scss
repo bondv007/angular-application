@@ -1,0 +1,30 @@
+.mmUnSavedChanges{
+  .iconWithText{
+    position: absolute;
+    top:16px;
+    left:8px;
+    height: 45px;
+  }
+  .mmUnSavedChangesIcon{
+    margin-right: 33px !important;
+    overflow: hidden;
+    position: relative;
+    left: 14px;
+    margin-right: 9px;
+    top: 11px;
+    display: inline-block;
+    width: 45px;
+    height: 41px;
+    background-image: image-url('si_floater-warning.png');
+  }
+  .messageText{
+    display: inline-block;
+    position: relative;
+    top: 7px;
+    width: 300px;
+    font-family:arial, sans-serif;
+    font-size: 14px;
+    color: $cSecondary;
+    line-height: 20px;
+  }
+}

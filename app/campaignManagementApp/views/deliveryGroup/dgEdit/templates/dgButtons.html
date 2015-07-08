@@ -1,0 +1,28 @@
+<div class="wrapButtons">
+  <button type="button"
+          class="btn-xs"
+          ng-class="{'treeButton btn': hasDGManagementPermission, 'treeButtonDisabled':!hasDGManagementPermission}"
+          ng-click="(hasDGManagementPermission) ? preview() : ''"
+          ng-bind="'dg_tree_buttons_preview' | T">
+  </button>
+  <button type="button"
+          class="btn-xs"
+          ng-class="{'treeButton btn': hasDGManagementPermission, 'treeButtonDisabled':!hasDGManagementPermission}"
+          ng-click="(hasDGManagementPermission) ? createSubGroup() : ''"
+          ng-bind="'dg_tree_buttons_new_subgroup' | T">
+  </button>
+  <button style="min-width: 110px"
+          type="button"
+          class="btn-xs"
+          ng-class="{'treeButton btn': hasDGManagementPermission, 'treeButtonDisabled':!hasDGManagementPermission}"
+          ng-click="(hasDGManagementPermission) ? enableDisableAds() : ''"
+          ng-disabled="buttonState.text == 'Disable/Enable'"
+          ng-bind="buttonState.text | T">
+  </button>
+  <button type="button"
+          class="btn-xs"
+          ng-class="{'treeButton btn': hasDGManagementPermission, 'treeButtonDisabled':!hasDGManagementPermission}"
+          ng-click="(hasDGManagementPermission) ? remove() : ''"
+          ng-bind="'dg_tree_buttons_remove' | T">
+  </button>
+</div>

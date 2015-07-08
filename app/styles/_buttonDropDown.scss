@@ -1,0 +1,87 @@
+.mainButtonDropDown{
+  @mixin bToolBarButtonDropDown{
+    border: 1px solid rgba(13,41,77,.3);
+    border-radius: 0px;
+    background-color: $cWhite;
+    margin-right:3px;
+    padding: 0px 10px 0px 10px;
+    color: $cSecondary;
+    opacity: 0.75;
+    font-family: "Titillium";
+    font-size: 13px;
+    height: 24px;
+    text-align: center;
+    line-height: 6px;
+  }
+  height: 30px;
+  .openMode{
+    background-color: $cSecondary !important;
+    color: $cWhite !important;
+    outline: 0 !important;
+    opacity: 1 !important;
+    .caret{
+      border-top: 4px solid $cWhite;
+    }
+  }
+  .buttonDropDown{
+    @include bToolBarButtonDropDown;
+    &:hover {
+      background-color: $cFifth;
+      border: 1px solid $cSecondary;
+      opacity: 1;
+    }
+    &:active .caret{
+      border-top: 4px solid $cWhite;
+    }
+    &:active {
+      background-color: $cSecondary;
+      color: $cWhite;
+      outline: 0;
+      opacity: 1;
+    }
+    &:focus{
+      outline: 0;
+    }
+  }
+  .buttonDropDownDisable{
+    @include bToolBarButtonDropDown;
+    opacity: 0.3;
+    &:hover, &:focus, &:active {
+      cursor: auto;
+      outline: 0;
+    }
+    .caret {
+      opacity: .5;
+    }
+  }
+  .dropdown-menu, .dropdown-menu-save{
+    top:23px;
+    background-color: $cWhite;
+    border:1px solid $cSecondary;
+    a {
+      height: 30px;
+      text-transform: none;
+      color: $cSecondary;
+      font-family: "Arial";
+      font-size: 13px;
+      padding-top: 6px;
+      padding-left: 9px;
+      padding-right: 10px;
+      &:hover {
+        background-color: $cFifth;
+      }
+    }
+  }
+  .caret {
+    display: inline-block;
+    width: 0;
+    height: 0;
+    margin-left: 2px;
+    vertical-align: middle;
+    border-top: 4px solid $cSecondary;
+    border-right: 4px solid transparent;
+    border-left: 4px solid transparent;
+    border-bottom: 0 dotted;
+  }
+}
+

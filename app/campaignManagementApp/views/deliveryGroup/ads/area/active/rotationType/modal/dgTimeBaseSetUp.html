@@ -1,0 +1,38 @@
+<div class="editContainer">
+  <mm-row>
+    <mm-radiobutton
+      mm-is-vertical="true"
+      mm-model="lookups.dateSettingOptions"
+      mm-selected="uiFlags.dateRangeRadioSelected"
+      mm-caption="Dates:"
+      mm-visible="true"
+      mm-layout-type="custom"
+      mm-custom-control-width="100"
+      mm-label-width="{{uiFlags.labelWidth}}"
+      mm-change="dateRangeRadioBtnChange()">
+    </mm-radiobutton>
+    <div style="position: absolute;left: 90px;top: 30px;">
+      <mm-single-date-picker
+        id="dpStartDate"
+        mm-model="timeBase.startDate"
+        mm-is-required="true"
+        mm-label-width="{{uiFlags.labelWidth}}"
+        mm-caption="From:"
+        mm-disable="uiFlags.dateRangeRadioSelected === 'inheritDatesFromPlacement' ? true : false"
+        mm-layout-type="custom"
+        mm-error="mmErrorStartDate"
+        mm-custom-control-width="100">
+      </mm-single-date-picker>
+      <mm-single-date-picker
+        id="dpEndDate"
+        mm-model="timeBase.endDate"
+        mm-is-required="true"
+        mm-label-width="{{labelWidth}}"
+        mm-caption="To:"
+        mm-disable="uiFlags.dateRangeRadioSelected === 'inheritDatesFromPlacement' ? true : false"
+        mm-layout-type="custom"
+        mm-error="mmErrorEndDate"
+        mm-custom-control-width="100"></mm-single-date-picker>
+    </div>
+  </mm-row>
+</div>

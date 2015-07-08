@@ -1,0 +1,51 @@
+<div class="loginBackground">
+  <div class="loginFormContainer">
+    <div class="logo">
+    </div>
+    <div class="formTitle">Login</div>
+    <form>
+      <div  class="mm-row spaceBetweenInputs">
+        <mm-text mm-model="userCredentials.userName.value"
+                 mm-placeholder="User Name"
+                 mm-disable="false"
+                 mm-is-edit-mode="false"
+                 mm-hide-label="true"
+                 mm-layout-type="custom"
+                 mm-custom-control-width="299"
+                 mm-error="userCredentials.userName.errorText"
+                 mm-id="usernameTextBox"
+                 mm-change="cleanErrors()"
+                 set-focus>
+        </mm-text>
+      </div>
+      <mm-row>
+        <mm-text mm-model="userCredentials.password.value"
+                 mm-placeholder="Password"
+                 mm-disable="false"
+                 mm-is-edit-mode="false"
+                 mm-hide-label="true"
+                 mm-layout-type="custom"
+                 mm-custom-control-width="189"
+                 mm-id="passwordTextBox"
+                 mm-input-type="password"
+                 mm-error="userCredentials.password.errorText"
+                 mm-change="cleanErrors()">
+        </mm-text>
+        <button id="loginButton" type="submit" class="mm-button formSubmitButton" ng-click="login()" ng-disabled="myForm.$invalid">
+          <span class="next">LOGIN</span>
+        </button>
+      </mm-row>
+      <a ui-sref="forgotpassword()">Forgot password?</a>
+    </form>
+  </div>
+</div>
+<span class="contactBar">
+  <a href="{{supportLink}}" class="contactTitle">
+  Contact Support
+  </a>
+  <span class="contactDetails" ng-repeat="contact in contacts">
+    <span class="contactName">  {{contact.region}}</span>
+    <span>{{contact.phone}}</span>
+    <span class="contactDelimiter" ng-show=" ! $last ">|</span>
+  </span>
+</span>

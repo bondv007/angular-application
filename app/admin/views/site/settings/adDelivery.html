@@ -1,0 +1,122 @@
+<mm-row>
+	<mm-check-box
+			mm-model="editObject.siteAdDelivery.avoidDocumentWrite"
+			mm-caption="Document.Write"
+			mm-description="Avoid Document.Write"
+			mm-is-required="{{!isRequired}}"
+			mm-label-width="{{labelWidth}}"
+			mm-layout-type="custom"
+			mm-custom-control-width="{{labelWidth}}"
+			mm-tab-index="1"></mm-check-box>
+</mm-row>
+<mm-row>
+	<mm-text mm-model="editObject.siteAdDelivery.minZIndex"
+					 mm-placeholder="Enter Minimum Z Index"
+					 mm-error="validation.settings.adDelivery.minZIndex"
+					 mm-caption="Minimum Z Index"
+					 mm-change="onMinimumZIndexChanged()"
+					 mm-is-required="{{isRequired}}"
+					 mm-label-width="{{labelWidth}}"
+					 mm-layout-type="custom"
+					 mm-custom-control-width="{{labelWidth}}"
+					 mm-tab-index="2">
+	</mm-text>
+</mm-row>
+<mm-row>
+	<mm-text mm-model="editObject.siteAdDelivery.addinEyeFileLocation"
+					 mm-placeholder="Enter AddinEye File Location"
+					 mm-caption="AddinEye File Location"
+					 mm-is-required="{{!isRequired}}"
+					 mm-label-width="{{labelWidth}}"
+					 mm-layout-type="custom"
+					 mm-custom-control-width="{{labelWidth}}"
+					 mm-tab-index="3">
+	</mm-text>
+</mm-row>
+<mm-row>
+	<mm-check-box
+			mm-model="editObject.siteAdDelivery.disableAdsAutoExpand"
+			mm-caption="Auto-Expand Panels"
+			mm-description="Disable Auto-Expand Panels"
+			mm-is-required="{{!isRequired}}"
+			mm-label-width="{{labelWidth}}"
+			mm-layout-type="custom"
+			mm-custom-control-width="{{labelWidth}}"
+			mm-tab-index="4"></mm-check-box>
+</mm-row>
+<mm-row>
+	<mm-check-box
+			mm-model="editObject.siteAdDelivery.enableCORSResponseHeaders"
+			mm-caption="CORS"
+			mm-description="Enable CORS on Response Headers"
+			mm-is-required="{{!isRequired}}"
+			mm-label-width="{{labelWidth}}"
+			mm-layout-type="custom"
+			mm-custom-control-width="{{labelWidth}}"
+			mm-tab-index="5"></mm-check-box>
+</mm-row>
+<mm-row>
+	<mm-check-box
+			mm-model="editObject.siteAdDelivery.filterUnknownUserAgentCalls"
+			mm-caption="Unknown User Agent Calls"
+			mm-description="Filter Out Unknown User Agent Calls"
+			mm-is-required="{{!isRequired}}"
+			mm-label-width="{{labelWidth}}"
+			mm-layout-type="custom"
+			mm-custom-control-width="{{labelWidth}}"
+			mm-tab-index="6"></mm-check-box>
+</mm-row>
+<!--<mm-row>-->
+	<!--<mm-check-list mm-caption="Ad Client - Supported Versions"-->
+								 <!--mm-data-model="adClientVersions"-->
+								 <!--mm-model="editObject.adDelivery.adClientVersions"-->
+								 <!--mm-is-required="{{!isRequired}}"-->
+								 <!--mm-label-width="{{labelWidth}}"-->
+								 <!--mm-tab-index="7">-->
+	<!--</mm-check-list>-->
+<!--</mm-row>-->
+<!--<div ng-repeat="adVersion in settings.adDelivery.adClientVersions">-->
+	<!--<mm-row>-->
+		<!--<mm-check-box-->
+				<!--mm-model="adVersion.state"-->
+				<!--mm-caption="{{adVersion.caption}}"-->
+				<!--mm-description="{{adVersion.name}}"-->
+				<!--mm-is-required="{{!isRequired}}"-->
+				<!--mm-label-width="{{labelWidth}}"-->
+				<!--mm-layout-type="custom"-->
+				<!--mm-custom-control-width="280"-->
+				<!--mm-tab-index="adVersion.tabIndex">-->
+		<!--</mm-check-box>-->
+	<!--</mm-row>-->
+<!--</div>-->
+<mm-mini-section
+		mm-is-modal="'false'"
+		mm-caption="'Video'"
+		mm-start-open="togglesStatus.video">
+	<mm-row>
+		<mm-check-box
+				mm-model="editObject.siteAdDelivery.playerSupportsVPAID"
+				mm-caption="VPAID"
+				mm-description="Player Supports VPAID"
+				mm-is-required="{{isRequired}}"
+				mm-label-width="{{labelWidth}}"
+				mm-layout-type="custom"
+				mm-custom-control-width="{{labelWidth}}"
+				mm-tab-index="1"></mm-check-box>
+	</mm-row>
+</mm-mini-section>
+<mm-mini-section
+		mm-is-modal="'false'"
+		mm-caption="'Mobile'"
+		mm-start-open="togglesStatus.mobile">
+	<mm-row>
+		<mm-drop-down mm-caption="In-App SDK"
+									mm-model="editObject.siteAdDelivery.inAppSDK"
+									mm-data-model="inAppSDKs"
+									mm-is-required="{{!isRequired}}"
+									mm-label-width="{{labelWidth}}"
+									mm-layout-type="custom"
+									mm-custom-control-width="{{labelWidth}}"
+									mm-tab-index="1"></mm-drop-down>
+	</mm-row>
+</mm-mini-section>

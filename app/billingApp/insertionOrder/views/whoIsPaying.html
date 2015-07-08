@@ -1,0 +1,13 @@
+<mm-mini-section ng-show="gridItems.siteItems.length > 0" mm-caption="'WHO IS PAYING FOR THE AD SERVING'" mm-start-open="whoIsPayingSectionCollapse">
+    <div>
+        <mm-grid
+                 cols="gridColumns.sitesColumns"
+                 items="gridItems.siteItems"
+                 radio-click-handler="radioButtonHandler"
+                 enable-column-resize="true"
+                 grid-width="800"
+                 grid-height="{{50 + 30 * gridItems.siteItems.length}}">
+        </mm-grid>
+    </div>
+</mm-mini-section>
+

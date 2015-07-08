@@ -1,0 +1,250 @@
+ <div class="subHeader">
+    <div class="subHeaderItem" ng-class="{'subHeaderSelectedItem': step.val==1}">
+      <span ng-bind="'1. Upload Assets' | T"></span>
+    </div>
+    <div class="iconArrow"></div>
+    <div class="subHeaderItem" ng-class="{'subHeaderSelectedItem': step.val==2}">
+      <span ng-bind="'2. Build ads' | T"></span>
+    </div>
+    <div class="iconArrow"></div>
+    <div class="subHeaderItem" ng-class="{'subHeaderSelectedItem': step.val==3}">
+      <span ng-bind="'3. Review' | T"></span>
+    </div>
+    <div class="iconArrow"></div>
+ </div>
+
+<div class="editContainer">
+
+  <br>
+  <br>
+
+  <div ng-if="step.val==1" class="uploadAssets">
+    <mm-row>
+      <div class="mm-entity-fields-container-single" style="margin-left: -15px">
+        <textarea class="infoArea" data-ng-disabled="true">Create ads in one click</textarea>
+      </div>
+    </mm-row>
+    <div  class="mm-entity-fields-container">
+      <mm-row>
+        <div class="mm-entity-fields-container-left">
+          <mm-label mm-caption="Choose ad format you wish to build ads for" mm-label-width="280" mm-layout-type = "medium"></mm-label>
+        </div>
+        <div class="mm-entity-fields-container-center">
+          <mm-drop-down  mm-data-model="adFormats" mm-model="obj.adFormatType"
+                           mm-layout-type = "custom" mm-custom-control-width="200" mm-is-edit-mode="editMode.val"
+                           mm-show-label="false"
+                           mm-placeholder="Select Ad Format | T"
+                           mm-label-width="280"></mm-drop-down>
+        </div>
+      </mm-row>
+    </div>
+    <mm-row>
+      <div class="mm-entity-fields-container">
+        <mm-row>
+          <div class="mm-entity-fields-container-left">
+            <mm-label mm-caption="Choose the assets you want in your ads" mm-label-width="280" mm-layout-type = "medium"></mm-label>
+          </div>
+          <div class="mm-entity-fields-container-center" >
+            <mm-button mm-disable="!obj.adFormatType"
+                       mm-btn-type="save" mm-action="showUploadAssetModal('massCreate')"
+                       mm-caption="Select Assets"></mm-button>
+          </div>
+        </mm-row>
+      </div>
+    </mm-row>
+  </div>
+
+  <div ng-if="step.val==2">
+    <table class="buildAdsGrid" border="1px">
+      <tr>
+        <th class="header" ng-repeat="column in gridColumns" ng-if="!column.review" ng-bind="column.displayName | T"></th>
+      </tr>
+      <tr ng-repeat="ad in newAds">
+        <td style="margin: 3px">
+          <mm-text mm-model="ad.name"
+                   mm-is-edit-mode="editMode.val"
+                   mm-layout-type="custom" mm-custom-control-width="200"
+                   mm-show-label="false"  mm-placeholder="Enter Name"></mm-text>
+        </td>
+        <td style="min-width: 450px">
+          <div class="mm-entity-fields-container-single">
+            <mm-row>
+              <mm-drop-down mm-layout-type="custom" mm-custom-control-width="250" mm-label-width="90"
+                              mm-is-edit-mode="editMode.val"
+                              mm-data-model="imageDropDownItems" mm-caption="Default Image"
+                              mm-model="ad.defaultImage.assetId" mm-select-change-func="onFlashChange(ad,'defaultImage')"
+                              mm-error="errorObj.nullDefaultImage"></mm-drop-down>
+              <span class="glyphicon glyphicon-eye-open previewIcon"  ng-click="openAssetPreview(ad.defaultImage)"></span>&nbsp;
+              <span class="glyphicon glyphicon-import assignIcon"  ng-click="showUploadAssetModal('defaultImage', ad)"></span>
+            </mm-row>
+          </div>
+          <div>
+            <mm-row>
+              <mm-drop-down mm-layout-type="custom" mm-custom-control-width="250" mm-label-width="90"
+                              mm-is-edit-mode="editMode.val"
+                              mm-data-model="bannerDropDownItems" mm-caption="Flash Banner"  mm-placeholder="none"
+                              mm-model="ad.banner.assetId" mm-select-change-func="onFlashChange(ad,'banner')"
+                              mm-error="errorObj.nullBannerError"></mm-drop-down>
+              <span class="glyphicon glyphicon-eye-open previewIcon"  ng-click="openAssetPreview(ad.banner)"></span>&nbsp;
+              <span class="glyphicon glyphicon-import assignIcon"  ng-click="showUploadAssetModal('banner', ad)"></span>
+            </mm-row>
+          </div>
+        </td>
+
+        <td style="min-width: 100px">
+          <div class='externalImage' style='cursor:pointer;'ng-click='redirectOnImageClick(row.entity[col.field].externalLink)'>
+            <img ng-mousemove='adjustPreview($event)' ng-mouseenter='showPreview($event)' ng-mouseleave='removePreview($event)'
+                 ng-src='{{ad.defaultImage.thumbnail}}' height='{{imageHeight}}' width='{{imageWidth}}' lazy-src/></div>
+        </td>
+
+        <td style="min-width: 100px">
+          <div class="mm-entity-fields-container-single">
+          <mm-row>
+              <mm-label mm-model="ad.defaultImage.dimension"
+                        mm-layout-type="small" mm-custom-control-width="200"
+                        mm-show-label="false">
+              </mm-label>
+          </mm-row>
+          <mm-row>
+            <mm-label mm-model="ad.banner.dimension"
+                      mm-layout-type="small" mm-custom-control-width="200"
+                      mm-show-label="false">
+            </mm-label>
+          </mm-row>
+          </div>
+        </td>
+
+        <td style="min-width: 100px">
+          <div class="mm-entity-fields-container-single">
+            <mm-row>
+              <mm-label mm-model="ad.defaultImage.fileSize"
+                        mm-layout-type="small" mm-custom-control-width="200"
+                        mm-show-label="false">
+              </mm-label>
+            </mm-row>
+            <mm-row>
+              <mm-label mm-model="ad.banner.fileSize"
+                        mm-layout-type="small" mm-custom-control-width="200"
+                        mm-show-label="false">
+              </mm-label>
+            </mm-row>
+          </div>
+        </td>
+
+        <td>
+          <mm-text  mm-model="ad.mainClickthrough.url"  mm-is-edit-mode="editMode.val"
+                    mm-layout-type="custom" mm-custom-control-width="200"
+                    mm-show-label="false"
+                    mm-min-length="300" mm-max-length="300"></mm-text>
+        </td>
+      </tr>
+    </table>
+  </div >
+
+  <div ng-if="step.val==3">
+    <table class="buildAdsGrid" border="1px">
+      <tr>
+        <th class="header" ng-repeat="column in gridColumns"  ng-bind="column.displayName | T"></th>
+      </tr>
+      <tr ng-repeat="ad in newAds">
+        <td ng-click="cancel()">
+          <mm-text mm-model="ad.name"
+                   mm-entity-type="ad"
+                   mm-entity-id = "ad.id"
+                   mm-is-link="true"
+                   mm-show-label="false" mm-disable="true"
+                   mm-layout-type="custom" mm-custom-control-width="200"
+                   mm-show-label="false"  mm-placeholder="Enter Name"></mm-text>
+        </td>
+
+        <td style="min-width: 90px">
+              <mm-text mm-model="ad.id"
+                       mm-layout-type="custom" mm-custom-control-width="90"
+                       mm-show-label="false" mm-disable="true"></mm-text>
+        </td>
+        <td style="min-width: 380px">
+          <div class="mm-entity-fields-container-single">
+            <mm-row>
+              <mm-text mm-layout-type="custom" mm-custom-control-width="220" mm-label-width="90"
+                              mm-disable="true"
+                              mm-caption="Default Image"
+                              mm-model="ad.defaultImage.assetName" mm-select-change-func="onFlashChange()"
+                              mm-error="errorObj.nullDefaultImage"></mm-text>
+              <!--<span class="glyphicon glyphicon-eye-open previewIcon"  ng-click="openAssetPreview(ad.defaultImage)"></span>&nbsp;-->
+            </mm-row>
+          </div>
+          <div>
+            <mm-row>
+              <mm-text mm-layout-type="custom" mm-custom-control-width="220" mm-label-width="90"
+                              mm-caption="Flash Banner"  mm-placeholder="none" mm-disable="true"
+                              mm-model="ad.banner.assetName" mm-select-change-func="onFlashChange()"
+                              mm-error="errorObj.nullBannerError"></mm-text>
+              <!--<span class="glyphicon glyphicon-eye-open previewIcon"  ng-click="openAssetPreview(ad.banner)"></span>&nbsp;-->
+            </mm-row>
+          </div>
+        </td>
+
+        <td style="min-width: 90px">
+          <div class='externalImage' style='cursor:pointer;'ng-click='redirectOnImageClick(row.entity[col.field].externalLink)'>
+            <img ng-mousemove='adjustPreview($event)' ng-mouseenter='showPreview($event)' ng-mouseleave='removePreview($event)'
+                 ng-src='{{ad.defaultImage.thumbnail}}' height='{{imageHeight}}' width='{{imageWidth}}' lazy-src/></div>
+        </td>
+
+        <td style="min-width: 100px">
+          <div class="mm-entity-fields-container-single">
+            <mm-row>
+              <mm-label mm-model="ad.defaultImage.dimension"
+                        mm-layout-type="custom" mm-custom-control-width="90"
+                        mm-show-label="false">
+              </mm-label>
+            </mm-row>
+            <mm-row>
+              <mm-label mm-model="ad.banner.dimension"
+                        mm-layout-type="custom" mm-custom-control-width="90"
+                        mm-show-label="false">
+              </mm-label>
+            </mm-row>
+          </div>
+        </td>
+
+        <td style="min-width: 90px">
+          <div class="mm-entity-fields-container-single">
+            <mm-row>
+              <mm-label mm-model="ad.defaultImage.fileSize"
+                        mm-layout-type="custom" mm-custom-control-width="90"
+                        mm-show-label="false">
+              </mm-label>
+            </mm-row>
+            <mm-row>
+              <mm-label mm-model="ad.banner.fileSize"
+                        mm-layout-type="custom" mm-custom-control-width="90"
+                        mm-show-label="false">
+              </mm-label>
+            </mm-row>
+          </div>
+        </td>
+
+
+        <td>
+          <mm-text  mm-model="ad.mainClickthrough.url"
+                    mm-layout-type="custom" mm-custom-control-width="200"
+                    mm-show-label="false" mm-disable="true"
+                    mm-min-length="300" mm-max-length="300"></mm-text>
+        </td>
+
+      </tr>
+    </table>
+  </div>
+
+</div>
+
+
+
+  <!--<div class="modal-footer">-->
+  <!--<button ng-disabled="step.val == 1" class="mm-discard-button" type="button" ng-click="back()" class="btn btn-default">BACK</button>-->
+  <!--<mm-button ng-show="selectedImages.length>0 || ( !isError && IsSingleFileUpload && IsUploadCompleted ) || (IsUploadCompleted && !uploader.isUploading && !IsSingleFileUpload && showSelectTab) "-->
+  <!--ng-click="next()" mm-btn-type="save" mm-caption="{{nextButtonText.val}}"></mm-button>-->
+  <!--<button class="mm-discard-button" type="button" ng-click="cancel()" class="btn btn-default">CANCEL</button>-->
+  <!--</div>-->
+
+

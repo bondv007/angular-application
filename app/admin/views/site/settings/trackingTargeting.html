@@ -1,0 +1,107 @@
+<mm-row>
+	<mm-text mm-model="editObject.siteTrackingAndTargeting.customPublisherParameter"
+					 mm-placeholder="Enter Parameter"
+					 mm-caption="Custom Publisher Parameter"
+					 mm-is-required="{{!isRequired}}"
+					 mm-label-width="{{labelWidth}}"
+					 mm-layout-type="custom"
+					 mm-custom-control-width="{{labelWidth}}"
+					 mm-tab-index="1">
+	</mm-text>
+</mm-row>
+<mm-row>
+	<mm-check-box
+			mm-model="editObject.siteTrackingAndTargeting.collectKeywordsData"
+			mm-description="Collect Publisher Keywords Data"
+			mm-caption="Publisher Keywords Data"
+			mm-is-required="{{!isRequired}}"
+			mm-label-width="{{labelWidth}}"
+			mm-layout-type="custom"
+			mm-custom-control-width="{{labelWidth}}"
+			mm-tab-index="2"></mm-check-box>
+</mm-row>
+<mm-row>
+	<mm-text mm-model="editObject.siteTrackingAndTargeting.delimiterSiteKeywords"
+					 mm-placeholder="Enter Delimiters"
+					 mm-caption="Delimiters For Parsing Site Keywords"
+					 mm-is-required="{{!isRequired}}"
+					 mm-label-width="{{labelWidth}}"
+					 mm-layout-type="custom"
+					 mm-custom-control-width="{{labelWidth}}"
+					 mm-tab-index="3">
+	</mm-text>
+</mm-row>
+<mm-row>
+	<mm-text mm-model="editObject.siteTrackingAndTargeting.lineId"
+					 mm-placeholder="Enter id"
+					 mm-caption="line ID"
+					 mm-is-required="{{!isRequired}}"
+					 mm-label-width="{{labelWidth}}"
+					 mm-layout-type="custom"
+					 mm-custom-control-width="{{labelWidth}}"
+					 mm-tab-index="4">
+	</mm-text>
+</mm-row>
+<mm-row>
+	<mm-drop-down mm-caption="Cache Busting Token"
+								mm-model="editObject.siteTrackingAndTargeting.cacheBustingToken.adServer"
+								mm-data-model="bustingTokens"
+								mm-select-change-func="onCacheBustingTokenSelected()"
+								mm-is-required="{{!isRequired}}"
+								mm-label-width="{{labelWidth}}"
+								mm-layout-type="custom"
+								mm-custom-control-width="{{labelWidth}}"
+								mm-tab-index="5"></mm-drop-down>
+	<span style="display: inline-block; padding-top:5px} "ng-if="editObject.siteTrackingAndTargeting.cacheBustingToken.adServer != 'CustomToken'">
+		{{editObject.siteTrackingAndTargeting.cacheBustingToken.tokenString}}
+	</span>
+</mm-row>
+<mm-row>
+	<mm-text ng-if="editObject.siteTrackingAndTargeting.cacheBustingToken.adServer == 'CustomToken'"
+					 mm-id="cacheBustingTokenTextBox"
+					 mm-model="editObject.siteTrackingAndTargeting.cacheBustingToken.tokenString"
+					 mm-placeholder="Enter Token"
+					 mm-error="validation.settings.trackingTargeting.cacheBustingToken"
+					 mm-change="onCacheBustingTokenChanged()"
+					 mm-is-required="{{!isRequired}}"
+					 mm-label-width="{{labelWidth}}"
+					 mm-layout-type="custom"
+					 mm-custom-control-width="{{labelWidth}}"
+					 mm-tab-index="6">
+	</mm-text>
+	<!--<mm-row>-->
+		<!--<mm-label ng-if="editObject.siteTrackingAndTargeting.cacheBustingToken.adServer != 'CustomToken'"-->
+							<!--mm-id="cacheBustingTokenTextBox"-->
+							<!--mm-model="editObject.siteTrackingAndTargeting.cacheBustingToken.tokenString"-->
+							<!--mm-placeholder="Enter Token"-->
+							<!--mm-error="validation.settings.trackingTargeting.cacheBustingToken"-->
+							<!--mm-change="onCacheBustingTokenChanged()"-->
+							<!--mm-is-required="{{!isRequired}}"-->
+							<!--mm-label-width="{{labelWidth}}"-->
+							<!--mm-layout-type="custom"-->
+							<!--mm-custom-control-width="{{labelWidth}}"-->
+							<!--mm-tab-index="6"></mm-label>-->
+	<!--</mm-row>-->
+</mm-row>
+<mm-row>
+	<mm-text mm-caption="Impression Tracking Token"
+					 mm-model="editObject.siteTrackingAndTargeting.impressionTrackingToken"
+					 mm-placeholder="Enter Token"
+					 mm-is-required="{{!isRequired}}"
+					 mm-label-width="{{labelWidth}}"
+					 mm-layout-type="custom"
+					 mm-custom-control-width="{{labelWidth}}"
+					 mm-tab-index="7">
+	</mm-text>
+</mm-row>
+<mm-row>
+	<mm-text mm-caption="Click Tracking Token"
+					 mm-model="editObject.siteTrackingAndTargeting.clickTrackingToken"
+					 mm-placeholder="Enter Token"
+					 mm-is-required="{{!isRequired}}"
+					 mm-label-width="{{labelWidth}}"
+					 mm-layout-type="custom"
+					 mm-custom-control-width="{{labelWidth}}"
+					 mm-tab-index="8">
+	</mm-text>
+</mm-row>

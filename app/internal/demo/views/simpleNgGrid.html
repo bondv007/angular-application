@@ -1,0 +1,60 @@
+<!--infinite scroll example-->
+<div class="testGrid">
+
+	<h4>Infinite Scrolling mmGrid Directive</h4>
+	<mm-row>
+		<mm-drop-down mm-error="error.name" mm-caption="Media Type: " mm-data-model="searchOptionsDirective.mediaTypeList"  mm-edit-multiple = "false"
+										mm-model="searchOptionsDirective.mediaType" mmOuterControlClass="col-md-8"></mm-drop-down>
+		<mm-text mm-caption="Client-side Data Filter:" mm-model="filterOptionsDirective.filterText" mm-placeholder="Enter filter text" mm-disable="false" mm-is-edit-mode="false"></mm-text>
+	</mm-row>
+	<mm-grid
+		items="pagedAssetsDirective"
+		cols="columnDefsDS"
+		selected-items="itemDS.selectedItems"
+		filtered-items="filteredItemCount"
+		is-cell-edit="false"
+		is-single-select="false"
+		is-sort="false"
+		show-footer="true"
+		is-groupable="false"
+		show-selection-checkbox="false"
+		show-filter="false"
+		is-show-menu="false"
+		grid-height="400"
+		grid-width="1000"
+		is-central-grid="false"
+		filter-text="filterOptionsDirective.filterText"
+		is-infinite-scroll="true"
+		page-size="pagingOptionsDirective.pageSize"
+		current-page="pagingOptionsDirective.currentPage"
+		paging-handler="scrollBottomEvent">
+	</mm-grid>
+	<mm-row>
+		<p><span ng-show="gettingDataDS"><i class="fa fa-spinner fa-spin"></i> Getting data from server.</span></p>
+		<p>Total Server Items: <span>{{totalServerItemsDirective}}</span><br>
+			Total Client Items: <span>{{pagedAssetsDirective.length}}</span><br>
+			Selected Items: <span>{{itemDS.selectedItems.length}}</span><br>
+			Filtered Items: <span>{{filteredItemCount}}</span></p>
+	</mm-row>
+	<br>
+
+	<h4>Column Template with Tags</h4>
+	<mm-row>
+		<div>
+			<span class="pull-left">Search Text: </span>
+			<input class="col-md-3" type="text" ng-model="filterOptions.filterText">
+		</div>
+	</mm-row>
+
+	<br>
+	<mm-row>
+		<div style="cursor: pointer;margin-top:-20px;" ng-show="searchCriteria.search!=''" class="view-info-box">
+			<span>Active Tag Filter: {{searchCriteria.search}}</span>
+			<i ng-click="clearSearch()" class="csbMargin-top fa fa-times pull-right"></i>
+		</div>
+	</mm-row>
+
+	<div class="gridStyle common-grid" ng-grid="gridOptions" data-ng-style="{'width':800,'height':400}"></div>
+
+
+</div>

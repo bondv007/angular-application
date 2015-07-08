@@ -1,0 +1,61 @@
+.mm-text-area{
+  @include tArialText;
+  padding: 0;
+  min-width: 30px;
+  line-height: 1.42857;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  border: 1px solid $cFourth;
+  border-radius: 0px;
+  resize: none;
+  min-height: 120px;
+
+  ::selection {
+    background: #ffb7b7; /* WebKit/Blink Browsers */
+  }
+
+  &:hover{
+    border: 1px solid #0d2a4d;
+  }
+
+  &:focus{
+    outline:0;
+    outline:none;
+  }
+}
+
+
+.mm-generate-test-tag{
+  @include tArialText;
+  width: 740px;
+  height: 300px;
+  padding: 5px;
+  outline: none;
+  resize: none;
+
+  &:focus{
+    outline:0;
+    outline:none;
+  }
+}
+
+.mm-Submit-to-qa {
+  width: 400px;
+  height: 90px;
+  border: 1px solid #bacae4;
+  padding: 5px;
+  font-family: arial, sans-serif;
+  font-size: 13px;
+  color: rgba(13, 42, 77, 0.6);
+  outline: none;
+  resize: none;
+  position: relative;
+  left: 160px;
+  top: -25px;
+}
+
+
+
+
+
+

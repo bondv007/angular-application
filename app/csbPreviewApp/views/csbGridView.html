@@ -1,0 +1,147 @@
+
+<div class="initialView">
+  <header class="top-nav-bar" ng-show="!showSpinner">
+    <div class="container-fluid">
+      <div class="col-sm-12">
+        <ul class="topBar-action pull-left">
+          <li>
+            <h2 class="pull-left">{{selectedCheckBoxCount()>0 ? count+' ads selected' : 'Preview :
+              ('+filtered.filteredAds.length+'
+              ads)'}}</h2>
+
+          </li>
+          <li>
+            <label class="label-control filterSrchLabel">Search</label>
+
+            <div class="search-bar">
+              <div class="filter-select" ng-click="searchActionOnTileView=!searchActionOnTileView">
+                {{selectedSearchActionOnTileView}} <i class="fa fa-caret-down"></i>
+
+                <div class="filterSelectDown" ng-show="searchActionOnTileView">
+                  <ul>
+                    <li ng-repeat="action in searchActions"><a
+                        ng-class="{'active':action.isSelected}" ng-click="setSearchActionOnTileView(action)">{{action.displayName}}</a>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+              <input ng-model="searchCriteria.search" type="text" class="form-control col-xs-10"/>
+              <button class="search-btn "><i class="fa fa-search"></i></button>
+            </div>
+          </li>
+          <li>
+            <ul class="nav nav-tabs pull-left add-btns">
+              <li><a ng-click="showShareDialog()"><i class="cbs_shareIcon"></i>
+                {{selectedCheckBoxCount()>0 ? 'Share ('+count+')' : 'Share All'}}</a></li>
+              <li class=""><a style="cursor: pointer;" ng-click="redirectToLiveView()"><i class="cbs_playIcon"></i>
+                {{count>0?'Preview ('+count+')' : 'Preview All'}} </a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+        <ul class="nav nav-tabs pull-right">
+          <li><a ng-click="changeViews(false)"><i
+              class="fa fa-th-large"></i></a></li>
+          <li class="active"><a><i
+              class="fa fa-list"></i> </a></li>
+        </ul>
+
+        <div class="shareAdd-popup shareOne" style="z-index:9999;" ng-if="showShareAdDialogOnTileView">
+          <a ng-click="toggleShareAdDialogOnTileView()" class="pull-right close"><i
+              class="fa fa-times-circle"></i></a>
+
+          <h3>Share Ad's Assets </h3>
+          <ul class="share-form">
+            <li>
+              <label>Link to share</label>
+
+              <div class="input-wrapper">
+                <input type="text" ng-model="previewLink"/>
+                <button class="button-class">Copy url</button>
+              </div>
+            </li>
+            <li class="access-pwd">
+              <label>Preview Access Password (optional)</label>
+
+              <div class="input-wrapper">
+                <input type="text" ng-model="shareinfo.password"/>
+              </div>
+            </li>
+            <li class="strength-row">
+              <label>Strength</label>
+              <ul class="strengths">
+                <li class="active"></li>
+                <li class="active"></li>
+                <li class="active"></li>
+                <li></li>
+              </ul>
+            </li>
+          </ul>
+          <div class="clear"></div>
+          <div class="text-right popup-footer">
+            <button ng-click="toggleShareAdDialogOnTileView()" class="button-class gray">Cancel</button>
+            <button ng-click="sendEmail();" class="button-class yellow">Generate url to share
+            </button>
+          </div>
+        </div>
+      </div>
+      <!--<mm-alert></mm-alert>-->
+    </div>
+  </header>
+
+  <div ng-style="{'height':containerHeight}" class="tileContainer">
+    <section class="titles-container dvTile" ng-class="fromLiveView ? 'pageSlide' :'pageFade'">
+<div ng-show="searchCriteria.search!=''" class="filtering-section">
+    <div class="inner-section">
+        <div class="left-heading"> FILTERING RESULTS</div>
+        <div class="right-tag-section">
+            <a class="tags">
+                <div class="left-section">
+                    <span class="tagText">{{searchCriteria.search}}</span>
+                </div>
+                <span><i ng-click="clearSearch()" class="fa fa-times"></i> </span><!-- end ngIf: !isMDX2 -->
+            </a>
+        </div>
+    </div>
+</div>
+<!--<div style="cursor: pointer;margin-top:-20px;" ng-show="searchCriteria.search!=''" class="view-info-box">-->
+	<!--<span>Filtering Results : {{searchCriteria.search}}</span>-->
+	<!--<i ng-click="clearSearch()" class="fa fa-times pull-right"></i>-->
+<!--</div>-->
+<div class="container-fluid list-view-page">
+	<div class="col-sm-12">
+	    <div class="body preview-grid-container">
+          <mm-grid
+            items="filtered.filteredAds"
+            cols="columnDefs"
+            selected-items="filtered.selectedItems"
+            is-cell-edit="false"
+            show-selection-checkbox="true"
+            is-single-select="false"
+            is-column-reorder="false"
+            grid-height="600"
+            grid-width="985"
+            is-central-grid="false"
+            is-show-menu="false"
+            show-filter="false"
+            show-footer="false"
+            is-grid-loading="isGridLoading"
+            is-sort="true"
+            paging-handler="gridScrollHandler">
+          </mm-grid>
+          <div class="selectTage-result">
+            {{filtered.selectedItems.length}} OUT OF {{filtered.filteredAds.length}} SELECTED
+          </div>
+		</div>
+	</div>
+
+
+    <div class="clear"></div>
+</div>
+
+     </section>
+      <div class="clear"></div>
+
+  </div>
+
+</div>

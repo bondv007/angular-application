@@ -1,0 +1,26 @@
+<div ui-tree="defaultServeTreeOptions">
+	<ol ui-tree-nodes="" ng-model="mmDefaultAds">
+		<li ng-repeat="n in mmDefaultAds" ui-tree-node >
+			<div data-nodrag ui-tree-handle>
+
+				<!--Open\Close Icon Container-->
+				<div class="middleElement notVisibleDragIcon"></div>
+				<a data-nodrag class="middleElement wrapContainerToggleIcon" ng-click="toggle()">
+					<div ng-class="{'containerOpenIcon':!collapsed, containerCloseIcon:collapsed}" class="middleElement containerOpenIconDim"></div>
+				</a>
+
+				<!--Check Box []-->
+				<div data-nodrag class="mm_checkbox middleElement" ng-model="defaultServe.selected" ng-click="defaultServe.selected=!defaultServe.selected;">
+					<span ng-class="{'selectedCB': item.selected}"></span>
+				</div>
+
+				<!--Item Type Icon-->
+				<div class="defaultServeIcon middleElement"></div>
+
+				<!--Name-->
+				<div class="middleElement itemNameText" ng-bind="'Default Serve' | T"></div>
+			</div>
+			<!--<div ui-tree-handle ng-include="'campaignManagementApp/directives/dg/tree/templates/defaultServe/node.html'"></div>-->
+		</li>
+	</ol>
+</div>

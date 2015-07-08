@@ -1,0 +1,6 @@
+{
+	"env": "yoav",
+	"ec2": "http://54.85.157.234:8080/rest/",
+	"loginPath": "http://54.85.157.234:8080/rest/login/Login",
+	"resource": "http://54.213.44.20/_/"
+}

@@ -1,0 +1,24 @@
+<div ng-switch on="item.rotationSetting.type">
+
+	<!--EvenDistribution-->
+	<div ng-switch-when="EvenDistribution">
+		<div ng-include="'campaignManagementApp/directives/dg/tree/templates/evenDistribution.html'"></div>
+	</div>
+
+	<!--Weighted-->
+	<div ng-switch-when="Weighted">
+		<div ng-include="'campaignManagementApp/directives/dg/tree/templates/weighted.html'"></div>
+	</div>
+
+	<!--Timebase-->
+	<div ng-switch-when="TimeBased">
+		<time-base-rotation weight="item.rotationSetting.weight"></time-base-rotation>
+	</div>
+
+	<!--Default EvenDistribution-->
+	<div ng-switch-default>
+		<div ng-include="'campaignManagementApp/directives/dg/tree/templates/evenDistribution.html'"></div>
+	</div>
+
+</div>
+

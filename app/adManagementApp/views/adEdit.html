@@ -1,0 +1,117 @@
+<mm-row ng-show="!showSPinner" style="position:absolute; bottom:2px; top:2px; left : 0px; right:0px;">
+  <div class="editContainer">
+    <mm-row>
+      <div class="mm-entity-fields-container">
+        <mm-row>
+          <div class="mm-entity-fields-container-left">
+            <div ng-if="!ad.masterAdId" ng-include="'adManagementApp/views/adEssentials/masterAd.html'"></div>
+            <div ng-if="ad.masterAdId" ng-include="'adManagementApp/views/adEssentials/placementAd.html'"></div>
+          </div>
+        </mm-row>
+      </div>
+      <div class="mm-entity-info-box-container-right">
+        <mm-info-box ng-if="ad.adFormat == 'INSTREAM_AD' || ad.adFormat == 'INSTREAM_INTERACTIVE_AD' || ad.adFormat == 'INSTREAM_ENHANCED_AD' || ad.defaultImage.thumbnailUrl"
+                     mm-image-src="ad.defaultImage.thumbnailUrl" num-of-info-lines="5"
+                     inforce-image-box="{{::inforceImageBox}}">
+          <mm-info-label
+              ng-if="ad.adFormat != 'INSTREAM_AD' && ad.adFormat != 'INSTREAM_INTERACTIVE_AD' && ad.adFormat != 'INSTREAM_ENHANCED_AD' && (!ad.banner || !ad.banner.dimensions)"
+              mm-model="ad.defaultImage.dimensions"
+              mm-label-width={{::labelWidth}}
+              mm-caption="Dimensions:"></mm-info-label>
+          <mm-info-label
+            ng-if="ad.adFormat != 'INSTREAM_AD' && ad.adFormat != 'INSTREAM_INTERACTIVE_AD' && ad.adFormat != 'INSTREAM_ENHANCED_AD' && ad.banner && ad.banner.dimensions"
+            mm-model="ad.banner.dimensions"
+            mm-label-width={{::labelWidth}}
+            mm-caption="Dimensions:"></mm-info-label>
+          <mm-info-label ng-if="ad.pricingSize && ad.pricingSize>1048575"
+                         mm-model="ad.pricingSize/1024/1024|number:2"
+                         mm-additional-text="MB"
+                         mm-label-width={{::labelWidth}}
+                         mm-caption="Size:"></mm-info-label>
+          <mm-info-label ng-if="ad.pricingSize && ad.pricingSize< 1048576"
+                         mm-model="ad.pricingSize/1024|number:2"
+                         mm-additional-text="KB"
+                         mm-label-width={{::labelWidth}}
+                         mm-caption="Size:"></mm-info-label>
+          <mm-info-label ng-if="!ad.pricingSize"
+                         mm-model=""
+                         mm-label-width={{::labelWidth}}
+                         mm-caption="Size:"></mm-info-label>
+          <mm-info-label ng-if="ad.overallSize && ad.overallSize>1048575"
+                         mm-model="ad.overallSize/1024/1024|number:2"
+                         mm-additional-text="MB"
+                         mm-label-width={{::labelWidth}}
+                         mm-caption="Overall Size:"></mm-info-label>
+          <mm-info-label ng-if="ad.overallSize &&  ad.overallSize<1048576"
+                         mm-model="ad.overallSize/1024|number:2"
+                         mm-additional-text="KB"
+                         mm-label-width={{::labelWidth}}
+                         mm-caption="Overall Size:"></mm-info-label>
+          <mm-info-label ng-if="!ad.overallSize"
+                         mm-model=""
+                         mm-label-width={{::labelWidth}}
+                         mm-caption="Overall Size:"></mm-info-label>
+          <mm-info-label ng-if="ad.initialSize &&  ad.initialSize>1048575"
+                         mm-additional-text="MB"
+                         mm-model="ad.initialSize/1024/1024|number:2"
+                         mm-label-width={{::labelWidth}}
+                         mm-caption="Initial Size:"></mm-info-label>
+          <mm-info-label ng-if="ad.initialSize &&  ad.initialSize<1048576"
+                         mm-additional-text="KB"
+                         mm-model="ad.initialSize/1024|number:2"
+                         mm-label-width={{::labelWidth}}
+                         mm-caption="Initial Size:"></mm-info-label>
+          <mm-info-label ng-if="!ad.initialSize"
+                         mm-model=""
+                         mm-label-width={{::labelWidth}}
+                         mm-caption="Initial Size:"></mm-info-label>
+          <mm-info-label ng-if="ad.masterAdId && ad.analyticsData && ad.analyticsData.impressions"
+                         mm-model="ad.analyticsData.impressions"
+                         mm-label-width={{::labelWidth}}
+                         mm-caption="impressions:"></mm-info-label>
+          <mm-info-label ng-if="ad.masterAdId && ad.analyticsData && ad.analyticsData.clicks"
+                         mm-model="ad.analyticsData.clicks"
+                         mm-label-width={{::labelWidth}}
+                         mm-caption="clicks:"></mm-info-label>
+          <mm-info-label ng-if="ad.masterAdId && ad.analyticsData && ad.analyticsData.ctr"
+                         mm-model="ad.analyticsData.ctr"
+                         mm-label-width={{::labelWidth}}
+                         mm-caption="ctr:"></mm-info-label>
+          <mm-info-label ng-if="!ad.masterAdId"
+                         mm-label-width={{::labelWidth}}
+                         mm-model="ad.lastUpdateOn | date:'dd/MM/yy h:mm a'"
+                         mm-caption="Last Update:"></mm-info-label>
+        </mm-info-box>
+      </div>
+    </mm-row>
+    <mm-row>
+      <div class="mm-entity-fields-container-single">
+        <mm-row>
+          <div ng-if="ad.adFormat == 'STANDARD_BANNER_AD'"
+               ng-include="'adManagementApp/views/standardBannerAd.html'"></div>
+          <div ng-if="ad.adFormat == 'EXPANDABLE_BANNER_AD'"
+               ng-include="'adManagementApp/views/expandableBannerAd.html'"></div>
+          <div ng-if="ad.adFormat == 'RICH_MEDIA_BANNER_AD'"
+               ng-include="'adManagementApp/views/richMediaBannerAd.html'"></div>
+          <div ng-if="ad.adFormat == 'ENHANCED_STANDARD_BANNER_AD'"
+               ng-include="'adManagementApp/views/enhancedStandardBannerAd.html'"></div>
+          <div ng-if="ad.adFormat == 'PUSHDOWN_BANNER_AD'"
+               ng-include="'adManagementApp/views/pushdownBannerAd.html'"></div>
+          <div ng-if="ad.adFormat == 'INSTREAM_AD'" ng-include="'adManagementApp/views/inStreamAd.html'"></div>
+          <div ng-if="ad.adFormat == 'FLOATING_AD'" ng-include="'adManagementApp/views/inStreamAd.html'"></div>
+          <div ng-if="ad.adFormat == 'INSTREAM_INTERACTIVE_AD'"
+               ng-include="'adManagementApp/views/inStreamAd.html'"></div>
+          <div ng-if="ad.adFormat == 'INSTREAM_ENHANCED_AD'" ng-include="'adManagementApp/views/inStreamAd.html'"></div>
+          <div ng-if="ad.adFormat == 'HTML5_RICH_MEDIA_BANNER_AD'"
+               ng-include="'adManagementApp/views/html5RichMediaBannerAd.html'"></div>
+          <div ng-if="ad.adFormat == 'HTML5_EXPANDABLE_BANNER_AD'"
+               ng-include="'adManagementApp/views/html5ExpandableBannerAd.html'"></div>
+          <div ng-if="ad.adFormat == 'HTML5_SINGLE_EXPANDABLE_BANNER_AD'"
+               ng-include="'adManagementApp/views/html5ExpandableBannerAd.html'"></div>
+          <div ng-if="ad.adFormat == 'SINGLE_EXPANDABLE_BANNER_AD'"
+               ng-include="'adManagementApp/views/singleExpandableBannerAd.html'"></div>
+        </mm-row>
+      </div>
+    </mm-row>
+  </div>
+</mm-row>

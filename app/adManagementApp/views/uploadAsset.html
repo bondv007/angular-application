@@ -1,0 +1,330 @@
+<div class="upload-modal upload-trees">
+  <div class="mmmodal-header">
+    <div class="close">
+      <div class="close-button" ng-click="closeUploader()" data-dismiss="modal"></div>
+    </div>
+    <div class="mmmodal-title" ng-if="!isAdPreview">UPLOAD ASSETS</div>
+    <div class="mmmodal-title" ng-if="isAdPreview">UPLOAD BACKGROUND IMAGE</div>
+  </div>
+  <div class="mmmodal-body upload-entry">
+    <div class="mmmodal-content">
+        <div class="uploadMainContainer">
+          <div class="destination-folder" ng-if="!isSelectTab">
+            <p ng-if="!isAdPreview">Destination Folder:
+              <a class="destFolderLink" href="javascript:void(0)" ng-disabled="foldersData.length <= 1" ng-click="showDestinationForUpload()">
+                <span class="truncate">{{selectedFolder.name}}</span>
+                <i class="assets-icon-Mini_folder_color"></i>
+              </a>
+              <!--<span>&nbsp;</span>-->
+            </p>
+            <p ng-if="isAdPreview">Destination Folder:{{selectedFolder.name}}</p>
+          </div>
+
+            
+            
+          <tabset>
+          <tab ng-if="showSelectTab" ng-click="restoreSelectedImages();" active="showSelectTab" select="toggleSelectTab(true)" id="showSelectTab"
+               deselect="toggleSelectTab(false)">
+            <tab-heading>Select</tab-heading>
+            <div class="select-group">
+               <div ng-if="isSelectFiles" id="uploadAssetSearchContainer"  style="position: absolute;top: 15px;right: 20px;">
+            
+                  <span class="searchContainer inner-addon pull-right right-addon">
+                    <input mm-focus="showSearchBox" type="text" class="form-control"
+                           ng-model="filterOptions.filterText"
+                           placeholder="Search by ID, Name or Product hierarchy"
+                           style="height: 28px;"/>
+                    <!--<input mm-focus="showSearchBox" type="text" class="form-control" ng-model="searchOptions.searchText"
+                           placeholder="Search by ID, Name or Product hierarchy" style="height: 28px;"/>-->
+                    <i class="searchIcon"></i>
+                  </span>
+              </div>
+              <!--<mm-row ng-if="pagedAssets.length <= 0 && isSelectFiles">
+                <p>No assets match your search criteria.</p>
+              </mm-row>-->
+           
+              <div class="clearfix"></div>
+              <div id="uploadAssetContainer" class="outer-container" >
+              <div id="uploadAssetLeftContainer">
+               
+                 <mm-tree-view
+                  ng-if="!isAdPreview"
+                  class="assetLibTree"
+                  data="foldersTreeData"
+                  selected-node-handler="selectedFolderTreeNodeHandler"
+                  tree-id="dvTreeSelectAsset"
+                  can-drag-drop="false">
+                </mm-tree-view>
+              </div>
+              <div id="uploadAssetSplitterContainer">
+
+                  <mm-splitter left-element="#uploadAssetLeftContainer" min-left="20" min-right="40" container-element="#uploadAssetContainer" right-element="#uploadAssetRightContainer"></mm-splitter>
+              </div>
+            
+               <div id="uploadAssetRightContainer">
+                 <mm-row class="containerRow" ng-if="IsSingleFileUpload && isSelectFiles && pagedAssets.length > 0" style="float:right">
+                  <mm-grid
+                    total-items="totalItems"
+                    items="pagedAssets"
+                    cols="selectColumnDefs"
+                    selected-items="itemAssets.selectedItems"
+                    filtered-items="filteredItems"
+                    is-cell-edit="false"
+                    is-single-select="true"
+                    is-sort="true"
+                    show-footer="true"
+                    is-groupable="false"
+                    show-selection-checkbox="false"
+                    show-filter="false"
+                    enable-column-resize="true"
+                    is-column-reorder="false"
+                    is-column-freeze="false"
+                    is-show-menu="false"
+                    save-data="saveData"
+                    is-central-grid="false"
+                    is-grid-toolbar="false"
+                    filter-text="filterOptions.filterText"
+                    grid-height="415px"
+                    is-infinite-scroll="true"
+                    page-size="pagingOptions.pageSize"
+                    current-page="pagingOptions.currentPage"
+                    paging-handler="scrollBottomEvent"
+                    db-click-handler="gridRowDblClick">
+                  </mm-grid>
+                </mm-row>
+
+              
+                <mm-row class="containerRow" ng-if="!IsSingleFileUpload && isSelectFiles && pagedAssets.length > 0" style="float: right;">
+                  <mm-grid
+                    total-items="totalItems"
+                    items="pagedAssets"
+                    cols="selectColumnDefs"
+                    selected-items="itemAssets.selectedItems"
+                    filtered-items="filteredItemCount"
+                    is-cell-edit="false"
+                    is-single-select="false"
+                    is-sort="true"
+                    show-footer="true"
+                    is-groupable="false"
+                    show-selection-checkbox="true"
+                    show-filter="false"
+                    enable-column-resize="true"
+                    is-column-reorder="false"
+                    is-column-freeze="false"
+                    is-show-menu="false"
+                    save-data="saveData"
+                    is-central-grid="false"
+                    is-grid-toolbar="false"
+                    filter-text="filterOptions.filterText"
+                    grid-height="415px"
+                    is-infinite-scroll="true"
+                    page-size="pagingOptions.pageSize"
+                    current-page="pagingOptions.currentPage"
+                    paging-handler="scrollBottomEvent"
+                    db-click-handler="gridRowDblClick">
+                  </mm-grid>
+                </mm-row>
+                <mm-row class="containerRow" style="float: right;">
+                    <div ng-show="isSelectFiles && pagedAssets.length == 0" class="centralColumnResizePosition">
+                        <div class="uploaderEmptyState">
+                            <span class="emptyStateText">NO ASSETS MATCH THE SEARCH CRITERIA</span>
+                            <br>
+                            <span class="emptyStateText">Go to the Upload Tab to load assets for this folder.</span>
+                          <span class="emptyStateText" ng-if="!dataObj.hideAddButton" > | </span>
+                            <a class="emptyStateLink" ng-click="showUploadAssetModal()">ADD NEW ASSET</a>
+                        </div>
+                    </div>
+                </mm-row>
+              </div>
+              <div class="clearfix">
+                
+              </div>
+             <!--    -->
+
+                <!--single select-->
+               <!-- 
+
+                -->
+              </div>
+            </div>
+          </tab>
+
+          <tab ng-click="removeSelectedImages()" id="Upload">
+            <tab-heading>Upload</tab-heading>
+            <div uploader="uploader" nv-file-drop>
+              <div class="file-dropzone">
+                <div ng-if="showDropzone">
+                  <div ng-show="uploader.isHTML5">
+                    <div class="well my-drop-zone text-center col-sm-12" uploader="uploader" nv-file-over
+                         over-class="image-file-over" ng-class="{active: itemsInUploader.length > 0}">
+                      <div class="uploadIcon" uploader="uploader" nv-file-over over-class="image-file-over"></div>
+                      <p>Drag files here</p>
+
+                      <p class="connect">&ndash;&ndash;&ndash;&ndash; OR &ndash;&ndash;&ndash;&ndash;</p>
+
+                      <div class="upload-browse-link" ng-if="!IsSingleFileUpload">
+                        <input uploader="uploader" nv-file-select type="file" multiple id="upload-input1"/>
+                        <label class="file-text" for="upload-input1">Browse files</label>
+                      </div>
+                      <div class="upload-browse-link" ng-if="IsSingleFileUpload">
+                        <input uploader="uploader" nv-file-select type="file" id="upload-input2"/>
+                        <label class="file-text" for="upload-input2">Browse files</label>
+                      </div>
+                    </div>
+                    <p ng-if="!IsSingleFileUpload" ng-show="uploader.queue.length" class="text-center">Total assets: {{
+                      uploader.queue.length }}</p>
+                  </div>
+                </div>
+
+                <!--Multiple file upload view-->
+                <div class="upload-prog-sec" ng-show="ShowProgressContainer">
+                  <div ng-show="ShowProgressContainer">
+                    <div class="upload-info">
+                      <!--<span>Time Elapsed: xx Seconds</span> <span class="separator">|</span>-->
+                      <span>{{queueIndex}} out of</span>
+                      <span>{{uploader.queue.length}} Files </span><span class="separator" ng-show="uploader.queue.length > 0">|</span>
+                      <span ng-show="!isUploadError && uploader.queue.length > 0" class="strong">{{uploader.progress}}% complete</span>
+                      <span ng-show="isUploadError && uploader.queue.length > 0" class="strong error">{{uploader.progress}}% complete (Error)</span>
+                      <!--<span ng-show="isUploadError" class="separator">|</span>
+                      <span ng-show="isUploadError" class="error">**Upload Error**</span>-->
+                      <span class="pull-right">
+                        <a ng-disabled="!uploader.isUploading" ng-click="cancelAllUploading()">Cancel All</a>
+                      </span>
+                    </div>
+                    <div class="clearfix"></div>
+                    <div class="progress relative">
+                      <div class="progress-bar" role="progressbar" ng-style="{ 'width': uploader.progress + '%' }">
+                      </div>
+                    </div>
+
+                    <!--<div>-->
+                    <div class="tableSelect">
+                      <div class="table-wrap">
+                        <table class="table upload-table">
+                          <thead>
+                          <tr>
+                            <th class="narrow" ng-if="!IsSingleFileUpload"></th>
+                            <th class="filename">Display Name</th>
+                            <th class="filetype">Type</th>
+                            <th class="destination" ng-show="uploader.isHTML5">Destination</th>
+                            <th class="size" ng-show="uploader.isHTML5">Size</th>
+                            <th class="status" ng-show="uploader.isHTML5">Progress</th>
+                          </tr>
+                          </thead>
+                          <tfoot>
+                          <tr>
+                            <td colspan="6">
+                              <span ng-show="uploader.queue.length == 1 && !IsUploadCompleted">Uploading <span>{{uploader.queue.length}}</span> File</span>
+                              <span ng-show="uploader.queue.length > 1 && !IsUploadCompleted">Uploading <span>{{uploader.queue.length}}</span> Files</span>
+                              <span ng-show="IsUploadCompleted && !IsUploadCancelled && uploader.queue.length >= 1">Upload Completed</span>
+                              <span ng-show="uploader.queue.length <= 0">No files in upload queue</span>
+                              <span ng-show="IsUploadCancelled && uploader.queue.length > 0"> **Upload Cancelled</span>
+                            </td>
+                          </tr>
+                          </tfoot>
+                          <tbody>
+                          <tr class="{{cssClass[$index]}}" ng-repeat="item in uploader.queue"
+                              ng-click="!isFolderLinkClicked ? selectRow($index,item) : ''"
+                              ng-class='{selected:  selectedRows.indexOf(item.assetId)!=-1}'>
+                            <td class="narrow" ng-if="!IsSingleFileUpload">
+                              <input type="checkbox" name="{{item.assetId}}" ng-checked="selectedRows.indexOf(item.assetId)!=-1"
+                                id="{{item.assetId}}" value="{{asset.id}}">
+                            </td>
+                            <!--<td class="filename">{{ item.file.name }}</td>-->
+                            <!--<td><editable-cell cell-text="item.file.name">{{cellText}}</editable-cell></td>-->
+                            <!--<td class="filename">{{item.displayName}}</td>  metadataInfoList[$index].displayName -->
+                            <td class="filename">
+                              <input type="text" name="name" ng-model="metadataInfoList[$index].displayName"
+                                 placeholder="Enter display name" ng-if="selectedCreativeType != 'html5'">
+                              <span ng-if="selectedCreativeType == 'html5'">{{metadataInfoList[$index].displayName}}</span>
+                            </td>
+                            <!--<td class="image-icon filetype"></td>-->
+                            <td class="filetype"><i class="{{item.icon}}"></i></td>
+                            <td class="destination" ng-show="uploader.isHTML5" nowrap>
+                              {{item.destinationFolder }}
+                              <!--<a class="cursorPointer" ng-click="showTreeControl()"> {{item.destinationFolder }}</a>-->
+                            </td>
+                            <td class="size" ng-show="uploader.isHTML5" nowrap>{{ item.file.size/1024/1024|number:2}}MB
+                            </td>
+                            <td class="status" ng-show="uploader.isHTML5">
+                              <span ng-if="item.isUploading || item.isSuccess">
+                                <span class="pull-left">{{item.progress}}%</span>
+                                <div class="progress innergrid pull-left">
+                                  <div class="progress-bar" role="progressbar"
+                                       ng-style="{ 'width': item.progress + '%' }">
+                                  </div>
+                                </div>
+                              </span>
+                              <span ng-if="item.isUploaded && !item.isSuccess">
+                                <span class="pull-left error">Upload failed </span>
+                              </span>
+                              <a ng-click="item.remove(); removeAssetFromList(item)"
+                                 ng-if="!item.isUploading && !item.isUploaded" ng-disabled="item.progress==100">
+                                <span class="cancel-icon"></span>
+                              </a>
+                              <a ng-click="item.cancel()" ng-if="item.isUploading">
+                                <span class="cancel-icon"></span>
+                              </a>
+                              <a ng-if="item.isUploaded && item.isSuccess">
+                                <span><i class="fa fa-check"></i></span>
+                              </a>
+                            </td>
+                          </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </div>
+
+                  </div>
+                </div>
+                <!--</div>-->
+              </div>
+
+            </div>
+          </tab>
+
+          </tabset>
+      </div>
+    </div>
+  </div>
+  <div class="clearfix"></div>
+
+                <p ng-if="pagedAssets.length <= 0 && !isSelectFiles" style="float:left;margin:15px 0px 0px 15px;">Loading assets...</p>
+             
+  <div class="modal-footer">
+        <span class="cursorPointer pull-left footer-message" ng-if="ShowProgressContainer && !IsSingleFileUpload">TIP: You can drag more
+          files to the screen to add them to the upload queue, or
+            <span>
+              <input uploader="uploader" nv-file-select type="file" multiple id="upload-input3"/>
+              <label class="file-text" for="upload-input3">use manual upload</label>
+            </span>
+        </span>
+    <button class="mm-save-button btn btn-primary" type="button"
+            ng-show="IsUploadCompleted && !uploader.isUploading && !showSelectTab && !isAdPreview"
+            ng-click="closePopup()">
+      DONE
+    </button>
+    <button class="mm-attach-button btn btn-primary" type="button"
+            ng-show="ShowProgressContainer && uploader.isUploading && !( IsSingleFileUpload && IsUploadCompleted )"
+            ng-click="flyLayout()" class="btn btn-primary">
+      MINIMIZE
+    </button>
+    <button ng-if="!isAdPreview && (selectedCreativeType != 'html5')" class="mm-attach-button btn btn-primary" type="button"
+            ng-show="itemAssets.selectedItems.length>0 || ( !isError && IsSingleFileUpload && IsUploadCompleted ) || (IsUploadCompleted && (queueIndex > 0) && !uploader.isUploading && !IsSingleFileUpload && showSelectTab) "
+            ng-class="{disabled: attachingAssetsInProgress}" ng-click="attachImagesToAd()">
+      ASSIGN TO AD
+    </button>
+    <!--workspace folder-->
+    <button ng-if="!isAdPreview && (selectedCreativeType == 'html5')" class="mm-attach-button btn btn-primary" type="button"
+            ng-show="folderOkToAssign || ( !isError && IsSingleFileUpload && IsUploadCompleted )"
+            ng-class="{disabled: attachingAssetsInProgress && !isSelectTab}" ng-click="attachWorkspaceFolderToAd()">
+      ASSIGN TO AD
+    </button>
+    <button class="mm-attach-button btn btn-primary" type="button" ng-show="IsUploadCompleted && !uploader.isUploading && !showSelectTab && isAdPreview"
+            ng-click="addBackgroundToPreview()">
+      ADD BACKGROUND
+    </button>
+    <button class="mm-discard-button btn btn-default" type="button" ng-click="closeUploader()">CANCEL
+    </button>
+  </div>
+</div>

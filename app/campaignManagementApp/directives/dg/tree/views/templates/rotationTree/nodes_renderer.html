@@ -1,0 +1,31 @@
+<div ng-class="{'disableItem':!item.rotationSetting.enabled && item.type == 'DeliveryGroupAd'}" ng-include="'campaignManagementApp/directives/dg/tree/views/templates/rotationTree/node.html'"></div>
+<span ng-class="{hidden: collapsed}" >
+	<mm-row ng-if="item.subContainers.length > 0 " class="extend-mm-row">
+    <mm-drop-down
+        ng-if="mmDeliveryGroup.isSupportedDg"
+        style="position: absolute"
+        mm-show-as-label="true"
+        class="rotationPosition"
+        mm-layout-type="custom"
+        mm-label-width="62"
+        mm-custom-control-width="170"
+        mm-caption="dg_tree_rotation"
+        mm-select-change-func="onRotationChange(item)"
+        mm-data-model="item.rotations"
+        mm-disable="mmDisable"
+        mm-model="item.childRotationType">
+    </mm-drop-down>
+    <span class="rootRotationPosition rootRotationText" ng-if="!mmDeliveryGroup.isSupportedDg">
+        <span ng-bind="'dg_tree_rotation' | T"></span>
+        <span>{{ :: item.childRotationType | T}}</span>
+    </span>
+    <span class="pull-right dg_totalWeightedTitle" ng-if="item.childRotationType=='Weighted'">{{'Total: ' | T}}
+      <span class="dg_totalWeightedValue">{{item.totalWeight + ' %'}}</span>
+    </span>
+	</mm-row>
+	<ol ng-init="parent = item"  ui-tree-nodes="" ng-model="item.subContainers" class="dgTree_removeListNumber">
+		<li class="adOrSubGroupRow" ng-class="{'selectedBackgroundColor':item.selected}" ng-if="(item.type =='AdContainer') ? true : item.rotationSetting.enabled || !mmHideDisabled.val" ng-repeat="item in item.subContainers" ui-tree-node>
+			<div ng-include="'campaignManagementApp/directives/dg/tree/views/templates/rotationTree/nodes_renderer.html'"></div>
+		</li>
+	</ol>
+</span>

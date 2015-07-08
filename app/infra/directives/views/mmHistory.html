@@ -1,0 +1,5 @@
+<button type="button" ng-click="openHistory()"
+        ng-class="{'centralMasterToolBarButton': !disable&&!isCentral,
+                       'disableCentralMasterToolBarButton':disable&&!isCentral,
+                       'entityLayoutHistory':isCentral,
+                       'disableButton':disable}">{{'History' | T}}</button>

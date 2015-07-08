@@ -1,0 +1,9 @@
+
+<a class="linkColor mm-entity-link" ng-class="{'mm-entity-link-padding': !formControlSettings.mmEntityId || formControlSettings.mmIsCustomLink}"
+   ng-click="onLinkClicked(formControlSettings.entityPage, formControlSettings.mmEntityIdKey)">
+    {{formControlSettings.mmLinkText || formControlSettings.mmModel}}
+</a>
+<a ng-if="formControlSettings.mmEntityId && !formControlSettings.mmIsCustomLink" class="mm-link-additional-text">{{formControlSettings.mmEntityId}}</a>
+<a class="si-edit-normal" ng-click="openToEdit(true)" ng-show="!formControlSettings.mmDisable"></a>
+
+

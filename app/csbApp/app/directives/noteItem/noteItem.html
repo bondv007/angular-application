@@ -1,0 +1,10 @@
+<div class="note"
+     id="{{noteItem.id}}"
+     ng-class="noteItem.className"
+     ng-style="noteItem.style"
+     data-drag="true"
+     jqyoui-draggable="elementDraggableSettings()">
+    <div class="inner">
+        <span ng-bind-html="noteItem.label"></span>
+    </div>
+</div>

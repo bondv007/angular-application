@@ -1,0 +1,4 @@
+<span ng-if="decisionType === 'Static Retargeting'">Static retargeting is not available because the advertiser that is assigned to this strategy does not have retargeting tags. Please delete this decision, and then select a different targeting decision.</span>
+<span ng-if="decisionType === 'DMP Targeting'">3rd party targeting is not available because the advertiser that is assigned to this strategy is not connected to an external data provider. Please delete this decision, and then select a different targeting decision.</span>
+<br><br>
+<a class="btn btn-primary" ng-click="deleteDecision()">Click to delete...</a>

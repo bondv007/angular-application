@@ -1,0 +1,20 @@
+<mm-shield mm-visible="showShield" class="fixed">
+    <div class="gridExpansionRow" ng-style="{ 'top' : topPos, 'left' : leftPos}">
+      <div class="expansionBg"></div>
+      <div class="expansionInner">
+        <h3>Expansion Data</h3>
+        <p>This is a test of ng-include.</p>
+        <ul>
+          <li ng-repeat="item in expandRow.popItems"><a>{{item.name}}</a></li>
+        </ul>
+        <p><span>{{row.entity['amount'] | currency}}</span></p>
+        <mm-row>
+          <mm-check-box mm-caption="Row Lock? (Click Me) ({{row.entity['rowLocked']}})"
+                        mm-model="row.entity['rowLocked']"
+                        mm-label-width="200"
+                        mm-layout-type="medium"
+                        mm-disabled="false"></mm-check-box>
+        </mm-row>
+      </div>
+    </div>
+</mm-shield>

@@ -1,0 +1,13 @@
+<div class="textBox"
+     id="{{textBoxItem.id}}"
+     ng-class="textBoxItem.className"
+     ng-style="textBoxItem.style"
+     data-drag="true"
+     jqyoui-draggable="elementDraggableSettings()"
+     class="">
+        <div class="inner" ng-class="{'sketching-tools-text-box-border': textBoxItem.showBorder,
+                                      'csb-selected-text-box-border': appService.selectedCanvasItem === textBoxItem && textBoxItem.showBorder
+                                    }">
+            <span ng-bind-html="textBoxItem.label"></span>
+        </div>
+</div>

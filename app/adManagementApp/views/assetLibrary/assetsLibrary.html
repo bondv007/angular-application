@@ -1,0 +1,61 @@
+<div class="asset-lib-master">
+  <!--Header section starts here-->
+  <div class="assets-lib-header" ng-include="'adManagementApp/views/assetLibrary/assetsLibraryHeader.html'"></div>
+  <!--Header section ends here-->
+  <div class="asset-library">
+    <div>
+      <!--Tree section starts here-->
+      <div class="side-tree-menu" id="tree_left_sidebar" ng-include="'adManagementApp/views/assetLibrary/assetsTree.html'"
+           ng-style="{'width':sideTreeWidth}" ng-class="{'close-menu':!commonModel.isShowTree}"></div>
+      <!--Tree section ends here-->
+      <div class="tiles-privew csbPreviewCls">
+        <!--asset content area-->
+        <div class="list-container" ng-style="{'width':assetContentAreaWidth}" style="display: inline-block;">
+
+          <div class="breadcrumb-menus">
+              <span ng-if="!commonModel.isSearchView" ng-repeat="f in commonModel.breadCrumbArray | reverse">
+                <a ng-click="breadCrumbNodeHandler(f)">{{f.name}} </a>
+                <i ng-if="$parent.commonModel.breadCrumbArray.length!=$index+1" class="fa fa-angle-double-right"></i>
+              </span>
+              <span ng-if="commonModel.isSearchView" >Search Results</span>
+            <div class="right-icons {{viewBy}}">
+              <a href="" class="icons assets-icon-Tile_view" ng-click="toggleViews('tile')" ng-class="{'active': viewBy=='tile'}" title="Tile View"></a>
+              <a href="" class="icons assets-icon-Thumbs_view" ng-click="toggleViews('list')" ng-class="{'active': viewBy=='list'}" title="List View"></a>
+              <a href="" class="icons assets-icon-List_view" ng-click="toggleViews('grid')" ng-class="{'active': viewBy=='grid'}" title="Grid View"></a>
+            </div>
+          </div>
+
+
+          <div ui-view class="assetContentContainer">
+            <div ng-if="!showGridView && showTileView && !showListView"
+                 ng-include="'adManagementApp/views/assetLibrary/assetsLibraryTileView.html'"></div>
+
+            <div ng-if="showGridView && !showTileView  && !showListView"
+                 ng-include="'adManagementApp/views/assetLibrary/assetsLibraryGridView.html'"></div>
+
+            <div ng-if="showListView && !showGridView && !showTileView"
+                 ng-include="'adManagementApp/views/assetLibrary/assetsLibraryListView.html'"></div>
+          </div>
+
+          <div class="bottom-details" ng-if="commonModel.filteredAssets.length > 0">
+            <span> Total assets: {{commonModel.totalServerItems}} <!--| Total folders: {{commonModel.filteredFolders.length}}--> | Selected assets: {{commonModel.checkedAssets.length}} </span>
+          </div>
+        </div>
+
+      </div>
+      <div id="sidebar-resizer"
+           resizer="vertical"
+           resizer-width="4"
+           resizer-left="#tree_left_sidebar"
+           resizer-left-width="sideTreeWidth"
+           resizer-right-width="assetContentAreaWidth"
+           resizer-right=".list-container"
+           resizer-max="48"
+           resizer-min="10">
+      </div>
+
+      <div class="clear"></div>
+    </div>
+  </div>
+</div>
+

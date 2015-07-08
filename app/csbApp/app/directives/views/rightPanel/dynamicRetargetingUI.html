@@ -1,0 +1,29 @@
+<div class="mdxUI mdxUIContainer" ng-class="{ 'active' : showUI, 'mdx3': csb.config.env == 'mdx3' }">
+    <div class="header">
+        <h1>Dynamic Re-targeting</h1>
+    </div>
+
+    <div class="body-wrapper" ng-style="csb.config.panelHeight">
+
+        <div class="body">
+            <div class="form-group col-md-12">
+                <label>Add dynamic re-targeting values</label>
+                <p class="text-muted">Enter values separated by commas (,) semi-colons (;) tab (TAB), or a new line (ENTER).</p>
+                <textarea class="form-control" rows="5"></textarea>
+                <p class="text-primary">NOTE: Target values are not case-sensitive, and have a character limit of 100 characters.</p>
+            </div>
+            <div class="col-md-12">
+                <label><input type="checkbox"> Auto create target audience for each dynamic re-targeting value above </label>
+            </div>
+
+            <div class="footer">
+                <div class="form-buttons pull-right">
+                    <button class="btn mdx-btn mdx-save-btn">Save</button>
+                    <button class="btn mdx-btn mdx-close-btn" ng-click="closePanelUi()">Close</button>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+</div>

@@ -1,0 +1,37 @@
+<div
+		ng-bind-html="'Note : This action will update the selected Delivery Groups rotation to Time-Based, and will automatically create Sub Delivery Groups to support the update. <a class=\'linkStyle\'>Learn more</a>' | T"></div>
+<br/>
+<mm-row>
+	<mm-single-date-picker
+			mm-model="subGroup.startDate"
+			mm-max-date="subGroup.endDate"
+			mm-min-date="toDay"
+			mm-error="mmErrorStartDate"
+			mm-caption="Start Date"
+			mm-is-required="true"></mm-single-date-picker>
+</mm-row>
+<mm-row>
+	<mm-check-box style="position: relative; bottom:2px"
+			ng-click="subGroup.endDate = (disableEndDate)? subGroup.endDate : null;"
+			mm-model="disableEndDate"
+			mm-layout-type="custom"
+			mm-label-width="0"
+			mm-custom-control-width="20">
+	</mm-check-box>
+	<mm-single-date-picker
+			mm-model="subGroup.endDate"
+			mm-min-date="subGroup.startDate"
+			mm-error="mmErrorEndDate"
+			mm-caption="End Date" mm-disable="!disableEndDate"></mm-single-date-picker>
+</mm-row>
+<mm-row>
+	<mm-text
+			mm-label-width="94"
+			mm-caption="Swap Name"
+			mm-is-required="true"
+			mm-model="subGroup.name"
+			mm-show-edit-mode="essentialArea.dgName.open"
+			mm-placeholder="Enter swap name"
+			mm-error="sgNameError.text"
+			text-tooltip="Enter name"></mm-text>
+</mm-row>

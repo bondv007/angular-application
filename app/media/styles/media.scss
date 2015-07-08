@@ -1,0 +1,23 @@
+.brandsCentralLink{
+  color: $cMain;
+  font-family: arial, sans-serif;
+  font-size: 13px;
+  position: relative;
+  top: 5px;
+  &:hover {
+    color: $cMain;
+    text-decoration: underline;
+    cursor: pointer;
+  }
+}
+
+.noneBrandsLink{
+  color: $cSecondary;
+  &:hover {
+    color: $cSecondary;
+  }
+}
+
+.campaignInfoBox{
+  width: 70%;
+}

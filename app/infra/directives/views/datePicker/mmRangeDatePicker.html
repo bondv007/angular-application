@@ -1,0 +1,15 @@
+<div class="col-lg-12">
+  <mm-single-date-picker id="{{mmId + '_'}}dpStartDate"
+                         mm-model="mmModelStartDate"
+                         mm-is-required="{{mmIsRequired}}"
+                         mm-label-width="{{labelWidth}}"
+                         mm-caption="{{mmCaptionStartDate}}"
+                         mm-layout-type="medium"></mm-single-date-picker>
+  <mm-single-date-picker id="{{mmId + '_'}}dpEndDate"
+                         mm-model="mmModelEndDate"
+                         mm-is-required="{{mmIsRequired}}"
+                         mm-label-width="{{labelWidth}}"
+                         mm-caption="{{mmCaptionEndDate}}"
+                         mm-layout-type="medium"></mm-single-date-picker>
+</div>
+<mm-error-div class="dpErrorText" mm-min-width="mmMinWidth" error-text="mmError.text"></mm-error-div>

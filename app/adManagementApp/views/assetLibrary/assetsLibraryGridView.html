@@ -1,0 +1,52 @@
+<div class="inner-container grid-container">
+  <mm-grid
+          ng-if="!commonModel.isSearchView"
+          id="contentGrid"
+          items="commonModel.allData"
+          cols="columnDefs"
+          selected-items="commonModel.checkedData"
+          is-cell-edit="false"
+          show-selection-checkbox="true"
+          is-single-select="false"
+          enableRowSelection="false"
+          is-column-reorder="false"
+          is-central-grid="false"
+          is-show-menu="false"
+          show-filter="false"
+          enable-column-resize="false"
+          is-sort="true"
+          is-column-resize="false"
+          db-click-handler="dblClick"
+          is-infinite-scroll="true"
+          page-size="pagingOptions.pageSize"
+          current-page="pagingOptions.currentPage"
+          paging-handler="scrollBottomEvent"
+          selection-checkbox-column-width="47">
+  </mm-grid>
+
+  <mm-grid
+      ng-if="commonModel.isSearchView"
+      id="contentGrid"
+      items="commonModel.filteredAssets"
+      cols="columnDefs"
+      selected-items=""
+      is-cell-edit="false"
+      show-selection-checkbox="true"
+      is-single-select="false"
+      enableRowSelection="false"
+      is-column-reorder="false"
+      is-central-grid="false"
+      is-show-menu="false"
+      show-filter="false"
+      enableColumnResize="false"
+      is-sort="true"
+      is-column-resize="false"
+      db-click-handler="dblClick"
+      is-infinite-scroll="true"
+      page-size="pagingOptions.pageSize"
+      current-page="pagingOptions.currentPage"
+      paging-handler="scrollBottomEvent"
+      selection-checkbox-column-width="47">
+  </mm-grid>
+</div>
+<!--<div ng-if="commonModel.filteredAssets.length==0 && showGridView && !commonModel.isSearchView" class="centralColumnResizePosition" ng-include="'adManagementApp/views/assetLibrary/assetsLibraryEmptyDiv.html'"></div>-->

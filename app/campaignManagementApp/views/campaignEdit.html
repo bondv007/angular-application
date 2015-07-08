@@ -1,0 +1,52 @@
+
+		<!--fields-->
+		<div style="padding-top: 40px">
+			<div style="float: left;width: 55%">
+				<div style="float: left;width: 50%">
+					<table cellpadding="5">
+						<!--Campaign Name-->
+						<tr>
+							<td style="white-space: nowrap"><label for="campaignName">* Name</label></td>
+							<td>
+								<a editable-text="campaign.name" e-required e-maxlength="25" e-size="30"
+									 e-placeholder="Enter Name">
+									{{ campaign.name || "Enter name" }}
+								</a>
+							</td>
+						</tr>
+						<tr>
+							<td style="white-space: nowrap"><label>Advertiser</label></td>
+							<td>
+								<a editable-text="advertiser" e-required e-maxlength="25" e-size="30"
+									 e-placeholder="Enter advertiser">
+									{{ advertiser || "Enter advertiser" }}
+								</a>
+							</td>
+						</tr>
+						<!--Start Date-->
+						<tr>
+							<td style="white-space: nowrap"><label for="budget">Start Date</label></td>
+							<td>
+								<a editable-date="campaign.startDate" e-maxlength="25" e-size="30" e-placeholder="empty">
+									{{campaign.startDate || "empty" }}
+								</a>
+							</td>
+						</tr>
+						<!--End Date-->
+						<tr>
+							<td style="white-space: nowrap"><label for="budget">End Date</label></td>
+							<td>
+								<a editable-date="campaign.endDate" e-maxlength="25" e-size="30" e-placeholder="empty">
+									{{ campaign.endDate || "empty" }}
+								</a>
+							</td>
+						</tr>
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="col-md-5">
+	<alert ng-repeat="alert in alerts" type="alert.type" close="alerts.length = 0">{{alert.msg}}</alert>
+</div>

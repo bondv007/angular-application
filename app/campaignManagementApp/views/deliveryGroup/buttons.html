@@ -1,0 +1,8 @@
+<div class="wrapButtons">
+	<button type="button" class="treeButton btn btn-xs" ng-click="preview()" ng-bind="'dg_tree_buttons_preview' | T"></button>
+	<button type="button" class="treeButton btn btn-xs" ng-click="createSubGroup()" ng-bind="'dg_tree_buttons_new_subgroup' | T"></button>
+	<button style="min-width: 110px" type="button" class="treeButton btn btn-xs" ng-click="enableDisableAds()"
+					ng-disabled="buttonState.text == 'Disable/Enable'" ng-bind="buttonState.text | T">
+	</button>
+	<button type="button" class="treeButton btn btn-xs" ng-click="remove()" ng-bind="'dg_tree_buttons_remove' | T"></button>
+</div>

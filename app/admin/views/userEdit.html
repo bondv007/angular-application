@@ -1,0 +1,141 @@
+<div ng-show="pageReady" class="editContainer">
+  <mm-row>
+    <div class="mm-entity-fields-container-single">
+      <mm-row ng-if="!isModal">
+        <mm-label ng-if="isEditMode || isInContext"
+                  mm-model="editObject.accountName"
+                  mm-label-width="{{width}}"
+                  mm-layout-type="medium"
+                  mm-caption="Account Name">
+        </mm-label>
+        <mm-drop-down ng-if="!isEditMode && !isInContext"
+                      mm-is-required="true"
+                      mm-error="accountNameError.text"
+                      mm-caption="Account Name"
+                      mm-data-model="accounts.list"
+                      lazy-type="lazyTypeParams"
+                      mm-is-edit-mode="isEditMode"
+                      mm-label-width="{{width}}"
+                      mm-layout-type="medium"
+                      mm-model="editObject.accountId"
+                      show-search-box
+                      mm-select-change-func="onAccountNameSelected()"
+                      mm-disable="disableScreen"></mm-drop-down>
+        <!--lazy-type="'accounts'" BUG in lazy-type at mm-dropdown-->
+      </mm-row>
+      <mm-row>
+        <mm-text
+          mm-id="userNameTextBox"
+					mm-model="editObject.name"
+          mm-placeholder="Enter full name"
+          mm-error="nameError.text"
+          mm-caption="Name"
+          mm-show-new-mode="true"
+          mm-is-required="true"
+          mm-is-edit-mode="isEditMode"
+          text-tooltip="Enter name"
+          mm-label-width="{{width}}"
+          mm-layout-type="medium"
+          tooltip-placement="right"
+          mm-change="onNameChanged()"
+          mm-disable="disableScreen">
+        </mm-text>
+      </mm-row>
+      <mm-row>
+        <mm-text ng-if="!isEditMode || !!isModal"
+                 mm-model="editObject.username"
+                 mm-placeholder="Enter user login name"
+                 mm-error="userNameError.text"
+                 mm-caption="Username"
+                 mm-is-edit-mode="isEditMode"
+                 mm-is-required="true"
+                 mm-label-width="{{width}}"
+                 mm-layout-type="medium"
+                 text-tooltip="Username"
+                 tooltip-placement="right"
+                 mm-change="onUserNameChanged()"
+                 mm-disable="disableScreen"></mm-text>
+        <mm-label ng-if="isEditMode && !isModal"
+                  mm-model="editObject.username"
+                  mm-label-width="{{width}}"
+                  mm-layout-type="medium"
+                  mm-caption="Username"></mm-label>
+        <a ng-click="openChangePasswordDialog()" ng-show="isEditMode&&!isModal">Change Password</a>
+      </mm-row>
+      <mm-row>
+        <mm-text ng-if="!isEditMode || !!isModal"
+                 mm-model="editObject.password"
+                 mm-placeholder="Enter password"
+                 mm-error="passwordError.text"
+                 mm-caption="Password" mm-is-required="true"
+                 mm-is-edit-mode="isEditMode"
+                 text-tooltip="Password"
+                 mm-label-width="{{width}}"
+                 mm-layout-type="medium"
+                 tooltip-placement="right"
+                 mm-change="onPasswordChanged()"
+                 mm-disable="disableScreen"></mm-text>
+        <mm-label ng-if="isEditMode && !isModal"
+                  mm-model="editObject.password"
+                  mm-label-width="{{width}}"
+                  mm-layout-type="medium"
+                  mm-caption="Password"></mm-label>
+      </mm-row>
+      <mm-row>
+        <mm-text
+          mm-model="editObject.email"
+          mm-placeholder="Enter email"
+          mm-error="emailError.text"
+          mm-label-width="{{width}}"
+          mm-layout-type="medium"
+          mm-caption="Email"
+          mm-is-edit-mode="isEditMode"
+          mm-is-required="true"
+          text-tooltip="Email"
+          tooltip-placement="right"
+          mm-change="onEmailChanged()"
+          mm-disable="disableScreen">
+        </mm-text>
+      </mm-row>
+      <mm-row>
+        <mm-text
+          mm-model="editObject.phone"
+          mm-placeholder="Enter phone"
+          mm-is-edit-mode="isEditMode"
+          mm-caption="Phone"
+          mm-label-width="{{width}}"
+          mm-layout-type="medium"
+          mm-is-required="false" t
+          ext-tooltip="Phone"
+          tooltip-placement="right"
+          mm-disable="disableScreen">
+        </mm-text>
+      </mm-row>
+      <span ng-if="!isModal">
+                <mm-row>
+									<mm-check-box mm-model="editObject.platformUser"
+																mm-label-width="{{width}}"
+																mm-layout-type="medium"
+																mm-caption="Sizmek Roles"
+																mm-description="{{superUserName}}"
+																mm-change="onPlatformUserChanged()"
+																mm-disable="!permissions.entity.createEditAdvanced"></mm-check-box>
+								</mm-row>
+                <mm-row>
+									<mm-check-box mm-model="editObject.salesManager"
+																mm-label-width="{{width}}"
+																mm-layout-type="medium"
+																mm-description="Sales Manager"
+																mm-disable="!permissions.entity.createEditAdvanced"></mm-check-box>
+								</mm-row>
+                <mm-row>
+									<mm-check-box mm-model="editObject.clientServices"
+																mm-label-width="{{width}}"
+																mm-layout-type="medium"
+																mm-description="Client Services"
+																mm-disable="!permissions.entity.createEditAdvanced"></mm-check-box>
+								</mm-row>
+            </span>
+    </div>
+  </mm-row>
+</div>

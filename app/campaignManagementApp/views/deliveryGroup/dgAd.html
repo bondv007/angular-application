@@ -1,0 +1,26 @@
+	<div class="dgAd" ng-style="{opacity : ((container.rotationSetting && !container.rotationSetting.enabled) && '0.6') || '1'}">
+		<!--Ad Rotation-->
+    <table style="width: 100%; height:50%">
+      <tr style="width: 100%">
+        <td style="width: 50%">
+          <span ng-if="container.showRotation" ng-include="'campaignManagementApp/views/deliveryGroup/ads/area/active/rotationType/dgRotationDecision.html'"></span>
+        </td>
+        <td ng-if="container.rotationSetting" class="enableStatus">
+					<span class="adStatusText" ng-bind="container.rotationSetting.enabled? 'Enabled':'Disabled'|T"></span>
+        </td>
+      </tr>
+    </table>
+		<div class="adDetails">
+			<table>
+				<tr>
+					<td><input type="checkbox"
+                     ng-model="container.selected"
+                     ng-change="onDgAdClick(container)"/>
+          </td>
+					<td style="padding-top: 6px">{{container.masterAdId}}</td>
+					<td style="padding-top: 6px">|</td>
+					<td style="padding-top: 6px" class="dgAdText">{{container.name}}</td>
+				</tr>
+			</table>
+		</div>
+	</div>

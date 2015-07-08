@@ -1,0 +1,16 @@
+<div class="footer">
+	<div class="rightButtons">
+		<span ng-click="onButtonClick(button)" ng-if="button.display" ng-repeat="button in buttons">
+			<span ng-class="{'wizardButtonContainer':!button.disable, 'wizardButtonContainerDisableMode':button.disable}">
+				<button
+						type="button"
+						class="mm-btn-discard wizardButton"
+						ng-class="{'primaryButton':button.isPrimary, 'secondaryButton':!button.isPrimary, 'disabledButton':button.disable}">
+					<span ng-if="button.isLeftIcon != 'undefined' && button.isLeftIcon" class="{{button.cssIconName}}"></span>
+					<span ng-bind="button.name | T"></span>
+					<span ng-if="button.isLeftIcon != 'undefined' && !button.isLeftIcon" class="{{button.cssIconName}}"></span>
+				</button>
+			</span>
+		</span>
+	</div>
+</div>

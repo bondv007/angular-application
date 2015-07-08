@@ -1,0 +1,84 @@
+.modal-body.attach-advertiser .tab-content {
+  height: 280px;
+  overflow: auto;
+}
+.modal-header.assign-campaign{
+  height: 50px;
+  width: 800px;
+}
+
+.modal-body{
+  .assign-campaign-grid{
+    max-height: 300px;
+    width: 800px;
+    overflow-y: auto;
+    overflow-x: hidden;
+  }
+}
+
+.modal-footer.assign-campaign{
+  height: 80px;
+  width: 800px;
+}
+
+.site-settings.default-tag-types{
+  margin-top : 10px;
+}
+
+.site-settings.check-box{
+  margin-top : 6px;
+  display: inline-block;
+}
+
+@mixin adminLink{
+  color: $cMain;
+  font-family: arial, sans-serif;
+  font-size: 13px;
+  top: 15px;
+  &:hover {
+    color: $cMain;
+    text-decoration: underline;
+    cursor: pointer;
+  }
+}
+
+.newCreativeAgencyLink{
+  position: relative;
+  @include adminLink;
+}
+
+.removeCreativeAgencyLink{
+  float: right;
+  position: initial;
+  padding-top: 5px;
+  //padding-bottom: 20px;
+  @include adminLink;
+}
+
+.centralEntitylLink{
+  color: $cMain;
+  font-family: arial, sans-serif;
+  font-size: 13px;
+  position: relative;
+  top: 5px;
+  &:hover {
+    color: $cMain;
+    text-decoration: underline;
+    cursor: pointer;
+  }
+}
+
+.noneEntityLink{
+  color: $cSecondary;
+  &:hover {
+    color: $cSecondary;
+  }
+}
+
+.infoIconAnalytics{
+  margin-top: 7px;
+  float: left;
+  width: 16px;
+  height: 16px;
+  background-image: url(../images/i_icon.png);
+}

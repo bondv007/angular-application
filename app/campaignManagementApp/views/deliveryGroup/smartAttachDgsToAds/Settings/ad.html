@@ -1,0 +1,30 @@
+<div class="dgAd" ng-repeat="ad in subGroup.subContainers">
+	<span ng-if="sdButtonName != strCreateSubGroup" ng-include="'campaignManagementApp/views/deliveryGroup/smartAttachDgsToAds/Settings/dgRotationDecision.html'"></span>
+	<table class="adMargin">
+		<tr>
+			<td>
+				<img width="30px" height="50px" ng-src="{{ad.thumbnail}}" src=""/>
+			</td>
+			<td>
+				<table>
+					<tr>
+						<td colspan="3">
+							<table>
+								<tr>
+									<td>{{ad.masterAdId}}</td>
+									<td>&nbsp;|&nbsp;</td>
+									<td class="cellEllipsis">{{ad.name}}</td>
+								</tr>
+							</table>
+						</td>
+					</tr>
+					<tr>
+						<td>{{mapAdFormats[ad.adType] | T}}</td>
+						<td>&nbsp;&nbsp;{{placementTypes[ mapAdFormatToPlacementType[mapAdFormats[ad.adType]]] | T}}</td>
+						<td >&nbsp;&nbsp;{{ad.dimensions}}</td>
+					</tr>
+				</table>
+			</td>
+		</tr>
+	</table>
+</div>

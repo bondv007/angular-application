@@ -1,0 +1,49 @@
+<div style="background-color: rgb(205, 202, 212);">
+	<div class="advancedSearchButtonCenterlize advancedSearchButtons">
+		<div style="height: 100%;padding-left: 10px;">
+			<div class="btn-group">
+				<button type="button" class="btn btn-default" ui-sref="spa.userEdit({userId: 0})">Add User</button>
+			</div>
+		</div>
+	</div>
+</div>
+<table class="table table-hover table-striped" style="table-layout:fixed">
+	<thead>
+	<tr>
+		<th style="width: 20px;"></th>
+		<th style="width: 20px;"></th>
+		<th style="width: 50px;">
+			<a class="click" ng-click="orderBy('id')"># <i ng-show="orderObj==='id'" class="glyphicon" ng-class="{false: 'glyphicon-chevron-up', true: 'glyphicon-chevron-down'}[reversed]"></i></a>
+		</th>
+		<th>
+			<a class="click" ng-click="orderBy('name')">{{'Name' | T}} <i ng-show="orderObj==='name'" class="glyphicon" ng-class="{false: 'glyphicon-chevron-up', true: 'glyphicon-chevron-down'}[reversed]"></i></a>
+		</th>
+		<th>
+			<a class="click" ng-click="orderBy('accountName')">{{'Account Name' | T}} <i ng-show="orderObj==='accountName'" class="glyphicon" ng-class="{false: 'glyphicon-chevron-up', true: 'glyphicon-chevron-down'}[reversed]"></i></a>
+		</th>
+		<th>
+			<a class="click" ng-click="orderBy('address')">Address <i ng-show="orderObj==='address'" class="glyphicon" ng-class="{false: 'glyphicon-chevron-up', true: 'glyphicon-chevron-down'}[reversed]"></i></a>
+		</th>
+		<th>
+			<a class="click" ng-click="orderBy('phon')">Phone <i ng-show="orderObj==='phon'" class="glyphicon" ng-class="{false: 'glyphicon-chevron-up', true: 'glyphicon-chevron-down'}[reversed]"></i></a>
+		</th>
+		<th>
+			<a class="click" ng-click="orderBy('status')">Status <i ng-show="orderObj==='status'" class="glyphicon" ng-class="{false: 'glyphicon-chevron-up', true: 'glyphicon-chevron-down'}[reversed]"></i></a>
+		</th>
+	</tr>
+	</thead>
+	<tbody>
+	<tr ng-repeat="user in users | orderBy: usersOrderBy: reversed">
+		<td><i class="click glyphicon glyphicon-trash" ng-click="deleteUser(user)"></i></td>
+		<td><i class="click glyphicon glyphicon-edit" ui-sref="spa.userEdit({userId: user.id})"></i></td>
+		<td>{{user.id}}</td>
+		<td><a>{{user.name}}</a></td>
+		<td><a>{{getAccountById(user.accountId).name}}</a>
+		<td><a>{{user.address}}</a></td>
+		<td><a>{{user.phon}}</a></td>
+		<td><a>{{user.status}}</a></td>
+	</tr>
+	</tbody>
+</table>
+
+<wave-spinner ng-show="showSPinner"></wave-spinner>

@@ -1,0 +1,16 @@
+<div class="loginBackground">
+  <div class="loginFormContainer">
+    <div class="logo"></div>
+    <div class="checkYourMailBoxSign">Check Your Mailbox</div>
+  </div>
+</div>
+<span class="contactBar">
+  <a href="{{supportLink}}" class="contactTitle">
+    Contact Support
+  </a>
+  <span class="contactDetails" ng-repeat="contact in contacts">
+    <span class="contactName">  {{contact.region}}</span>
+    <span>{{contact.phone}}</span>
+    <span class="contactDelimiter" ng-show=" ! $last ">|</span>
+  </span>
+</span>

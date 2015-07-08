@@ -1,0 +1,22 @@
+
+<div ng-if="feature.advertiserTags && permission.view">
+    <central central-data-object="centralDataObject" isAdvertiser="false"  groupedColumn=true entity-id="entityId" central-main-entity-type="versaTag"></central>
+</div>
+
+<div ng-if="feature.advertiserTags && permission.view === false">
+    <mm-row>
+        <mm-one-column>
+            <h1>Permission Denied</h1>
+            <p>We're sorry, you do not have permission to view this page. Please contact your account administrator if you think this is an error.</p>
+        </mm-one-column>
+    </mm-row>
+</div>
+
+<div ng-if="feature.advertiserTags === false">
+    <mm-row>
+        <mm-one-column>
+            <h1>This feauture is unavailable</h1>
+            <p>We're sorry, this feature is not turned on for your account. Please contact your account administrator if you think this is an error.</p>
+        </mm-one-column>
+    </mm-row>
+</div>

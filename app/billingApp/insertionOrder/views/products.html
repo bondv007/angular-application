@@ -1,0 +1,58 @@
+<div class="ioEditTitle">
+    <p><span>PRODUCTS</span></p>
+</div>
+
+<div class="ioEditContent">
+    <rate-products
+            title="Premium CPM and Tracking Products"
+            width="400"
+            columns="gridColumns.rateProductColumns"
+            items="gridItems.rateProductItems.partOfIO"></rate-products>
+
+    <tier-products
+            products="ioDetails.adSizeProducts"
+            grid-cols="gridColumns.adSizeProductColumns"
+            grid-items="gridItems.adSizeProductItems"
+            width="310"
+            part-of-io="true"></tier-products>
+    <p class="ioEditSubTitleGroup" ng-if="gridItems.volumeProductItems.length > 0 ||
+     gridItems.volumeAdSizeProductItems.length > 0 ||
+     gridItems.revenueProductItems.length > 0 ||
+     gridItems.revenueAdSizeProductItems.length > 0">
+        <span>VOLUME BASED AND REVENUE BASED PRODUCTS</span>
+    </p>
+
+    <tier-products
+        products="ioDetails.volumeProducts"
+        grid-cols="gridColumns.volumeProductColumns"
+        grid-items="gridItems.volumeProductItems"
+        width="310"
+        part-of-io="true"></tier-products>
+
+    <tier-products
+            products="ioDetails.volumeAdSizeProducts"
+            grid-cols="gridColumns.volumeAdSizeProductColumns"
+            grid-items="gridItems.volumeAdSizeProductItems"
+            width="700"
+            part-of-io="true"></tier-products>
+
+    <tier-products
+            products="ioDetails.revenueProducts"
+            grid-cols="gridColumns.revenueProductColumns"
+            grid-items="gridItems.revenueProductItems"
+            width="310"
+            part-of-io="true"></tier-products>
+
+    <tier-products
+            products="ioDetails.revenueAdSizeProducts"
+            grid-cols="gridColumns.revenueAdSizeProductColumns"
+            grid-items="gridItems.revenueAdSizeProductItems"
+            width="700"
+            part-of-io="true"></tier-products>
+
+    <rate-products
+            title="Recurring Charges"
+            width="gridSize.recurringChargeProducts.width"
+            columns="gridColumns.recurringChargeColumns"
+            items="gridItems.recurringChargeItems"></rate-products>
+</div>

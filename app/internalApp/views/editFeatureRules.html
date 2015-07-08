@@ -1,0 +1,41 @@
+<mm-grid
+    items="rules"
+    cols="columnDefs"
+    selected-items="item.selectedItems"
+    filtered-items="filteredItems"
+    is-cell-edit="true"
+    is-single-select="false"
+    is-sort="true"
+    show-footer="true"
+    is-groupable="true"
+    show-selection-checkbox="true"
+    show-filter="true"
+    enable-column-resize="true"
+    is-column-reorder="true"
+    is-column-freeze="true"
+    is-show-menu="true"
+    save-data="saveData"
+    grid-height="200"
+    grid-width="750"
+    is-central-grid="false"
+    is-grid-toolbar="false"
+    grid-title="MM Grid"
+    grid-button-actions="gridButtonActions"
+    grid-select-actions="gridSelectActions">
+</mm-grid>
+<h4>Default Rule</h4>
+<mm-row>
+      <mm-drop-down mm-caption="Feature is "
+                      mm-model="defaultRule.isStatusIsEnabled"
+                      mm-data-model="defaultRuleOptions"
+                      mm-error="sitesError.text"
+                      mm-label-width="65"
+                      mm-layout-type="custom"
+                      mm-custom-control-width="120"></mm-drop-down>
+</mm-row>
+<mm-row>
+  <mm-label mm-caption="*Rules above override the default rule"
+            mm-label-width="300"
+            mm-layout-type="custom"
+            mm-custom-control-width="300"></mm-label>
+</mm-row>

@@ -1,0 +1,64 @@
+<mm-row>
+	<div class="mm-entity-fields-container-single">
+		<mm-row>
+			<mm-text mm-model="siteEdit.customPublisherParameter"
+							 mm-placeholder="Enter Parameter"
+							 mm-error="validation.customPublisherParameter"
+							 mm-caption="Custom Publisher Parameter"
+							 mm-is-required="false"
+							 mm-is-edit-mode="isEditMode"
+							 mm-change="onPublisherParamChanged()"
+							 mm-label-width="{{trackingTargetingTabLabelWidth}}"
+							 mm-layout-type="custom"
+							 mm-custom-control-width="215"
+               mm-tab-index="11">
+			</mm-text>
+		</mm-row>
+		<mm-row>
+			<mm-text mm-model="siteEdit.servingSettings.delimiterSiteKeywords"
+							 mm-placeholder="Enter Delimiters"
+							 mm-error="validation.delimitersSiteKeywords"
+							 mm-caption="Delimiters For Parsing Site Keywords"
+							 mm-is-required="false"
+							 mm-is-edit-mode="isEditMode"
+							 mm-change="onDelimiterSiteKeywordsChanged()"
+							 mm-label-width="{{trackingTargetingTabLabelWidth}}"
+							 mm-layout-type="custom"
+							 mm-custom-control-width="215"
+               mm-tab-index="12">
+			</mm-text>
+		</mm-row>
+		<mm-row>
+				<mm-check-box
+						mm-model="siteEdit.collectKeywordsData"
+						mm-description="Collect Publisher Keywords Data"
+						mm-caption="Publisher Keywords Data"
+						mm-layout-type="medium"
+						mm-label-width="{{trackingTargetingTabLabelWidth}}"
+            mm-tab-index="13"></mm-check-box>
+		</mm-row>
+		<mm-mini-section
+				mm-is-modal="'false'"
+				mm-caption="'Tracking Pixel'"
+				mm-start-open="settingsToggelsStartOpen.trackingPixelMiniSection">
+			<mm-row>
+					<mm-check-box
+							mm-model="siteEdit.servingSettings.generateImgTagByDefault"
+							mm-caption="<IMG> Tag By Default"
+							mm-description="Generate <IMG> Tag By Default"
+							mm-layout-type="medium"
+							mm-label-width="232"
+              mm-tab-index="14"></mm-check-box>
+			</mm-row>
+			<mm-row>
+					<mm-check-box
+							mm-model="siteEdit.servingSettings.impressionTrackerResponse200LengthIsZero"
+							mm-caption="Impression Tracker Response"
+							mm-description="Is 200 (OK) With Length Zero"
+							mm-layout-type="medium"
+							mm-label-width="232"
+              mm-tab-index="15"></mm-check-box><!--</div>-->
+			</mm-row>
+		</mm-mini-section>
+	</div>
+</mm-row>

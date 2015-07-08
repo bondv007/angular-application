@@ -1,0 +1,153 @@
+<div class="settingsContainer">
+  <mm-mini-section
+    mm-id="settings_{{mmId}}"
+    mm-stop-animation="false"
+    ng-init="miniSectionSettings = {title:'dg_Settings',startOpen:false,isModal:true}"
+    mm-caption="miniSectionSettings.title" mm-start-open="miniSectionSettings.startOpen"
+    mm-is-modal="miniSectionSettings.isModal">
+    <tabset ng-if="miniSectionSettings.startOpen" justified="false">
+      <!--General-->
+      <tab select="toggleDG(false)" id="tab_dg_General_{{mmId}}">
+        <tab-heading>{{"dg_General"|T}}</tab-heading>
+        <!--Default Serve-->
+        <mm-row>
+          <div class="mm-entity-fields-container-single">
+            <mm-row>
+              <mm-radiobutton
+                mm-id="dg_Default_Serve_{{mmId}}"
+                mm-caption="dg_Default_Serve"
+                mm-label-width="100"
+                mm-model="defaultServeOptions"
+                mm-vertical="true"
+                mm-change="defaultServeSelectedItem ? unCheckALlDefaultServeItems():null"
+                mm-selected="deliveryGroup.servingSetting.serveDefaultImage"
+                mm-disable="!deliveryGroup.isSupportedDg"></mm-radiobutton>
+            </mm-row>
+          </div>
+        </mm-row>
+      </tab>
+
+      <!--Frequency Capping-->
+      <tab select="toggleDG(true)" id="dg_Frequency_Capping_{{mmId}}"
+           class="{{!errorMinimumTimeBetweenAds.text || errorMinimumTimeBetweenAds.text == '' ? '' : 'tabWithErrors'}}">
+        <tab-heading>{{"dg_Frequency_Capping"|T}}</tab-heading>
+
+        <!--Impressions per User-->
+        <mm-row>
+          <div class="mm-entity-fields-container-single">
+            <mm-row>
+              <mm-check-box
+                mm-id="settings_impressions_per_user_checkbox_{{mmId}}"
+                mm-label-width="120"
+                mm-caption="dg_Impressions"
+                mm-description="Limit to"
+                mm-model="frequencyCapping.impressionsPerUser"
+                mm-layout-type="custom"
+                mm-custom-control-width="100"
+                mm-change="onImpressionsPerUserClick()"
+                mm-disable="!deliveryGroup.isSupportedDg">
+              </mm-check-box>
+              <mm-drop-down
+                mm-id="settings_impressions_per_user_dropdown_{{mmId}}"
+                mm-disable="!deliveryGroup.isSupportedDg || !frequencyCapping.impressionsPerUser"
+                mm-layout-type="custom"
+                mm-custom-control-width="90"
+                mm-label-width="0"
+                mm-show-label="false"
+                mm-data-model="impressionsPerUserDD"
+                mm-model="deliveryGroup.servingSetting.impressionsPerUser"></mm-drop-down>
+              <mm-label
+                mm-model="'per user'"
+                mm-layout-type="custom"
+                mm-custom-control-width="100"
+                mm-label-width="0"
+                mm-show-label="false"></mm-label>
+            </mm-row>
+          </div>
+        </mm-row>
+        <!--Impressions per User per Day-->
+        <mm-row>
+          <div class="mm-entity-fields-container-single">
+            <mm-row>
+              <mm-check-box
+                mm-id="settings_impressions_per_day_checkbox_{{mmId}}"
+                mm-label-width="120"
+                mm-caption=""
+                mm-description="Limit to"
+                mm-layout-type="custom"
+                mm-custom-control-width="100"
+                mm-model="frequencyCapping.impressionsPerDay"
+                mm-change="onImpressionsPerDayClick()"
+                mm-disable="!deliveryGroup.isSupportedDg"></mm-check-box>
+              <mm-drop-down
+                mm-id="settings_impressions_per_day_dropdown_{{mmId}}"
+                mm-disable=" !deliveryGroup.isSupportedDg || !frequencyCapping.impressionsPerDay"
+                mm-layout-type="custom"
+                mm-custom-control-width="90"
+                mm-show-label="false"
+                mm-label-width="0"
+                mm-data-model="impressionsPerUserPerDayDD"
+                mm-model="deliveryGroup.servingSetting.impressionsPerDay"></mm-drop-down>
+              <mm-label
+                mm-model="'per user per day'"
+                mm-layout-type="custom"
+                mm-custom-control-width="120"
+                mm-label-width="0"
+                mm-show-label="false"></mm-label>
+            </mm-row>
+          </div>
+        </mm-row>
+        <!--Minimum Time Between Ads-->
+        <mm-row>
+          <div class="mm-entity-fields-container-single">
+            <mm-row>
+              <mm-check-box
+                mm-id="settings_minimum_time_between_ads_checkbox_{{mmId}}"
+                mm-label-width="120"
+                mm-caption="dg_Time_Between_Ads"
+                mm-model="frequencyCapping.minimumTimeBetweenAds"
+                mm-layout-type="custom"
+                mm-custom-control-width="190"
+                mm-change="onTimeBetweenAdsClick()"
+                mm-description="Minimum time between ads"
+                mm-disable="!deliveryGroup.isSupportedDg"></mm-check-box>
+              <mm-text
+                mm-id="settings_time_between_ads_textbox_{{mmId}}"
+                mm-model="deliveryGroup.servingSetting.timeBetweenAds"
+                mm-label-width="0"
+                mm-show-label="false"
+                mm-error="deliveryGroup.errors.errorMinimumTimeBetweenAds.text"
+                mm-layout-type="custom"
+                mm-custom-control-width="70"
+                mm-disable="!deliveryGroup.isSupportedDg || !frequencyCapping.minimumTimeBetweenAds"></mm-text>
+              <mm-drop-down
+                mm-id="settings_minimum_time_between_ads_dropdownbox_{{mmId}}"
+                mm-label-width="0"
+                mm-show-label="false"
+                mm-layout-type="small"
+                mm-data-model="timeOptions"
+                mm-model="deliveryGroup.timeBetweenAds.selectedTimeUnit.id"
+                mm-disable="!deliveryGroup.isSupportedDg || !frequencyCapping.minimumTimeBetweenAds"></mm-drop-down>
+            </mm-row>
+          </div>
+        </mm-row>
+        <!--Frequency Capping Level-->
+        <mm-row>
+          <div class="mm-entity-fields-container-single">
+            <mm-row>
+              <mm-radiobutton
+                mm-id="dg_Frequency_Capping_Level_{{mmId}}"
+                mm-caption="dg_Frequency_Capping_Level"
+                mm-vertical="true"
+                mm-model="frequencyCappingLevel"
+                mm-layout-type="custom"
+                mm-label-width="180"
+                mm-selected="deliveryGroup.servingSetting.frequencyCappingLevel"
+                mm-disable="!deliveryGroup.isSupportedDg"></mm-radiobutton>
+            </mm-row>
+          </div>
+        </mm-row>
+      </tab>
+    </tabset>
+  </mm-mini-section>
+</div>

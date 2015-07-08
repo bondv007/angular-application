@@ -1,0 +1,35 @@
+<div>
+  <div class="advancedSearchButtonCenterlize advancedSearchButtons">
+    <div ng-show="displayData.dataObj.centralActions">
+      <button type="button" ng-attr-id="new{{displayData.dataObj.name}}"
+              ng-class="{'centralMasterToolBarButton': !displayData.dataObj.disableAddButton, 'disableCentralMasterToolBarButton':displayData.dataObj.disableAddButton}"
+              ng-if="!displayData.dataObj.hideAddButton"
+              ng-click="(displayData.dataObj.disableAddButton) ? '' : (displayData.dataObj.allowNewInEntral) ? addNewEntity() : addNewEntityFullPage()">
+        {{'New ' | T}} {{displayData.dataObj.name}}
+      </button>
+      <button type="button"
+              ng-attr-id="edit{{displayData.dataObj.name}}"
+              ng-class="{'centralMasterToolBarButton': !displayData.dataObj.disableEditButton, 'disableCentralMasterToolBarButton':displayData.dataObj.disableEditButton}"
+              ng-if="displayData.dataObj.isEditable"
+              ng-click="(displayData.dataObj.disableEditButton) ? '' : editEntity()">{{'Edit' | T}}</button>
+      <button type="button"
+              ng-attr-id="add{{displayData.dataObj.name}}"
+              ng-class="{'centralMasterToolBarButton': !displayData.dataObj.disableSubEntityButton, 'disableCentralMasterToolBarButton':displayData.dataObj.disableSubEntityButton}"
+              ng-if="displayData.dataObj.addSubEntity"
+              ng-click="(displayData.dataObj.disableAddSubEntityButton) ? '' : addNewSubEntity()">{{displayData.dataObj.addSubEntity.text | T}}</button>
+			<span ng-repeat="acFunc in displayData.dataObj.centralActions"
+            mm-tooltip="{{acFunc.toolTip.text}}"
+            tooltip-title="{{acFunc.toolTip.title}}">
+				<button ng-if="acFunc.items === undefined"
+                ng-attr-id="{{ acFunc.name }}{{displayData.dataObj.name}}"
+                type="button"
+                ng-class="{'centralMasterToolBarButton': !acFunc.disable, 'disableCentralMasterToolBarButton':acFunc.disable}"
+                ng-click="centralActionInvoke(acFunc, displayData.dataObj.centralList)">{{acFunc.name | T}}</button>
+				<mm-button-drop-down ng-if="acFunc.items !== undefined && acFunc.items.length > 0"
+                             mm-model="acFunc"
+                             mm-items="displayData.dataObj.centralList"></mm-button-drop-down>
+		</span>
+      <mm-history  type="displayData.dataObj.type" id="displayData.currentSelectedItem.id" disable="displayData.dataObj.disableHistoryButton"></mm-history>
+    </div>
+  </div>
+</div>

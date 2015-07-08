@@ -1,0 +1,34 @@
+<div ng-dblclick="rowDoubleCLick(dataObj, asset)" ng-click="changeChildData(centralIndex, asset)">
+	<div class="central-tile-header">
+		<!--<input type="checkbox" ng-model="asset.isSelected" ng-click="setToolBar(dataObj, index, asset);asset.isSelected=!asset.isSelected" />-->
+		<div class="centralRowCheckBoxMarker">
+			<div ng-if="asset.id!=-1&&asset.id!=-2" ng-model="asset.isSelected" ng-click="setToolBar(dataObj, centralIndex, asset);asset.isSelected=!asset.isSelected" class="mm_checkbox">
+				<span ng-class="{'selectedCB': asset.isSelected}"></span>
+			</div>
+		</div>
+	</div>
+	<div class="figure-img">
+		<!--<img ng-src="{{getImage(ad)}}" height="170" width="290" alt=""/>-->
+		<img ng-src="{{asset.thumbnails[0].url}}" alt=""/>
+	</div>
+	<div class="central-tile-footer">
+		<div class="primary">
+			<p class="wrapper"><span class="truncate">{{asset.title}}</span></p>
+			<!--<p class="details" ng-if="asset.mediaType == 'IMAGE' && asset.imageContext !== undefined && asset.imageContext !== null">{{asset.imageContext.width}}X{{asset.imageContext.height}}</p>
+			<p class="details" ng-if="asset.mediaType == 'FLASH' && asset.swfContext !== undefined && asset.swfContext !== null">{{asset.swfContext.width}}X{{asset.swfContext.height}}</p>
+			<p class="details" ng-if="asset.mediaType == 'VIDEO' && asset.videoStreamContext !== undefined && asset.videoStreamContext !== null">{{asset.videoStreamContext.width}}X{{asset.videoStreamContext.height}}</p>-->
+			<p class="details" ng-if="asset.mediaType != 'ARCHIVE'">{{asset.dimensions}}</p>
+			<!--<p class="details" ng-if="asset.mediaType == 'ARCHIVE' && asset.formatContext !== undefined && asset.formatContext !== null && asset.formatContext.fileSize < 1048576">{{asset.formatContext.fileSize/1024|number:1}} KB</p>
+			<p class="details" ng-if="asset.mediaType == 'ARCHIVE' && asset.formatContext !== undefined && asset.formatContext !== null && asset.formatContext.fileSize >= 1048576">{{asset.formatContext.fileSize/1024/1024|number:1}} MB</p>-->
+			<p class="details" ng-if="asset.mediaType == 'ARCHIVE'">{{asset.displayFileSize}}</p>
+		</div>
+		<div>
+			<p class="secondary">{{asset.mediaType}}</p>
+			<span ng-if="asset.mediaType == 'IMAGE'" class="actions"><i class="fa fa-image"></i></span>
+			<span ng-if="asset.mediaType == 'AUDIO'" class="actions"><i class="fa fa-music"></i></span>
+			<span ng-if="asset.mediaType == 'ARCHIVE'" class="actions"><i class="fa fa-file-archive-o"></i></span>
+			<span ng-if="asset.mediaType == 'VIDEO'" class="actions"><i class="fa fa-video-camera"></i></span>
+			<span ng-if="asset.mediaType == 'FLASH'" class="actions"><i class="fa fa-video-camera"></i></span>
+		</div>
+	</div>
+</div>

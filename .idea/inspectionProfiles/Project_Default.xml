@@ -1,0 +1,133 @@
+<component name="InspectionProjectProfileManager">
+  <profile version="1.0" is_locked="false">
+    <option name="myName" value="Project Default" />
+    <option name="myLocal" value="false" />
+    <inspection_tool class="CssUnknownProperty" enabled="true" level="WARNING" enabled_by_default="true">
+      <option name="myCustomPropertiesEnabled" value="true" />
+      <option name="myIgnoreVendorSpecificProperties" value="false" />
+      <option name="myCustomPropertiesList">
+        <value>
+          <list size="1">
+            <item index="0" class="java.lang.String" itemvalue="align-content" />
+          </list>
+        </value>
+      </option>
+    </inspection_tool>
+    <inspection_tool class="HtmlUnknownAttribute" enabled="true" level="WARNING" enabled_by_default="true">
+      <option name="myValues">
+        <value>
+          <list size="65">
+            <item index="0" class="java.lang.String" itemvalue="hassubmenu" />
+            <item index="1" class="java.lang.String" itemvalue="role" />
+            <item index="2" class="java.lang.String" itemvalue="aria-labelledby" />
+            <item index="3" class="java.lang.String" itemvalue="mmnavbuttons" />
+            <item index="4" class="java.lang.String" itemvalue="menu-search" />
+            <item index="5" class="java.lang.String" itemvalue="dropdown-toggle" />
+            <item index="6" class="java.lang.String" itemvalue="icon-toggle" />
+            <item index="7" class="java.lang.String" itemvalue="mm-login" />
+            <item index="8" class="java.lang.String" itemvalue="docked-scrolled-element" />
+            <item index="9" class="java.lang.String" itemvalue="mm-modal" />
+            <item index="10" class="java.lang.String" itemvalue="href" />
+            <item index="11" class="java.lang.String" itemvalue="editable-text" />
+            <item index="12" class="java.lang.String" itemvalue="onbeforesave" />
+            <item index="13" class="java.lang.String" itemvalue="click-accumulator" />
+            <item index="14" class="java.lang.String" itemvalue="mm-nav-bar" />
+            <item index="15" class="java.lang.String" itemvalue="ui-view" />
+            <item index="16" class="java.lang.String" itemvalue="endless-scroll" />
+            <item index="17" class="java.lang.String" itemvalue="ui-sref" />
+            <item index="18" class="java.lang.String" itemvalue="scroll-event" />
+            <item index="19" class="java.lang.String" itemvalue="resize-col" />
+            <item index="20" class="java.lang.String" itemvalue="is-double" />
+            <item index="21" class="java.lang.String" itemvalue="left-side" />
+            <item index="22" class="java.lang.String" itemvalue="right-side" />
+            <item index="23" class="java.lang.String" itemvalue="use-parent" />
+            <item index="24" class="java.lang.String" itemvalue="jqyoui-draggable" />
+            <item index="25" class="java.lang.String" itemvalue="min-width" />
+            <item index="26" class="java.lang.String" itemvalue="left-min-width" />
+            <item index="27" class="java.lang.String" itemvalue="jqyoui-droppable" />
+            <item index="28" class="java.lang.String" itemvalue="mm-focus" />
+            <item index="29" class="java.lang.String" itemvalue="cellspacing" />
+            <item index="30" class="java.lang.String" itemvalue="cellpadding" />
+            <item index="31" class="java.lang.String" itemvalue="set-ng-grid" />
+            <item index="32" class="java.lang.String" itemvalue="is-reverted" />
+            <item index="33" class="java.lang.String" itemvalue="mm-required-sign" />
+            <item index="34" class="java.lang.String" itemvalue="ng-blur" />
+            <item index="35" class="java.lang.String" itemvalue="mm-control-base" />
+            <item index="36" class="java.lang.String" itemvalue="mm-tool-tip" />
+            <item index="37" class="java.lang.String" itemvalue="central-scroll-event" />
+            <item index="38" class="java.lang.String" itemvalue="central-arrow-event" />
+            <item index="39" class="java.lang.String" itemvalue="ng-show" />
+            <item index="40" class="java.lang.String" itemvalue="ng-if" />
+            <item index="41" class="java.lang.String" itemvalue="ng-click" />
+            <item index="42" class="java.lang.String" itemvalue="tooltip-title" />
+            <item index="43" class="java.lang.String" itemvalue="ng-class" />
+            <item index="44" class="java.lang.String" itemvalue="mm-tooltip" />
+            <item index="45" class="java.lang.String" itemvalue="ng-repeat" />
+            <item index="46" class="java.lang.String" itemvalue="ng-include" />
+            <item index="47" class="java.lang.String" itemvalue="ng-model" />
+            <item index="48" class="java.lang.String" itemvalue="ng-style" />
+            <item index="49" class="java.lang.String" itemvalue="ng-dblclick" />
+            <item index="50" class="java.lang.String" itemvalue="ng-mouseover" />
+            <item index="51" class="java.lang.String" itemvalue="ng-mouseout" />
+            <item index="52" class="java.lang.String" itemvalue="ng-init" />
+            <item index="53" class="java.lang.String" itemvalue="ng-switch" />
+            <item index="54" class="java.lang.String" itemvalue="on" />
+            <item index="55" class="java.lang.String" itemvalue="ng-switch-when" />
+            <item index="56" class="java.lang.String" itemvalue="ng-mouseenter" />
+            <item index="57" class="java.lang.String" itemvalue="ng-mouseleave" />
+            <item index="58" class="java.lang.String" itemvalue="ng-change" />
+            <item index="59" class="java.lang.String" itemvalue="ng-app" />
+            <item index="60" class="java.lang.String" itemvalue="ng-disabled" />
+            <item index="61" class="java.lang.String" itemvalue="ng-switch-on" />
+            <item index="62" class="java.lang.String" itemvalue="ng-switch-default" />
+            <item index="63" class="java.lang.String" itemvalue="ui-tree-node" />
+            <item index="64" class="java.lang.String" itemvalue="ng-attr-ui-tree-nodes" />
+          </list>
+        </value>
+      </option>
+      <option name="myCustomValuesEnabled" value="true" />
+    </inspection_tool>
+    <inspection_tool class="HtmlUnknownTag" enabled="true" level="WARNING" enabled_by_default="true">
+      <option name="myValues">
+        <value>
+          <list size="33">
+            <item index="0" class="java.lang.String" itemvalue="nobr" />
+            <item index="1" class="java.lang.String" itemvalue="noembed" />
+            <item index="2" class="java.lang.String" itemvalue="comment" />
+            <item index="3" class="java.lang.String" itemvalue="noscript" />
+            <item index="4" class="java.lang.String" itemvalue="embed" />
+            <item index="5" class="java.lang.String" itemvalue="script" />
+            <item index="6" class="java.lang.String" itemvalue="wave-spinner" />
+            <item index="7" class="java.lang.String" itemvalue="pagination" />
+            <item index="8" class="java.lang.String" itemvalue="scroller" />
+            <item index="9" class="java.lang.String" itemvalue="mm-row" />
+            <item index="10" class="java.lang.String" itemvalue="mm-link" />
+            <item index="11" class="java.lang.String" itemvalue="mm-text" />
+            <item index="12" class="java.lang.String" itemvalue="mm-select" />
+            <item index="13" class="java.lang.String" itemvalue="mm-toggle-container" />
+            <item index="14" class="java.lang.String" itemvalue="mm-row-container" />
+            <item index="15" class="java.lang.String" itemvalue="tabset" />
+            <item index="16" class="java.lang.String" itemvalue="tab" />
+            <item index="17" class="java.lang.String" itemvalue="entity-layout" />
+            <item index="18" class="java.lang.String" itemvalue="mm-error-div" />
+            <item index="19" class="java.lang.String" itemvalue="mm-two-columns" />
+            <item index="20" class="java.lang.String" itemvalue="mm-datepicker" />
+            <item index="21" class="java.lang.String" itemvalue="mm-date" />
+            <item index="22" class="java.lang.String" itemvalue="mm-label" />
+            <item index="23" class="java.lang.String" itemvalue="mm-radiobutton" />
+            <item index="24" class="java.lang.String" itemvalue="mm-checkbox" />
+            <item index="25" class="java.lang.String" itemvalue="mm-multiselect" />
+            <item index="26" class="java.lang.String" itemvalue="mm-button" />
+            <item index="27" class="java.lang.String" itemvalue="mm-grid" />
+            <item index="28" class="java.lang.String" itemvalue="central" />
+            <item index="29" class="java.lang.String" itemvalue="mm-button-drop-down" />
+            <item index="30" class="java.lang.String" itemvalue="mm-single-date-picker" />
+            <item index="31" class="java.lang.String" itemvalue="mm-range-date-picker" />
+            <item index="32" class="java.lang.String" itemvalue="tab-heading" />
+          </list>
+        </value>
+      </option>
+      <option name="myCustomValuesEnabled" value="true" />
+    </inspection_tool>
+  </profile>
+</component>

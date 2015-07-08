@@ -1,0 +1,275 @@
+<div class="spreadsheetEntity">
+  <div class="entityActionsBar">
+    <div>
+      <mm-drop-down mm-caption=""
+                    mm-data-model="interactionsOrEvents"
+                    lazy-type="lazyTypeParams"
+                    mm-is-edit-mode="false"
+                    mm-model="editType"
+                    mm-is-required="true"
+                    mm-select-change-func="onEditTypeSelected()"
+                    mm-id="selectedEditType"
+                    mm-label-width="0"
+                    mm-layout-type="custom"
+                    mm-custom-control-width="150"></mm-drop-down>
+    </div>
+    <div ng-if="placementAds.length > 0">
+      <div class="advancedSearchButtonCenterlize advancedSearchButtons">
+        <div ng-show="spreadFirstActions || spreadSecondActions || spreadThirdActions">
+          <span ng-repeat="acFunc in spreadFirstActions" mm-tooltip="{{acFunc.toolTip.text}}" tooltip-title="{{acFunc.toolTip.title}}">
+            <button ng-if="acFunc.items === undefined" type="button" ng-class="{'centralMasterToolBarButton':!acFunc.disable,'disableCentralMasterToolBarButton':acFunc.disable}"
+                    ng-click="spreadActionInvoke(acFunc, displayData.dataObj.centralList)">{{acFunc.name | T}}</button>
+            <mm-button-drop-down ng-if="acFunc.items !== undefined && acFunc.items.length > 0" mm-model="acFunc"></mm-button-drop-down>
+          </span>
+          <span class="v-separator"></span>
+          <span ng-repeat="acFunc in spreadSecondActions" mm-tooltip="{{acFunc.toolTip.text}}" tooltip-title="{{acFunc.toolTip.title}}">
+            <button ng-if="acFunc.items === undefined" type="button" ng-class="{'centralMasterToolBarButton':!acFunc.disable,'disableCentralMasterToolBarButton':acFunc.disable}"
+                    ng-click="spreadActionInvoke(acFunc, displayData.dataObj.centralList)">{{acFunc.name | T}}</button>
+            <mm-button-drop-down ng-if="acFunc.items !== undefined && acFunc.items.length > 0" mm-model="acFunc"></mm-button-drop-down>
+          </span>
+          <span class="v-separator"></span>
+          <span ng-repeat="acFunc in spreadThirdActions" mm-tooltip="{{acFunc.toolTip.text}}" tooltip-title="{{acFunc.toolTip.title}}">
+            <button ng-if="acFunc.items === undefined" type="button" ng-class="{'centralMasterToolBarButton':!acFunc.disable,'disableCentralMasterToolBarButton':acFunc.disable}"
+                    ng-click="spreadActionInvoke(acFunc, displayData.dataObj.centralList)">{{acFunc.name | T}}</button>
+            <mm-button-drop-down ng-if="acFunc.items !== undefined && acFunc.items.length > 0" mm-model="acFunc"></mm-button-drop-down>
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="editContainer" >
+    <div ng-if="showImportOverlay" id="importOverlay" class="importOverlay">
+      <div class="wave-spinner">
+        <div class="rect1"></div>
+        <div class="rect2"></div>
+        <div class="rect3"></div>
+        <div class="rect4"></div>
+        <div class="rect5"></div>
+      </div>
+    </div>
+    <input type='hidden' id="dropDownCellInfo" />
+
+    <div ng-show="showSpread" id="ss" class="spreadsheetContainer" style=""></div>
+    <div>
+      <input ng-model="fileToImport" type="file" id="csv-file" name="files" accept=".csv" onchange="angular.element(this).scope().importCSVFile(this)" style="display:none"/>
+      <input ng-model="fileToImport" type="file" id="excel-file" name="files" accept=".xlsx" onchange="angular.element(this).scope().importXLSXFile(this)" style="display:none"/>
+    </div>
+    <div id="validationFixContainerId" class="validationFixContainer" ng-if="showValidationFixContainer">
+      <div class="mmmodal-header">
+        <div class="close">
+          <div class="close-button" ng-click="closeValidationFix(true, true)" data-dismiss="modal"></div>
+        </div>
+        <div class="mmmodal-title">Fix Error</div>
+      </div>
+      <div class="mmmodal-body">
+        <div class="mmmodal-content">
+          <div>
+            <span>{{validationErrorActiveCell.message}} <br/></span>
+          </div>
+          <div ng-if="validationFixColDef.name == 'packageName'">
+            <tabset>
+              <tab heading="Edit Package" active="validationFixInputVal.editPackageTab">
+                <form class="form-horizontal">
+                  <div class="form-group">
+                    <label for="modalSiteAutoComplete" class="col-sm-4 control-label">Site</label>
+                    <input id="modalSiteAutoComplete" placeholder="Select Site" ng-model="validationFixInputVal.siteName"/>
+                  </div>
+                  <div class="form-group">
+                    <label class="col-sm-4 control-label">Start Date</label>
+                    <mm-single-date-picker mm-model="validationFixInputVal.editPackage.mediaServingData.startDate" mm-disable="false"></mm-single-date-picker>
+                  </div>
+                  <div class="form-group">
+                    <label class="col-sm-4 control-label">End Date</label>
+                    <mm-single-date-picker mm-model="validationFixInputVal.editPackage.mediaServingData.endDate" mm-disable="false"></mm-single-date-picker>
+                  </div>
+                  <div class="form-group">
+                    <label for="modalCostModel" class="col-sm-4 control-label">Cost Model</label>
+                    <input id="modalCostModel" placeholder="Select Model" ng-model="validationFixInputVal.editPackage.mediaCostData.costModel"/>
+                  </div>
+                  <div class="form-group">
+                    <label for="modalUnits" class="col-sm-4 control-label">Units</label>
+                    <input id="modalUnits" placeholder="Enter Units" ng-model="validationFixInputVal.editPackage.mediaServingData.units"/>
+                  </div>
+                </form>
+              </tab>
+              <tab heading="Create New Package" active="validationFixInputVal.createNewTab">
+                <form class="form-horizontal">
+                  <div class="form-group">
+                    <label for="modalNewPackage" class="col-sm-4 control-label">Package Name</label>
+                    <input id="modalNewPackage" placeholder="Enter Package Name" ng-model="validationFixInputVal.newPackageName"/>
+                  </div>
+                </form>
+              </tab>
+            </tabset>
+          </div>
+          <div ng-if="validationFixColDef.name != 'packageName'">
+            <input id="modalAutoComplete"
+                   ng-if="validationFixColDef.type == 'autoComplete' || validationFixColDef.type == 'multiAutoComplete' || validationFixColDef.type == 'combo'"
+                   placeholder="{{'Select ' + validationFixColDef.displayName}}"
+                   ng-model="validationFixInputVal.theValue"/>
+            <input id="modalValidationInput"
+                   ng-if="validationFixColDef.type == 'input' || validationFixColDef.type == 'date'"
+                   placeholder="{{'Enter ' + validationFixColDef.displayName}}"
+                   ng-model="validationFixInputVal.theValue"/>
+          </div>
+          <br/>
+
+        </div>
+      </div>
+      <div class="mmmodal-footer">
+        <label class="checkbox-inline">
+          <input type="checkbox" ng-model="validationFixSimilar"> Fix all similar errors
+        </label><br/>
+        <mm-button mm-caption="Fix and Close" mm-action="moveToNextError(true, true)"></mm-button>
+        <mm-button ng-show="validationErrorCells.length > 1" mm-caption="Fix and Go To Next Error" mm-action="moveToNextError(true, false)"></mm-button>
+        <mm-button mm-caption="Fix Later" mm-action="moveToNextError(false, false)"></mm-button>
+      </div>
+    </div>
+
+    <div id="validationWarningContainerId" class="validationFixContainer" ng-if="showValidationWarningContainer">
+      <div class="mmmodal-header">
+        <div class="close">
+          <div class="close-button" ng-click="closeValidationWarning(true)" data-dismiss="modal"></div>
+        </div>
+        <div class="mmmodal-title">Validation Warning</div>
+      </div>
+      <div class="mmmodal-body">
+        <div class="mmmodal-content">
+          <div>
+            <span>{{validationWarningActiveCell.message}} <br/>&nbsp;<br/>&nbsp;</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="validationConfirmDelete" ng-if="showConfirmDeleteContainer">
+      <div class="mmmodal-header">
+        <div class="close">
+          <div class="close-button" ng-click="closeConfirmDelete(true)" data-dismiss="modal"></div>
+        </div>
+        <div class="mmmodal-title">Delete Placements</div>
+      </div>
+      <div class="mmmodal-body">
+        <div class="mmmodal-content">
+          Your selection includes previously saved placements.  Are you sure you want to permanently delete them?
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="mm-save-button" type="button" ng-click="saveConfirmDelete(true)" class="btn btn-primary">
+          Yes
+        </button>
+        <button class="mm-discard-button" type="button" ng-click="closeConfirmDelete(true)" class="btn btn-default">
+          CANCEL
+        </button>
+      </div>
+    </div>
+
+    <div id="addEventsContainerId" class="validationFixContainer" ng-if="showAddEventsContainer">
+      <div class="mmmodal-header">
+        <div class="close">
+          <div class="close-button" ng-click="closeAddEventsContainer(true)" data-dismiss="modal"></div>
+        </div>
+        <div class="mmmodal-title">Add Events</div>
+      </div>
+      <div class="mmmodal-body">
+        <div class="mmmodal-content">
+          <mm-row ng-repeat="item in eventColTypesModal">
+            <input ng-model="item.count" style="width: 50px"/>
+            <span>{{item.urlTypeName}}</span>
+          </mm-row>
+        </div>
+      </div>
+      <div class="mmmodal-footer">
+        <mm-button mm-caption="Add Events" mm-action="addEvents(true)"></mm-button>
+      </div>
+    </div>
+
+    <div class="progressContainer" ng-if="showVPContainer">
+      <div class="mmmodal-header">
+        <div class="close">
+          <div class="close-button" ng-click="closeProgressContainer(true)" data-dismiss="modal"></div>
+        </div>
+        <div class="mmmodal-title">Validation Progress</div>
+      </div>
+      <div class="mmmodal-body">
+        <div class="mmmodal-content">
+          <mm-row ng-repeat="item in validationProgress.progressItems">
+            <div>
+              <span class="pull-left">{{item.caption}}: </span>
+              <div class="col-sm-8 pull-left" ng-if="item.type=='bar'">
+                <span><i class="fa fa-check"> Result: {{placementsToSave}} Successful | {{validationErrorCells.length}} Error(s) | {{validationWarningCount}} Warning(s)</i></span>
+                <span ng-show="validationErrorCells.length > 0"><br/><i class="fa fa-exclamation-triangle"></i> Please fix validation errors before saving.</span>
+              </div>
+              <div class="col-sm-8 pull-left" ng-if="item.type=='boolean'">
+                <span ng-show="item.itemInProgress"><i class="fa fa-spinner fa-spin"> </i> {{item.statusMessage}}</span>
+                <span ng-show="item.itemDone"><i class="fa fa-check"> {{item.statusMessage}}</i></span>
+              </div>
+              <div class="col-sm-8 pull-left" ng-if="item.type==='spinner'">
+                <span ng-show="item.itemInProgress"><i class="fa fa-spinner fa-spin"> </i> {{item.statusMessage}}</span>
+                <span ng-show="item.itemDone"><i class="fa fa-check"> {{item.statusMessage}}</i></span>
+              </div>
+            </div>
+          </mm-row>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="mm-save-button" ng-show="validationProgress.complete" type="button" ng-click="closeProgressContainer(true)" class="btn btn-primary">
+          DONE
+        </button>
+        <button class="mm-attach-button" ng-show="!validationProgress.complete" type="button" ng-click="minimizeProgressContainer(true)" class="btn btn-primary">
+          MINIMIZE
+        </button>
+        <button class="mm-discard-button" ng-show="!validationProgress.complete" type="button" ng-click="closeProgressContainer(true)" class="btn btn-default">
+          CANCEL
+        </button>
+      </div>
+    </div>
+
+    <div class="progressContainer" ng-if="showMPContainer">
+      <div class="mmmodal-header">
+        <div class="close">
+          <div class="close-button" ng-click="closeProgressContainer(false)" data-dismiss="modal"></div>
+        </div>
+        <div class="mmmodal-title">Media Plan Progress</div>
+      </div>
+      <div class="mmmodal-body">
+        <div class="mmmodal-content">
+          <mm-row ng-repeat="item in mediaPlanProgress.progressItems">
+            <div>
+              <span class="pull-left">{{item.caption}}:  </span>
+              <div class="col-sm-8 pull-left" ng-if="item.type==='bar'">
+                <div class="progress relative">
+                  <div class="progress-bar" role="progressbar" ng-style="{ 'width': item.currentCount/item.total*100 + '%' }">
+                    <span class="innerBar">{{item.currentCount}} / {{item.total}}</span>
+                  </div>
+                </div>
+              </div>
+              <div class="col-sm-8 pull-left" ng-if="item.type==='boolean'">
+                <span ng-show="item.itemDone"><i class="fa fa-check"> Completed</i></span>
+              </div>
+            </div>
+          </mm-row>
+          <mm-row ng-if="validationProgress.complete && !validationProgress.error">
+            <p><i class="fa fa-check"></i> Your media plan was validated successfully.</p>
+          </mm-row>
+          <mm-row ng-if="validationProgress.inProgress && validationProgress.error">
+            <p><i class="fa fa-warning"></i> Your media plan has validation errors.</p>
+          </mm-row>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="mm-save-button" ng-show="validationProgress.complete" type="button" ng-click="closeProgressContainer(false)" class="btn btn-primary">
+          DONE
+        </button>
+        <button class="mm-attach-button" ng-show="!validationProgress.complete" type="button" ng-click="minimizeProgressContainer(false)" class="btn btn-primary">
+          MINIMIZE
+        </button>
+        <button class="mm-discard-button" ng-show="!validationProgress.complete" type="button" ng-click="closeProgressContainer(false)" class="btn btn-default">
+          CANCEL
+        </button>
+      </div>
+    </div>
+
+  </div>
+</div>

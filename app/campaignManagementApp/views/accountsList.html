@@ -1,0 +1,34 @@
+<div class="mmToolBar" style="background-color: rgb(205, 202, 212);">
+	<div class="advancedSearchButtonCenterlize advancedSearchButtons">
+		<div style="height: 100%;padding-left: 10px;">
+			<div class="btn-group">
+				<button type="button" class="btn btn-default" ui-sref="spa.accountEdit({accountId: 0})">Add Account</button>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="mmInnerContainer">
+	<table class="table table-hover table-striped" style="table-layout:fixed">
+		<thead>
+			<tr>
+				<th style="width: 20px;"></th>
+				<th style="width: 20px;"></th>
+				<th style="width: 50px;">
+					<a class="click" ng-click="orderBy('id')"># <i ng-show="orderObj==='id'" class="glyphicon" ng-class="{false: 'glyphicon-chevron-up', true: 'glyphicon-chevron-down'}[reversed]"></i></a>
+				</th>
+				<th>
+					<a class="click" ng-click="orderBy('name')">Name <i ng-show="orderObj==='name'" class="glyphicon" ng-class="{false: 'glyphicon-chevron-up', true: 'glyphicon-chevron-down'}[reversed]"></i></a>
+				</th>
+			</tr>
+		</thead>
+		<tbody>
+		<tr ng-repeat="account in accounts | orderBy: accountsOrderBy: reversed">
+			<td><i class="click glyphicon glyphicon-trash" ng-click="deleteAccount(account)"></i></td>
+			<td><i class="click glyphicon glyphicon-edit" ui-sref="spa.accountEdit({accountId: account.id})"></i></td>
+			<td>{{account.id}}</td>
+			<td><a class="click" editable-text="account.name" onbeforesave="checkName($data, account.id)">{{account.name}}</a></td>
+		</tr>
+		</tbody>
+	</table>
+</div>
+<wave-spinner ng-show="showSPinner"></wave-spinner>

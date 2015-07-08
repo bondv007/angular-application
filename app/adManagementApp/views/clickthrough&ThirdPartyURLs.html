@@ -1,0 +1,83 @@
+<div>
+	<mm-toggle-container mm-caption="Click-through & Events" mm-error="error.name" start-open="toggleHandler.showToggleClickthrough">
+		<tabset>
+			<tab heading="Click-through URL"
+           select="clickthroghsFocusdTab('clickthroughs')"
+           ng-attr-class="{{!errors.clickthroughs ? '' : 'tabWithErrors'}}" id="clickthroughurl">
+                <div ng-if="tabsFocused.clickthroughs">
+                    <mm-row>
+                        <div class="mm-entity-fields-container-single">
+                            <mm-text-area mm-model="ad.mainClickthrough.url"
+                                          mm-label-width={{::labelWidth3}}
+                                          mm-layout-type="large"
+                                          mm-caption="Click-through URL"
+                                          mm-is-required="false"
+                                          mm-error = "errors.clickthroughs"
+                                          mm-change = "errors.clickthroughs = ''"
+                                          mm-placeholder=""></mm-text-area>
+                        </div>
+                    </mm-row>
+                    <mm-row>
+                        <div class="mm-entity-fields-container-single">
+                            <mm-drop-down mm-data-model="lookups.targetWindowTypes"
+                                          mm-model="ad.mainClickthrough.targetWindowType"
+                                          mm-layout-type="custom"
+                                          mm-custom-control-width="150"
+                                          mm-label-width={{::labelWidth3}}
+                                          mm-caption="Target Window"
+                                          mm-select-change-func="onBaseTemplateChange()"
+                                          mm-tab-index="2"></mm-drop-down>
+                        </div>
+                    </mm-row>
+                    <mm-row>
+                        <div clas="mm-entity-fields-container-single">
+                            <mm-check-box mm-caption="Show Address Bar"
+                                          mm-model="ad.mainClickthrough.showAddressBar"
+                                          mm-label-width={{::labelWidth3}}
+                                          mm-layout-type="medium">
+                            </mm-check-box>
+                        </div>
+                    </mm-row>
+                    <mm-row>
+                        <div clas="mm-entity-fields-container-single">
+                            <mm-check-box
+                                    mm-caption="Show Menu Bar"
+                                    mm-model="ad.mainClickthrough.showMenuBar"
+                                    mm-label-width={{::labelWidth3}}
+                                    mm-layout-type="medium">
+                            </mm-check-box>
+                        </div>
+                    </mm-row>
+                </div>
+			</tab>
+			<tab heading="Events" select="clickthroghsfocusedTab('thirdParty')"
+           ng-attr-class="{{!errors.adURLs ? '' : 'tabWithErrors'}}" id="3rdparty">
+				<mm-row ng-if="tabsFocused.thirdParty">
+					<mm-grid
+						items=ad.adURLs
+            selected-items = selectedAdURLs
+						cols=gridColumns.ThirdPartyColumns
+						is-cell-edit="true"
+						is-show-menu="false"
+						is-single-select="false"
+						is-sort="true"
+						is-setting-icon-disable= "false"
+						is-search-icon-disable="false"
+						show-footer="false"
+						show-group-panel="false"
+						show-selection-checkbox="true"
+						show-filter="false"
+						enable-column-resize="true"
+						is-column-reorder = "false"
+						is-show-tool-tip="true"
+						is-central-grid="false"
+						db-click-handler=""
+						grid-height="160px"
+            generic-validation-handler="thirdPartyUrlValidationHandler"
+						grid-button-actions="gridActions.thirdpartyUrlGridButtonActions"></mm-grid>
+
+				</mm-row>
+			</tab>
+		</tabset>
+	</mm-toggle-container>
+</div>

@@ -1,0 +1,7 @@
+<mm-row>
+	<mm-radiobutton mm-caption="Video Start Method"  mm-model="lookups.videoStartMethods" mm-visible="true"
+									mm-edit-multiple="isMultiple != undefined && isMultiple.indexOf('videoStartMethod') != -1"
+									mm-label-width="{{labelWidth3}}"
+									mm-selected="ad.videoStartMethod"></mm-radiobutton>
+</mm-row>
+<div  ng-include="'adManagementApp/views/downloadModes.html'"></div>

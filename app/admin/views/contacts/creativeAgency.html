@@ -1,0 +1,23 @@
+<div ng-repeat="item in creativeDefaultContactsByAccountIndex.accounts" tabindex="{{mmTabIndex}}">
+  <mm-creative-agency-grid
+      mm-model="item"
+      mm-account-id="item.id"
+      mm-accounts="accounts"
+      mm-global-contacts="accountsUsersIndex"
+      mm-creative-manager-contacts-model="mmModel.creativeManagerContacts"
+      mm-creative-accounts-model="mmModel.creativeAccounts"
+      mm-error="item.mmError"
+      mm-is-edit-mode="mmIsEditMode"
+      mm-mini-section-state="creativeAgenciesMiniSectionStatus"
+      mm-label-width="{{labelWidth}}"
+      mm-creative-agency-selected="onCreativeAgencySelected()"
+      mm-remove-agency="onRemoveAgencyClicked()"
+      mm-focus-creative-agency="focusCreativeAgency"
+      mm-on-cell-changed="onCellChanged()"
+      mm-is-campaign={{mmIsCampaign}}
+			mm-permission="tabsHandler.creativeManagerContacts.permission">
+  </mm-creative-agency-grid >
+</div>
+<mm-row ng-if="tabsHandler.creativeManagerContacts.permission">
+  <span id="addCreativeManagerLink" class="newCreativeAgencyLink" data-ng-click="onAddNewCreativeAgencyBtnClicked()">{{addCreativeAgencyLinkText}}</span>
+</mm-row>

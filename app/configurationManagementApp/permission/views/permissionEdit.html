@@ -1,0 +1,122 @@
+<div ng-show="pageReady" class="editContainer" xmlns="http://www.w3.org/1999/html">
+  <mm-row>
+    <div class="mm-entity-fields-container-single">
+      <mm-row>
+        <mm-text mm-model="permissionEdit.name"
+                 mm-is-edit-mode="isEditMode"
+                 mm-placeholder="Enter Permission Name"
+                 mm-error="validation.name"
+                 mm-is-required="true"
+                 mm-caption="Permission Name"
+                 mm-change="validation.name = ''"
+                 mm-label-width="{{labelWidth}}"
+                 mm-disable="!editPermission"></mm-text>
+      </mm-row>
+      <mm-row>
+        <mm-text-area mm-model="permissionEdit.description"
+                      mm-label-width="{{labelWidth}}"
+                      mm-caption="Description"
+                      mm-is-required="true"
+                      mm-error="validation.description"
+                      mm-change="validation.description = ''"
+                      mm-placeholder="Please Enter Description"
+                      mm-is-edit-mode="isEditMode"
+                      mm-disable="!editPermission"></mm-text-area>
+      </mm-row>
+      <mm-row>
+        <mm-radiobutton mm-model="permissionTypes"
+                        mm-is-required="true"
+                        mm-is-vertical="true"
+                        mm-selected="permissionEdit.permissionType"
+                        mm-label-width="{{labelWidth}}"
+                        mm-caption="Permission Type"
+                        mm-layout-type="medium"
+                        mm-disable="!editPermission">
+        </mm-radiobutton>
+      </mm-row>
+      <mm-row ng-if="permissionEdit.permissionType !== permissionToGrantPermission">
+        <mm-check-list mm-data-model="adminZones"
+                       mm-model="permissionEdit.adminZones"
+                       mm-error="validation.adminZones"
+                       mm-is-required="true"
+                       mm-change="validation.adminZones = ''"
+                       mm-label-width="{{labelWidth}}"
+                       mm-caption="Admin Zones"
+                       mm-disable="!editPermission">
+        </mm-check-list>
+      </mm-row>
+      <mm-row ng-if="permissionEdit.permissionType === permissionToGrantPermission">
+        <mm-drop-down mm-error="validation.grantPermissionOnAdminZone"
+                      mm-caption="Grant Permission on Admin Zone"
+                      mm-is-edit-mode="isEditMode"
+                      mm-data-model="adminZones"
+                      mm-is-required="true"
+                      mm-model="permissionEdit.grantPermissionOnAdminZone"
+                      mm-label-width="{{labelWidth}}"
+                      mm-disable="!editPermission"></mm-drop-down>
+      </mm-row>
+      <mm-row ng-if="permissionEdit.permissionType !== permissionToGrantPermission">
+        <mm-check-list mm-data-model="permissionCategories"
+                       mm-model="permissionEdit.categories"
+                       mm-is-required="true"
+                       mm-change="validation.categories = ''"
+                       mm-label-width="{{labelWidth}}"
+                       mm-caption="Categories"
+                       mm-error="validation.categories"
+                       mm-disable="!editPermission">
+        </mm-check-list>
+      </mm-row>
+      <mm-row ng-if="permissionEdit.permissionType !== permissionToGrantPermission">
+        <mm-check-list mm-data-model="roleTypes"
+                       mm-model="permissionEdit.dataOwnershipContext"
+                       mm-is-required="true"
+                       mm-label-width="{{labelWidth}}"
+                       mm-caption="Applies to Account Context"
+                       mm-error="validation.dataOwnershipContext"
+                       mm-disable="!editPermission">
+        </mm-check-list>
+      </mm-row>
+      <mm-row ng-if="permissionEdit.permissionType !== permissionToGrantPermission">
+        <mm-check-box mm-model="permissionEdit.canGrantOnAccountLevel"
+                      mm-caption="Can be granted on account/permission set level"
+                      mm-description="Granted to account/permission"
+                      mm-label-width="{{labelWidth}}"
+                      mm-layout-type="medium"
+                      mm-disable="!editPermission">
+        </mm-check-box>
+      </mm-row>
+      <mm-row>
+        <mm-check-box mm-model="permissionEdit.canGrantOnUserLevel"
+                      mm-caption="Can be granted on user level"
+                      mm-description="Granted to user"
+                      mm-label-width="{{labelWidth}}"
+                      mm-layout-type="medium"
+                      mm-disable="!editPermission">
+        </mm-check-box>
+      </mm-row>
+      <!--<mm-row>-->
+        <!--<mm-drop-down mm-error="validation.status"-->
+                        <!--mm-caption="Permission Genre"-->
+                        <!--mm-is-edit-mode="isEditMode"-->
+                        <!--mm-data-model="permissionGenres"-->
+                        <!--mm-is-required="true"-->
+                        <!--mm-model="permissionEdit.permissionGenre"-->
+                        <!--mm-label-width="{{labelWidth}}"></mm-drop-down>-->
+      <!--</mm-row>-->
+      <mm-row>
+        <mm-label mm-caption="Permission Sets"
+                  mm-layout-type="medium"
+                  mm-label-width="{{labelWidth}}"></mm-label>
+      </mm-row>
+      <mm-row>
+        <mm-select-list mm-data-model="permissionSets"
+                          mm-model="assignedToPermissionSets"
+													mm-available-title="TOTAL PERMISSIONS SETS"
+													mm-model-type="Permission Set"
+													show-search-box
+						></mm-select-list>
+      </mm-row>
+    </div>
+  </mm-row>
+</div>
+<wave-spinner ng-show="!pageReady"></wave-spinner>

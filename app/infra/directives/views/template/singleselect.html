@@ -1,0 +1,60 @@
+<!-- Button -->
+<div id="{{mmId}}" ng-if="isControlVisible() || (!!$parent.mmError && $parent.mmError !='' ) && !mmDisable" ng-class="{'errorInput':mmError != null && mmError != '',
+                            'button-frame': !isVisible,
+                            'button-frame-open': isVisible,
+                            'button-frame-hover': buttonHover,
+                            'button-frame-hover-open': buttonHoverOpen,
+                            'button-frame-disabled': mmDisable}" ng-mouseenter="setHover(true);" ng-mouseleave="setHover(false);" class="button-frame {{mmControlClass}} mm-dropdown" style="margin-right: 10px;cursor: context-menu; position: relative; {{mmControlWidth}}" ng-click="toggleSelect();" ng-focus="setHover(true);" ng-blur="setHover(false);" ng-keydown="keyDownHandler($event)" tabindex="{{mmTabIndex}}">
+  <span class="button-label mm-ellipsis {{mmControlClass}} {{labelClass}}" style="padding-right: 40px; {{mmControlWidth}}" ng-bind-html="mmModelText | T"></span>
+
+  <div ng-class="{'button-down': !isVisible, 'button-up': isVisible}"></div>
+  <div class="button-separator"></div>
+  <div ng-if="isVisible" class="bottom-separator"></div>
+  <!-- Scroller \ Search \Add New -->
+
+  <mm-shield enable-shield="activateShield" flip-offset="30" on-touch="hideCtrl(event)" ng-if="isVisible">
+
+    <div class="wrapper {{mmControlClass}}"  style="{{mmControlWidth}}" ng-if="isVisible">
+      <!-- Only Search -->
+      <div ng-if="mmShowSearchBox && !mmShowAddNew" class="search-frame">
+        <div ng-class="{'search-box-icon': clear, 'search-box-clear-icon': !clear}" ng-click="preventClick($event); clear = true; filterDataModel()" ng-init="clear = true"></div>
+        <input id="{{mmIdSearch.split(' ').join('')}}" class="search-box" type="text" ng-click="preventClick($event)" ng-model="searchBox.text" mm-focus="isControlVisible()" ng-change="clear = searchBox.text.length == 0; filterDataModel()" />
+      </div>
+      <!-- Search With Add New-->
+      <div ng-if="mmShowSearchBox && mmShowAddNew" class="search-frame">
+        <div class="search-box-add-new">
+          <div ng-class="{'search-box-icon-add-new': clear, 'search-box-clear-icon': !clear}" ng-click="clear = true; filterDataModel()" ng-init="clear = true"></div>
+          <input id="{{mmIdSearch.split(' ').join('')}}" class="search-box" type="text" style="width: 100%" ng-click="preventClick($event)" ng-model="searchBox.text" ng-change="clear = searchBox.text.length == 0; filterDataModel()" />
+        </div>
+        <div class="add-new-search-frame">
+          <span class="add-new-link-search-frame" data-ng-click="createNewEntityModal();">{{'Add New' | T}}</span>
+        </div>
+      </div>
+      <!-- Only Add New-->
+      <div ng-if="mmShowAddNew && !mmShowSearchBox" class="add-new">
+        <span class="add-new-link" data-ng-click="createNewEntityModal();">{{'Add New' | T}}</span>
+      </div>
+      <!-- Single Select Scroller -->
+      <ul central-scroll-event="dropDownScroll()" ng-if="controlType == 'single' && filtered.length > 0" ng-style="{'min-height': minHeight}" ng-keydown="keyDownHandler($event)" ng-mouseenter="isInUl=true" ng-mouseout="isInUl=false" prevent-default class="centralScrollBar">
+        <li ng-repeat="c in filtered | limitTo: scrollAmount track by c[mmOptionId]" ng-click="toggleCheck(c[mmOptionId], c[mmOptionName]);preventClick($event); buttonHover=false" ng-class="{'selected-item': c[mmOptionId] === mmModel && !mmIsMultiSelect, 'li-hover': (liHover || $index == currentIndex) &&  !mmIsMultiSelect && c[mmOptionId] !== mmModel} " ng-mouseenter="liHover = true" ng-mouseleave="liHover = false">
+          <div id="{{mmId}}Item{{$index}}" class="mm-nowrap" title="{{c[mmOptionName]}}" ng-class="{'item-label': mmIsMultiSelect}">{{c[mmOptionName]}}
+          </div>
+        </li>
+        <!--</scroller>-->
+      </ul>
+      <!-- Multi Select Scroller -->
+      <ul central-scroll-event="dropDownScroll()" ng-if="controlType == 'multi' && filtered.length > 0" ng-style="{'min-height': minHeight}" ng-mouseenter="isInUl=true" ng-mouseout="isInUl=false" prevent-default>
+        <li ng-repeat="c in filtered | limitTo: scrollAmount track by c[mmOptionId]" ng-click="toggleCheck(c[mmOptionId], c[mmOptionName]);itemSelected(c[mmOptionId], $index); currentIndex = -1; preventClick($event);" ng-class="{'li-hover': (liHover || $index == currentIndex) &&  !mmIsMultiSelect}" ng-mouseenter="liHover = true" ng-mouseleave="liHover = false">
+          <div id="{{mmId}}Item{{$index}}CheckBox" class="mm_checkbox" ng-class="{'mm-checkbox-hover': liHover}" mm-tool-tip="{{mmTextTooltip | T}}" ng-click="onClick()">
+            <span ng-class="{'selectedCB': isChecked(c[mmOptionId], c[mmOptionName])}"></span>
+          </div>
+          <span id="{{mmId}}Item{{$index}}" class="mm-nowrap item-label" style="padding-right: 25px;" title="{{c[mmOptionName]}}">{{c[mmOptionName]}}</span>
+        </li>
+        <!--</scroller>-->
+      </ul>
+      <div ng-if="filtered.length == 0" style="height: 50px;text-align: center;padding-top: 15px;">
+        <span>{{'No Results' | T}}</span>
+      </div>
+    </div>
+  </mm-shield>
+</div>

@@ -1,0 +1,324 @@
+/* Font Declaration
+====================*/
+@font-face {
+  font-family: 'preview-icomoon';
+  src:url('fonts/icomoon.eot?ja4ckb');
+  src:url('fonts/icomoon.eot?#iefixja4ckb') format('embedded-opentype'),
+  url('fonts/icomoon.woff?ja4ckb') format('woff'),
+  url('fonts/icomoon.ttf?ja4ckb') format('truetype'),
+  url('fonts/icomoon.svg?ja4ckb#icomoon') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+/* Icon Prototype
+==================*/
+[class^="preview-icon-"], [class*="preview-icon-"] {
+  font-family: 'preview-icomoon';
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.preview-icon-search:before {
+  content: "\e616";
+}
+
+.preview-icon-close2:before {
+  content: "\e617";
+}
+
+.preview-icon-close1:before {
+  content: "\e61c";
+}
+
+.preview-icon-errowup:before {
+  content: "\e61e";
+}
+
+.preview-icon-file:before {
+  content: "\e626";
+}
+
+.preview-icon-folderclosed:before {
+  content: "\e627";
+}
+
+.preview-icon-folderopen:before {
+  content: "\e628";
+}
+
+.preview-icon-untitled22:before {
+  content: "\e629";
+}
+
+.preview-icon-select_unchecked:before {
+  content: "\e62a";
+}
+
+.preview-icon-selectchecked:before {
+  content: "\e62b";
+}
+
+.preview-icon-disables:before {
+  content: "\e62c";
+}
+
+.preview-icon-clearbg .path1:before {
+  content: "\e615";
+  color: rgb(182, 190, 201);
+}
+.preview-icon-clearbg .path2:before {
+  content: "\e618";
+  margin-left: -1em;
+  color: rgb(182, 190, 201);
+}
+.preview-icon-clearbg .path3:before {
+  content: "\e619";
+  margin-left: -1em;
+  color: rgb(182, 190, 201);
+}
+.preview-icon-clearbg .path4:before {
+  content: "\e61a";
+  margin-left: -1em;
+  color: rgb(182, 190, 201);
+}
+.preview-icon-clearbg .path5:before {
+  content: "\e61b";
+  margin-left: -1em;
+  color: rgb(182, 190, 201);
+}
+.preview-icon-clearbg .path6:before {
+  content: "\e61d";
+  margin-left: -1em;
+  color: rgb(182, 190, 201);
+}
+.preview-icon-clearbg .path7:before {
+  content: "\e61f";
+  margin-left: -1em;
+  color: rgb(182, 190, 201);
+}
+.preview-icon-clearbg .path8:before {
+  content: "\e620";
+  margin-left: -1em;
+  color: rgb(182, 190, 201);
+}
+.preview-icon-clearbg .path9:before {
+  content: "\e621";
+  margin-left: -1em;
+  color: rgb(182, 190, 201);
+}
+.preview-icon-clearbg .path10:before {
+  content: "\e622";
+  margin-left: -1em;
+  color: rgb(182, 190, 201);
+}
+.icon-clearbg .path11:before {
+  content: "\e623";
+  margin-left: -1em;
+  color: rgb(182, 190, 201);
+}
+.preview-icon-clearbg .path12:before {
+  content: "\e624";
+  margin-left: -1em;
+  color: rgb(182, 190, 201);
+}
+.preview-icon-clearbg .path13:before {
+  content: "\e625";
+  margin-left: -1em;
+  color: rgb(182, 190, 201);
+}
+.preview-icon-clearbg .path14:before {
+  content: "\e630";
+  margin-left: -1em;
+  color: rgb(182, 190, 201);
+}
+.preview-icon-clearbg .path15:before {
+  content: "\e631";
+  margin-left: -1em;
+  color: rgb(182, 190, 201);
+}
+.preview-icon-clearbg .path16:before {
+  content: "\e632";
+  margin-left: -1em;
+  color: rgb(182, 190, 201);
+}
+.preview-icon-clearbg .path17:before {
+  content: "\e633";
+  margin-left: -1em;
+  color: rgb(182, 190, 201);
+}
+.preview-icon-clearbg .path18:before {
+  content: "\e634";
+  margin-left: -1em;
+  color: rgb(182, 190, 201);
+}
+.preview-icon-clearbg .path19:before {
+  content: "\e635";
+  margin-left: -1em;
+  color: rgb(182, 190, 201);
+}
+.preview-icon-clearbg .path20:before {
+  content: "\e636";
+  margin-left: -1em;
+  color: rgb(182, 190, 201);
+}
+.preview-icon-clearbg .path21:before {
+  content: "\e637";
+  margin-left: -1em;
+  color: rgb(182, 190, 201);
+}
+.preview-icon-clearbg .path22:before {
+  content: "\e638";
+  margin-left: -1em;
+  color: rgb(182, 190, 201);
+}
+.preview-icon-clearbg .path23:before {
+  content: "\e639";
+  margin-left: -1em;
+  color: rgb(182, 190, 201);
+}
+.preview-icon-clearbg .path24:before {
+  content: "\e63a";
+  margin-left: -1em;
+  color: rgb(182, 190, 201);
+}
+.preview-icon-clearbg .path25:before {
+  content: "\e63b";
+  margin-left: -1em;
+  color: rgb(182, 190, 201);
+}
+.preview-icon-clearbg .path26:before {
+  content: "\e63c";
+  margin-left: -1em;
+  color: rgba(13, 42, 77, 0.600000023841858);
+}
+
+.preview-icon-pop_up:before {
+  content: "\e614";
+}
+
+.preview-icon-delete:before {
+  content: "\e62d";
+}
+
+.preview-icon-edit:before {
+  content: "\e62e";
+}
+
+.preview-icon-preview2:before {
+  content: "\e62f";
+}
+
+.preview-icon-addnew:before {
+  content: "\e600";
+}
+
+.preview-icon-assets:before {
+  content: "\e601";
+}
+
+.preview-icon-back:before {
+  content: "\e602";
+}
+
+.preview-icon-backgroung:before {
+  content: "\e603";
+}
+
+.preview-icon-debug:before {
+  content: "\e604";
+}
+
+.preview-icon-generalinfo:before {
+  content: "\e605";
+}
+
+.preview-icon-globe:before {
+  content: "\e606";
+}
+
+.preview-icon-image:before {
+  content: "\e607";
+}
+
+.preview-icon-info:before {
+  content: "\e608";
+}
+
+.preview-icon-interactionmonitor:before {
+  content: "\e609";
+}
+
+.preview-icon-listview:before {
+  content: "\e60a";
+}
+
+.preview-icon-loader:before {
+  content: "\e60b";
+}
+
+.preview-icon-more:before {
+  content: "\e60c";
+}
+
+.preview-icon-positioning:before {
+  content: "\e60d";
+}
+
+.preview-icon-preview:before {
+  content: "\e60e";
+}
+
+.preview-icon-replay:before {
+  content: "\e60f";
+}
+
+.preview-icon-share:before {
+  content: "\e610";
+}
+
+.preview-icon-tag:before {
+  content: "\e611";
+}
+
+.preview-icon-tags:before {
+  content: "\e612";
+}
+
+.preview-icon-thumbview:before {
+  content: "\e613";
+}
+
+/* Icon Flipping
+=================*/
+[class^="preview-icon-"].flipped, [class*="preview-icon-"].flipped {
+   -webkit-transform: rotate(180deg);
+   -moz-transform: rotate(180deg);
+   -ms-transform: rotate(180deg);
+   -o-transform: rotate(180deg);
+   transform: rotate(180deg);
+ }
+
+[class^="preview-icon-"].flipped-v, [class*="preview-icon-"].flipped-v {
+  -webkit-transform: rotate(270deg);
+  -moz-transform: rotate(270deg);
+  -ms-transform: rotate(270deg);
+  -o-transform: rotate(270deg);
+  transform: rotate(270deg);
+}
+
+[class^="preview-icon-"].largeicon, [class*="preview-icon-"].largeicon {
+  font-size: 20px;
+}
+
+[class^="preview-icon-"].mediumicon, [class*="preview-icon-"].mediumicon {
+  font-size: 16px;
+}

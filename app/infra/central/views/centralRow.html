@@ -1,0 +1,33 @@
+<div class="centralFriendlyGridCube" ng-mouseover="item.isOver=true" ng-mouseout="item.isOver=false" ng-style="{height: 41}"
+		 ng-class="{'centralRowSelected': item.isSelected || (dataObj.selectedItem == item && dataObj.indexLocation<centralDataObject.length-1),
+		 'centralRowOver': item.isOver, 'centralRowCurrentSelected': displayData.currentSelectedItem == item, 'centralRowCurrentSelectedOver': displayData.currentSelectedItem == item&&item.isOver}"
+		 data-drag="{{dataObj.isDraggable}}" ng-model="dataObj.filteredList" jqyoui-draggable="{index:{{$index}},animate:false,placeholder:'keep'}"
+		 data-jqyoui-options="{revert:'invalid', appendTo:'body', containment:'window', scroll:false, helper:'clone'}">
+	<div ng-show="dataObj.selectedItem == item && dataObj.indexLocation<centralDataObject.length-1" class="centralRowParent">&nbsp</div>
+	<div class="centralRowCheckBoxMarker">
+		<div ng-if="item.id!=-1&&item.id!=-2" ng-model="item.isSelected" ng-click="setToolBar(dataObj, centralIndex, item);item.isSelected=!item.isSelected" class="mm_checkbox">
+			<span ng-class="{'selectedCB': item.isSelected}"></span>
+		</div>
+	</div>
+	<div class="centralRowItemData">
+		<div ng-dblclick="rowDoubleCLick(dataObj, item)" ng-click="changeChildData(centralIndex, item)">
+			<div class="mmStretched">
+				<div ng-if="item.id!=-1&&item.id!=-2" class="centralFriendlyGridItemName centralRowItemBorder">
+					<div class="centralRowItemId" title="{{item.id}}">{{item.id}}</div>
+					<div class="centralRowItemSeperator">|</div>
+					<div class="centralRowItemName" title="{{item[dataObj.title] || item.title }}">{{item[dataObj.title] || item.title }}</div>
+				</div>
+				<div ng-if="item.id==-1||item.id==-2" class="centralFriendlyGridItemName centralRowItemBorder">
+					<span class="centralRowItemName" style="left:5px;">{{item[dataObj.title] || item.title }}</span>
+				</div>
+			</div>
+			<span ng-show="dataObj.isOpen">
+				<br>
+				<div ng-repeat="index in dataObj.userMetaData" class="centralFriendlyGridItem">{{dataObj.listMetaData[index].text}}: {{ item[dataObj.listMetaData[index].key] }} &nbsp </div>
+			</span>
+		</div>
+		<div class="centralFriendlyGridItemButtons" ng-if="item.id!=-1&&item.id!=-2">
+			<a ng-show="item.isOver" class="centralFriendlyGridItemIcon fa fa-arrow-circle-o-right" ui-sref="{{dataObj.editPageURL}}({ {{dataObj.foreignKey}}: item.id })"></a>&nbsp;
+		</div>
+	</div>
+</div>

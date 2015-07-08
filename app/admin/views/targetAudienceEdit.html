@@ -1,0 +1,27 @@
+<div class="editContainer">
+	<mm-row>
+		<div class="mm-entity-fields-container-single">
+			<mm-row>
+				<mm-text mm-model="targetAudience.name"
+								 mm-is-edit-mode="isEditMode"
+								 mm-placeholder="Enter Target Audience Name"
+								 mm-error="validation.name"
+								 mm-is-required="true"
+								 mm-caption="Target Audience Name"
+								 mm-change="onNameChange()"
+								 mm-layout-type="medium"
+								 mm-label-width={{labelWidth}}></mm-text>
+			</mm-row>
+			<mm-row>
+				<mm-drop-down mm-error="validation.status"
+												mm-caption="Account Status"
+												mm-is-edit-mode="isEditMode"
+												mm-data-model="targetAudienceTypes"
+												mm-is-required="true"
+												mm-model="targetAudience.type"
+												mm-layout-type="medium"
+												mm-label-width={{labelWidth}}></mm-drop-down>
+			</mm-row>
+		</div>
+	</mm-row>
+</div>

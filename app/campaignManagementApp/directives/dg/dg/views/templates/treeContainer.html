@@ -1,0 +1,14 @@
+<div collapse="!deliveryGroup.dgToggleOpen.open">
+    <div ng-include="'campaignManagementApp/directives/dg/dg/views/templates/unSupportedRotationMessage.html'"></div>
+	<span ng-if="!hideTree.isFirstTime">
+       <dg-settings mm-id="{{mmId}}" class="dgSettings" delivery-group="deliveryGroup"></dg-settings>
+       <dg-tree
+         mm-id="{{mmId}}"
+         mm-delivery-group="deliveryGroup"
+         mm-default-ads-cb="defaultAdsCB"
+         mm-enable-disable-state="enableDisableState"
+         mm-hide-disabled="hideDisabled"
+         filter="filter">
+       </dg-tree>
+	</span>
+</div>

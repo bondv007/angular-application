@@ -1,0 +1,197 @@
+
+$white : $cWhite;
+$gray : $cGrey;
+
+.mainFrame {
+  border: solid 2px $gray;
+  background-color: $white;
+}
+
+.subMainFrame {
+  margin: 10px;
+}
+
+.divButtonFixed {
+  background-color: $white;
+  position: fixed;
+  top: 260px;
+  z-index: 1;
+}
+
+.divButton{
+  background-color: $white;
+  margin-bottom: 10px;
+}
+
+.mainButton {
+  border: solid 1px black;
+  border-radius: 0px;
+  background-color: $white;
+  padding: 0px 5px 0px 5px;
+  color: #4a5f7a;
+  border: 1px solid rgba(13,41,77,.3);
+  &:hover {
+    background-color: $cFifth;
+    border: 1px solid $cSecondary;
+    opacity: 1;
+    color: $cSecondary;
+  }
+  &:focus {
+    outline: 0;
+    box-shadow: 0;
+  }
+  &:active {
+    outline: 0;
+    box-shadow: 0;
+    background-color: $cSecondary;
+    color: $cWhite;
+  }
+  .btn {
+    &:active {
+      outline: 0;
+      box-shadow: 0;
+    }
+  }
+}
+
+.adContainer{
+  margin-bottom: 10px;
+  border: solid 3px $cSecondary;
+  width: auto;
+  min-height: 100px;
+}
+
+.adContainerDetails {
+  margin: 5px;
+}
+
+.subContainers{
+  margin: 0px 10px;
+}
+
+.dgAd {
+  margin-bottom: 10px;
+  border: solid 1px ;
+  width: auto;
+  height: 80px;
+}
+
+.dgDisabledAd{
+  opacity:0.6;
+}
+
+.dgAdText {
+  max-width: 300px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.adDetails {
+  margin-top: 10px;
+  margin-left: 5px
+}
+
+.enableStatus{
+  text-align: right;
+}
+
+.adStatusText{
+  margin-right: 10px;
+}
+
+.adImage {
+  width: 42px;
+  height: 42px;
+}
+
+.subGroupContainer {
+  border: solid 1px black;
+  height: 100px;
+  background-color: $white;
+}
+
+.subGroupRotation {
+  width: 200px;
+  height: 30px;
+  background-color: $gray;
+  text-align: center;
+  vertical-align: middle;
+  line-height: 30px;
+  margin-bottom: 10px;
+}
+
+.spaceBetweenElement{
+  padding-right: 10px;
+}
+
+.dragAdsText{
+  color: #8b8989;
+  height: 50px;
+  display: table-cell;
+  vertical-align: middle;
+}
+
+.adEvenDistributionRotation {
+  width: 120px;
+  height: 30px;
+  background-color: $gray;
+  text-align: center;
+  vertical-align: middle;
+  line-height: 30px;
+}
+
+.adWeightedRotation {
+  width: 111px;
+  height: 30px;
+  background-color: $gray;
+  line-height: 30px;
+  display: flex;
+  input::-webkit-outer-spin-button,
+  input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+}
+
+.adTimeBasedRotation {
+  height: 30px;
+  display: inline-block;
+  background-color: $gray;
+  padding: 5px;
+}
+
+.successTotalWeight {
+  padding-left: 5px;
+  background-color: $cFifth;
+}
+
+.dropArea {
+  height: 50px;
+  border: dotted #e8e8e8;
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
+.WeightedRotationTB {
+  height: 30px;
+  width: 47px;
+  border: 1px $gray solid;
+  background-color: $gray;
+  @include tArialText;
+  padding: 0 4px;
+  &:hover{
+    background-color: $cWhite;
+    border: 1px $gray solid;
+  }
+  &:focus{
+    background-color: $cWhite;
+    border: 1px $gray solid;
+    outline: 0;
+  }
+
+}
+
+.adWeightedRotationLabel{
+  margin: 0 5px !important;
+}

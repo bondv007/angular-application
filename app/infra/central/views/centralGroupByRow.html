@@ -1,0 +1,7 @@
+<div class="centralGroupByContainer">
+	<div class="centralGroupBySelected" ng-style="{'background-color': dataObj.currentGroupItem==item?'#0d2a4d':''}">&nbsp;</div>
+	<div class="mmStretched centralGroupByTextContainer" ng-click="changeChildDataByGroupBy(dataObj, item)" ng-style="{'color': dataObj.currentGroupItem==item?'#0d2a4d':''}" style="left:14px;" >
+		<span class="centralGroupByText" title="{{::item.name}}">{{::item.name}}</span>
+		<span class="centralGroupByText">{{::(item.id && enums[item.enumName] ? enums[item.enumName].getName(item.id) : '')}}</span>
+	</div>
+</div>

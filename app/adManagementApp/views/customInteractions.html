@@ -1,0 +1,150 @@
+<div ng-if="isCiExist">
+<div>
+	<mm-toggle-container mm-caption="Custom Interactions" mm-error="error.name" start-open="showToggleCI">
+		<tabset>
+			<tab id="clickthrough">
+				<tab-heading ng-click="tabsFocused.ciClickthroughs = true;
+															tabsFocused.ciUserActions = false;
+															tabsFocused.ciAutomaticEvents = false;
+															tabsFocused.customInteractions = false;
+															tabsFocused.ciTimers = false;">Clickthrough<span class="badge">{{gridItems.ciClickthroughs == null ? 0 : gridItems.ciClickthroughs.length}}</span></tab-heading>
+				<mm-row ng-if="tabsFocused.ciClickthroughs">
+					<mm-grid
+						items=gridItems.ciClickthroughs
+						cols=gridColumns.ciClickthroughColumns
+						is-cell-edit="false"
+						is-show-menu="false"
+						is-single-select="true"
+						is-sort="false"
+						is-setting-icon-disable= "false"
+						is-search-icon-disable="false"
+						show-footer="false"
+						show-group-panel="false"
+						show-selection-checkbox="false"
+						show-filter="false"
+						enable-column-resize="true"
+						is-column-reorder = "false"
+						is-show-tool-tip="true"
+						is-central-grid="false"
+						grid-height="140px"></mm-grid>
+				</mm-row>
+
+			</tab>
+			<tab id="useraction">
+				<tab-heading ng-click="tabsFocused.ciClickthroughs = false;
+															tabsFocused.ciUserActions = true;
+															tabsFocused.ciAutomaticEvents = false;
+															tabsFocused.customInteractions = false;
+															tabsFocused.ciTimers = false;">User Action<span class="badge">{{gridItems.ciUserActions == null ? 0 : gridItems.ciUserActions.length}}</span></tab-heading>
+				<mm-row ng-if="tabsFocused.ciUserActions">
+					<mm-grid
+						items=gridItems.ciUserActions
+						cols=gridColumns.ciUserActionColumns
+						is-cell-edit="false"
+						is-show-menu="false"
+						is-single-select="true"
+						is-sort="false"
+						is-setting-icon-disable= "false"
+						is-search-icon-disable="false"
+						show-footer="false"
+						show-group-panel="false"
+						show-selection-checkbox="false"
+						show-filter="false"
+						enable-column-resize="true"
+						is-column-reorder = "false"
+						is-show-tool-tip="true"
+						is-central-grid="false"
+						grid-height="140px"></mm-grid>
+				</mm-row>
+
+			</tab>
+			<tab id="automaticevent">
+				<tab-heading ng-click="tabsFocused.ciClickthroughs = false;
+															tabsFocused.ciUserActions = false;
+															tabsFocused.ciAutomaticEvents = true;
+															tabsFocused.customInteractions = false;
+															tabsFocused.ciTimers = false;">Automatic Event<span class="badge">{{gridItems.ciAutomaticEvents == null ? 0 : gridItems.ciAutomaticEvents .length}}</span></tab-heading>
+				<mm-row ng-if="tabsFocused.ciAutomaticEvents">
+					<mm-grid
+						items=gridItems.ciAutomaticEvents
+						cols=gridColumns.ciAutomaticEventColumns
+						is-cell-edit="false"
+						is-show-menu="false"
+						is-single-select="true"
+						is-sort="false"
+						is-setting-icon-disable= "false"
+						is-search-icon-disable="false"
+						show-footer="false"
+						show-group-panel="false"
+						show-selection-checkbox="false"
+						show-filter="false"
+						enable-column-resize="true"
+						is-column-reorder = "false"
+						is-show-tool-tip="true"
+						is-central-grid="false"
+						grid-height="140px"></mm-grid>
+				</mm-row>
+
+			</tab>
+			<tab id="timer">
+				<tab-heading ng-click="tabsFocused.ciClickthroughs = false;
+															tabsFocused.ciUserActions = false;
+															tabsFocused.ciAutomaticEvents = false;
+															tabsFocused.customInteractions = false;
+															tabsFocused.ciTimers = true;">Timer<span class="badge">{{gridItems.ciTimers == null ? 0 : gridItems.ciTimers .length}}</span></tab-heading>
+				<mm-row ng-if="tabsFocused.ciTimers">
+					<mm-grid
+						items=gridItems.ciTimers
+						cols=gridColumns.ciTimerColumns
+						is-cell-edit="false"
+						is-show-menu="false"
+						is-single-select="true"
+						is-sort="false"
+						is-setting-icon-disable= "false"
+						is-search-icon-disable="false"
+						show-footer="false"
+						show-group-panel="false"
+						show-selection-checkbox="false"
+						show-filter="false"
+						enable-column-resize="true"
+						is-column-reorder = "false"
+						is-show-tool-tip="true"
+						is-central-grid="false"
+						grid-height="140px"></mm-grid>
+				</mm-row>
+
+			</tab>
+			<tab id="all">
+				<tab-heading ng-click="tabsFocused.ciClickthroughs = false;
+															tabsFocused.ciUserActions = false;
+															tabsFocused.ciAutomaticEvents = false;
+															tabsFocused.customInteractions = true;
+															tabsFocused.ciTimers = false;">All<span class="badge">{{ad.customInteractions == null ? 0 : ad.customInteractions.length}}</span></tab-heading>
+				<mm-row ng-if="tabsFocused.customInteractions">
+					<mm-grid
+						items=ad.customInteractions
+						cols=gridColumns.ciAllColumns
+						is-cell-edit="false"
+						is-show-menu="false"
+						is-single-select="true"
+						is-sort="false"
+						is-setting-icon-disable= "false"
+						is-search-icon-disable="false"
+						show-footer="false"
+						show-group-panel="false"
+						show-selection-checkbox="false"
+						show-filter="false"
+						enable-column-resize="true"
+						is-column-reorder = "false"
+						is-show-tool-tip="true"
+						is-central-grid="false"
+						grid-height="140px"></mm-grid>
+				</mm-row>
+
+			</tab>
+
+
+		</tabset>
+	</mm-toggle-container>
+</div>
+</div>

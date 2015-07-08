@@ -1,0 +1,6 @@
+{
+  "env": "development-versatag-team",
+  "ec2": "https://dev6.dev.sizmdx.com/rest/",
+  "loginPath": "https://dev6.dev.sizmdx.com/rest/login/",
+  "resource": "https://dev6.dev.sizmdx.com/_/"
+}

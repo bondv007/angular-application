@@ -1,0 +1,96 @@
+$cForthBorder: rgba(186, 202, 228, 0.75);
+
+@mixin infoText {
+  font-family:arial;
+  font-size: 12px;
+  color: rgba(13, 42, 77, 0.75);
+  line-height: 23px;
+}
+
+@mixin imageBox {
+  width: 50%;
+  float: left;
+  min-height: 148px;
+  border: 1px solid $cForthBorder;
+}
+
+@mixin infoBox {
+  padding: 12px 12px;
+  height: 100%;
+  float: right;
+  min-height: 148px;
+  border: 1px solid $cForthBorder;
+}
+
+@mixin summaryBox{
+  float: right;
+
+  .mm-info-box-label {
+    @include infoText;
+  }
+
+  .mm-info-box-text {
+    @include infoText;
+    color: rgba(13, 42, 77, 0.5);
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .mm-image-box {
+    @include imageBox;
+    border-right: 0;
+  }
+
+  .mm-image-container {
+    margin: 0 auto;
+    max-width: 100%;
+    height: 146px;
+    display: block;
+    padding: 10px;
+  }
+
+  .mm-info-label-container{
+    display: inline-flex;
+  }
+}
+
+.mm-summary-box-full{
+  width: 492px;
+  min-width: 492px;
+  @include summaryBox;
+  .mm-info-box {
+    width: 50%;
+    @include infoBox;
+  }
+}
+
+.mm-summary-box-half{
+  width: 246px;
+  min-width: 246px;
+  @include summaryBox;
+  .mm-info-box {
+    width: 100%;
+    @include infoBox;
+  }
+}
+
+.central {
+
+  .mm-summary-box-half {
+    border: 0px;
+    width: 246px;
+    float: right;
+    min-width: 246px;
+    max-width: 0px;
+
+    .mm-image-box {
+      width: 100%;
+      border-right: 1px solid $cForthBorder;
+      border-bottom: 0;
+    }
+
+    .mm-info-box {
+      width: 100%;
+    }
+  }
+}

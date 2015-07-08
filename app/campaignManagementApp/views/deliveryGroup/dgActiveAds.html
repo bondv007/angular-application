@@ -1,0 +1,13 @@
+<div>
+	<div class="dropArea"  ng-model='activeAds.subContainers' data-drop="{{true}}" jqyoui-droppable="{onDrop:'dropAdToRotation()'}">
+		<h5 class="dragAdsText" ng-bind="'Drag ads here to assign them to the delivery group.' | T"></h5>
+	</div>
+
+	<div ng-init="parentContainer=activeAds" ng-repeat="container in activeAds.subContainers "
+			 ng-include="'campaignManagementApp/views/deliveryGroup/dgAdSubGroupDecision.html'"></div>
+	<div ng-if="mainEntityEdit.adContainer.rotationType == 'Weighted'" class="successTotalWeight">Total Weight {{activeAds.totalWeight}}%	</div>
+	<div ng-if="activeAds.subContainers.length > 0" class="dropArea"  ng-model='activeAds.subContainers' data-drop="{{true}}" jqyoui-droppable="{onDrop:'dropAdToRotation()'}">
+		<h5 class="dragAdsText" ng-bind="'Drag ads here to assign them to the delivery group.' | T"></h5>
+	</div>
+</div>
+

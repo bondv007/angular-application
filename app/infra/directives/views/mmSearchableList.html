@@ -1,0 +1,15 @@
+<div>
+  <div>
+    <input type="text" class="form-control" ng-model="searchBoxText" ng-change="filterList()">
+  </div>
+  <ul>
+    <scroller scroller-repeater="item in filtered" item-height="21" class="{{mmScrollerClass}}">
+      <li>
+        <input type="checkbox"
+               ng-disabled="selectedItemsOrig.indexOf(item.id) > -1 && settings.shouldDisable"
+               ng-checked="selectedItems.indexOf(item.id) > -1"
+               ng-click="itemSelected(item.id)"><span> {{item.name}}: {{item.id}}</span>
+      </li>
+    </scroller>
+  </ul>
+</div>

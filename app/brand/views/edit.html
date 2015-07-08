@@ -1,0 +1,63 @@
+<!-- position in negative horizontal place -->
+<div ng-show="pageReady" class="advertiserSelector" style="position: fixed; top: 65px; right: 60px; z-index: 900; color: #ffffff; font-size: 14px;">
+  Brand:
+  <select ng-model="brandId" ng-options="b.id as b.brandId + ' - ' + b.name for b in brand.brandAdvertiserAccounts">
+    <option value="">main</option>
+  </select>
+</div>
+<div class="editContainer">
+  <div class="row">
+    <div class="col-md-2">Brand ID:</div>
+    <div class="col-md-2">
+      <span>{{brandModel.id}}</span>
+    </div>
+    <div class="col-md-8"></div>
+  </div>
+  <div class="row">
+    <div class="col-md-2">Brand Name:</div>
+    <div class="col-md-2">
+      <span ng-if="!brandRoot">{{brandEdit.name}}</span>
+      <mm-essential-text ng-if="brandRoot" mm-model="brandModel.name" mm-placeholder="Enter Name" mm-error="error.name" mm-is-dirty="general"></mm-essential-text>
+    </div>
+    <div class="col-md-8"></div>
+  </div>
+  <div ng-if="!brandRoot" class="row">
+    <div class="col-md-2">Brand Display Name:</div>
+    <div class="col-md-2">
+      <mm-essential-text mm-model="brandModel.name" mm-placeholder="Enter Name" mm-error="error.name" mm-is-dirty="general"></mm-essential-text>
+    </div>
+    <div class="col-md-8"></div>
+  </div>
+  <div class="row">
+    <div class="col-md-2">Advertiser Name:</div>
+    <div class="col-md-2">
+      <span>{{advertisers.getById(brandEdit.advertiserId).name}}</span>
+    </div>
+    <div class="col-md-8"></div>
+  </div>
+  <div  ng-if="brandRoot" class="row">
+    <div class="col-md-2">Vertical:</div>
+    <div class="col-md-2">
+      <mm-essential-select mm-model="verticalOptions" mm-model-id="id" mm-model-name="name" mm-selected="selection" mm-error="error.name" mm-is-dirty="general"></mm-essential-select>
+    </div>
+    <div class="col-md-8"></div>
+  </div>
+  <div class="row">
+    <div class="col-md-2">Last updated by</div>
+    <div class="col-md-2">---</div>
+    <div class="col-md-8"></div>
+  </div>
+  <div class="row">
+    <div class="col-md-2">Last updated on</div>
+    <div class="col-md-2">---</div>
+    <div class="col-md-8"></div>
+  </div>
+  <br><br><br><br>
+  <div class="row" ng-if="debug" class="debug">
+    <div class="col-md-12">
+      {{brand}}
+      <br><br><br><br>
+      {{$parent.mainEntity}}
+    </div>
+  </div>
+</div>

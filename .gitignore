@@ -1,0 +1,13 @@
+node_modules
+dist
+.tmp
+.sass-cache
+app/bower_components
+app/scripts/constants/config.js
+
+## ignoring some intellij settings
+**/.idea/workspace.xml
+**/.idea/tasks.xml
+**/.idea/codeStyleSettings.xml
+**/.idea/project_default.xml
+**/.idea/project_settings.xml

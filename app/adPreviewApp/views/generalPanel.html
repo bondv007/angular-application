@@ -1,0 +1,161 @@
+<div class="panel-heading">
+	<h4 class="panel-title">
+    <a ng-class="{'active':showGeneralSection}" ng-click="manageSideBar(sectionType.general,showGeneralSection)">
+      <i class="preview-icon-generalinfo"></i> GENERAL
+      <!--<i class="fa" ng-class="{'fa-angle-down':!showGeneralSection,'fa-angle-up rotated':showGeneralSection}"></i>-->
+      <i class="fa fa-angle-down"> </i>
+	  </a>
+  </h4>
+</div>
+<div ng-show="showGeneralSection" class="panel-collapse in">
+	<div class="panel-body" ng-style="{'height':panelHeight}">
+
+		<ul class="general-info">
+			<li>
+				<label>Status:</label>
+				<div class="value">
+          {{ad.status}}
+				</div>
+			</li>
+			<li>
+				<label>Format:</label>
+				<div class="value">
+					{{ad.adType}}
+				</div>
+			</li>
+			<li>
+				<label>Size:</label>
+				<div class="value">
+					{{ad.additionalMetadata.size}}
+
+					<div ng-mouseenter="showSizeInfo=true" ng-mouseleave="showSizeInfo=false" class="tip-box">
+						<a><i class="preview-icon-info largeicon"></i></a>
+						<div class="tip-box2" ng-show="showSizeInfo">
+							<p><span>Total Size: </span> {{ad.overallSize}}</p>
+							<p><span>Initial Size: </span> {{ad.initialSize}}</p>
+							<!--<p><span>Image Size: </span> {{ad.pricingSize}}</p>-->
+						</div>
+
+					</div>
+				</div>
+			</li>
+			<li>
+				<label>Dimensions:</label>
+				<div class="value">
+					{{ad.dimension}}
+				</div>
+			</li>
+			<li ng-if="!isMDX2">
+				<label>Clickthrough:</label>
+				<div class="value">
+					{{ad.clickthrough}}
+				</div>
+			</li>
+			<!--<li>
+					<label>Workshop Version:</label>
+
+					<div class="value">
+							Free
+					</div>
+			</li>-->
+			<!--<li>
+					<label>Features:</label>
+
+					<div class="value">
+							Free
+					</div>
+			</li>-->
+		</ul>
+
+		<ul class="general-info">
+			<li>
+				<label>ID:</label>
+				<div class="value">
+					{{ad.id}}
+				</div>
+			</li>
+			<li ng-if="!isMDX2">
+				<label>Account:</label>
+				<div class="value">
+					{{ad.accountName}}
+				</div>
+			</li>
+			<li ng-if="!isMDX2">
+				<label>Campaign:</label>
+				<div class="value">
+					{{ad.campaignName}}
+				</div>
+			</li>
+      <li ng-if="!isMDX2">
+        <label>Advertiser:</label>
+        <div class="value">
+          {{ad.advertiserName}}
+        </div>
+      </li>
+      <li ng-if="!isMDX2 && ad.placementName != ''">
+        <label>Placement:</label>
+        <div class="value">
+          {{ad.placementName}}
+        </div>
+      </li>
+			<!--<li>
+					<label>Workshop Version:</label>
+
+					<div class="value">
+							Free
+					</div>
+			</li>-->
+			<!--<li>
+					<label>Features:</label>
+
+					<div class="value">
+							Free
+					</div>
+			</li>-->
+		</ul>
+
+		<ul class="general-info bor0">
+			<li ng-if="ad.tags.length > 0">
+				<label>Tags:</label>
+
+				<div class="value tags-sec">
+					<div class="add-tags" ng-if="ad.tags.length > maxTagOnHeader">
+						<a class="add"
+							 ng-click="adPreviewCommonModel.showTagSection=!adPreviewCommonModel.showTagSection"><i
+							class="preview-icon-addnew"></i></a>
+
+						<div class="add-tags-box" ng-show="adPreviewCommonModel.showTagSection">
+
+							<!--<div class="search">-->
+							<!--<input type="text" ng-model="adPreviewCommonModel.searchTag"/>-->
+							<!--<input type="button" class="submit" value="&#xf002;"/>-->
+							<!--</div>-->
+
+							<ul>
+								<li tooltip="{{tag.toolTip}}" class="color-{{tag.tagColor}}"
+										ng-repeat="tag in ad.tags | startFrom:maxTagOnHeader">
+									<i class="preview-icon-tag"></i> {{tag.tagName}} <span></span>
+								</li>
+							</ul>
+
+						</div>
+					</div>
+
+					<div class="tages-sec">
+						<ul class="tags">
+							<li class="ng-scope" ng-repeat="tag in ad.tags | limitTo:maxTagOnHeader"><a
+								class="color-{{tag.tagColor}}">
+								<div class="left-section">
+									<i class="preview-icon-tag"></i><span class="tagText">{{tag.tagName}}</span>
+								</div>
+							</a>
+							</li>
+						</ul>
+					</div>
+
+				</div>
+			</li>
+		</ul>
+
+	</div>
+</div>

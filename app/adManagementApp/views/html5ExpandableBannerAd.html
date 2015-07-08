@@ -1,0 +1,52 @@
+<mm-toggle-container mm-caption="Creative Assets" mm-error="creativeError.name"
+                     start-open="toggleHandler.showToggleCreativeAssets">
+  <mm-row ng-if="errors.creativeAssets">
+    <mm-error-div error-text="errors.creativeAssets"></mm-error-div>
+  </mm-row>
+  <mm-row ng-if="errors.panels">
+    <mm-error-div error-text="errors.panels"></mm-error-div>
+  </mm-row>
+  <mm-row ng-if="errors.additionalAssets">
+    <mm-error-div error-text="errors.additionalAssets"></mm-error-div>
+  </mm-row>
+  <tabset>
+    <tab heading="{{'Main Assets' |T}}" class="{{!errors.creativeAssets  ? '' : 'tabWithErrors'}}"
+         select="focusedTab('creativeAssetsBase')">
+      <div ng-include="'adManagementApp/views/creativeAssetsBase.html'"></div>
+    </tab>
+    <tab ng-if="ad.adFormat ==='HTML5_EXPANDABLE_BANNER_AD'" class="{{!errors.panels  ? '' : 'tabWithErrors'}}"
+         ng-attr-class="{{!ad.html5.assetId ? 'tabDisabled':  ''}}"
+         select="focusedTab('panels')">
+      <tab-heading ng-attr-class="{{!ad.html5.assetId ? 'tabDisabled':  ''}}">{{'Panels' | T}} <span class="badge">{{ad.panels == null ? 0 : ad.panels.length}}</span>
+      </tab-heading>
+      <div ng-if="tabsFocused.panels" ng-include="'adManagementApp/views/panelsTab.html'"></div>
+    </tab>
+    <tab class="{{!errors.additionalAssets  ? '' : 'tabWithErrors'}}" select="focusedTab('additionalAssetsTab')">
+      <tab-heading>{{'Additional Assets' | T}}<span class="badge">{{ad.additionalAssets == null ? 0 : ad.additionalAssets.length}}</span>
+      </tab-heading>
+      <div ng-include="'adManagementApp/views/additionalAssetsTab.html'"></div>
+    </tab>
+    <tab heading="HTML5 Assets" ng-click="tabsFocused.creativeAssetsBase = false;tabsFocused.html5 = true"
+         ng-if="ad.html5 && ad.html5 && ad.html5.assetId">
+      <div ng-include="'adManagementApp/views/html5Assets.html'"></div>
+    </tab>
+  </tabset>
+</mm-toggle-container>
+
+<div ng-include="'adManagementApp/views/clickthrough&ThirdPartyURLs.html'"></div>
+
+<div ng-include="'adManagementApp/views/customInteractions.html'"></div>
+
+<mm-toggle-container mm-caption="Settings" mm-is-dirty="" mm-error="error.name"
+                     start-open="toggleHandler.showToggleSettings">
+  <tabset>
+    <tab heading="Privacy" id="privacy">
+      <div style="padding-top: 20px">
+        <div ng-include="'adManagementApp/views/SettingsPrivacyTab.html'"></div>
+      </div>
+    </tab>
+  </tabset>
+</mm-toggle-container>
+
+
+

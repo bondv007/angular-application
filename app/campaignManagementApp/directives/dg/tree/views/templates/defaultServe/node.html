@@ -1,0 +1,31 @@
+<span class="rotationPosition">
+						<div class="middleElement itemIdText" ng-bind="'Rotation: ' | T"></div>
+						<div class="middleElement itemNameText" ng-bind="'First Matching' | T"></div>
+					</span>
+<ol ui-tree-nodes="" ng-model="rootContainer.defaultServe">
+	<li ng-if="ad.rotationSetting.enabled || !mmHideDisabled.val"
+			ng-class="{'disableItem':!ad.rotationSetting.enabled}" ng-repeat="ad in rootContainer.defaultServe" ui-tree-node>
+		<div ui-tree-handle >
+			<!--Drag Icon-->
+			<div class="dragIcon middleElement"></div>
+
+			<!--Only for keep the same distance as other node from rotation-->
+			<div class="middleElement wrapContainerToggleIcon"></div>
+
+			<!--Check Box []-->
+			<div data-nodrag class="mm_checkbox middleElement" ng-model="ad.selected" ng-click="ad.selected=!ad.selected; onParentSelected(ad)">
+				<span ng-class="{'selectedCB': ad.selected}"></span>
+			</div>
+
+			<!--Item Type Icon-->
+			<div class="middleElement adIcon"></div>
+
+			<!--ID + Name-->
+			<div class="middleElement itemIdText" ng-bind="ad.masterAdId"></div>
+			<div class="middleElement itemName">
+				<div class="itemNameText" ng-bind="ad.name"></div>
+			</div>
+
+		</div>
+	</li>
+</ol>

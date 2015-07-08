@@ -1,0 +1,12 @@
+<div ng-model='defaultAds' data-drop="{{true}}" jqyoui-droppable="{onDrop:'dropAdToDefault()'}">
+	<div class="strikeWithText">
+		<span> <input ng-click="onSelectDefaultAds()" ng-model="defaultAdsCB.isSelected" type="checkbox"/> {{'Default Ads' | T}}</span>
+	</div>
+	<div>
+		<div class="dropArea">
+			<h5 class="dragAdsText" ng-bind="'Drag ads here to assign them to default ads for serving.'|T"></h5>
+		</div>
+		<div ng-repeat="container in defaultAds | reverse" ng-include="'campaignManagementApp/views/deliveryGroup/dgAdSubGroupDecision.html'">
+		</div>
+	</div>
+</div>

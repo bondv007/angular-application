@@ -1,0 +1,31 @@
+<span class="mmDatePicker" ng-mouseover="onMouseOver()" ng-mouseleave="onMouseOut()">
+
+	<div class="dpMainOpenCloseMode" ng-if="!isEditMode && !isHoverMode && !mmError.text" class="dpMain" ng-class="{'dpDisableMode':mmDisable}">
+
+		<div class="dpCloseMode">
+			{{mmModel? (mmModel |date: dateFormat):('select date' | T) }}
+			<span class="dpCalendarIconCloseMode"></span>
+</div>
+
+</div>
+<!--Hover and Edit Mode-->
+<div class="dpMainOpenCloseMode" ng-if="isEditMode || isHoverMode  || mmError.text" class="dpMain">
+  <div class="dpTextBoxWithIcon" ng-click="onSelectedTB()">
+
+    <input ng-change="onChange(mmModel)" ng-class="{'dpCalendarIconHover':isEditMode,'errorInput': mmError.text}" class="dpTextBox" type="text" ng-model="mmModel" ng-blur="onBlurTB(mmModel)" datepicker-popup="{{dateFormat}}" placeholder="{{'select date' | T}}" />
+
+    <span ng-class="{'dpCalendarIconEditMode':(isEditMode || isTbSelected || isMouseOverDatePicker || mmError.text), 'dpCalendarIconOpenMode':true}"></span>
+  </div>
+  <mm-shield enable-shield="enableShield" ng-if="isEditMode" flip-offset="20" on-touch="hideDatePicker()">
+    <div class="dpFrame">
+      <datepicker ng-change="onChange(mmModel)" ng-model="mmModel" show-weeks="false" min="mmMinDate" max="mmMaxDate" date-disabled="mmDisable"></datepicker>
+    </div>
+  </mm-shield>
+</div>
+
+<!--Error-->
+<div ng-if="mmError.text">
+  <mm-error-div class="dpErrorText" mm-min-width="mmMinWidth" error-text="mmError.text"></mm-error-div>
+</div>
+
+</span>

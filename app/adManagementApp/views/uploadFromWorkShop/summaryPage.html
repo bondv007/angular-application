@@ -1,0 +1,87 @@
+<div ng-if="step.val != 'success'">
+    <div class="wave-spinner">
+        <div class="rect1"></div>
+        <div class="rect2"></div>
+        <div class="rect3"></div>
+        <div class="rect4"></div>
+        <div class="rect5"></div>
+    </div>
+</div>
+<div  ng-show="step.val === 'success'"> <!--ng-if="step.val==='success'"-->
+	<button style="margin: 10px 10px 5px 30px;" type="button" class="centralMasterToolBarButton ng-scope ng-binding"
+					ng-click="createNewAd()">{{'PREVIEW' | T}}</button>
+	<button style="margin: 10px 10px 5px 0px;" type="button" class="centralMasterToolBarButton ng-scope ng-binding"
+					ng-click="deleteAd(ad)">{{'VIEW IN ADS LIST' | T}}</button>
+	<button style="margin: 10px 10px 5px 0px;" type="button" class="centralMasterToolBarButton ng-scope ng-binding"
+					ng-click="deleteAd(ad)">{{'ASSIGN' | T}}</button>
+
+    <table class="buildAdsGrid" border="1px" >
+    <tr>
+      <th class="header" ng-repeat="column in gridColumns" ng-if="!column.savePage && !column.exist" ng-bind="column.displayName | T"></th>
+    </tr>
+    <tr ng-repeat="ad in newAds track by ad.clientRefId">
+      <td style="min-width: 210px;">
+        <a class="name-link" ui-sref="spa.ad.adEdit({adId:ad.id})">{{ad.name}}</a>
+      </td>
+      <td style="min-width: 80px" ng-if="ad.id != ''">
+				<div class="mm-entity-fields-container-single">
+					<mm-row>
+						<mm-label mm-model="ad.id"
+											mm-layout-type="custom" mm-custom-control-width="90"
+											mm-show-label="false">
+						</mm-label>
+					</mm-row>
+				</div>
+      </td>
+      <td style="min-width: 40px">
+        <div class='externalImage' style='margin: 2px; cursor:pointer;'ng-click='redirectOnImageClick(row.entity[col.field].externalLink)'>
+          <img ng-mousemove='adjustPreview($event)' ng-mouseenter='showPreview($event)' ng-mouseleave='removePreview($event)'
+               ng-src='{{ad.thumbnail_url}}' height='{{imageHeight}}' width='{{imageWidth}}' lazy-src/></div>
+      </td>
+            <td style="min-width: 120px;max-width: 150px">
+				<div class="mm-entity-fields-container-single">
+					<mm-row>
+						<mm-label mm-model="ad.adFormat"
+                                            mm-layout-type="custom" mm-custom-control-width="160"
+											mm-show-label="false">
+						</mm-label>
+					</mm-row>
+				</div>
+			</td>
+			<td style="min-width: 50px">
+				<div class="mm-entity-fields-container-single">
+					<mm-row>
+						<mm-label mm-model="ad.parsedFileSize"
+											mm-layout-type="small" mm-custom-control-width="90"
+											mm-show-label="false">
+						</mm-label>
+					</mm-row>
+				</div>
+			</td>
+      <td style="min-width: 80px">
+        <div class="mm-entity-fields-container-single">
+          <mm-row>
+            <mm-label mm-model="ad.dimensions"
+                      mm-layout-type="custom" mm-custom-control-width="90"
+                      mm-show-label="false">
+            </mm-label>
+          </mm-row>
+        </div>
+      </td>
+      <td>
+        <div class="mm-entity-fields-container-single">
+            <mm-row >
+                <mm-text  mm-model="ad.sharedPreview"
+                          mm-layout-type="custom" mm-custom-control-width="150"
+                          mm-show-label="false" mm-disable="true"
+                          mm-min-length="100" mm-max-length="100"
+													mm-is-link="true"></mm-text>
+            </mm-row>
+        </div>
+      </td>
+    </tr>
+  </table>
+</div>
+<div ng-if="step.val==='fail'">
+
+</div>

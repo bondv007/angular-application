@@ -1,0 +1,96 @@
+<div class="editContainer">
+  <mm-row>
+    <mm-auto-complete id="ex1"
+                      placeholder="Search countries"
+                      pause="100"
+                      mm-width="300"
+                      selected-object="demoModel.vertical"
+                      remote-url="https://dev2.sizmdx.com/rest/search/geo?q="
+                      remote-url-data-field="result"
+                      title-field="name"
+                      type-field="type"
+                      minlength="2"
+                      clear-selected="true"
+                      text-no-results="Geo not supported"
+                      title-manipulator="generateGeoTitle(data)"
+                      class="mm-auto-complete"
+                      parse-search-term
+                      show-group-by/>
+  </mm-row>
+  <!--<mm-row>-->
+    <!--<mm-text mm-model="demoModel.accountId"-->
+             <!--mm-is-edit-mode="false"-->
+             <!--mm-label-width="0"-->
+             <!--mm-change="filterDataModel()"-->
+             <!--mm-tab-index="3"></mm-text>-->
+  <!--</mm-row>-->
+  <!--<mm-row>-->
+    <!--<mm-select-list mm-data-model="accounts"-->
+                    <!--mm-model="demoModel.accountIds"-->
+                    <!--mm-available-title="TOTAL GEOS">-->
+    <!--</mm-select-list>-->
+  <!--</mm-row>-->
+
+  <!--<mm-row>-->
+    <!--<mm-text mm-model="demoModel.name"-->
+             <!--mm-is-edit-mode="false"-->
+             <!--mm-label-width="0"-->
+             <!--mm-tab-index="3"></mm-text>-->
+  <!--</mm-row>-->
+  <!--<mm-row>-->
+    <!--<mm-text mm-model="demoModel.name"-->
+             <!--mm-is-edit-mode="false"-->
+             <!--mm-label-width="0"-->
+             <!--mm-tab-index="2"></mm-text>-->
+  <!--</mm-row>-->
+  <!--<mm-row>-->
+    <!--<mm-text mm-model="demoModel.name"-->
+             <!--mm-is-edit-mode="false"-->
+             <!--mm-label-width="0"-->
+             <!--mm-tab-index="4"></mm-text>-->
+  <!--</mm-row>-->
+  <!--<mm-row>-->
+    <!--<mm-text mm-model="demoModel.name"-->
+             <!--mm-is-edit-mode="false"-->
+             <!--mm-label-width="0"-->
+             <!--mm-tab-index="1"></mm-text>-->
+  <!--</mm-row>-->
+  <!--<mm-row>-->
+    <!--<mm-drop-down mm-caption="Account Name"-->
+                  <!--mm-data-model="verticals"-->
+                  <!--mm-model="demoModel.new"-->
+                  <!--control-type="multi"-->
+                  <!--mm-layout-type="medium"-->
+                  <!--show-search-box-->
+                  <!--show-add-new></mm-drop-down>-->
+    <!--<mm-drop-down mm-caption="Account Name"-->
+                  <!--mm-data-model="accounts"-->
+                  <!--lazy-type="'accounts|global'"-->
+                  <!--mm-model="demoModel.accountIds"-->
+                  <!--control-type="multi"-->
+                  <!--mm-layout-type="medium"-->
+                  <!--show-add-new></mm-drop-down>-->
+  <!--</mm-row>-->
+  <!--<mm-row>-->
+    <!--<mm-drop-down mm-caption="Account Name"-->
+                  <!--mm-data-model="accounts"-->
+                  <!--lazy-type="'accounts|global'"-->
+                  <!--mm-model="demoModel.accountIds"-->
+                  <!--control-type="multi"-->
+                  <!--mm-layout-type="medium"-->
+                  <!--show-search-box></mm-drop-down>-->
+    <!--<mm-drop-down mm-caption="Account Name"-->
+                  <!--mm-data-model="accounts"-->
+                  <!--lazy-type="'accounts|global'"-->
+                  <!--mm-model="demoModel.accountIds"-->
+                  <!--control-type="multi"-->
+                  <!--mm-layout-type="medium"></mm-drop-down>-->
+  <!--</mm-row>-->
+
+  <!--<mm-row>-->
+    <!--<mm-select-list mm-data-model="assetTypes"-->
+                    <!--mm-model="demoModel.assets"-->
+                    <!--mm-show-type>-->
+    <!--</mm-select-list>-->
+  <!--</mm-row>-->
+</div>

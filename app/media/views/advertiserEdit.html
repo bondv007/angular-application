@@ -1,0 +1,34 @@
+<div ng-class="{'editContainer' : !isModal}" xmlns="http://www.w3.org/1999/html">
+  <!-- Essentials Start -->
+  <mm-row>
+    <div ng-class="{'mm-entity-fields-container' : !isModal}">
+      <mm-row>
+        <div class="mm-entity-fields-container-single">
+          <span ng-include="'media/views/advertiser/advertiserEssential.html'"> </span>
+        </div>
+      </mm-row>
+    </div>
+  </mm-row>
+  <!-- Essentials End -->
+  <mm-row ng-if="!isModal">
+    <div class="mm-entity-fields-container-single">
+      <span ng-include="'media/views/advertiser/advertiserSettings.html'"></span>
+      <!--<span ng-include="'media/views/advertiser/advertiserAnalytics.html'"></span>-->
+      <div mm-contacts
+           mm-toggle-expanded="togglesStatus.contacts"
+           mm-model="editObject.adminSettings.defaultContacts"
+           mm-error="invalidContacts"
+           mm-account-id="editObject.relationsBag.parents.account.id"
+           mm-is-edit-mode="isEditMode"
+           mm-display-sizmek="true"
+           mm-display-media="true"
+           mm-display-creative="true"
+           mm-display-site="true"
+           mm-edit-site="false"
+           mm-contacts-tab-error="isTabValid.contacts"
+           mm-tab-handler="tabHandler.contacts">
+      </div>
+      <mm-external-id></mm-external-id>
+    </div>
+  </mm-row>
+</div>

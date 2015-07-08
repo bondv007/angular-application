@@ -1,0 +1,108 @@
+<div id="dg-toolbar" ng-hide="initializing" clas="row">
+    <div id="dg-toolbar-segment-name">
+        <span id="blue"></span>
+        <span id="ta-name">
+        <strong>{{currentSegment.TargetAudienceName | limitTo: 50 }}<span ng-if="currentSegment.TargetAudienceName.length > 50">...</span></strong>
+        </span>
+        <div class="ta-name-arrow"></div>
+    </div>
+
+
+    <div id="dg-toolbar-button-container" class="form-inline col-md-6">
+
+        <button class="dg-toolbar-button" href="" role="menuitem" ng-click="openExistingDGsModal()" ng-disabled="!showExistingButton || !listOfDeliveryGroups">Assign Delivery Group</button>
+        <button class="preview dg-toolbar-button" ng-click="openPreview()" ng-disabled="appService.previewAds.buttonDisabled">Preview</button>
+        <button class="dg-toolbar-button" ng-disabled="appService.previewAds.removeButtonDisabled" ng-click="removeDeliveryGroups()">Remove</button>
+
+       <!--  <div class="dropdown trafficking-dropdown">
+            <button class="dg-toolbar-button dropdown-toggle" ng-disabled="!currentSegment">Assign Delivery Group<span class="caret"></span></button>
+
+            <ul class="dropdown-menu dg-toolbar-button" role="menu">
+                <li role="presentation"><button role="menuitem" ng-click="openNewDGsModal()" class="dg-dropdown-button">New Delivery Group</button></li>
+                <li role="presentation">
+                    <button role="menuitem" ng-click="openExistingDGsModal()" class="dg-dropdown-button" ng-disabled="!showExistingButton">Existing Delivery Group</button>
+                </li>
+            </ul>
+
+            <button class="preview dg-toolbar-button" ng-click="openPreviewAds()" ng-disabled="previewAds.buttonDisabled">Preview</button>
+
+            <button class="dg-toolbar-button" ng-disabled="previewAds.removeButtonDisabled" ng-click="removeAds()">Remove</button>
+
+        </div> -->
+
+    </div>
+</div>
+
+<div ng-show="showLoading" class="treeViewLoading">
+    <span class="spin-360 glyphicon glyphicon-repeat"></span>&nbsp;&nbsp;Processing...
+</div>
+
+<div id="deliverGroups">
+
+    <!-- Filters -->
+    <div id="filters" ng-if="currentSegment.deliveryGroups.length">
+        <div style="padding: 20px 0 20px 0;">
+            Filter by:
+            <span class="dropdown" >
+                <a href="" class="dropdown-toggle">Size<span class="caret"></span></a>
+                <ul class="dropdown-menu">
+                    <li><a href="" ng-click="changeSize('')" class="dropdown-toggle">No filter</a></li>
+                    <li ng-repeat="size in allSizes">
+                        <a href="" ng-click="changeSize(size)" class="dropdown-toggle">{{size | convertToKB}}</a>
+                    </li>
+                </ul>
+            </span>
+
+           <!--  <span class="dropdown" >
+                <a href class=" dropdown-toggle"> Status <span class="caret"></span></a>
+                <ul class="dropdown-menu">
+                    <li><a href="" ng-click="changeStatus('')" class="dropdown-toggle">No filter</a></li>
+                    <li ng-repeat="status in allStatuses">
+                        <a href="" class="dropdown-toggle" ng-click="changeStatus(status)">{{status}}</a>
+                    </li>
+                </ul>
+            </span> -->
+            <br>Filtering by Size: <span>{{filterToSize | convertToKB}}</span>
+            <!-- <br>Filtering by Status: {{filterToStatus}} -->
+        </div>
+
+    </div>
+
+    <!-- Groups container -->
+    <div id="tree" class="treeview-content col-md-8" ng-show="currentSegment.deliveryGroups.length">
+
+        <!-- Every single Group -->
+        <ul class="col-md-12 group droppableItem" data-dg="{{dg}}" ng-repeat="dg in currentSegment.deliveryGroups">
+
+            <!-- Groups' metadata -->
+            <li class="dg-top-level" ng-click="showAds = !showAds">
+                <span ng-class="{'fa-caret-down': showAds && dg.ads[0], 'fa-caret-right': !showAds && dg.ads[0]}" class="fa dg-arrow"></span>
+                <input type="checkbox" ng-click="selectDg(dg, $event)" />
+                <span ng-class="{'csb-icon-folder-closed': !showAds, 'csb-icon-folder-open': showAds}" class="csb-icon dg-icon"></span>
+
+                <span class="dg-name">{{dg.Name}}</span >
+                <span class="dg-size">{{dg.Dimension}}</span>
+                <span class="dg-rotation">{{dg.RotationType}}</span>
+                <span class="dg-rotation">{{dg.NumberOfAds}} ad<span ng-show="dg.NumberOfAds !== 1">s</span></span>
+            </li>
+
+            <!-- Group's ads -->
+            <ul class="ads">
+                <li class="dg-ad-level" ng-repeat="ad in dg.ads | adSizes:filterToSize" collapse="!(showAds && dg.ads[0])">
+                <!-- <li class="dg-ad-level" ng-repeat="ad in dg.ads | adSizes:filterToSize | adStatuses:filterToStatus" collapse="!(showAds && dg.ads[0])" > -->
+                    <span ng-class="{'fa-caret-right': ad.hasFiles}" class="fa dg-arrow"></span><span class="csb-icon csb-icon-folder dg-icon"></span>
+
+                    <input type="checkbox" ng-click="selectAd(ad, $event)" />
+
+                    <span class="ad-weight">{{ad.AdSize | convertToKB}}</span>
+                    <span class="ad-placement">{{ad.AdName}}</span>
+                    <span class="ad-id">{{ad.AdID}}</span>
+                    <span class="ad-type">{{ad.AdFormatType}}</span>
+                    <span class="ad-type pull-right"><strong>rotation: {{ad.rotationValue}}%</strong></span>
+                </li>
+            </ul>
+
+        </ul>
+    </div>
+
+</div>

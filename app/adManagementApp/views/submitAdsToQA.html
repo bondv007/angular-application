@@ -1,0 +1,84 @@
+
+ 		<mm-mini-section mm-caption="'Agency & Advertiser Details'"  mm-start-open="true" mm-is-modal="isModal" mm-start-open-disabled="isModal">
+			<mm-row>
+				<mm-drop-down   mm-model="adQARequest[0].mediaAgencyId"
+                                mm-data-model="mediaAgencies"
+                                lazy-type="'accounts/global'"
+                                mm-caption="Media Agency"
+                                mm-is-edit-mode ="isEditable.mediaAgencySelected"
+                                mm-disable="isEditable.mediaAgencySelected"
+                                mm-is-required="true"
+                                mm-label-width={{labelWidth}}
+                                mm-layout-type="medium"
+                                control-type="single"
+                                mm-is-edit-mode="iseditMode"></mm-drop-down>
+
+			</mm-row>
+			<mm-row>
+				<mm-drop-down   mm-model="adQARequest[0].advertiserId"
+                                mm-data-model="advertisers"
+                                lazy-type="'advertisers/advertiseraccounts'"
+                                mm-caption="Advertiser"
+                                mm-is-edit-mode ="isEditable.advertiserSelected"
+                                mm-disable="isEditable.advertiserSelected"
+                                mm-is-required="true"
+                                mm-label-width={{labelWidth}}
+                                mm-layout-type="medium"
+                                control-type="single"
+                                mm-is-edit-mode="iseditMode"></mm-drop-down>
+			</mm-row>
+			<mm-row>
+				<mm-check-box
+					mm-caption=""
+					mm-model="adQARequest[0].assignUponSubmit"
+					mm-description = "Assign upon submit"
+					mm-label-width="{{labelWidth}}"
+					mm-layout-type="medium">
+				</mm-check-box>
+			</mm-row>
+		</mm-mini-section >
+		<mm-mini-section mm-caption="'QA Request Details'"  mm-start-open="true" mm-is-modal="isModal" mm-start-open-disabled="isModal">
+
+			<mm-row>
+				<mm-label mm-caption ="Instructions for requester" mm-show-control="false"></mm-label>
+				<textarea  ng-model="adQARequest[0].requesterInstructions" class="mm-Submit-to-qa"></textarea>
+			</mm-row>
+			<mm-row>
+				<mm-drop-down mm-model="adQARequest[0].testMobileDevices"
+											mm-data-model="TestMobileDevices"
+											mm-disable = "html5Exist"
+											mm-caption="Test Mobile Devices"
+											mm-label-width={{labelWidth2}}
+											mm-layout-type="medium"
+											control-type="single"
+											mm-custom-model-text="mobileDeviceNotRequired"></mm-drop-down>
+			</mm-row>
+		</mm-mini-section>
+		<!--mm-mini-section mm-caption="'Subscribe to Notification - TBD'"  mm-start-open="toggleHandler.showToggleLinearSettings" mm-is-modal="isModal">
+			<mm-row>
+				<mm-grid
+					items=subscribeToNotification.subscribers
+					selected-items = subscribeToNotification.selectedSubscribers
+					cols=subscribeToNotification.columns
+					is-cell-edit="true"
+					is-show-menu="false"
+					is-single-select="false"
+					is-sort="true"
+					is-setting-icon-disable= "false"
+					is-search-icon-disable="false"
+					show-footer="false"
+					show-group-panel="false"
+					show-selection-checkbox="true"
+					show-filter="false"
+					enable-column-resize="true"
+					is-column-reorder = "false"
+					is-show-tool-tip="true"
+					is-central-grid="false"
+					db-click-handler=""
+					grid-height="200px"
+					grid-button-actions="subscribeToNotification.actions"></mm-grid>
+			</mm-row>
+
+
+		</mm-mini-section-->
+

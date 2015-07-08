@@ -1,0 +1,20 @@
+<div ng-include="'campaignManagementApp/directives/dg/tree/templates/node.html'"></div>
+<span ng-class="{hidden: collapsed}" >
+	<mm-row ng-if="!!item.subContainers">
+			<mm-drop-down
+					class="rotationPosition"
+					mm-layout-type="custom"
+					mm-label-width="70"
+					mm-custom-control-width="170"
+					mm-caption="Rotation"
+					mm-select-change-func="onSubGroupRotationChange(item)"
+					mm-data-model="rotations"
+					mm-model="item.rotationType">
+			</mm-drop-down>
+	</mm-row>
+	<ol ui-tree-nodes="" ng-model="item.subContainers">
+		<li ng-repeat="item in item.subContainers" ui-tree-node>
+			<div ng-include="'campaignManagementApp/directives/dg/tree/templates/nodes_renderer.html'"></div>
+		</li>
+	</ol>
+</span>

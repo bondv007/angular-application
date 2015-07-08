@@ -1,0 +1,60 @@
+<mm-control>
+  <button ng-if="(isShowControl || (!!mmError &&  mmError !='')) && !mmDisableEdit"
+          ng-class="{
+					  'errorInput':mmError != null && mmError != '',
+					  'button-frame': !isVisible,
+					  'button-frame-open': isVisible,
+					  'button-frame-hover': buttonHover,
+					  'button-frame-disabled': mmDisableEdit}"
+          ng-mouseenter="buttonHover = true && !mmDisableEdit"
+          ng-mouseleave="buttonHover = false"
+          class="button-frame"
+          style="cursor: context-menu"
+          ng-click="toggleSelect()">
+    <span class="button-label {{labelClass}}">{{mmModelObj.text | T}}</span>
+    <img ng-class="{'button-down': !isVisible, 'button-up': isVisible}"/>
+    <div class="button-separator"></div>
+    <div ng-if="isVisible" class="bottom-separator"></div>
+  </button>
+  <div class="wrapper"
+       ng-if="isVisible">
+    <div ng-if="mmShowSearchBox"
+         class="search-frame">
+      <div ng-class="{'search-box-icon': clear, 'search-box-clear-icon': !clear}"
+           ng-click="clear = true; searchBox.text = ''; filterDataModel()"
+           ng-init="clear = true"></div>
+      <input class="search-box"
+             type="text"
+             ng-model="searchBox.text"
+             mm-focus="isVisible"
+             ng-change="clear = searchBox.text.length == 0; filterDataModel()"/>
+    </div>
+    <ul style="{{minHeight}}">
+      <scroller scroller-repeater="c in filtered"
+                item-height="30"
+                class="scroller-items"
+                ng-class="{withsearchbox: mmShowSearchBox}">
+        <li ng-click="toggleCheck(c[mmOptionId], c[mmOptionName]);itemSelected(c[mmOptionId]);"
+            ng-class="{'selected-item': mmSelected.indexOf(c[mmOptionId]) !== -1 && !mmIsMultiSelect, 'li-hover': liHover &&  !mmIsMultiSelect}"
+            ng-mouseenter="liHover = true"
+            ng-mouseleave="liHover = false">
+          <div ng-if="mmIsMultiSelect"
+               class="mm_checkbox"
+               ng-class="{'mm-checkbox-hover': liHover}"
+               mm-tool-tip="{{mmTextTooltip | T}}"
+               ng-click="onClick()">
+            <span ng-class="{'selectedCB': isChecked(c[mmOptionId], c[mmOptionName])}"></span>
+          </div>
+          <span ng-if="mmIsMultiSelect"
+                class="mm-nowrap"
+                title="{{c[mmOptionName]}}"
+                ng-class="{'item-label': mmIsMultiSelect}">{{c[mmOptionName]}}</span>
+          <div ng-if="!mmIsMultiSelect"
+               class="mm-nowrap"
+               title="{{c[mmOptionName]}}"
+               ng-class="{'item-label': mmIsMultiSelect}">{{c[mmOptionName]}}</div>
+        </li>
+      </scroller>
+    </ul>
+  </div>
+</mm-control>

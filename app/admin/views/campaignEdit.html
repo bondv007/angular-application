@@ -1,0 +1,110 @@
+<div class="editContainer">
+    <div class="mm-entity-fields-container-single">
+      <mm-row>
+        <mm-text mm-is-edit-mode="isEditMode"
+                 mm-model="campaignEdit.name"
+                 mm-placeholder="Enter Name"
+                 mm-error="error.name"
+                 mm-is-required="true"
+                 mm-caption="Campaign Name"
+                 mm-label-width="{{labelWidth}}"
+                 mm-layout-type="medium"></mm-text>
+      </mm-row>
+      <mm-row>
+        <mm-multiselect mm-error="error.account"
+                        mm-caption="Account Name"
+                        mm-data-model="accounts"
+                        mm-is-edit-mode="isEditMode"
+                        mm-model="dataObj.accountId"
+                        mm-is-required="true"
+                        mm-select-change-func="accountChange()"
+                        show-search-box
+                        mm-label-width="{{labelWidth}}"
+                        mm-layout-type="medium"></mm-multiselect>
+      </mm-row>
+      <mm-row>
+        <mm-multiselect mm-error="error.advertiser"
+                        mm-caption="Advertiser Name"
+                        mm-data-model="advertisers"
+                        mm-is-edit-mode="isEditMode"
+                        mm-model="dataObj.advertiserAccountId"
+                        mm-is-required="true"
+                        mm-select-change-func="advertiserChange()"
+                        show-search-box
+                        mm-label-width="{{labelWidth}}"
+                        mm-layout-type="medium"></mm-multiselect>
+      </mm-row>
+      <mm-row>
+        <mm-multiselect mm-error="error.brand"
+                        mm-caption="Brand Name"
+                        mm-data-model="brands"
+                        mm-is-edit-mode="isEditMode"
+                        mm-model="campaignEdit.brandAccountAdvertiserId"
+                        mm-is-required="true"
+                        mm-select-change-func="brandChange()"
+                        show-search-box
+                        mm-label-width="{{labelWidth}}"
+                        mm-layout-type="medium"></mm-multiselect>
+      </mm-row>
+    </div>
+  <!--<mm-row>
+    <mm-label mm-placeholder="Me"
+              mm-caption="Last Updated By"></mm-label>
+  </mm-row>
+  <mm-row>
+    <mm-label mm-placeholder="Then"
+              mm-caption="Last Updated On"></mm-label>
+  </mm-row>-->
+
+    <div class="mm-entity-fields-container-single">
+      <mm-toggle-container mm-caption="Contacts">
+        <mm-row>
+          <mm-row-container>
+            <tabset justified="false">
+              <tab heading="Agency">
+
+              </tab>
+              <tab heading="Creative Shop" ng-click="showCreativeGrid = true">
+                <mm-row>
+                  <mm-row-container>
+                    <mm-button mm-caption="Add" mm-action="openAttachModal()"></mm-button>
+                    <mm-button mm-caption="Remove" mm-action="removeCreativeAccount()"></mm-button>
+                  </mm-row-container>
+                </mm-row>
+                <mm-row>
+                  <mm-row-container>
+                    <div style="position: relative; width: 100%;height: 200px" ng-if="showCreativeGrid">
+                      <mm-grid
+                        items="creativeAccounts.items"
+                        cols="columnDefs"
+                        selected-items="creativeAccounts.selectedItems"
+                        is-cell-edit="false"
+                        is-single-select="false"
+                        is-sort="true"
+                        show-footer="false"
+                        show-group-panel="true"
+                        show-selection-checkbox="true"
+                        show-filter="true"
+                        enable-column-resize="true"
+                        is-show-tool-tip="true"
+                        parent-function="parentFunction"></mm-grid>
+                    </div>
+
+                  </mm-row-container>
+                </mm-row>
+              </tab>
+              <tab heading="Site">
+
+              </tab>
+              <tab heading="Sizmek">
+
+              </tab>
+            </tabset>
+          </mm-row-container>
+        </mm-row>
+      </mm-toggle-container>
+    </div>
+</div>
+
+
+

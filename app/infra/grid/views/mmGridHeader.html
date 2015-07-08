@@ -1,0 +1,28 @@
+<div class="row">
+		<ul class="col-sm-12">
+			<li ng-repeat="dropDown in gridSelectActions">
+				<div class="btn-group">
+					<button type="button" class="new-btn dropdown-toggle" data-ng-disabled="dropDown.isDisable" id="{{dropDown.name.split(' ').join('').toLowerCase()}}"
+					        data-ng-class="{'disable':dropDown.isDisable}" data-toggle="dropdown">
+						{{dropDown.name}} <span class="caret"></span>
+					</button>
+					<ul class="dropdown-menu" role="menu">
+						<li ng-repeat="childAction in dropDown.childActions">
+							<a id="{{childAction.name.split(' ').join('').toLowerCase()}}" ng-click="childAction.func()">{{childAction.name}}</a>
+						</li>
+					</ul>
+				</div>
+			</li>
+			<li ng-repeat="btn in gridButtonActions">
+				<div class="btn-group">
+					<button type="button" class="new-btn" data-ng-disabled="btn.isDisable" id="{{btn.name.split(' ').join('').toLowerCase()}}"
+					        data-ng-class="{'disable':btn.isDisable}"
+					        ng-click="btn.func()">
+						{{btn.name}}
+					</button>
+				</div>
+			</li>
+		</ul>
+	</div>
+</div>
+</div>

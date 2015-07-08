@@ -1,0 +1,44 @@
+<row>
+	<mm-drop-down
+			mm-model="externalContact.role"
+			mm-data-model="role"
+			mm-caption="Role:"
+			mm-is-required="true"
+			mm-layout-type="custom"
+			mm-label-width="70"
+			mm-outer-control-class="col-md-12"
+			mm-label-layout-class="col-md-2"
+			mm-control-layout-class="col-md-7"
+			mm-option-name="value"
+			mm-error="roleError.text"></mm-drop-down>
+</row>
+
+<row>
+	<mm-text
+			mm-model="externalContact.name"
+			mm-caption="Full Name:"
+			mm-is-required="true"
+			mm-show-edit-mode="true"
+			mm-placeholder="Enter full name"
+			mm-layout-type="custom"
+			mm-label-width="70"
+			mm-outer-control-class="col-md-12"
+			mm-label-layout-class="col-md-2"
+			mm-control-layout-class="col-md-8"
+			mm-error="nameError.text"></mm-text>
+</row>
+
+<row>
+	<mm-text
+			mm-model="externalContact.email"
+			mm-caption="Email"
+			mm-is-required="true"
+			mm-show-edit-mode="true"
+			mm-placeholder="Enter email"
+			mm-layout-type="custom"
+			mm-label-width="70"
+			mm-outer-control-class="col-md-12"
+			mm-label-layout-class="col-md-2"
+			mm-control-layout-class="col-md-8"
+			mm-error="emailError.text"></mm-text>
+</row>

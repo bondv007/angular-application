@@ -1,0 +1,11 @@
+<span class="rotationPosition">
+	<div class="middleElement itemIdText" ng-bind="'Rotation: ' | T"></div>
+	<div class="middleElement itemNameText" ng-bind="'First Matching' | T"></div>
+</span>
+<ol>
+	<li ui-tree-node ng-repeat="item in mmDefaultAds">
+		<div ui-tree-handle>
+			{{item.name}}
+		</div>
+	</li>
+</ol>

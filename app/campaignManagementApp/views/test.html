@@ -1,0 +1,15 @@
+<div style="position: absolute;top:0;bottom:0;left:5px;right:5px;">
+	<scroller scroller-repeater="elm in scrollerItems" item-height="155" use-pager="false">
+		<div class="centralFriendlyGridCube">
+			<div class="centralFriendlyGridInnerCube">
+				<div>
+					<input type="checkbox" ng-model="elm.isSelected" style="margin: 0px !important;">
+					<a class="centralFriendlyGridItemName" style="top:0px;">{{elm.name}}</a><span class="aSpace">&nbsp</span>({{elm.status}})<br><br>
+					Agency: {{elm.agency}}<br>
+					Advertiser: {{elm.advertiser}}<br><br>
+					Start Date: {{elm.startDate}}<span class="aSpace"> - </span> End Date: {{elm.endDate}}
+				</div><br>
+			</div>
+		</div>
+	</scroller>
+</div>

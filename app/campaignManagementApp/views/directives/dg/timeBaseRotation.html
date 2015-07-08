@@ -1,0 +1,9 @@
+<div class="timeBaseRotation">
+	<!--{{'Dates ' | T}}-->
+	<a class="link" href="" ng-click="onClick()"
+		 ng-bind="(!weight) ? '' :
+		 				 (weight.datesAccordingToPlacements || !weight.startDate)? 'Set Time and Date' :
+		 				 (weight.endDate) ? getFormatDate() :
+		 				 getFormatStartDate()| T"></a>
+	<span style="margin-left:5px"  class="glyphicon glyphicon-calendar"></span>
+</div>

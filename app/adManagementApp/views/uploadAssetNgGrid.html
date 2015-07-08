@@ -1,0 +1,646 @@
+<!-- 1. ng-file-drop | ng-file-drop="options" -->
+
+<div class="upload-step1">
+<div ng-file-drop>
+<div class="modal-header"  ng-if="!showSelectTab">
+	<a class="close" ng-disabled="uploader.isUploading" ng-click="closeModel()">&times;</a>
+
+	<h3>Upload asset</h3>
+</div>
+<div class="uploadMainContainer">
+
+<!--<div class="row">
+	<div class="form-group" ng-show="!disabledDestinationFolder || IsSingleFileUpload">
+		<div class="col-sm-2 col-sm-offset-1 text-right">
+			<label for="singleDestFolder" class="control-label">Destination Folder</label>
+		</div>
+		<div class="col-sm-7  text-left">
+			<div class="input-group">
+				<input type="text" class="form-control" ng-disabled="ShowProgressContainer" id="singleDestFolder" ng-model="selectedFolder">
+				<span class="input-group-btn">
+						<button class="btn btn-default" type="button"  ng-disabled="ShowProgressContainer" ng-click="showTreeControl()">showolder</button>
+				</span>
+			</div>
+			<div class="col-sm-1"></div>
+		</div>
+	</div>
+</div>-->
+<tabset class="{{!showSelectTab ? 'hideHorizontalLine':''}}">
+<tab ng-if="showSelectTab" active="showSelectTab">
+	<tab-heading>Select</tab-heading>
+	<div class="select-group" ng-if="showSelectTab">
+		<div class="input-group col-sm-6">
+			<input type="text" class="form-control" ng-model="searchImageText"
+			       placeholder="Search by ID, Name or Agency hierarchy">
+				<span class="input-group-btn">
+					<button class="btn btn-default" type="button" ng-click="filterImage">Go</button>
+				</span>
+		</div>
+		<div class="clearfix"></div>
+		<div class="selectDataInfo" ng-if="!isSelectFiles">
+			<div class="alert alert-info"><i class="fa fa-info-circle"></i> Loading your assets...</div>
+		</div>
+		<ul class="list-group asset-list">
+			<!--single asset-->
+			<div class="loading-bar-spinner" style="">
+				<div class="spinner-icon"></div>
+			</div>
+			<li class="list-group-item" ng-repeat="asset in selectAssetList | filter:searchImageText"
+			    ng-if="IsSingleFileUpload" ng-click="storeSingleAsset($index, asset)"
+			    ng-class="{active: $index===selectedIndex}">
+				<figure>
+					<img ng-src="{{asset.thumbnails[0].url}}" alt="asset thumbnail" width="75" height="75"/>
+				</figure>
+				<article>
+					<p>{{asset.assetCode}} </p>
+
+					<p><span>ID: {{asset.id}}</span><span>Height: {{asset.thumbnails[0].height}}</span><span>Width: {{asset.thumbnails[0].width}}</span>
+					</p>
+				</article>
+				<div class="clearfix"></div>
+			</li>
+			<!--multiple assets-->
+			<li class="list-group-item" ng-repeat="asset in selectAssetList | filter:searchImageText"
+			    ng-if="!IsSingleFileUpload">
+				<!--<label for="assetItem{{asset.id}}" class="widthFull"-->
+				<figure>
+					<input type="checkbox" name="assetItem{{asset.id}}" id="assetItem{{asset.id}}" value="{{asset.id}}"
+					       ng-checked="selectedImages.indexOf(asset.id) > -1" ng-click="storeMultipleAssets(asset)">
+					<img ng-src="{{asset.thumbnails[0].url}}" alt="asset thumbnail" width="75" height="75"/>
+				</figure>
+				<article>
+					<p>{{asset.assetCode}} </p>
+
+					<p><span>ID: {{asset.id}}</span><span>Height: {{asset.thumbnails[0].height}}</span><span>Width: {{asset.thumbnails[0].width}}</span>
+					</p>
+				</article>
+				<div class="clearfix"></div>
+				<!--</label>-->
+			</li>
+		</ul>
+	</div>
+</tab>
+
+<tab ng-click="removeSelectedImages()">
+
+<tab-heading>Upload</tab-heading>
+<div class="middle-content">
+	<form class="form-horizontal uploadFormHorizontal col-sm-12" role="form">
+		<div class="form-group">
+			<label class="col-sm-3 control-label" for="singleDestFolder">Destination Folder:</label>
+
+			<div class="col-sm-6 text-left">
+				<div class="input-group">
+					<input type="text" class="form-control" readonly="true" ng-click="showTreeControl()" style="cursor:pointer;"
+					       id="singleDestFolder"
+					       ng-model="selectedFolder">
+															<span class="input-group-btn">
+																<button class="btn btn-default" type="button" ng-click="showTreeControl()"><i
+																	class="fa fa-ellipsis-h"></i></button>
+															</span>
+				</div>
+			</div>
+		</div>
+	</form>
+	<br>
+
+	<div class="col-sm-12" ng-if="ShowUploadControl">
+		<div class="singleFileErrorInfo" style="display:none">
+			<div class="alert alert-info"><i class="fa fa-info-circle"></i> Please choose only one file for upload.</div>
+		</div>
+
+		<div ng-show="uploader.isHTML5">
+			<!-- Example: ng-file-drop | ng-file-drop="options" -->
+			<div class="well my-drop-zone text-center {{filebrowseCssClass}}" ng-file-over="another-file-over-class">
+				Drag files here <br/>or
+				<div class="upload-btn" ng-if="!IsSingleFileUpload">
+					<input ng-file-select type="file" multiple id="upload-img"/>
+					<label class="file-text" for="upload-img">Browse file</label>
+				</div>
+				<div class="upload-btn" ng-if="IsSingleFileUpload">
+					<input ng-file-select type="file" id="upload-img1"/>
+					<label class="file-text" for="upload-img1">Browse file</label>
+				</div>
+			</div>
+			<p ng-if="!IsSingleFileUpload" ng-show="uploader.queue.length" class="text-center">Total assets: {{
+				uploader.queue.length }}</p>
+		</div>
+		<div ng-show="showTree" ng-click="storeCurrentNode()" class="treeview-wrapper-div">
+			<!--
+			[TREE attribute]
+			angular-treeview: the treeview directive
+			tree-id : each tree's unique id.
+			tree-model : the tree model on $scope.
+			node-id : each node's id
+			node-label : each node's label
+			node-children: each node's children
+			-->
+			<div
+				data-angular-treeview="true"
+				data-tree-id="destinationLocationTree"
+				data-tree-model="roleList"
+				data-node-id="id"
+				data-node-label="label"
+				data-node-children="children">
+			</div>
+		</div>
+	</div>
+
+</div>
+
+
+<div class="col-sm-12 upload-prog-sec" ng-show="ShowProgressContainer" ng-if="!IsSingleFileUpload">
+<div ng-show="ShowProgressContainer">
+<div class="slct"><strong> {{uploader.queue.length}} Files </strong> &nbsp; | &nbsp;
+	<a class="cursorPointer" ng-if="selectedRows.length!=metadataInfoList.length" ng-click="selectAllAsset()">Select All</a>
+	<a class="cursorPointer" ng-if="selectedRows.length==metadataInfoList.length" ng-click="unSelectAllAsset()">Clear All</a>
+</div>
+<div class="clearfix"></div>
+<!--<strong>Total upload progress:</strong>-->
+
+<div class="progress uploadProgress relative" style="">
+	<div class="progress-bar" role="progressbar" ng-style="{ 'width': uploader.progress + '%' }">
+		<b>{{uploader.progress}}%</b>
+		<!--<span class="pull-right">Cancel All</span>-->
+		<!--<span class="leftMargin1300" ng-disabled="!uploader.isUploading">
+			<a class="cursorPointer" ng-click="uploader.cancelAll()">Cancel All</a>
+		</span>-->
+	</div>
+	<!--<span class="pull-right">Cancel All</span>-->
+															<span class="pull-right cancel-all" ng-disabled="!uploader.isUploading">
+																	<a class="{{uploader.progress>96?'color-white':''}}" ng-click="cancelAllUploading()">Cancel
+																		All</a>
+															</span>
+	<!--<span class="leftMargin1300" ng-disabled="!uploader.isUploading">
+		<a class="cursorPointer {{uploader.progress>90?'color-white':''}}" ng-click="uploader.cancelAll()">CancelAll</a>
+	</span>-->
+</div>
+<!--<div class="row">-->
+<div>
+<!--<div class="pd0" ng-class="toggleClass">-->
+<div class="tableSelect col-sm-7">
+	<!--<div style="float:right; margin-bottom: 10px;">
+		&lt;!&ndash;<button type="button" class="btn btn-warning btn-s" ng-click="uploader.cancelAll()"
+																												ng-disabled="!uploader.isUploading">
+																									<span class="glyphicon glyphicon-ban-circle"></span> Cancel all
+																								</button>&ndash;&gt;
+																							</div>-->
+	<div class="table-wrap">
+		<!--<table class="table upload-table" width="100%" border="0" cellpadding="0" cellspacing="0">-->
+		<div style="width: 700px; text-align: center;" class="gridStyle" ng-grid="gridOptions"></div>
+		<!--<table class="table upload-table marginZero">-->
+		<!--<thead>-->
+		<!--<tr>-->
+		<!--<th class="col-sm-1"></th>-->
+		<!--&lt;!&ndash;<th>&nbsp;</th>&ndash;&gt;-->
+		<!--<th class="filename ">File Name</th>-->
+		<!--<th class="filetype"></th>-->
+		<!--<th class="col-sm-3" ng-show="uploader.isHTML5">Destination</th>-->
+		<!--<th class="col-sm-2" ng-show="uploader.isHTML5">Size</th>-->
+		<!--<th class="col-sm-2" ng-show="uploader.isHTML5">Progress</th>-->
+		<!--&lt;!&ndash;<th>Status</th>&ndash;&gt;-->
+		<!--<th class="col-sm-1"></th>-->
+		<!--</tr>-->
+		<!--</thead>-->
+		<!--<tbody>-->
+		<!--<tr class="{{cssClass[$index]}}" ng-repeat="item in uploader.queue"-->
+		<!--ng-click="!isFolderLinkClicked ? selectRow($index,item) : ''"-->
+		<!--ng-class='{selected:  selectedRows.indexOf(item.assetId)!=-1}'>-->
+		<!--<td><input type="checkbox" name="{{item.assetId}}" ng-checked="selectedRows.indexOf(item.assetId)!=-1"-->
+		<!--id="{{item.assetId}}" value="{{asset.id}}"></td>-->
+		<!--<td class="filename">{{ item.file.name }}</td>-->
+		<!--<td class=""><i class="{{item.icon}}"></i></td>-->
+		<!--<td ng-show="uploader.isHTML5" nowrap>-->
+		<!--<a class="cursorPointer" ng-click="openDestinationFolderTreePopup($index)"> {{-->
+		<!--item.destinationFolder  }}</a>-->
+		<!--</td>-->
+		<!--<td ng-show="uploader.isHTML5" nowrap>{{ item.file.size/1024/1024|number:2 }} MB</td>-->
+		<!--<td ng-show="uploader.isHTML5">-->
+		<!--<div class="progress uploadProgress">-->
+		<!--<div class="progress-bar" role="progressbar" ng-style="{ 'width': item.progress + '%' }">-->
+		<!--<b>{{item.progress}}%</b>-->
+		<!--</div>-->
+		<!--</div>-->
+		<!--</td>-->
+		<!--&lt;!&ndash; <td class="text-center">-->
+		<!--<span ng-show="item.isSuccess"><i class="glyphicon glyphicon-ok"></i></span>-->
+		<!--<span ng-show="item.isCancel"><i class="glyphicon glyphicon-ban-circle"></i></span>-->
+		<!--<span ng-show="item.isError"><i class="glyphicon glyphicon-remove"></i></span>-->
+		<!--</td>&ndash;&gt;-->
+		<!--<td nowrap>-->
+		<!--<span class="cursorPointer"-->
+		<!--ng-click="item.remove(); removeAssetFromList(item)"-->
+		<!--ng-if="!item.isUploading" ng-disabled="item.progress==100"><i-->
+		<!--class="fa fa-times"></i>-->
+		<!--</span>-->
+		<!--<span class="cursorPointer" ng-click="item.cancel()"-->
+		<!--ng-if="item.isUploading">-->
+		<!--<i class="fa fa-times"></i>-->
+		<!--</span>-->
+		<!--</td>-->
+		<!--&lt;!&ndash; <td nowrap>-->
+		<!--<button type="button" class="btn btn-success btn-xs" ng-click="item.upload()" ng-disabled="item.isReady || item.isUploading || item.isSuccess">-->
+		<!--<span class="glyphicon glyphicon-upload"></span> Upload-->
+		<!--</button>-->
+		<!--<button type="button" class="btn btn-danger btn-xs" ng-click="item.remove()">-->
+		<!--<span class="glyphicon glyphicon-trash"></span> Remove-->
+		<!--</button>-->
+		<!--</td>&ndash;&gt;-->
+		<!--</tr>-->
+		<!--</tbody>-->
+		<!--</table>-->
+	</div>
+	<!--<div class="well my-drop-zone text-center col-sm-12" ng-file-over="another-file-over-class">-->
+	<!--<div class="well my-drop-zone text-center col-sm-8" ng-file-over="another-file-over-class">
+		Drag files here
+		<div class="clearfix"></div>
+	</div>-->
+</div>
+<div class="col-sm-5 side-tab select-class"
+     ng-if="(selectedRows.length==1 && uploader.queue.length>0) ||isMultipleAssetsSelected()">
+<form class="form-horizontal uploadFormHorizontal metaMultiple" role="form"
+      ng-if="selectedRows.length==1 && uploader.queue.length>0">
+	<h4> {{selectedRows.length}} Files</h4>
+
+	<div class="form-group">
+		<label for="inDisplayNm" class="col-sm-4 control-label">Display Name</label>
+
+		<div class="col-sm-8">
+			<input type="text" data-ng-model="metadataInfoList[indexOfAsset].displayName"
+			       class="form-control form-control-static"
+			       id="inDisplayNm" placeholder="DisplayName"
+			       ng-disabled="uploader.isUploading || metadataInfoList[indexOfAsset].isUploaded">
+		</div>
+	</div>
+	<div class="form-group">
+		<label class="col-sm-4 control-label">Advertiser</label>
+
+		<div class="col-sm-8">
+			<!--<input type="text" data-ng-model="metadataInfoList[indexOfAsset].advertiser" class="form-control"
+						 id="inAdvertiser" placeholder="Advertiser"
+						 ng-disabled="true"
+						 ng-if="showSelectTab"
+						 ui-event="{ keyup: 'IsEditingFileMeta($event)'}">-->
+			<p class="form-control-static" ng-if="showSelectTab">{{metadataInfoList[indexOfAsset].advertiser}}</p>
+			<!--<select-->
+			<!--class=""-->
+			<!--ng-model="advert1"-->
+			<!--ng-if="!showSelectTab"-->
+			<!--ng-options="p.name for p in advertisers">-->
+			<!--<option value=''>--Select Advertiser--</option>-->
+			<!--</select>-->
+																<span ng-show="!showSelectTab">
+																	<select
+																		class="col-md-12"
+																		ng-model="selectedAdvertiser"
+																		ng-change="advertiserChange(selectedAdvertiser)"
+																		ng-options="p.name for p in advertisers">
+																		<option value=''>--Select Advertiser--</option>
+																	</select>
+																</span>
+		</div>
+	</div>
+	<div class="form-group">
+		<label class="col-sm-4 control-label">Brand</label>
+
+		<div class="col-sm-8">
+			<!--<input type="text" data-ng-model="metadataInfoList[indexOfAsset].brand" class="form-control" id="inBrand"
+						 placeholder="Brand"
+						 ng-if="showSelectTab"
+						 ng-disabled="true"
+						 ui-event="{ keyup: 'IsEditingFileMeta($event)'}">-->
+			<p class="form-control-static" ng-if="showSelectTab">{{metadataInfoList[indexOfAsset].brand}}</p>
+			<!--<select-->
+			<!--class=""-->
+			<!--ng-model="advertBrand1"-->
+			<!--ng-if="!showSelectTab"-->
+			<!--ng-change="brandChange(advertBrand1)"-->
+			<!--data-ng-disabled="!hasBrand || (selectedRows.length<=0)"-->
+			<!--ng-options="b.name for b in brands | filter:{advertiserId: advert1.id}">-->
+			<!--<option value=''>--Select Brand--</option>-->
+			<!--</select>-->
+																<span ng-show="!showSelectTab">
+																	<select
+																		class="col-md-12"
+																		ng-model="selectedBrand"
+																		ng-change="brandChange(selectedBrand)"
+																		data-ng-disabled="!hasBrand || (selectedRows.length<=0)"
+																		ng-options="b.name for b in brands | filter:{advertiserId: selectedAdvertiser.id}">
+																		<option value=''>--Select Brand--</option>
+																	</select>
+																</span>
+		</div>
+	</div>
+	<div class="form-group">
+		<label class="col-sm-4 control-label">Campaign</label>
+
+		<div class="col-sm-8">
+			<!--<input type="text" data-ng-model="metadataInfoList[indexOfAsset].campaignName" class="form-control"
+						 id="inCampaign" placeholder="Campaign"
+						 ng-disabled="true"
+						 ng-if="showSelectTab"
+						 ui-event="{ keyup: 'IsEditingFileMeta($event)'}">-->
+			<p class="form-control-static" ng-if="showSelectTab">{{metadataInfoList[indexOfAsset].campaignName}}</p>
+			<!--<select-->
+			<!--class=""-->
+			<!--ng-if="!showSelectTab"-->
+			<!--ng-model="advertBrandCampaign1"-->
+			<!--ng-change="campaignChange(advertBrandCampaign1)"-->
+			<!--ui-event="{ keyup: 'IsEditingFileMeta($event)'}"-->
+			<!--data-ng-disabled="!hasCampaign || (selectedRows.length<=0)"-->
+			<!--ng-options="c.name for c in filteredCampaigns">-->
+			<!--<option value=''>--Select Campaign--</option>-->
+			<!--</select>-->
+																<span ng-show="!showSelectTab">
+																	<select
+																		class="col-md-12"
+																		ng-model="selectedCampaign"
+																		ng-change="campaignChange(selectedCampaign)"
+																		data-ng-disabled="!hasCampaign || (selectedRows.length<=0)"
+																		ng-options="c.name for c in loadFilteredCampaigns(selectedBrand)">
+																		<option value=''>--Select Campaign--</option>
+																	</select>
+																</span>
+		</div>
+	</div>
+	<div class="form-group">
+		<label for="inAgency" class="col-sm-4 control-label">Agency</label>
+
+		<div class="col-sm-8">
+			<input type="text" data-ng-model="metadataInfoList[indexOfAsset].agency" class="form-control"
+			       id="inAgency" placeholder="Agency"
+			       ng-disabled="uploader.isUploading || (IsEditAllFilesMeta && !IsEditSingleFileMeta) || metadataInfoList[indexOfAsset].isUploaded"
+			       ui-event="{ keyup: 'IsEditingFileMeta($event)'}">
+		</div>
+	</div>
+</form>
+
+<!--This form is used to show metadata when multiple assets selected-->
+<form class="form-horizontal uploadFormHorizontal metaMultiple" role="form" ng-if="isMultipleAssetsSelected()">
+	<h4> {{selectedRows.length}} Files</h4>
+
+	<div class="form-group">
+		<label for="inMultDisplayNm" class="col-sm-4 control-label">Display Name</label>
+
+		<div class="col-sm-8">
+			<input type="text" data-ng-model="assetMetadata.displayName" name="displayName" class="form-control"
+			       id="inMultDisplayNm" placeholder="DisplayName"
+			       ng-disabled="assetMetadata.displayName=='MultipleValues' || uploader.isUploading "
+			       ui-event="{ blur: 'setMetaData($event)'}">
+		</div>
+	</div>
+	<div class="form-group">
+		<label for="inMultAdvertiser" class="col-sm-4 control-label">Advertiser</label>
+
+		<div class="col-sm-8">
+			<!--<input type="text" data-ng-model="assetMetadata.advertiser" name="advertiser" class="form-control"
+						 id="inMultAdvertiser" placeholder="Advertiser"
+						 ng-disabled="true"
+						 ng-show="showSelectTab && assetMetadata.advertiser==multipleValues"
+						 ui-event="{ blur: 'setMetaData($event)'}">-->
+			<p class="form-control-static" ng-if="showSelectTab">{{metadataInfoList[indexOfAsset].advertiser}}</p>
+			<input type="text" data-ng-model="assetMetadata.advertiser" name="advertiser" class="form-control"
+			       id="inMultAdvertiser" placeholder="Advertiser"
+			       ng-disabled="true"
+			       ng-show="!showSelectTab && assetMetadata.advertiser==multipleValues"
+			       ui-event="{ blur: 'setMetaData($event)'}">
+
+			<div ng-if="!showSelectTab && assetMetadata.advertiser!=multipleValues">
+				<select
+					class="col-md-12"
+					ng-model="selectedAdvertiser"
+					ng-change="advertiserChange(selectedAdvertiser)"
+					ui-event="{ keyup: 'IsEditingFileMeta($event)'}"
+					ng-options="p.name for p in advertisers">
+					<option value=''>--Select Advertiser--</option>
+				</select>
+			</div>
+		</div>
+	</div>
+	<div class="form-group">
+		<label for="inMultBrand" class="col-sm-4 control-label">Brand</label>
+
+		<div class="col-sm-8">
+			<!--<input type="text" data-ng-model="assetMetadata.brand" name="brand" class="form-control" id="inMultBrand"
+						 placeholder="Brand" ng-disabled="true"
+						 ng-show="showSelectTab && assetMetadata.brand==multipleValues"
+						 ui-event="{ blur: 'setMetaData($event)'}">-->
+			<p class="form-control-static" ng-if="showSelectTab">{{metadataInfoList[indexOfAsset].brand}}</p>
+			<input type="text" data-ng-model="assetMetadata.brand" name="brand" class="form-control" id="inMultBrand"
+			       placeholder="Brand" ng-disabled="true"
+			       ng-show="!showSelectTab && assetMetadata.brand==multipleValues"
+			       ui-event="{ blur: 'setMetaData($event)'}">
+
+			<div ng-if="!showSelectTab && assetMetadata.brand!=multipleValues">
+				<select
+					class="col-md-12"
+					ng-model="selectedBrand"
+					ng-change="brandChange(selectedBrand)"
+					data-ng-disabled="!hasBrand || (selectedRows.length<=0)"
+					ui-event="{ keyup: 'IsEditingFileMeta($event)'}"
+					ng-options="b.name for b in brands | filter:{advertiserId: selectedAdvertiser.id}">
+					<option value=''>--Select Brand--</option>
+				</select>
+			</div>
+		</div>
+	</div>
+	<div class="form-group">
+		<label for="inMultCampaign" class="col-sm-4 control-label">Campaign</label>
+
+		<div class="col-sm-8">
+			<!--<input type="text" data-ng-model="assetMetadata.campaignName" name="campaignName" class="form-control"
+						 id="inMultCampaign" placeholder="Campaign"
+						 ng-show="showSelectTab && assetMetadata.campaignName==multipleValues"
+						 ng-disabled="true"
+						 ui-event="{ blur: 'setMetaData($event)'}">-->
+			<p class="form-control-static" ng-if="showSelectTab">{{metadataInfoList[indexOfAsset].campaignName}}</p>
+			<input type="text" data-ng-model="assetMetadata.campaignName" name="campaignName" class="form-control"
+			       id="inMultCampaign" placeholder="Campaign"
+			       ng-show="!showSelectTab && assetMetadata.campaignName==multipleValues"
+			       ng-disabled="true"
+			       ui-event="{ blur: 'setMetaData($event)'}">
+
+			<div ng-if="!showSelectTab && assetMetadata.campaignName!=multipleValues">
+				<select
+					class="col-md-12"
+					ng-model="selectedCampaign"
+					ng-change="campaignChange(selectedCampaign)"
+					ui-event="{ keyup: 'IsEditingFileMeta($event)'}"
+					data-ng-disabled="!hasCampaign || (selectedRows.length<=0)"
+					ng-options="c.name for c in loadFilteredCampaigns(selectedBrand)">
+					<option value=''>--Select Campaign--</option>
+				</select>
+			</div>
+		</div>
+	</div>
+	<div class="form-group">
+		<label for="inMultAgency" class="col-sm-4 control-label">Agency</label>
+
+		<div class="col-sm-8">
+			<input type="text" data-ng-model="assetMetadata.agency" name="agency" class="form-control"
+			       id="inMultAgency" placeholder="Agency"
+			       ng-disabled="assetMetadata.agency=='MultipleValues' || uploader.isUploading"
+			       ui-event="{ blur: 'setMetaData($event)'}">
+		</div>
+	</div>
+
+</form>
+
+</div>
+<!--No assets selected-->
+<div class="centerClass" ng-if="uploader.queue.length && selectedRows.length<=0">
+	<h4>Select files on the left<br/> to edit their details</h4>
+</div>
+</div>
+<!--<div>-->
+<!--<button type="button" class="btn btn-danger btn-s" ng-click="removeImage()" ng-disabled="!uploader.queue.length">-->
+<!--<span class="glyphicon glyphicon-trash"></span> Remove all-->
+<!--</button>-->
+<!--<button type="button" class="btn btn-danger btn-s" ng-click="back()" ng-disabled="uploader.queue.length">-->
+<!--<span class="glyphicon glyphicon-trash"></span> Back-->
+<!--</button>-->
+<!--</div>-->
+
+</div>
+</div>
+<div class="col-sm-12" ng-show="ShowProgressContainer" ng-if="IsSingleFileUpload">
+	<p ng-show="ShowProgressContainer">
+		<strong>{{uploader.queue[0].file.name}}</strong>
+
+	<div class="progress uploadProgress relative" style="">
+		<div class="progress-bar" role="progressbar" ng-style="{ 'width': uploader.progress + '%' }">
+			<b>{{uploader.progress}}%</b>
+			<!--<span class="pull-right">Cancel All</span>-->
+			<!--<span class="leftMargin1300" ng-disabled="!uploader.isUploading">
+				<a class="cursorPointer" ng-click="uploader.cancelAll()">Cancel All</a>
+			</span>-->
+		</div>
+		<!--<span class="pull-right">Cancel All</span>-->
+												<span class="pull-right cancel-all" ng-disabled="!uploader.isUploading">
+														<a class="{{uploader.progress>96?'color-white':''}}" ng-click="cancelAllUploading()">Cancel
+															All</a>
+												</span>
+		<!--<span class="leftMargin1300" ng-disabled="!uploader.isUploading">
+			<a class="cursorPointer {{uploader.progress>90?'color-white':''}}" ng-click="uploader.cancelAll()">CancelAll</a>
+		</span>-->
+	</div>
+	</p>
+
+	<div class="clearfix"></div>
+	<div class="row">
+		<div class="col-sm-12">
+			<form class="form-horizontal uploadFormHorizontal" role="form">
+				<div class="form-group">
+					<label for="inputDisplay" class="col-sm-3 control-label">Display Name</label>
+
+					<div class="col-sm-8 text-left">
+						<input type="text" ng-model="assetMetadata.displayName" class="form-control" id="inputDisplay"
+						       placeholder="Display Name" ng-disabled="uploader.isUploading || assetMetadata.isUploaded">
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-sm-3 control-label">Advertiser</label>
+
+					<div class="col-sm-8 text-left">
+						<!--<input type="text" ng-model="assetMetadata.advertiser" class="form-control" id="inputAdvertiser"
+									 placeholder="Advertiser" ng-disabled="true">-->
+						<p class="form-control-static">{{assetMetadata.advertiser}}</p>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-sm-3 control-label">Brand</label>
+
+					<div class="col-sm-8 text-left">
+						<!--<input type="text" ng-model="assetMetadata.brand" class="form-control" id="inputBrand" placeholder="Brand"
+									 ng-disabled="true">-->
+						<p class="form-control-static">{{assetMetadata.brand}}</p>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-sm-3 control-label">Campaign</label>
+
+					<div class="col-sm-8 text-left">
+						<!--<input type="text" ng-model="assetMetadata.campaignName" class="form-control" id="inputCampaign"
+									 placeholder="Campaign" ng-disabled="true">-->
+						<p class="form-control-static">{{assetMetadata.campaignName}}</p>
+					</div>
+				</div>
+
+				<div class="form-group">
+					<label for="inputAgency" class="col-sm-3 control-label">Agency</label>
+
+					<div class="col-sm-8 text-left">
+						<input type="text" ng-model="assetMetadata.agency" class="form-control" id="inputAgency"
+						       placeholder="Agency" ng-disabled="uploader.isUploading || assetMetadata.isUploaded">
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="inputDimension" class="col-sm-3 control-label">Dimension</label>
+
+					<div class="col-sm-8 text-left">
+						<input type="text" ng-model="assetMetadata.dimension" class="form-control" id="inputDimension"
+						       placeholder="Dimension" ng-disabled="uploader.isUploading || assetMetadata.isUploaded">
+					</div>
+				</div>
+			</form>
+		</div>
+	</div>
+
+	<!--<div>
+		<button type="button" class="btn btn-danger btn-s" ng-click="removeImage()" ng-disabled="!uploader.queue.length">
+			 <span class="glyphicon glyphicon-trash"></span> Remove all
+		</button>
+		<button type="button" class="btn btn-danger btn-s" ng-click="back()" ng-disabled="uploader.queue.length">
+			<span class="glyphicon glyphicon-trash"></span> Back
+		</button>
+	</div>-->
+
+</div>
+<!--<div class="col-md-3" ng-show="ShowProgressContainer" style="margin-bottom: 40px; margin-left: 77px;">-->
+</tab>
+
+</tabset>
+</div>
+
+</div>
+<div class="clearfix"></div>
+<div class="modal-footer">
+	<!--<button type="button" ng-show="uploader.queue.length &&!ShowProgressContainer" ng-click="uploadImage()" class="btn">
+		Upload Asset
+	</button>-->
+			<span class="cursorPointer pull-left" ng-if="ShowProgressContainer && !IsSingleFileUpload">*You can drag more files
+				to the screen to add them to the upload queue, or
+				<div class="upload-btn">
+					<input ng-file-select type="file" multiple id="upload-img3"/>
+					<label class="file-text" for="upload-img3">use manual upload</label>
+				</div>
+			</span>
+
+	<button type="button"
+	        ng-if="(uploader.queue.length && !uploader.isUploading && ShowProgressContainer && !IsUploadCompleted) && getTotalAssetsToUpload()==1"
+	        ng-click="startUploading()" class="btn btn-primary">
+		Upload Asset
+	</button>
+	<button type="button"
+	        ng-if="(uploader.queue.length && !uploader.isUploading && ShowProgressContainer && !IsUploadCompleted) && getTotalAssetsToUpload()>1"
+	        ng-click="startUploading()" class="btn btn-primary">
+		Upload Assets
+	</button>
+	<button type="button" ng-show="IsUploadCompleted && !uploader.isUploading && !showSelectTab"
+	        ng-click="closePopup()" class="btn btn-primary">
+		Done
+	</button>
+	<button type="button"
+	        ng-show="ShowProgressContainer && uploader.isUploading && !( IsSingleFileUpload && IsUploadCompleted )"
+	        ng-click="flyLayout()" class="btn btn-primary">
+		Minimize
+	</button>
+	<button type="button"
+	        ng-show="selectedImages.length>0 || ( IsSingleFileUpload && IsUploadCompleted ) || (IsUploadCompleted && !uploader.isUploading && !IsSingleFileUpload && showSelectTab) "
+	        ng-click="attachImagesToAd()" class="btn btn-primary">
+		Attach to Ad
+	</button>
+	<!-- <button type="button" ng-click="closeModel()" class="btn btn-default">Cancel
+	</button> -->
+</div>
+</div>

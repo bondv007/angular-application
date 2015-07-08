@@ -1,0 +1,16 @@
+<span ng-switch on="editObject.placementType">
+
+	<span ng-switch-when="OUT_OF_BANNER"><mm-row></mm-row></span>
+
+	<span ng-switch-when="TRACKING_ONLY">
+		<!--<span ng-include="'campaignManagementApp/views/placement/placementType/trackingOnly.html'"></span>-->
+	</span>
+
+	<span ng-switch-when="IN_STREAM_VIDEO"></span>
+
+	<span ng-switch-when="IN_BANNER">
+		<span ng-include="'campaignManagementApp/views/placement/placementType/inBanner.html'"></span>
+	</span>
+
+	<span ng-switch-when="IN_STREAM_VIDEO_TRACKING"><mm-row></mm-row></span>
+</span>

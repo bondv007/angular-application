@@ -1,0 +1,148 @@
+<div ng-class="{'select-list-with-search-box' : mmShowSearchBox, 'select-list-without-search-box' : !mmShowSearchBox}" id="{{mmId}}">
+	<div ng-if="mmShowSearchBox" class="select-list-search-box">
+		<span class="select-list-search-icon"></span>
+		<mm-text mm-model="searchBox.text"
+						 mm-placeholder="{{searchPlaceHolder}}"
+						 mm-label-width="{{labelWidth}}"
+						 mm-layout-type="custom"
+						 mm-custom-control-width="350"
+						 mm-change="filterDataModel()"
+						 mm-id="{{mmIdSearch}}">
+		</mm-text>
+	</div>
+	<!--<div ng-if="mmShowSearchBox"-->
+	<!--class="search-frame"-->
+	<!--style="margin-bottom: 5px;">-->
+	<!--<div ng-class="{'search-box-icon': clear}"-->
+	<!--ng-click="preventClick($event); clear = true; filterDataModel()"-->
+	<!--ng-init="clear = true">-->
+	<!--</div>-->
+	<!--<input style="padding-left: 5px;"-->
+	<!--type="text"-->
+	<!--class="search-box"-->
+	<!--placeholder="{{searchPlaceHolder}}"-->
+	<!--id="{{mmIdSearch.split(' ').join('')}}"-->
+	<!--ng-click="preventClick($event)"-->
+	<!--ng-model="searchBox.text"-->
+	<!--ng-change="clear = searchBox.text.length == 0; filterDataModel()"/>-->
+	<!--</div>-->
+	<div class="available-box">
+		<div class="available-box-title">
+			<div class="box-title-text">{{'AVAILABLE' | T}}</div>
+			<div class="box-title-all" id="{{mmId}}SelectAll"
+					 ng-click="selectAll();">{{'Select All' | T}}</div>
+		</div>
+		<div class="available-box-options">
+			<div class="options-box">
+				<ul class="options centralScrollBar" central-scroll-event="availableItemsScroll()" style="overflow-y: auto">
+					<!--<scroller scroller-repeater="c in filtered"-->
+					<!--class="scroller-items"-->
+					<!--item-height="30">-->
+					<li ng-repeat="c in filtered | limitTo: scrollAmount track by c[mmOptionId]"
+							ng-class="{'li-hover': liHover}"
+							style="height: 30px; display: block"
+							ng-mouseenter="liHover = true"
+							ng-mouseleave="liHover = false"
+							id="{{mmId}}AvailableItemsItem{{$index}}"
+							ng-click="selectedIcon =! selectedIcon; itemSelected(c);">
+						<div style="	height:30px">
+							<div class="selected-option">{{c[mmOptionName]}}</div>
+							<div ng-class="{'selected-option-icon': !hoverIcon && !(mmModel.indexOf(c[mmOptionId]) > -1),
+                                'selected-option-icon-hover': hoverIcon && !( mmModel.indexOf(c[mmOptionId]) > -1),
+                                'selected-icon':  mmModel.indexOf(c[mmOptionId]) > -1}"
+
+									 ng-mouseenter="hoverIcon = true"
+									 ng-mouseleave="hoverIcon = false"></div>
+						</div>
+					</li>
+				</ul>
+			</div>
+		</div>
+		<div class="available-box-summery">
+			<div class="box-summery">{{mmAvailableTitle | T}}: <b>{{searchBox.text.length > 0 ? filtered.length : mmDataModel.serverLength}}</b></div>
+			<div class="box-separator"></div>
+			<div class="box-summery">{{'SELECTED ITEMS' | T}}: <b>{{selectedAvailableItemsCounter}}</b></div>
+		</div>
+	</div>
+	<div class="selected-box">
+		<div class="selected-box-title">
+			<div class="box-title-text">{{'SELECTED' | T}}</div>
+			<div class="box-title-all" id="{{mmId}}RemoveAll"
+					 ng-click="removeAll();">{{'Remove All' | T}}</div>
+		</div>
+		<!-- Single level display -->
+		<div class="selected-box-options"
+				 ng-if="mmModel.length > 0 && !mmShowType">
+			<div class="options-box">
+				<ul class="options centralScrollBar" style="overflow-y: auto">
+					<!--<scroller scroller-repeater="c in mmModel"-->
+					<!--class="scroller-items"-->
+					<!--item-height="30">-->
+					<li ng-repeat="c in mmModel"
+							ng-class="{'li-hover': liHover}"
+							style="height: 30px; display: block"
+							id="{{mmId}}SelectedItemsItem{{$index}}"
+							ng-mouseenter="liHover = true"
+							ng-mouseleave="liHover = false">
+						<div style="height:30px">
+							<div class="selected-option">{{indexed[c]}}</div>
+							<div ng-show="liHover"
+									 ng-class="{'close-icon': !hoverCloseIcon && !closedIcon,
+                                'close-icon-hover': hoverCloseIcon && !closedIcon,
+                                'close-icon-selected': closedIcon}"
+									 id="{{mmId}}RemoveSelectedItem_{{$index}}"
+									 ng-mouseenter="hoverCloseIcon = true"
+									 ng-mouseleave="hoverCloseIcon = false"
+									 ng-click="closedIcon=true;removeItem(c)"></div>
+						</div>
+					</li>
+					</scroller>
+				</ul>
+			</div>
+		</div>
+		<!-- Two level display -->
+		<div class="selected-box-options"
+				 ng-if="mmModel.length > 0 && mmShowType">
+			<div class="options-box">
+				<ul class="options centralScrollBar" style="overflow-y: auto">
+					<!--<scroller scroller-repeater="item in typedModel"-->
+					<!--class="scroller-items"-->
+					<!--item-height="30">-->
+					<li ng-repeat="item in typedModel" style="height: 30px; display: block">
+						<div ng-if="item.rowType == 'title'"
+								 class="selected-option selected-option-title"
+								 style="width:100%">{{item[mmOptionName]}}
+						</div>
+						<div ng-if="item.rowType != 'title'"
+								 ng-class="{'li-hover': liHover}"
+								 ng-mouseenter="liHover = true"
+								 ng-mouseleave="liHover = false"
+								 class="selected-option-item"
+								 style="padding-left: 20px; width: 100%; height: 30px"
+								 id="{{mmId}}SelectedItemsItem{{$index}}">{{item[mmOptionName]}}
+							<div ng-show="liHover"
+									 ng-class="{'close-icon': !hoverCloseIcon && !closedIcon,
+                            'close-icon-hover': hoverCloseIcon && !closedIcon,
+                            'close-icon-selected': closedIcon}"
+									 id="{{mmId}}RemoveSelectedItemsItem{{$index}}"
+									 ng-mouseenter="hoverCloseIcon = true"
+									 ng-mouseleave="hoverCloseIcon = false"
+									 ng-click="closedIcon=true;removeItem(item)">
+							</div>
+						</div>
+					</li>
+					</scroller>
+				</ul>
+			</div>
+		</div>
+		<!-- Empty display -->
+		<div class="selected-box-options-clear"
+				 ng-if="mmModel.length == 0 || mmModel == null || mmModel == undefined">
+			<div class="select-box-clear">{{'CLICK ON AN ITEM FROM THE LEFT TO SELECT IT' | T}}</div>
+			<div class="select-box-clear-icon"></div>
+		</div>
+		<div class="selected-box-summery">
+			<div class="box-summery">{{'TOTAL ITEMS' | T}}: <b>{{mmModel.length}}</b></div>
+		</div>
+	</div>
+</div>

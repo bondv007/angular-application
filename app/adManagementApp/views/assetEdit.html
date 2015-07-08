@@ -1,0 +1,316 @@
+<mm-row ng-show="!showSPinner" style="position:absolute; bottom:2px; top:2px; left : 0px; right:0px;">
+<div class="editContainer">
+<!-- Essentials Start -->
+<mm-row>
+  <div class="mm-entity-fields-container">
+    <mm-row>
+      <div class="mm-entity-fields-container-left">
+        <mm-row>
+          <mm-text mm-model="asset.title" mm-is-required="true"
+                   mm-layout-type="medium"
+                   mm-is-edit-mode="!!entityId" mm-label-width="100"
+                   mm-caption="Asset Name" mm-placeholder="Enter Title"
+                   mm-error="error.text" mm-tab-index="1">
+          </mm-text>
+        </mm-row>
+        
+       
+        <mm-row>
+          <a href="#" id="assetEditFolderName">
+                             <mm-label ng-click="folderClicked(asset.folderId)" mm-model="asset.folderName || 'Root'" mm-is-required="false" mm-label-width="100" mm-layout-type="medium" mm-caption="Folder Name">
+                            </mm-label>
+                          </a>
+        </mm-row>
+         <mm-row>
+          <mm-label mm-model="asset.formatContext.format"
+                    mm-is-required="false" mm-label-width="100"
+                    mm-layout-type="medium"
+                    mm-caption="Asset Type">
+          </mm-label>
+        </mm-row>
+        <mm-row
+          ng-show="asset.assetId != null && asset.assetId != '' && asset.businessMetadata.advertiserId != null && asset.businessMetadata.advertiserId != ''">
+          <mm-text mm-model="advertiser.name" mm-label-width="100"
+                   mm-entity-type="advertiser" mm-entity-id="advertiser.id"
+                   mm-layout-type="medium" mm-is-link="true"
+                   mm-caption="Advertiser" mm-is-edit-mode="!!entityId" >
+          </mm-text>
+        </mm-row>
+        <mm-row
+          ng-show="asset.assetId != null && asset.assetId != '' && asset.businessMetadata.brandId != null && asset.businessMetadata.brandId != ''">
+          <mm-text mm-model="brand.name" mm-label-width="100"
+                   mm-entity-type="brand" mm-entity-id="brand.id"
+                   mm-layout-type="medium" mm-is-link="true"
+                   mm-caption="Brand" mm-is-edit-mode="!!entityId">
+          </mm-text>
+        </mm-row>
+      </div>
+      <div class="mm-entity-fields-container-center">
+        <mm-row
+          ng-show="asset.assetId != null && asset.assetId != '' && asset.businessMetadata.campaignId != null && asset.businessMetadata.campaignId != ''">
+          <mm-text mm-model="campaign.name" mm-label-width="100"
+                   mm-entity-type="campaign" mm-entity-id="campaign.id"
+                   mm-layout-type="medium" mm-is-link="true"
+                   mm-caption="Campaign" mm-is-edit-mode="!!entityId">
+          </mm-text>
+        </mm-row>
+       
+      </div>
+    </mm-row>
+  </div>
+  <div class="mm-entity-info-box-container-right assetviewer">
+    <div class="viewer" ng-class="{'infobox-container-reduced': isEntral, 'infobox-container': !isEntral}">
+      <div>
+        <div ng-if="asset.mediaType == 'image' || asset.formatContext.format == 'html5' || asset.mediaType == 'flash'"
+             class="thumbnail">
+          <div ng-class="{'col-md-12 image-container-reduced': isEntral, 'image-container col-md-6': !isEntral}">
+            <img ng-src="{{asset.thumbnails[0].url}}" alt="{{asset.title}}">
+          </div>
+          <div ng-class="{'col-md-12 viewer-summarybox-reduced': isEntral, 'viewer-summarybox col-md-6': !isEntral}">
+            <div class="technical">
+              <mm-row
+                ng-if="asset.mediaType == 'image' && asset.imageContext !== undefined && asset.imageContext !== null && asset.dimension">
+                <p class="pull-left">Dimension:
+                  <span>{{asset.dimension}}</span>
+                </p>
+              </mm-row>
+              <mm-row ng-if="asset.mediaType == 'flash' && asset.swfContext !== undefined && asset.swfContext !== null && asset.swfContext.height && asset.swfContext.width">
+                <p class="pull-left">Dimension:
+                  <span>{{asset.swfContext.height}}X{{asset.swfContext.width}}</span>
+                </p>
+              </mm-row>
+              <mm-row ng-if="asset.assetId != null && asset.assetId != ''">
+                <p class="pull-left">File Size:
+                  <span>{{asset.formatContext.fileSize}}</span>
+               
+                </p>
+              </mm-row>
+                 <mm-row ng-if="asset.assetId != null && asset.assetId != ''">
+             <p class="pull-left">Created:
+    <span>
+                                       {{:: asset.createDateTime | date: 'short'}}
+                                     </span>
+</p>
+
+             </mm-row>
+            </div>
+          </div>
+        </div>
+        <div ng-if="asset.mediaType == 'video'" class="thumbnail">
+          <div ng-class="{'col-md-12 image-container-reduced': isEntral, 'image-container col-md-6': !isEntral}">
+            <img ng-src="{{asset.thumbnails[0].url}}" alt="{{asset.title}}"
+                 ng-class="{'col-md-12 noBorder': isEntral, 'col-md-6': !isEntral}">
+          </div>
+          <div class="viewer-summarybox" ng-class="{'col-md-12': isEntral, 'col-md-6': !isEntral}">
+            <div class="technical">
+              <mm-row ng-if="asset.videoStreamContext !== undefined && asset.videoStreamContext !== null && asset.videoStreamContext.height && asset.videoStreamContext.width">
+                <p >Dimension:
+										<span>{{asset.videoStreamContext.height}}px X {{asset.videoStreamContext.width}}px</span>
+                </p>
+              </mm-row>
+              <mm-row ng-if="asset.assetId != null && asset.assetId != ''">
+                <p class="pull-left">File Size:
+                     <span>{{asset.formatContext.fileSize}}</span>
+                </p>
+              </mm-row>
+                <mm-row ng-if="asset.assetId != null && asset.assetId != ''">
+             <p class="pull-left">Created:
+    <span>
+                                       {{:: asset.createDateTime | date: 'short'}}
+                                     </span>
+</p>
+
+             </mm-row>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</mm-row>
+<div>
+  <mm-toggle-container mm-caption="Asset Info" start-open="isStartOpen">
+    <div class="details">
+      <tabset>
+        <tab heading="Format Info" ng-if="asset.formatContext">
+          <mm-row>
+            <div class="mm-entity-fields-container-single">
+              <div ng-if="asset.formatContext">
+                <div ng-repeat="(key, val) in asset.formatContext">
+                  <mm-row ng-if="lookupMetaFormatMap(key, asset.mediaType)">
+                    <mm-info-label mm-model="val"
+                                   mm-is-required="false"
+                                   mm-layout-type="medium" mm-label-width="100"
+
+                                   mm-caption="{{ lookupMetaLabelMap(key) }}">
+                    </mm-info-label>
+                  </mm-row>
+                </div>
+              </div>
+              <div class="alert alert-info" ng-if="asset.formatContext == ''">
+                <i class="fa fa-info-circle"></i> There is no format context technical data.
+              </div>
+            </div>
+          </mm-row>
+        </tab>
+        <tab heading="Video" ng-if="asset.videoStreamContext">
+          <mm-row>
+            <div class="mm-entity-fields-container-single">
+              <div ng-if="asset.videoStreamContext">
+                <div ng-repeat="(key, val) in asset.videoStreamContext">
+                  <mm-row ng-if="lookupMetaFormatMap(key, asset.mediaType)">
+                    <mm-info-label mm-model="val"
+                                   mm-is-required="false"
+                                   mm-layout-type="medium" mm-label-width="100"
+                                   mm-caption="{{ lookupMetaLabelMap(key) }}">
+                    </mm-info-label>
+                  </mm-row>
+                </div>
+              </div>
+              <div class="alert alert-info" ng-if="asset.videoStreamContext == ''">
+                <i class="fa fa-info-circle"></i> There is no video stream context technical data.
+              </div>
+            </div>
+          </mm-row>
+        </tab>
+        <tab heading="Audio" ng-if="asset.audioStreamContext">
+          <mm-row>
+            <div class="mm-entity-fields-container-single">
+              <div ng-if="asset.audioStreamContext">
+                <div ng-repeat="(key, val) in asset.audioStreamContext">
+                  <mm-row ng-if="lookupMetaFormatMap(key, asset.mediaType)">
+                    <mm-info-label mm-model="val"
+                                   mm-is-required="false"
+                                   mm-layout-type="medium" mm-label-width="100"
+                                   mm-caption="{{ lookupMetaLabelMap(key) }}">
+                    </mm-info-label>
+                  </mm-row>
+                </div>
+              </div>
+            </div>
+          </mm-row>
+        </tab>
+        <tab heading="Image" ng-if="asset.imageContext">
+          <mm-row>
+            <div class="mm-entity-fields-container-single">
+              <div ng-if="asset.imageContext">
+                <div ng-repeat="(key, val) in asset.imageContext">
+                  <mm-row ng-if="lookupMetaFormatMap(key, asset.mediaType)">
+                    <mm-info-label mm-model="val"
+                                   mm-is-required="false"
+                                   mm-layout-type="medium" mm-label-width="100"
+                                   mm-caption="{{ lookupMetaLabelMap(key) }}">
+                    </mm-info-label>
+                  </mm-row>
+                </div>
+              </div>
+            </div>
+          </mm-row>
+        </tab>
+        <tab heading="Flash" ng-if="asset.swfContext && asset.swfContext.length > 0">
+          <mm-row>
+            <div class="mm-entity-fields-container-single">
+              <div ng-if="asset.swfContext">
+                <div ng-repeat="(key, val) in asset.swfContext">
+                  <mm-row ng-if="lookupMetaFormatMap(key, asset.mediaType)">
+                    <mm-info-label mm-model="val"
+                                   mm-is-required="false"
+                                   mm-layout-type="medium" mm-label-width="100"
+                                   mm-caption="{{ lookupMetaLabelMap(key) }}">
+                    </mm-info-label>
+                  </mm-row>
+                </div>
+              </div>
+            </div>
+          </mm-row>
+        </tab>
+        <tab heading="HTML5 Manifest" ng-if="showHTML5Manifest">
+          <div ng-if="showHTML5Manifest">
+            <mm-grid
+              items="asset.archiveManifest"
+              cols="columnDefsHTML5Manifest"
+              is-central-grid="false"
+              is-cell-edit="false"
+              show-selection-checkbox="false"
+              is-single-select="false"
+              is-column-reorder="false"
+              grid-height="200"
+              is-show-menu="false"
+              show-filter="false"
+              show-footer="true"
+              is-sort="true">
+            </mm-grid>
+          </div>
+        </tab>
+      </tabset>
+    </div>
+  </mm-toggle-container>
+</div>
+<div style="clear: both">&nbsp;</div>
+<div ng-if="showCI">
+  <mm-toggle-container mm-caption="Custom Interactions" start-open="isStartOpen">
+    <div class="details">
+      <tabset>
+        <tab ng-repeat="ci in interactionTypes" data-ng-click="changeTabName(ci.name)">
+          <tab-heading>{{ci.name}}({{ci.interactionData.length}})</tab-heading>
+          <mm-grid
+            items="ci.interactionData"
+            cols="ci.name=='All'?columnDefsForAllTab:columnDefs"
+            is-central-grid="false"
+            selected-items="ci.selectedItems"
+            is-cell-edit="true"
+            show-selection-checkbox="true"
+            is-single-select="false"
+            is-column-reorder="true"
+            grid-height="200"
+            is-show-menu="false"
+            show-filter="false"
+            show-footer="true"
+            is-sort="true"
+            grid-button-actions="gridButtonActions"
+            start-cell-edit-function="startCellEditFunction(parameter)">
+          </mm-grid>
+        </tab>
+      </tabset>
+    </div>
+  </mm-toggle-container>
+</div>
+
+<!--<div>
+	<mm-toggle-container mm-caption="Settings" start-open="isStartOpen">
+		<div class="details">
+			&lt;!&ndash;settings accordion content&ndash;&gt;
+			<tabset>
+				<tab heading="General">
+				</tab>
+				<tab ng-if="asset.relatedProxies.length > 0">
+					<tab-heading>Variants <span ng-if="asset.relatedProxies.length > 0">({{asset.relatedProxies.length}})</span>
+					</tab-heading>
+					<button type="button" class="btn btn-default">Add New</button>
+					<button type="button" class="btn btn-default">Delete</button>
+					<br>
+
+					<div>
+						<mm-grid
+							items="asset.relatedProxies"
+							cols="proxyColumnDefs"
+							is-central-grid="false"
+							selected-items="proxySelectedItems"
+							is-cell-edit="false"
+							show-selection-checkbox="true"
+							is-single-select="true"
+							is-column-reorder="true"
+							grid-height="300"
+							is-show-menu="true"
+							show-filter="true"
+							show-footer="true"
+							is-sort="true">
+						</mm-grid>
+					</div>
+				</tab>
+			</tabset>
+		</div>
+	</mm-toggle-container>
+</div>-->
+</div>
+</mm-row>

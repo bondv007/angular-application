@@ -1,0 +1,108 @@
+<div class="intraction-monitor container-fluid list-view-page">
+  <div class="col-sm-12">
+    <header class="top-nav-bar live-View-header">
+      <div class="container-fluid">
+
+        <div class="col-sm-12">
+          <div class="col-md-3 pad-left0">
+            <div class="search-box-hide">
+              <button class="btns" type="button" ng-click="clearInteractions()">
+                Clear
+              </button>
+              <!--<button class="btns" type="button">
+                <i class="fa fa-share"></i> To Excel
+              </button>-->
+            </div>
+          </div>
+
+          <div class="filters-outer">
+
+            <!--<mm-drop-down mm-error="error.name" mm-caption="Filters" mm-data-model="multipleFilter"
+                          mm-model="multipleFilterOpt" mm-layout-type="custom"
+                          mm-custom-control-width="150" control-type="multi"
+                          mm-label-width="60"
+                          show-search-box></mm-drop-down>-->    <!--interaction types not supported yet-->
+
+
+            <!--<label>Filters:</label>
+
+            <div class="filter-select" ng-click="showFilterType=!showFilterType">
+              Multiple <i class="fa fa-caret-down"></i>
+
+              <div class="button-separator"></div>
+            </div>
+
+
+            <div ng-click="$event.stopPropagation()" class="filterSelectDown" ng-show="showFilterType">
+              <ul>
+                <li>
+                  <h4>Interaction Type</h4>
+
+                  <div class="opts">
+                    <div ng-repeat="mf in multipleFilter">
+                      <input ng-model="mf.isSelected" id="filter_{{mf.name}}" type="checkbox">
+                      <label for="filter_{{mf.name}}">
+                        {{mf.name}} </label>
+                    </div>
+                  </div>
+
+                  <h4>Interaction Trigger</h4>
+
+                  <div class="opts">
+                    <input type="checkbox" id="filter_user">
+                    <label for="filter_user">User</label>
+
+                    <input type="checkbox" id="filter_automatic">
+                    <label for="filter_automatic"> Automatic</label>
+                  </div>
+
+                </li>
+
+
+              </ul>
+            </div>-->
+          </div>
+
+          <div class="search-bar-outer">
+            <div class="search-bar">
+              <div ng-click="showFilters=!showFilters" class="filter-select">
+                {{selectedFilter}} <i class="fa fa-caret-down"></i>
+
+                <div class="filterSelectDown" ng-show="showFilters">
+                  <ul>
+                    <li ng-repeat="filter in searchFilters"><a
+                        ng-class="{'active':filter.isSelected}" ng-click="setSearchFilter(filter)">{{filter.name}}</a>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+
+              <input type="text" class="form-control col-xs-10"
+                     ng-model="searchCriteria.searchText"
+                     style="">
+              <button class="search-btn "><i class="preview-icon-search"></i></button>
+            </div>
+          </div>
+
+
+        </div>
+      </div>
+    </header>
+  </div>
+  <div class="col-sm-12">
+
+    <div class="body">
+
+      <mm-grid
+          items="filteredData"
+          cols="columnDefs"
+          show-selection-checkbox="false"
+          grid-height="400"
+          is-central-grid="true"
+          is-grid-loading="isGridLoading"
+          enable-column-resize="true"
+          is-sort="true">
+      </mm-grid>
+    </div>
+  </div>
+</div>

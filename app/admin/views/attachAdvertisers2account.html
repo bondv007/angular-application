@@ -1,0 +1,50 @@
+<div class="mmStretchedWithScroll">
+  <tabset justified="false">
+    <tab select="toggleAdv(false)" heading="Existing Advertisers">
+      <mm-searchable-list mm-data-model="advertisers" mm-model="selectedAdvertisers.ids" mm-disable-selected="true"></mm-searchable-list>
+    </tab>
+    <tab select="toggleAdv(true)" heading="New Advertiser">
+      <mm-row>
+        <div class="mm-entity-fields-container-single" style="margin-top: 5px">
+          <mm-row>
+            <mm-text mm-model="newAdv.name"
+                     mm-placeholder="Enter Name"
+                     mm-error="validation.name"
+                     mm-caption="{{'Name' | T}}:"
+                     mm-is-edit-mode="false"
+                     mm-is-required={{isRequired}}
+                     mm-label-width="{{labelWidth}}"
+                     mm-layout-type="custom"
+										 mm-custom-control-width="300"
+                     mm-change="onNameChanged()"></mm-text>
+          </mm-row>
+          <mm-row>
+            <mm-drop-down mm-error="validation.vertical"
+                            mm-caption="Vertical"
+                            mm-data-model="verticals"
+                            mm-model="newAdv.vertical"
+                            mm-is-edit-mode="false"
+                            mm-is-required={{isRequired}}
+                            mm-label-width="{{labelWidth}}"
+                            mm-layout-type="custom"
+														mm-custom-control-width="300"
+                            mm-select-change-func="onVerticalSelected()"></mm-drop-down>
+          </mm-row>
+          <mm-row>
+            <mm-drop-down mm-error="validation.status"
+                            mm-caption="Advertiser Status"
+                            mm-is-edit-mode="false"
+                            mm-is-required={{isRequired}}
+                            mm-data-model="advertiserStatuses"
+                            mm-model="newAdv.status"
+                            mm-label-width="{{labelWidth}}"
+                            mm-layout-type="custom"
+														mm-custom-control-width="300"
+                            mm-select-change-func="onStatusSelected()"></mm-drop-down>
+          </mm-row>
+          <mm-external-id></mm-external-id>
+        </div>
+      </mm-row>
+    </tab>
+  </tabset>
+</div>

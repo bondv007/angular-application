@@ -1,0 +1,448 @@
+@mixin select-list($heigth : 324){
+  width: 686px;
+  height: $heigth + px;
+  margin: 0;
+  padding: 0;
+  background-color: $cWhite;
+  display: inline-block;
+}
+
+.select-list-with-search-box{
+  @include select-list(365);
+}
+
+.select-list-without-search-box{
+  @include select-list(324);
+}
+
+.select-list-search-box{
+  margin-left: -10px;
+  margin-bottom: 5px;
+  display: table;
+  position: relative;
+}
+
+.select-list-search-icon{
+  position: absolute;
+  background-image: url('../images/si_search_fourth.png?1422199607');
+  width: 16px;
+  height: 16px;
+  top: 7px;
+  right: 16px;
+}
+
+.available-box{
+  width: 351px;
+  height: 324px;
+  margin: 0;
+  padding: 0;
+  float: left;
+  border-bottom: 1px solid $cFourth;
+  border-top: 1px solid $cFourth;
+  border-left: 1px solid $cFourth;
+  border-right: 0;
+
+}
+
+.selected-box{
+  width: 335px;
+  height: 324px;
+  margin: 0;
+  padding: 0;
+  float: left;
+  border: 1px solid $cFourth;;
+}
+
+.available-box-title{
+  width: 351px;
+  height: 34px;
+  padding-left: 10px;
+}
+
+.box-title-text{
+  display: inline-block;
+  font-family: 'Titillium Semibold';
+  float: left;
+  margin-top: 7px;
+  font-size: 12px;
+  color: $cSecondarySeventyFive;
+}
+
+.box-title-all{
+  display: inline-block;
+  float: right;
+  margin-top: 7px;
+  text-align: right;
+  padding-right: 10px;
+  font-size: 12px;
+  cursor: pointer;
+  font-family: Arial;
+  color: $cMainSeventyFive;
+}
+
+.available-box-options{
+  position: relative;
+  width: 351px;
+  height: 257px;
+  border-bottom: 1px solid $cFourth;
+  border-top: 1px solid $cFourth;
+  border-left: 0;
+  border-right: 0;
+}
+
+.available-box-summery{
+  width: 351px;
+  height: 34px;
+  padding-left: 10px;
+}
+
+.selected-box-title{
+  width: 335px;
+  height: 34px;
+  padding-left: 10px;
+}
+
+.selected-box-options{
+  width: 333px;
+  height: 257px;
+  border-bottom: 1px solid $cFourth;
+  border-top: 1px solid $cFourth;
+  border-left: 0;
+  border-right: 0;
+}
+
+.selected-box-options-clear{
+  width: 333px;
+  height: 257px;
+  border-bottom: 1px solid $cFourth;
+  border-top: 1px solid $cFourth;
+  background-color: #e3e9f4;
+  border-left: 0;
+  border-right: 0;
+}
+
+.selected-box-summery{
+  width: 335px;
+  height: 34px;
+  padding-left: 10px;
+}
+
+.box-summery{
+  display: inline-block;
+  float: left;
+  margin-top: 5px;
+  font-size: 11px;
+  color: $cSecondarySeventyFive;
+}
+
+.box-separator{
+  display: inline-block;
+  float: left;
+  margin-top: 4px;
+  width: 1px;
+  height: 24px;
+  margin-left: 5px;
+  margin-right: 5px;
+  background-color: $cFourth;
+}
+
+.available-box{
+  width: 351px;
+  height: 324px;
+  margin: 0;
+  padding: 0;
+  float: left;
+  border-bottom: 1px solid $cFourth;
+  border-top: 1px solid $cFourth;
+  border-left: 1px solid $cFourth;
+  border-right: 0;
+}
+
+.selected-box{
+  width: 335px;
+  height: 324px;
+  margin: 0;
+  padding: 0;
+  float: left;
+  border: 1px solid $cFourth;;
+}
+
+.options-box{
+  margin-top: 11px;
+  margin-bottom: 11px;
+  position: relative;
+}
+
+ul.options{
+  height: 235px;
+  margin: 0;
+  padding: 0
+}
+
+.selected-option{
+  display: inline-block;
+  padding-top: 5px;
+  position: relative;
+  margin-left: 10px;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+  width: 285px;
+}
+
+.selected-option-title{
+  font-family: Arial;
+  color: $cSecondarySeventyFive;
+}
+
+.selected-option-item{
+  font-family: Arial;
+  color: $cSecondary;
+}
+
+.selected-option-icon {
+  float: right;
+  width: 20px;
+  height: 20px;
+  display: inline-block;
+  top: 5px;
+  right: 25px;
+  position: relative;
+  background: image-url('select_empty.png') no-repeat;
+}
+
+.selected-option-icon-hover {
+  float: right;
+  width: 20px;
+  height: 20px;
+  display: inline-block;
+  top: 5px;
+  right: 25px;
+  position: relative;
+  background: image-url('select_hover.png') no-repeat;
+}
+
+.selected-icon{
+  float: right;
+  width: 20px;
+  height: 20px;
+  display: inline-block;
+  top: 5px;
+  right: 25px;
+  position: relative;
+  background: image-url('select_full.png') no-repeat;
+}
+
+.close-icon{
+  float: right;
+  width: 20px;
+  height: 20px;
+  display: inline-block;
+  top: 7px;
+  right: 15px;
+  cursor: pointer;
+  position: relative;
+  background: image-url('si_close_entity_normal.png') no-repeat;
+}
+
+.close-icon-hover{
+  float: right;
+  width: 20px;
+  height: 20px;
+  display: inline-block;
+  top: 7px;
+  right: 15px;
+  cursor: pointer;
+  position: relative;
+  background: image-url('si_close_entity_hover.png') no-repeat;
+}
+
+.close-icon-selected{
+  float: right;
+  width: 20px;
+  height: 20px;
+  display: inline-block;
+  top: 7px;
+  right: 15px;
+  cursor: pointer;
+  position: relative;
+  background: image-url('si_close_entity_pressed.png') no-repeat;
+}
+
+.select-list .li-hover{
+  background-color: $cForthHint;
+}
+
+.select-box-clear{
+  font-size: 16px;
+  padding-left: 40px;
+  padding-right: 40px;
+  color: $cSecondarySeventyFive;
+  font-family: 'Titillium';
+  text-align: center;
+  padding-top: 95px;
+}
+
+.select-box-clear-icon{
+  width: 50px;
+  height: 50px;
+  left: 142px;
+  position: relative;
+  background: image-url('left_arrow.png') no-repeat;
+}
+
+
+.mm-small {
+  .select-list{
+    width: 480px;
+    height: 359px;
+    margin: 0;
+    padding: 0;
+    background-color: $cWhite;
+    display: inline-block;
+  }
+  .available-box{
+    width: 240px;
+    height: 324px;
+    margin: 0;
+    padding: 0;
+    float: left;
+    border-bottom: 1px solid $cFourth;
+    border-top: 1px solid $cFourth;
+    border-left: 1px solid $cFourth;
+    border-right: 0;
+  }
+
+  .selected-box{
+    width: 240px;
+    height: 324px;
+    margin: 0;
+    padding: 0;
+    float: left;
+    border: 1px solid $cFourth;;
+  }
+
+  .available-box-title{
+    width: 240px;
+    height: 34px;
+    padding-left: 10px;
+  }
+
+  .available-box-options{
+    position: relative;
+    width: 240px;
+    height: 257px;
+    border-bottom: 1px solid $cFourth;
+    border-top: 1px solid $cFourth;
+    border-left: 0;
+    border-right: 0;
+  }
+
+  .available-box-summery{
+    width: 240px;
+    height: 34px;
+    padding-left: 10px;
+  }
+
+  .selected-box-title{
+    width: 240px;
+    height: 34px;
+    padding-left: 10px;
+  }
+
+  .selected-box-options{
+    width: 238px;
+    height: 257px;
+    border-bottom: 1px solid $cFourth;
+    border-top: 1px solid $cFourth;
+    border-left: 0;
+    border-right: 0;
+  }
+
+  .selected-box-options-clear{
+    width: 238px;
+    height: 257px;
+    border-bottom: 1px solid $cFourth;
+    border-top: 1px solid $cFourth;
+    background-color: #e3e9f4;
+    border-left: 0;
+    border-right: 0;
+  }
+
+  .selected-box-summery{
+    width: 240px;
+    height: 34px;
+    padding-left: 10px;
+  }
+
+  .available-box{
+    width: 240px;
+    height: 324px;
+    margin: 0;
+    padding: 0;
+    float: left;
+    border-bottom: 1px solid $cFourth;
+    border-top: 1px solid $cFourth;
+    border-left: 1px solid $cFourth;
+    border-right: 0;
+  }
+
+  .selected-box{
+    width: 240;
+    height: 324px;
+    margin: 0;
+    padding: 0;
+    float: left;
+    border: 1px solid $cFourth;;
+  }
+
+  .selected-option{
+    display: inline-block;
+    padding-top: 5px;
+    position: relative;
+    margin-left: 10px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    width: 185px;
+  }
+  .select-box-clear-icon{
+    width: 50px;
+    height: 50px;
+    left: 92px;
+    position: relative;
+    background: image-url('left_arrow.png') no-repeat;
+  }
+  .selected-option-icon {
+    float: right;
+    width: 20px;
+    height: 20px;
+    display: inline-block;
+    top:-20px;
+    right: 25px;
+    position: relative;
+    background: image-url('select_empty.png') no-repeat;
+  }
+
+  .selected-option-icon-hover {
+    float: right;
+    width: 20px;
+    height: 20px;
+    display: inline-block;
+    top:-20px;
+    right: 25px;
+    position: relative;
+    background: image-url('select_hover.png') no-repeat;
+  }
+
+  .selected-icon{
+    float: right;
+    width: 20px;
+    height: 20px;
+    display: inline-block;
+    top:-20px;
+    right: 25px;
+    position: relative;
+    background: image-url('select_full.png') no-repeat;
+  }
+}

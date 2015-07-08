@@ -1,0 +1,129 @@
+<div ng-show="pageReady" class="editContainer">
+	<div class="row">
+		<div class="col-md-2">User Name</div>
+		<div class="col-md-3">
+			<mm-essential-text mm-model="userEdit.name" mm-placeholder="Enter Name" mm-error="validation.name"></mm-essential-text>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-2">Advertiser Display Name</div>
+		<div class="col-md-3">
+			<mm-essential-text mm-model="userEdit.name" mm-placeholder="Enter Name" mm-error="validation.name"></mm-essential-text>
+		</div>
+	</div>
+	<div ng-if="!advRoot" class="row">
+		<div class="col-md-2">Account Name</div>
+		<div class="col-md-3">{{accounts.getById(accountId).name}}</div>
+	</div>
+	<div class="row">
+		<div class="col-md-2">Status</div>
+		<div class="col-md-3">{{userEdit.status}}</div>
+	</div>
+	<div class="row">
+		<div class="col-md-2">Vertical</div>
+		<div class="col-md-3">{{userEdit.vertical}}</div>
+	</div>
+	<div class="row">
+		<div class="col-md-2">Last updated by</div>
+		<div class="col-md-3">---</div>
+	</div>
+	<div class="row">
+		<div class="col-md-2">Last updated on</div>
+		<div class="col-md-3">---</div>
+	</div>
+
+
+	<div ng-if="debug" class="debug">
+		{{userEdit}}
+		<br><br>
+		<br><br>
+		{{$parent.mainEntity}}
+	</div>
+</div>
+<wave-spinner ng-show="!pageReady"></wave-spinner>
+
+
+<!--
+	<div class="modal-header">
+		<div ng-switch="user.id">
+			<h3 ng-switch-when="undefined">Create New User</h3>
+			<h3 ng-switch-default>Edit User</h3>
+		</div>
+	</div>
+	<div class="modal-body">
+		<table>
+			<tr>
+				<td>
+					<span>Name: </span>
+				</td>
+				<td>
+					<span><a editable-text="user.name" e-required e-maxlength="25" e-size="30" e-placeholder="Enter name" ng-class="{'editable-dirty': isDirty('name')}">{{ user.name || "Enter name" }}</a></span>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<span>Username: </span>
+				</td>
+				<td>
+					<span><a onbeforesave="checkName($data)" editable-text="user.username" e-required e-maxlength="25" e-size="30" e-placeholder="Enter username" ng-class="{'editable-dirty': isDirty('username')}">{{ user.username || "Enter username" }}</a></span>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<span>Account ID: </span>
+				</td>
+				<td>
+					<span><a editable-text="user.accountId" e-required e-maxlength="25" e-size="30" e-placeholder="Enter account id" ng-class="{'editable-dirty': isDirty('accountId')}">{{ user.accountId || "Enter account id" }}</a></span>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<span>eMail: </span>
+				</td>
+				<td>
+					<span><a editable-text="user.email" e-required e-maxlength="25" e-size="30" e-placeholder="Enter eMail" ng-class="{'editable-dirty': isDirty('email')}">{{ user.email || "Enter eMail" }}</a></span>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<span>Address: </span>
+				</td>
+				<td>
+					<span><a editable-text="user.address" e-required e-maxlength="25" e-size="30" e-placeholder="Enter address" ng-class="{'editable-dirty': isDirty('address')}">{{ user.address || "Enter address" }}</a></span>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<span>Phone: </span>
+				</td>
+				<td>
+					<span><a editable-text="user.phon" e-required e-maxlength="25" e-size="30" e-placeholder="Enter phone number" ng-class="{'editable-dirty': isDirty('phon')}">{{ user.phon || "Enter phone number" }}</a></span>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<span>Timezone: </span>
+				</td>
+				<td>
+					<span><a editable-text="user.timeZone" e-required e-maxlength="25" e-size="30" e-placeholder="Enter Timezone" ng-class="{'editable-dirty': isDirty('timeZone')}">{{ user.timeZone || "Enter Timezone" }}</a></span>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<span>Language: </span>
+				</td>
+				<td>
+					<span><a editable-text="user.language" e-required e-maxlength="25" e-size="30" e-placeholder="Enter Language" ng-class="{'editable-dirty': isDirty('language')}">{{ user.language || "Enter Language" }}</a></span>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<span>Status: </span>
+				</td>
+				<td>
+					<span><a editable-text="user.status" e-required e-maxlength="25" e-size="30" e-placeholder="Enter Status" ng-class="{'editable-dirty': isDirty('status')}">{{ user.status || "Enter Status" }}</a></span>
+				</td>
+			</tr>
+		</table>
+</div>
+-->

@@ -1,0 +1,15 @@
+<input type="{{mmInputType}}"
+			 id="{{mmId}}"
+       ng-change="mmModelChange()"
+       class="mm-text-box {{mmControlClass}}"
+       style="{{mmControlWidth}}"
+       ng-class="{disable: $parent.mmDisable, errorInput: $parent.mmError}"
+       ng-show="$parent.isShowControl || (!!$parent.mmError && $parent.mmError !='' )"
+       ng-model="$parent.$parent.mmModel"
+       mm-focus="$parent.setFocus || ($parent.mmShowAsLabel && $parent.isShowControl)"
+       ng-blur="mmModelBlur();$parent.$parent.isShowControl = !$parent.$parent.mmShowAsLabel; "
+       ng-disabled="$parent.mmDisable"
+       placeholder="{{$parent.mmDisable ? '' : $parent.mmPlaceholder | T}}"
+       tabindex="{{$parent.mmTabIndex}}">
+
+<span ng-if="mmAdditionalText" class="label-additional-text">{{mmAdditionalText | T}}</span>

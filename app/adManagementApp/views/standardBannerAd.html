@@ -1,0 +1,42 @@
+<div>
+	<mm-toggle-container  mm-caption="Creative Assets"  start-open="toggleHandler.showToggleCreativeAssets">
+		<mm-row ng-if="errors.creativeAssets">
+			<mm-error-div error-text="errors.creativeAssets">  </mm-error-div>
+		</mm-row>
+	<tabset>
+		<tab heading="{{'Main Assets' |T}} " class="{{!errors.creativeAssets  ? '' : 'tabWithErrors'}}" select="focusedTab('creativeAssetsBase')" id="mainassets">
+			<div ng-if="tabsFocused.creativeAssetsBase" ng-include="'adManagementApp/views/creativeAssetsBase.html'"></div>
+		</tab>
+    <tab heading="{{'HTML5 Assets' |T}}" select="focusedTab('html5')"
+         ng-if="ad.html5  && ad.html5.assetId" >
+      <div ng-include="'adManagementApp/views/html5Assets.html'"></div>
+    </tab>
+	</tabset>
+</mm-toggle-container>
+</div>
+<div  ng-include="'adManagementApp/views/clickthrough&ThirdPartyURLs.html'"></div>
+<div>
+	<mm-toggle-container mm-caption="Settings" mm-is-dirty="" mm-error="error.name" start-open="toggleHandler.showToggleSettings">
+		<tabset>
+			<tab heading="General" id="adGeneralTab">
+				<div style="padding-top: 20px">
+					<mm-row>
+						<mm-text mm-caption="Default image alternate text" mm-model="ad.tooltip"
+										 mm-layout-type="medium"
+										 mm-label-width = {{::labelWidth4}} mm-is-edit-mode="!!entityId"
+										 mm-placeholder="Type Default image alternate text"
+										 mm-edit-multiple="isMultiple != undefined && isMultiple.indexOf('tooltip') != -1"></mm-text>
+					</mm-row>
+				</div>
+			</tab>
+			<tab heading="Privacy" id="privacy">
+				<div style="padding-top: 20px">
+					<div  ng-include="'adManagementApp/views/SettingsPrivacyTab.html'"></div>
+				</div>
+			</tab>
+		</tabset>
+	</mm-toggle-container>
+</div>
+
+
+

@@ -1,0 +1,121 @@
+<div class="testGrid">
+  <h3>This is the grid directive demo page</h3>
+
+  <h4>Sample Grid - Full featured within Accordion</h4>
+
+  <!--<h1>BUG1: Grid Issue Item 3</h1>
+  <h4>I set the mm-toggle directive but u can check it with mm-row and ng-include </h4>-->
+
+  <mm-toggle-container ng-init="settings={open:true}"
+                       mm-caption="Grid Demo and Test"
+                       start-open="settings.open">
+    <strong ng-if="obj.isGridLoading">Please wait grid is loading........ </strong>
+    <strong ng-if="!obj.isGridLoading">Grid loaded successfully. </strong>
+    <br/>
+    <br/>
+    Filter Grid: <input type="text" ng-model="filterText"> (if you need to create an external filter)
+    <br/>
+    <br/>
+    <!--Choose column name :<mm-drop-down style="width:150px;" mm-show-label="false" mm-data-model="columns" mm-model="selectedVal" mm-layout-type="" mm-is-required="false" mm-disable ="false" mm-error="error" mm-select-change-func="selectColumn(selectedVal)"></mm-drop-down>-->
+    <!--Change value : <input type="text" ng-model="prototypalResolver.txtValue">&nbsp;&nbsp;<button ng-click="changeBulkValues()" class="btn btn-info">Change</button>&nbsp;&nbsp;(if you need to change column value through external fields)-->
+    <!--<br/>-->
+    <!--<br/>-->
+    <!--Change status : <mm-drop-down style="width:150px;" mm-show-label="false" mm-data-model="statuses" mm-model="selectedStatus" mm-layout-type="" mm-is-required="false" mm-disable ="false" mm-error="error" mm-select-change-func="selectStatus(selectedStatus)"></mm-drop-down>-->
+    <!--<br/>-->
+    <!--<br/>-->
+    <div ng-hide="isGridLoading">
+      <mm-grid
+        items="data"
+        cols="columnDefs"
+        selected-items="item.selectedItems"
+        filtered-items="filteredItemCount"
+        is-cell-edit="true"
+        is-single-select="false"
+        is-sort="true"
+        show-footer="true"
+        is-groupable="false"
+        show-selection-checkbox="true"
+        show-filter="false"
+        enable-column-resize="true"
+        is-column-reorder="false"
+        is-column-freeze="false"
+        is-show-menu="false"
+        save-data="saveData"
+        check-box-click-handler="checkBoxHandler"
+        radio-click-handler="radioButtonHandler"
+        grid-height="400"
+        is-central-grid="false"
+        grid-button-actions="gridButtonActions"
+        filter-text="filterText"
+        grid-select-actions="gridSelectActions"
+        selected-row-handler="selectedRow"
+        selected-cell-handler="selectedCell"
+        generic-validation-handler="validationHandler"
+        is-grid-loading="obj.isGridLoading"
+        single-check-box-click-handler="singleCheckBoxHandler"
+        enable-row-selection="true"
+        enable-selected-row-selection="true">
+      </mm-grid>
+      <br>
+      <row>Filtered Items: <span>{{filteredItemCount}}</span></row>
+    </div>
+  </mm-toggle-container>
+  <br>
+
+  <h4>Grid in Modal and Other Sample Cases- Shake out any styling issues</h4>
+  <!--<h4>Shake out any styling issues</h4>-->
+  <mm-row ng-if="!obj.isGridLoading">
+    <button ng-click="openGridModal()" class="btn btn-info">Open Grid Modal</button>
+  </mm-row>
+  <mm-row ng-if="!obj.isGridLoading">
+    <button ng-click="changeSelectedRow()" class="btn btn-info">Select Row/Cell Handler test</button>
+  </mm-row>
+
+  <mm-row ng-if="!obj.isGridLoading">
+    <button ng-click="validate()" class="btn btn-info">Validations test</button>
+  </mm-row>
+
+  <mm-row ng-if="!obj.isGridLoading">
+  <button ng-click="requireValidationTest()" class="btn btn-info">Required cell data test</button>
+  </mm-row>
+
+  <!--<mm-row ng-if="!obj.isGridLoading">-->
+    <!--&lt;!&ndash;<button class="btn btn-info" data-placement="right" title="{{popover.title}}" data-template="test" data-content-template="content" bs-popover="popover">Show Popover<br /><small>(will close others)</small></button>&ndash;&gt;-->
+    <!--&lt;!&ndash;<div class="actionIcons"><a ng-click="openTestModal()"><i class="fa fa-ellipsis-v fa-lg"></i></a></div> <span>Open Modal</span>&ndash;&gt;-->
+    <!--<div class="actionIcons"><a ng-click="openTestDiv()"><i class="fa fa-ellipsis-v fa-lg"></i></a></div> <span>Open Include Div</span>-->
+  <!--</mm-row>-->
+  <!--<div ng-include="'internal/demo/views/testPanelTemplate.html'" ng-if="expandRow.show"></div>-->
+  <!--<mm-row ng-if="!obj.isGridLoading">-->
+    <!--<p>This is to test  the overlay behavior.</p>-->
+    <!--<img src="http://images.qa.videofusion.com/9814-01 (polite+CI)_1N4GMZCYMTC.zip_1410903395791/assets/400x220.jpg" height="100" width="200">-->
+    <!--<p>Can I display a div over this?</p>-->
+    <!--<ul>-->
+      <!--<li class="icontest">-->
+        <!--<span class="icon-globe"></span>-->
+        <!--Test On a Site-->
+      <!--</li>-->
+    <!--</ul>-->
+  <!--</mm-row>-->
+
+  <br>
+  <mm-row>
+    <div class="actionIcons" ng-mouseenter="showIcons=true" ng-mouseleave="showIcons=false">
+      <div class="cfwTest" >This is text to test inline-action template outside grid.</div>
+
+      <div class="emptyDiv" ng-show="showIcons">
+        <a ng-if="action.showControl==undefined || action.showControl" ng-repeat="action in testIconOutsideGrid" ng-click="executeIconFunction(action.function)">
+          <span ng-switch="action.actionFieldType">
+            <i ng-switch-when="Icon" ng-class="[action.field, action.cssClass]"></i>
+            <img ng-switch-when="Image" ng-class="action.cssClass" ng-src="{{action.field}}" height="{{action.height}}" width="{{action.width}}" tooltip-placement="top" tooltip-trigger="mouseenter" tooltip="{{action.tooltip}}"/>
+            <span ng-switch-when="Text" ng-class="action.cssClass" class="actionText">{{action.field}}</span>
+            <button ng-switch-when="Button" ng-class="action.cssClass" class="mm-attach-button btn btn-primary" type="button">{{action.title}}</button>
+            <div ng-switch-when="BckgrndImage" ng-class="action.cssClass" tooltip-placement="top" tooltip-trigger="mouseenter" tooltip="{{action.tooltip}}"></div>
+            <span ng-switch-when="Link" ng-class="action.cssClass" class="actionLink">{{action.field}}</span>
+          </span>
+        </a>
+      </div>
+    </div>
+  </mm-row>
+
+
+</div>

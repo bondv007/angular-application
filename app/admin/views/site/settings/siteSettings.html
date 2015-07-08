@@ -1,0 +1,39 @@
+<mm-toggle-container
+		mm-caption="Settings"
+		start-open="togglesStatus.settings">
+	<tabset justified="false">
+		<tab
+				id="tagSettingsTab"
+				heading="Tag Settings"
+				ng-attr-class="{{tabHandler.settings.tagSettings.isValid ? '' : 'tabWithErrors'}}"
+				active="tabHandler.settings.tagSettings.isActive">
+			<span ng-include="'admin/views/site/settings/tagSettings.html'"></span>
+		</tab>
+		<tab
+				id="trackingAndTargetingTab"
+				heading="Tracking and Targeting"
+				ng-attr-class="{{tabHandler.settings.trackingTargeting.isValid ? '' : 'tabWithErrors'}}"
+				active="tabHandler.settings.trackingTargeting.isActive">
+			<span ng-include="'admin/views/site/settings/trackingTargeting.html'"></span>
+		</tab>
+		<tab heading="Ad Delivery"
+					id="adDeliveryTab"
+				 ng-attr-class="{{tabHandler.settings.adDelivery.isValid ? '' : 'tabWithErrors'}}"
+				 active="tabHandler.settings.adDelivery.isActive">
+			<span ng-include="'admin/views/site/settings/adDelivery.html'"></span>
+		</tab>
+		<tab heading="Privacy"
+					id="privacyTab"
+				 ng-attr-class="{{tabHandler.settings.privacy.isValid ? '' : 'tabWithErrors'}}"
+				 active="tabHandler.settings.privacy.isActive">
+			<span ng-include="'admin/views/site/settings/privacy.html'"></span>
+		</tab>
+		<tab
+				id="inStreamRulesTab"
+				heading="In-stream Rules"
+				ng-attr-class="{{tabHandler.settings.inStream.isValid ? '' : 'tabWithErrors'}}"
+				active="tabHandler.settings.inStream.isActive">
+			<span ng-include="'admin/views/site/settings/inStreamRules.html'"></span>
+		</tab>
+	</tabset>
+</mm-toggle-container>

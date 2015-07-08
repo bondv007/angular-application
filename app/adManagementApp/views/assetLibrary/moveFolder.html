@@ -1,0 +1,37 @@
+<div class="upload-close shareCsbModal move-modal">
+    <div class="mmmodal-header">
+        <div class="close">
+            <div class="close-button" ng-click="close(false)"></div>
+        </div>
+        <div class="mmmodal-title">MOVE TO</div>
+    </div>
+    <div class="mmmodal-body">
+      <div>
+        <span> Move selected items to</span>
+        <a href="" class="pull-right linkAction" >New Folder</a>
+      </div>
+
+      <div class="folder-search-area" style="height: 360px; border: 1px solid #ccc;">
+          <div class="treeview-wrapper-div">
+              <input search-node tree-id="dvTreeViewModal" type="text" class="text-box" placeholder="Enter a folder name"/>
+              <mm-tree-view
+                      class="assetLibTree"
+                      data="commonModel.foldersData"
+                      rename-node-handler="renameNodeHandler"
+                      new-node-handler="newNodeHandler"
+                      selected-node-handler="selectedNodeHandlerInModal"
+                      drag-drop-handler="dragDropHandler"
+                      tree-id="dvTreeViewModal"
+                      can-drag-drop="true">
+              </mm-tree-view>
+          </div>
+      </div>
+        <div class="clear"> </div>
+    </div>
+  <!--<div class="bottom-tip"><p> <i class="fa fa-smile-o"></i> <strong>Tip:</strong> Moving can be done by dragging too.</p></div>-->
+    <div class="clear"></div>
+    <div class="modal-footer">
+        <button class="mm-save-button btn btn-primary" ng-click="moveFolder()">MOVE</button>
+        <button class="mm-discard-button btn btn-warning" ng-click="close(false)">CANCEL</button>
+    </div>
+</div>

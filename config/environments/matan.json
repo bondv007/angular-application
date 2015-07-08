@@ -1,0 +1,8 @@
+{
+  "env": "development-matan",
+  "ec2": "https://dev4.dev.sizmdx.com/rest/",
+  "loginPath": "https://dev4.dev.sizmdx.com/rest/login/",
+  "resource": "/_/"
+}
+
+

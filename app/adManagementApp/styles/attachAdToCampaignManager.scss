@@ -1,0 +1,34 @@
+$subHeaderHeight: 34px;
+$cSelected :#bac9e3;
+$cHeader: #e4e4e4;
+
+.attachAdToCamapignManager{
+
+  .infoArea{
+    display: block;
+    width: 400px;
+    height: 50px;
+    background-color: white;
+    border-color: white;
+    resize: none;
+    position: relative;
+    top: -15px;
+    left: 30px;
+
+  }
+  .infoIcon{
+    margin-top: 10px;
+    padding-top:20px;
+    top: 20px;
+    left: 0px;
+  }
+  .readMore{
+    position: relative;
+    top: -15px;
+    left: 38px;
+  }
+
+}
+
+
+

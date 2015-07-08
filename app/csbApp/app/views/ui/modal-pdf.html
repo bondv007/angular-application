@@ -1,0 +1,12 @@
+<div>
+    <div ng-hide="modalData.url">
+        <div class="csb-alert alert alert-danger" ng-show="error">{{error}}</div>
+        <div class="centered">
+            <span ng-hide="error" class="glyphicon glyphicon-refresh large-loading-spinner"></span>
+        </div>
+        <p ng-hide="error">Please wait for the document to be converted to PDF. Your download will start shortly...</p>
+    </div>
+    <div ng-show="modalData.url">
+        <p>Your diagram has been been converted to PDF. You can download the PDF by clicking the link below.</p>
+    </div>
+</div>

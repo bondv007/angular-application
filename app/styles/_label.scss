@@ -1,0 +1,64 @@
+@mixin labelValue{
+  display: inline-block;
+  float: left;
+  height: 30px;
+  padding-left: 8px;
+  padding-top: 3px;
+  min-width: 50px;
+  @include tArialText;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
+.mm-ellipsis{
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
+.mm-label-padding{
+  padding-right: 0;
+  &:hover{
+    padding-right: 37px;
+  }
+}
+
+.mm-label {
+  display: block;
+  height: 30px;
+}
+
+.mm-label-value {
+  @extend .mm-nowrap;
+  @include labelValue;
+  height: 30px;
+  line-height: 24px;
+  margin-right: 10px;
+}
+
+.mm-disabled-value {
+  @extend .mm-nowrap;
+  @include labelValue;
+  opacity: 0.5;
+}
+
+.mm-label-text{
+  padding-top: 4px;
+  opacity: 0.75;
+  @include tArialText;
+}
+
+.mm-control-label {
+  margin-top: 4px;
+  display: block;
+  float: left;
+  opacity: 0.75;
+  @include tArialText;
+}
+
+.label-additional-text{
+  @include labelValue;
+  margin-top: 4px;
+  opacity: 0.75;
+  @include tArialText;
+  float: left;
+}

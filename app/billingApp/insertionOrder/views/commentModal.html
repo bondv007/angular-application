@@ -1,0 +1,13 @@
+<mm-row ng-if="params.action == params.actions.disable || params.action == params.actions.enable">
+    <mm-drop-down
+            mm-model="params.reason"
+            mm-data-model="IOStatusChangeReason[params.action]"
+            mm-layout-type="custom"
+            mm-custom-control-width="300"
+            mm-label-width="200"
+            mm-caption="Reason for {{params.actionDesc}} the IO: ">
+            </mm-drop-down>
+</mm-row>
+
+<textarea ng-model="params.comment" cols="80" rows="8" placeholder="Please enter the reason for {{params.actionDesc}} the IO"></textarea>
+

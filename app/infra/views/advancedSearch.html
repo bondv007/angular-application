@@ -1,0 +1,58 @@
+<div style="height: 100px;">
+	<div style="background-color: rgb(205, 202, 212);">
+		<div class="advancedSearchButtonCenterlize advancedSearchSelector">
+			<div class="btn-group">
+				<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">Dropdown <span
+					class="caret"></span></button>
+				<ul class="dropdown-menu">
+					<li><a href="javascript: void(0)" ng-click="changeSearch('')">None</a></li>
+					<li><a href="javascript: void(0)" ng-click="changeSearch('campaign')">campaign</a></li>
+					<li><a href="javascript: void(0)" ng-click="changeSearch('placement')">placements</a></li>
+					<li><a href="javascript: void(0)" ng-click="changeSearch('ad')">ads</a></li>
+				</ul>
+			</div>
+		</div>
+		<div class="advancedSearchButtonCenterlize advancedSearchButtons">
+			<div style="height: 100%;padding-left: 10px;">
+				<div class="btn-group">
+					<button type="button" class="btn btn-default" href="#test_modal" data-toggle="modal">Open PopUp</button>
+				</div>
+				<div class="btn-group">
+					<button type="button" class="btn btn-default" ng-repeat="a in ['1','2']">Action {{a}}</button>
+				</div>
+				<div class="btn-group">
+					<button type="button" class="btn btn-default" ng-repeat="a in ['1','2','3']">Sort Opt {{a}}</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	<br>
+    <span class="pull-left" style="width:20%">
+        <div ng-repeat="f in filterResults" style="margin-top: 5px; margin-bottom: 5px;">
+	        <p><b>{{f.filterName}}</b></p>
+
+	        <p>
+
+	        <div ng-repeat="v in f.values | orderBy:orderFunc | limitTo:3" style="padding-left: 10px;">
+
+
+		        <!--need to sort by order of  the list by number o items in values-->
+		        <!--then take top 3-->
+
+
+		        <input type="checkbox" ng-model="isTrue"
+		               ng-change="setFilter('{{f.filterName}}', '{{v.valueName}}', isTrue)"> {{v.valueName}}
+		        ({{v.values.length}})
+	        </div>
+	        </p>
+        </div>
+        <br>
+    </span>
+    <span class="pull-right" style="width:80%;">
+        <div style="padding-left: 20px;border-left: solid 1px #000000;">
+	        <div ng-repeat="item in searchResults | filter:filterBy">
+		        <friendly-grid-row item="item"></friendly-grid-row>
+	        </div>
+        </div>
+    </span>
+</div>

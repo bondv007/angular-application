@@ -1,0 +1,97 @@
+<div>
+  <div class="modal-header">
+    <a class="close" ng-click="cancel()">&times;</a>
+
+    <h3>SETTINGS</h3>
+  </div>
+
+  <div class="modal-body attach-advertiser">
+    <tabset justified="false">
+
+      <!--Rotation-->
+      <tab select="toggleDG(false)">
+        <tab-heading>Rotation</tab-heading>
+        <div class="well well-lg" style="height: 200px;margin: 15px">
+          <div class="col-md-3">
+
+            <select ng-model="cloneDeliveryGroup.adContainer.rotationSetting.type" ng-options="r.type as r.name for r in rotations"></select>
+
+            <div>
+              <div ng-switch on="cloneDeliveryGroup.adContainer.rotationSetting.type">
+
+                <div style="width: 300px" ng-switch-when="EvenDistribution">Distribute ads evenly in the ad rotation.</div>
+
+                <div style="width: 400px" ng-switch-when="Weighted">Each ad holds a different percentage share of the total serving.</div>
+
+                <div style="width: 420px" ng-switch-when="TimeBased">
+                  Select this option to serve ads (or groups of ads) according to defined time periods: custom date range,
+                  specific days or hours.
+                </div>
+
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </tab>
+
+      <!--Frequency Capping-->
+      <tab select="toggleDG(true)">
+        <tab-heading>Frequency Capping</tab-heading>
+        <div class="=container" style="border: 1px">
+          <div style="padding-left: 15px">Frequency Capping</div>
+
+          <div class="well well-lg" style="height: 150px; margin: 15px; margin-top: 5px;margin-bottom: 5px">
+            <table>
+              <tr>
+                <td><input type="checkbox" ng-model="impressionsPerUser" ng-change="onUnSelectedFrequencyCapping('impressionsPerUser')"> Limit to:</td>
+                <td style="padding-left: 5px"><select ng-disabled="!impressionsPerUser" ng-model="cloneDeliveryGroup.servingSetting.impressionsPerUser" ng-options="r for r in impressionsPerUserDD"></select></td>
+                <td>Impressions per User</td>
+              </tr>
+              <tr>
+                <td><input type="checkbox" ng-model="impressionsPerUserPerDay" ng-change="onUnSelectedFrequencyCapping('impressionsPerDay')"> Limit to:</td>
+                <td style="padding-left: 5px"><select ng-disabled="!impressionsPerUserPerDay" ng-model="cloneDeliveryGroup.servingSetting.impressionsPerDay" ng-options="r for r in impressionsPerUserPerDayDD"></select></td>
+                <td>Impressions per User per Day</td>
+              </tr>
+              <tr>
+                <td><input type="checkbox" ng-model="timeBetweenAds" ng-click="onUnSelectedFrequencyCapping('timeBetweenAds')"> Minimum Time Between Ads:</td>
+                <td style="padding-left: 5px">
+                  <input ng-disabled="!timeBetweenAds" type="number" name="input" ng-model="cloneDeliveryGroup.servingSetting.timeBetweenAds" min="0" max="999" required>
+                </td>
+                <td>
+                  <select ng-disabled="!timeBetweenAds" ng-model="selectedTime" ng-options="r for r in timeOptions"></select>
+                </td>
+              </tr>
+            </table>
+            <table>
+              <tr>
+                <td>Frequency Capping Level:</td>
+                <td style="padding-left: 5px">
+                  <input type="radio" ng-model="cloneDeliveryGroup.servingSetting.frequencyCappingLevel" value="1" /> Each Placement Separately <br/>
+                  <input type="radio" ng-model="cloneDeliveryGroup.servingSetting.frequencyCappingLevel" value="0" /> Entire Delivery Group (Across Placements) <br/>
+                </td>
+              </tr>
+            </table>
+          </div> <!--End Frequency Capping-->
+
+          <div style="padding-left: 15px">Default Image or Ads</div>
+          <div class="well well-lg" style="height: 60px; margin: 15px; padding-top: 7px; margin-top: 5px">
+            <input type="radio" ng-model="cloneDeliveryGroup.servingSetting.serveDefaultImage" value="1" /> Serve Default Image <br/>
+            <input type="radio" ng-model="cloneDeliveryGroup.servingSetting.serveDefaultImage" value="0" /> Serve Default Ad <br/>
+          </div> <!--End Default Image or Ads-->
+        </div>
+      </tab>
+
+      <!--Target Audience-->
+      <tab select="toggleDG(true)">
+        <tab-heading>Target Audience</tab-heading>
+      </tab>
+
+    </tabset>
+  </div>
+
+  <div class="modal-footer">
+    <button type="button" ng-click="cancel()" class="btn">CANCEL</button>
+    <button type="submit" ng-click="apply()" class="btn btn-primary">APPLY</button>
+  </div>
+</div>

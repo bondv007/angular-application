@@ -1,0 +1,35 @@
+<!-- Decision diagram -->
+<div id="{{diagram.id}}"
+     name="{{diagram.name}}"
+     class="{{diagram.class}}"
+     ng-class="isSelected"
+     style="{{'left: ' + diagram.position.left + 'px; top:' + diagram.position.top + 'px;'}}"
+     ng-show="isDecisionRule">
+
+    <div class="content">
+        <span class="glyphicon glyphicon-{{diagram.icon}}"></span>
+        <br/>
+        <span ng-bind-html="diagram.name"></span>
+    </div>
+
+    <span class="line-connector-right">
+        <span class="line-connector-label line-connector-label-right">Y</span>
+        <div class="drop-container drop-container-right" data-drop="true" data-jqyoui-options jqyoui-droppable="{onDrop: 'onDropYesDecision'}"><p>DROP DECISION HERE</p></div>
+    </span>
+    <span class="line-connector-bottom">
+        <span class="line-connector-label line-connector-label-bottom">N</span>
+        <div class="drop-container drop-container-bottom" data-drop="true" data-jqyoui-options jqyoui-droppable="{onDrop: 'onDropNoDecision'}"><p>DROP DECISION HERE</p></div>
+    </span>
+</div>
+
+<!-- Note -->
+<div id="{{diagram.id}}"
+     name="{{diagram.name}}"
+     class="{{diagram.class}}"
+     ng-class="isSelected"
+     style="{{'left: ' + diagram.position.left + 'px; top:' + diagram.position.top + 'px;'}}"
+     ng-show="isNote">
+    <div class="content">
+        <span class="glyphicon glyphicon-{{diagram.icon}}"></span> click here to add note..
+    </div>
+</div>

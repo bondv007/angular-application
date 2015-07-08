@@ -1,0 +1,34 @@
+<div class="item" ui-tree-handle>
+	<!--Drag Icon-->
+	<div class="dragIcon middleElement"></div>
+
+	<!--Open\Close Icon Container-->
+	<a data-nodrag class="middleElement wrapContainerToggleIcon" ng-click="toggle(item)" >
+		<div ng-class="{'containerOpenIcon':!collapsed && !!item.subContainers, containerCloseIcon:collapsed && !!item.subContainers}" class="middleElement containerOpenIconDim"></div>
+	</a>
+
+	<!--Check Box []-->
+	<div data-nodrag class="mm_checkbox middleElement selectedCBWrapper" ng-model="item.selected" ng-click="item.selected=!item.selected; onItemSelected(item)">
+		<span ng-class="{'selectedCB': item.selected}"></span>
+	</div>
+
+	<!--Item Type Icon-->
+	<div ng-if="!!item.subContainers" class="middleElement" ng-class="{'subContainerOpenIcon':!collapsed, 'subContainerCloseIcon':!!collapsed}"></div>
+	<div ng-if="!item.subContainers" class="middleElement adIcon"></div>
+
+  <span class="highlightAdWrapper" ng-style="filter.dgs.length > 0 && item.name.toLowerCase().indexOf(filter.dgs.toLowerCase()) > -1? {'background-color':'#FCFECC'}:{background:''}">
+    <!--ID + Name-->
+    <div ng-if="!item.subContainers" class="middleElement itemIdText" ng-bind="item.masterAdId"></div>
+    <div class="middleElement">
+      <input type="text" class="mm-label-value" ng-class="{'tree_sub_group_TextBox':mmDeliveryGroup.isSupportedDg,'tree_sub_group_TextBox_Disable':!mmDeliveryGroup.isSupportedDg}"
+             ng-if="!!item.subContainers"
+             ng-model="item.name"
+             placeholder="{{'Enter name' | T}}"
+             ng-disabled="!mmDeliveryGroup.isSupportedDg"/>
+      <div class="itemNameText" ng-if="!item.subContainers" ng-bind="::item.name" title="{{item.name}}" ></div>
+    </div>
+  </span>
+	<!--Weight-->
+	<div ng-show="item.type == 'AdContainer' || item.showRotation" data-nodrag class="middleElement weightContainer" ng-include="'campaignManagementApp/directives/dg/tree/views/templates/rotationTypes/rotationDecision.html'"></div>
+</div>
+

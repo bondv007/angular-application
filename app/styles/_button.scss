@@ -1,0 +1,79 @@
+//.mm-btn-save.btn-group {
+//
+//  color: $cSecondary;
+//  background-color: $cThird;
+//  min-width: 92px;
+//  margin-left: 5px;
+//  height: 28px;
+//  padding: 0px 2px !important;
+//  &:hover {
+//    color: $cWhite;
+//    background-color: $cSecondary;
+//
+//  }
+//  &:active {
+//    color: $cThird;
+//  }
+//
+//
+//}
+
+.mm-button {
+  font-family: "Titillium Semibold";
+  font-size: 13px;
+  border: 0;
+  color: $cSecondary;
+  background-color: $cThird;
+  height: 24px;
+  text-align: center;
+  vertical-align: middle;
+  margin: 0 0 0 7px !important;
+  border-radius: 0px;
+  padding: 0px 16px;
+
+  &:hover {
+    color: $cWhite;
+    background-color: $cSecondary;
+  }
+  &:active {
+    outline:none;
+    color: $cThird;
+    background-color: $cSecondary;
+  }
+  &:focus {
+    outline:none;
+    border: 0;
+  }
+}
+
+.mm-disabled-button {
+  @extend .mm-button;
+  pointer-events: none;
+  opacity: 0.4;
+}
+
+.mm-button.disabled{
+  @extend .mm-button;
+  pointer-events: none;
+  opacity: 0.4;
+}
+
+.mm-discard-button {
+  @extend .mm-button;
+  background-color: $cGrey;
+  min-width: 70px;
+}
+
+.mm-save-button {
+  @extend .mm-button;
+  min-width: 70px;
+}
+
+.mm-attach-button {
+  @extend .mm-button;
+  min-width: 70px;
+}
+
+.entityLayoutButtons {
+  float:right;
+}

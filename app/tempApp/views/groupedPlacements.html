@@ -1,0 +1,26 @@
+<h1>Placements</h1>
+
+<div class="btn-group" data-ng-class="{open: open}">
+	<button class="btn">Group by</button>
+	<button class="btn dropdown-toggle" data-ng-click="open=!open"><span class="caret"></span>
+
+	</button>
+	<ul class="dropdown-menu">
+		<li ng-model="sortBy" data-ng-repeat="opt in groupByOptions"><a data-ng-click="changeSort(opt)">{{opt}}</a></li>
+	</ul>
+</div>
+
+<br>
+
+<div style="text-align: center;">
+	<a ng-repeat="(a, ps) in sortedPlacements" ng-href="#/placements/{{sortBy}}/{{a}}"
+		 style="display: inline-block; text-align:start; margin: 30px; width:210px;font-size: 18px;font-weight: 200;line-height: 30px;background-color: #eee;border-radius: 6px;padding: 20px;">
+		<h3>{{a}}</h3>
+		<hr/>
+		<p>
+			Num of Placements: {{ps.length}} <br/>
+			Start Date: {{ps[0].startDate}} <br/>
+			End Date: {{ps[0].endDate}} <br/>
+		</p>
+	</a>
+</div>

@@ -1,0 +1,153 @@
+<div class="mdxUI mdxUIContainer scrollerBoxScroll" ng-class="{ 'active' : showUI, 'mdx3': csb.config.env == 'mdx3' }">
+
+  <div class="header">
+    <h1>Geo Targeting <span ng-click="cancelChanges()" class="pull-right glyphicon glyphicon-remove"></span></h1>
+  </div>
+
+  <div class="body-wrapper" ng-style="csb.config.panelHeight">
+
+    <div class="body clearfix">
+
+      <div class="form-group" ng-show="errorText" style="padding-left:  0 !important; padding-right: 0 !important;">
+        <div class="csb-alert alert alert-danger">{{errorText}}</div>
+      </div>
+
+      <div class="form-group col-md-12" style="padding-left:  0 !important; padding-right: 0 !important;">
+        <mm-text
+            mm-layout-type="custom"
+            mm-custom-control-width="210"
+            mm-label-width="130"
+            mm-caption="Decision Rule Name"
+            mm-model="name.text">
+        </mm-text>
+      </div>
+
+      <div class="form-group col-md-12" style="padding-left:  0 !important; padding-right: 0 !important;">
+        <mm-drop-down
+            mm-layout-type="custom"
+            mm-custom-control-width="210"
+            mm-label-width="130"
+            mm-caption="Decision Rule Type"
+            mm-data-model="ruleTypeOptions"
+            mm-model="ruleType.id"
+            mm-disable="disableType"
+            mm-select-change-func="changeRuleType()"
+            mm-custom-label-padding="0">
+        </mm-drop-down>
+      </div>
+
+      <div class="form-group col-md-12" style="padding-left:  0 !important; padding-right: 0 !important;">
+        <mm-drop-down
+            mm-layout-type="custom"
+            mm-custom-control-width="210"
+            mm-label-width="130"
+            mm-caption="Geo Type"
+            mm-data-model="geoTypeEnum"
+            mm-model="geoObj.selectedGeoType"
+            mm-select-change-func="clearSelectedGeo();getCountriesByGeoType();"
+            mm-custom-label-padding="0">
+        </mm-drop-down>
+      </div>
+
+      <div ng-if="geoObj.selectedGeoType != 'country'" class="form-group col-md-12" style="padding-left:  0 !important; padding-right: 0 !important;">
+        <mm-drop-down
+            mm-layout-type="custom"
+            mm-custom-control-width="210"
+            mm-label-width="130"
+            mm-caption="Select Country"
+            mm-data-model="geoDataSource.country.dataSource"
+            mm-model="geoObj.selectedCountry"
+            mm-option-id="geoItemID"
+            mm-option-name="geoItemName"
+            mm-select-change-func="pickStateByCountry()"
+            mm-custom-label-padding="0">
+        </mm-drop-down>
+      </div>
+
+      <div ng-if="geoObj.selectedGeoType == 'city' || geoObj.selectedGeoType == 'nielsen' || geoObj.selectedGeoType == 'areaCode'" class="form-group col-md-12" style="padding-left:  0 !important; padding-right: 0 !important;">
+        <mm-drop-down
+            mm-layout-type="custom"
+            mm-custom-control-width="210"
+            mm-label-width="130"
+            mm-caption="Select State"
+            mm-data-model="geoDataSource.state.dataSource"
+            mm-model="geoObj.selectedState"
+            mm-option-id="geoItemID"
+            mm-option-name="geoItemName"
+            mm-disable="geoObj.selectedCountry.length <= 0"
+            mm-select-change-func="pickEntitySelectedGeo()"
+            mm-custom-label-padding="0">
+        </mm-drop-down>
+      </div>
+
+      <div ng-if="geoObj.selectedGeoType.toString() != 'postalCode'" class="form-group col-md-12"
+           style="padding-left: 0 !important; padding-right: 0 !important; margin-bottom: 10px !important">
+        <mm-auto-complete id="ex2"
+                          placeholder="Search geo"
+                          pause="100"
+                          mm-width="340"
+                          selected-object="geoModel.selectedGeo"
+                          local-data="geoDataSource[geoObj.selectedGeoType].dataSource"
+                          disable-input="geoDataSource[geoObj.selectedGeoType].dataSource.length <= 0"
+                          search-fields="geoItemName"
+                          title-field="geoItemName"
+                          id-field="geoItemID"
+                          type-field="type"
+                          minlength="1"
+                          clear-selected="true"
+                          text-no-results="Geo not supported"
+                          class="mm-auto-complete"
+                          use-title-manipulator
+                          title-manipulator="generateGeoTitle(data)"
+                          match-class="angucomplete-match"/>
+      </div>
+
+      <div ng-if="geoObj.selectedGeoType.toString() == 'postalCode'" class="col-md-12" style="padding-left:  0 !important; padding-right: 0 !important;">
+        <label>Postal Codes (Zip)</label>
+        <div class="form-buttons" style="display: inline-block">
+          <mm-text-area mm-model="geoObj.selectedPostalCodes"
+                        mm-label-width="0"
+                        mm-layout-type="custom"
+                        mm-disable="!geoObj.selectedCountry"
+                        mm-custom-control-width="294"></mm-text-area>
+          <button class="btn mdx-btn" ng-disabled="geoObj.selectedPostalCodes.length <= 0" ng-click="addPostalCode()" style="top: 87px;position: relative;margin-left: 5px;">Add</button>
+        </div>
+        <p class="text-primary">NOTE: Separate codes with commas.</p>
+      </div>
+      <div class="form-group col-md-12" style="padding-left:  0 !important; padding-right: 0 !important;">
+        <i ng-click="openAdvanceSearch()" class="csb-advance-search-icon" style="color: #6798ff; cursor: pointer"></i>
+        <a ng-click="openAdvanceSearch()" style="color: #6798ff">Advanced Search</a>
+      </div>
+      <div class="form-group col-md-12" style="padding-left:  0 !important; padding-right: 0 !important;" ng-if="geoGrid.columns">
+        <mm-grid show-selection-checkbox="true"
+                 grid-button-actions="gridButtonActions"
+                 items="geoModel.gridAddedGeos"
+                 selected-items="geoModel.gridSelectedGeos"
+                 grid-height="250"
+                 grid-width="340"
+                 cols="geoGrid.columns"
+                 show-footer="true"
+                 is-sort="true"
+                 is-single-select="false"
+                 is-groupable="false"
+                 show-filter="false"
+                 enable-column-resize="true"
+                 is-column-reorder="true"
+                 is-column-freeze="true"
+                 is-show-menu="false"
+                 is-show-tool-tip="true"
+                 is-central-grid="false"
+                 is-grid-toolbar="false"
+                 is-grid-loading="false">
+        </mm-grid>
+      </div>
+      <div class="footer">
+        <div class="form-buttons pull-right">
+          <button class="btn mdx-btn mdx-save-btn" ng-click="save(model)">Save</button>
+          <button class="btn mdx-btn mdx-close-btn" ng-click="cancelChanges()">Cancel Changes</button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>

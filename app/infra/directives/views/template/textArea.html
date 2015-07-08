@@ -1,0 +1,15 @@
+<textarea
+  id="{{mmId}}"
+  rows="{{mmRows}}"
+  ng-change="mmModelChange()"
+  class="mm-text-area {{mmControlClass}} {{mmCustomControlClass}}"
+  style="{{mmControlWidth}}"
+  ng-class="{disable: $parent.mmDisable, errorInput: $parent.mmError}"
+  ng-show="$parent.isShowControl || (!!$parent.mmError && $parent.mmError !='' )"
+  ng-model="$parent.$parent.mmModel"
+  mm-focus="$parent.setFocus || ($parent.mmShowAsLabel && $parent.isShowControl)"
+  ng-blur="$parent.$parent.isShowControl = false || !$parent.$parent.mmShowAsLabel"
+  ng-disabled="$parent.mmDisable"
+  placeholder="{{$parent.mmDisable ? '' : $parent.mmPlaceholder | T}}"
+  tabindex="{{$parent.mmTabIndex}}">
+</textarea>

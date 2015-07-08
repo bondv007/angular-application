@@ -1,0 +1,24 @@
+<div ng-show="!$root.hidePage">
+  <div class="elementHeaderToolBarMenu miniheader">
+    <div class="btn-strip" style="height: 34px;">
+      <!--Entity Layout Title-->
+      <div ng-include="'infra/entityLayout/views/entityLayoutTitle.html'" class="mainEntityLayoutTitle" ng-if="entityType != null"></div>
+      <!--Flow Buttons-->
+      <div class="flowLayoutButtonsContainer" data-ng-include="'infra/entityLayout/views/flowLayoutButtons.html'" style="display: inline-block;"></div>
+      <div class="separator"></div>
+      <!--Action Buttons-->
+      <div class="entityLayoutButtons" style="position: absolute;right: 20px;top: 0;">
+        <div class="actionLayoutButtons" ng-include="'infra/entityLayout/views/actionLayoutButtons.html'"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="elementContainer full" ng-if="!view" ng-show="!$root.hidePage">
+    <div class="layoutContainer" ui-view=""></div>
+  </div>
+
+  <div class="elementContainer full"  ng-show="view">
+    <div class="layoutContainer" el-view="" config="view"></div>
+  </div>
+  <div class="flowToolbarBottomBorder"></div>
+</div>

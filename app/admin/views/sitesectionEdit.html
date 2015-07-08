@@ -1,0 +1,94 @@
+<div ng-class="{'editContainer': !isModal, '': isModal}">
+	<mm-row>
+		<div class="mm-entity-fields-container-single">
+			<mm-row>
+				<mm-text mm-model="editObject.name"
+								 mm-placeholder="Enter Name"
+								 mm-error="validation.name"
+								 mm-is-edit-mode="isEditMode"
+								 mm-caption="Site Section Name"
+								 text-tooltip="Enter name"
+								 tooltip-placement="right"
+								 mm-is-required="true"
+								 mm-label-width="140"
+								 mm-layout-type="medium"
+								 mm-change="onSectionNameSelected()"
+								 mm-tab-index="1">
+				</mm-text>
+			</mm-row>
+
+			<mm-row>
+				<mm-label ng-if="isEditMode || isInContext || siteName"
+									mm-model="siteName"
+									mm-is-required="true"
+									mm-caption="Site Name"
+                  mm-layout-type="medium"
+                  mm-label-width="{{labelWidth}}"
+									mm-tab-index="2">
+        </mm-label>
+				<mm-drop-down ng-if="!isEditMode && !isInContext && !siteName"
+												mm-error="validation.site"
+												mm-caption="Site Name"
+												mm-data-model="sites"
+												mm-is-edit-mode="isEditMode"
+												mm-model="editObject.siteId"
+												mm-is-required="true"
+												mm-label-width="140"
+												mm-layout-type="medium"
+												show-search-box
+												mm-select-change-func="onSiteSelected()"
+												mm-tab-index="2"></mm-drop-down>
+			</mm-row>
+
+			<mm-row>
+				<mm-text mm-model="editObject.url"
+								 mm-placeholder="Enter URL"
+								 mm-is-edit-mode="isEditMode"
+								 mm-caption="Site Url"
+								 text-tooltip="Enter url"
+								 mm-label-width="140"
+								 mm-layout-type="medium"
+								 tooltip-placement="right"
+								 mm-error="validation.url"
+								 mm-change="onUrlTextChanged()"
+								 mm-tab-index="3"></mm-text>
+			</mm-row>
+			<mm-toggle-container ng-if="!isModal"
+					mm-caption="Settings"
+					start-open="togglesStatus.settings">
+				<tabset justified="false">
+					<tab
+							heading="Tag Settings"
+							ng-attr-class="{{tabHandler.settings.tagSettings.isValid ? '' : 'tabWithErrors'}}"
+							active="tabHandler.settings.tagSettings.isActive">
+						<mm-row>
+							<mm-drop-down mm-caption="Protocol"
+														mm-model="editObject.protocol"
+														mm-data-model="httpTypes"
+														mm-is-required="{{isRequired}}"
+														mm-label-width="{{labelWidth}}"
+														mm-layout-type="medium"
+														mm-tab-index="4"></mm-drop-down>
+						</mm-row>
+					</tab>
+					<tab heading="Ad Delivery"
+							 ng-attr-class="{{tabHandler.settings.adDelivery.isValid ? '' : 'tabWithErrors'}}"
+							 active="tabHandler.settings.adDelivery.isActive">
+						<mm-row>
+							<mm-text mm-model="editObject.minZIndex"
+											 mm-placeholder="Enter Minimum Z Index"
+											 mm-error="validation.settings.adDelivery.minZIndex"
+											 mm-caption="Minimum Z Index"
+											 mm-change="onMinimumZIndexChanged()"
+											 mm-is-required="{{isRequired}}"
+											 mm-label-width="{{labelWidth}}"
+											 mm-layout-type="medium"
+											 mm-tab-index="5">
+							</mm-text>
+						</mm-row>
+					</tab>
+				</tabset>
+			</mm-toggle-container>
+		</div>
+	</mm-row>
+</div>

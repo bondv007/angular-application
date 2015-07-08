@@ -1,0 +1,55 @@
+<div>
+
+    <div ng-show="showLoading" class="treeViewLoading">
+        <span class="spin-360 glyphicon glyphicon-repeat"></span>&nbsp;&nbsp;Loading...
+    </div>
+
+    <div id="funnel_default_TA" ng-if="defaultTa.name.indexOf(filter.funnel) > -1"
+         class="segment segment-name collapsed-audience-segment funnel_default_TA" ng-class="{'selected-segment':defaultTa.isSelected}"
+         ng-click="defaultTaSelected();"
+         ng-bind="defaultTa.name | T">
+    </div>
+
+    <ul ng-show="!showLoading" id="audienceSegmentsList" target-audience-ids="targetAudienceIDs" drag-and-drop-target-audience class="funnel_drag_and_drop_container">
+
+        <!-- Every single TA-->
+        <li class="segment" ng-class="{'selected-segment': TA.isSelected, 'collapsed-audience-segment': !showRules, 'expanded-audience-segment': showRules}"
+            ng-repeat="TA in targetAudienceIDs | filter: filter.funnel" id="funnel_TA_{{$index}}">
+
+            <!-- IF expanded: expands the list of TA rules -->
+            <div ng-click="showRules = !showRules;" class="fa pull-right indicator" ng-class="{'fa-angle-down': !showRules, 'fa-angle-up': showRules}"></div>
+
+            <div ng-click="selectSegment(TA);">
+                <!-- TA's metadata -->
+                <div class="segment-name">
+                    {{:: TA.targetAudience.name}}
+                    <div ng-hide="showRules"></div>
+                    <div ng-repeat="ta in TA.targetAudience.targetingItems | unique:'type'" ng-class="{'collapsed-segment': !showRules}">
+
+                        <div ng-hide="showRules">
+                            <i class="csb-icon csb-icon-{{decisionIconMap[ta.type]}}"></i>
+                        </div>
+
+                        <ul ng-if="$first" id="segmentRules" ng-class="{ 'expanded' : showRules }">
+
+                            <li class="segment-rule" ng-repeat="allRules in TA.decision.allRules">
+                              <span ng-repeat="tar in allRules.tarules">
+                                <i class="csb-icon csb-icon-{{decisionIconMap[tar.type]}}"></i>
+                                <span><strong>{{ :: tar.exposure }}</strong></span>
+                                <span>{{ :: tar.name}}</span>
+                                <span ng-hide="$last"><strong>{{ :: tar.logicalOperatorID}}</strong></span>
+                                <br/>
+                              </span>
+
+                            </li>
+                        </ul>
+                    </div>
+
+                </div>
+            </div>
+
+        </li>
+
+    </ul>
+
+</div>

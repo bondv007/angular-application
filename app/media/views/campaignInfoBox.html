@@ -1,0 +1,34 @@
+<mm-info-box num-of-info-lines="8">
+    <mm-info-label  mm-model="editObject.status"
+                    mm-label-width={{infoBoxlabelWidth}}
+                    mm-caption="Status"></mm-info-label>
+
+    <mm-info-label  mm-model="editObject.startDate | date:'dd/MM/yyyy'"
+                    mm-label-width={{infoBoxlabelWidth}}
+                    mm-caption="Start Date"></mm-info-label>
+
+    <mm-info-label  mm-model="editObject.endDate | date:'dd/MM/yyyy'"
+                    mm-label-width={{infoBoxlabelWidth}}
+                    mm-caption="End Date"></mm-info-label>
+
+    <mm-info-label  mm-model="editObject.analyticsData.impressions"
+                    mm-caption="Total Impressions"
+                    mm-label-width={{infoBoxlabelWidth}}
+                    mm-description-width="{{infoBoxControlWidth}}"></mm-info-label>
+
+    <mm-info-label  mm-model="editObject.analyticsData.clicks"
+                    mm-label-width={{infoBoxlabelWidth}}
+                    mm-caption="Total Clicks"></mm-info-label>
+
+    <mm-info-label  mm-model="editObject.analyticsData.ctr"
+                    mm-label-width={{infoBoxlabelWidth}}
+                    mm-caption="CTR"></mm-info-label>
+
+    <mm-info-label  mm-model="editObject.lastServedImpression | date:'dd/MM/yyyy'"
+                    mm-label-width={{infoBoxlabelWidth}}
+                    mm-caption="Last Served Impression"></mm-info-label>
+
+    <mm-info-label  mm-model="editObject.analyticsData.lastUpdated | date:'dd/MM/yyyy'"
+                    mm-label-width={{infoBoxlabelWidth}}
+                    mm-caption="Last updated"></mm-info-label>
+</mm-info-box>

@@ -1,0 +1,23 @@
+<div ng-repeat="item in mmDataModel" tabindex="{{mmTabIndex}}">
+  <div ng-class="mmControlClass"
+       style="{{mmControlWidth}}">
+    <div>
+      <div id="{{mmId}}{{item[mmOptionName].split(' ').join('')}}"
+					 class="mm_checkbox"
+           ng-class="{'disableCB':mmDisable,'isMouseHoverCB':mouseIsOverCB}"
+           mm-tool-tip="{{mmTextTooltip | T}}"
+           ng-click="onClick(item[mmOptionId]);mmModelChange();"
+           ng-keypress="onKeyPress($event, item[mmOptionId])"
+           tabindex="{{mmTabIndex}}">
+        <span ng-class="{'selectedCB':mmModel.indexOf(item[mmOptionId]) > -1, 'disableSelectedCB':mmModel.indexOf(item[mmOptionId]) > -1 && mmDisable}"></span>
+      </div>
+    <span ng-mouseover="mouseIsOverCB = !mmDisable"
+          ng-mouseleave="mouseIsOverCB = !mouseIsOverCB && !mmDisable"
+          ng-class="{'disableCheckBoxLabel':mmDisable}"
+          class="checkBoxLabel"
+          ng-click="onClick(item[mmOptionId]);mmModelChange();"
+          width="{{labelWidth}}"
+          class="mm-control-label {{mmLabelClass}}">{{item[mmOptionName]}}</span>
+    </div>
+  </div>
+</div>

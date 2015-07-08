@@ -1,0 +1,22 @@
+<mm-row>
+	<mm-drop-down
+			class="rootRotationPosition"
+			mm-layout-type="custom"
+			mm-label-width="70"
+			mm-custom-control-width="170"
+			mm-caption="Rotation"
+			mm-select-change-func="onSubGroupRotationChange(mmModel)"
+			mm-data-model="rotations"
+			mm-model="mmModel.rotationType"></mm-drop-down>
+</mm-row>
+<!--Root Rotation Ads-->
+<div ui-tree="rotationTreeOptions">
+	<ol ui-tree-nodes="" ng-model="mmModel.subContainers">
+		<li ng-repeat="item in mmModel.subContainers" ui-tree-node
+				ng-include="'campaignManagementApp/directives/dg/tree/templates/nodes_renderer.html'">
+		</li>
+	</ol>
+</div>
+
+<!--Root Default Serve-->
+<!--<div ng-if="mmDisplayDefaultServe" ng-include="'campaignManagementApp/directives/dg/tree/templates/defaultServe/root.html'"></div>-->

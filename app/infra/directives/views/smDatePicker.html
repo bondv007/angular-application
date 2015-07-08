@@ -1,0 +1,29 @@
+<div class=" mainDatePicker">
+
+	<!--Start Date-->
+	<div class="mainStartDatePicker">
+		<div class="startDatePickerTextBoxWithIcon">
+			<input  class="datePickerTextBox" type="text" ng-model="mmModel.startDate"/>
+		</div>
+		<div class="datePickerFrame">
+			<datepicker
+					ng-model="mmModel.startDate"
+					show-weeks="false"
+					date-disabled="mmDisable"></datepicker>
+		</div>
+	</div>
+
+	<!--End Date-->
+	<div class="mainEndDatePicker">
+		<div class="endDatePickerTextBoxWithIcon">
+			<input class="datePickerTextBox" type="text" ng-model="mmModel.endDate"/>
+		</div>
+		<div class="datePickerFrame">
+			<datepicker
+					ng-model="mmModel.endDate"
+					show-weeks="false"
+					date-disabled="mmDisable"></datepicker>
+		</div>
+	</div>
+
+</div>

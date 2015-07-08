@@ -1,0 +1,83 @@
+<mm-row>
+    <mm-check-box
+            mm-model="mmModel.ignoreCostCalculation"
+            mm-description="Ignore for cost calculations"
+            mm-caption="Over delivery"
+            mm-layout-type="large"
+            mm-label-width="{{width}}"
+            mm-disable="!mmPermission"></mm-check-box>
+</mm-row>
+<mm-mini-section
+  mm-caption="miniSectionTitle"
+  mm-start-open="true"
+  mm-is-modal="'false'">
+  <mm-row>
+      <mm-drop-down mm-caption="Viewability data collection mode"
+                    mm-model="mmModel.viewabilityMode"
+                    mm-data-model="viewabilityMode"
+                    mm-label-width="{{labelWidth}}"
+                    mm-layout-type="custom"
+                    mm-custom-control-width="{{dropDownWidth}}"
+                    mm-select-change-func="onViewabilityModeChange()"
+                    mm-disable="!mmPermission"></mm-drop-down>
+<span ng-if="(mmEntityType == 'advertiser' || mmEntityType == 'campaign') && !!mmParentId" style="display: inline-block; width: 350px; margin-left: 9px;">
+
+  <i class="infoIconAnalytics"></i>
+
+  <mm-text
+           mm-caption="Viewability mode is Inherited from"
+           mm-label-width="207"
+           mm-layout-type="small"
+           mm-custom-control-width="0"
+           mm-show-as-label="showAsLabel.central"
+           mm-entity-type="{{linkInfo.parentEntityType}}"
+           mm-entity-id="mmParentId"
+           mm-is-custom-link="true"
+           mm-custom-link="{{linkInfo.redirect}}"
+           mm-input-type="link"
+           mm-is-link="true"
+           mm-disable="true"
+           mm-model="linkInfo.text"></mm-text>
+</span>
+  </mm-row>
+  <span ng-if="mmEntityType == 'account'">
+     <span ng-if="displayViewabilityProperties">
+        <mm-row>
+          <mm-text mm-caption="Display Minimum Surface Threshold"
+                   mm-model="mmModel.viewabilityThreshold.minimumSurface"
+                   mm-input-type="number"
+                   mm-layout-type="custom"
+                   mm-custom-control-width="{{textBoxWidth}}"
+                   mm-label-width="{{labelWidth}}"
+                   mm-error="mmErrorMessage.surfaceError"
+                   mm-additional-text="%"
+                   mm-change="onSurfaceChange()"
+                   mm-disable="!mmPermission"></mm-text>
+        </mm-row>
+        <mm-row>
+            <mm-text mm-caption="Display Minimum Duration Threshold"
+                     mm-model="mmModel.viewabilityThreshold.minimumDuration"
+                     mm-input-type="number"
+                     mm-layout-type="custom"
+                     mm-custom-control-width="{{textBoxWidth}}"
+                     mm-label-width="{{labelWidth}}"
+                     mm-error="mmErrorMessage.durationError"
+                     mm-additional-text="Seconds"
+                     mm-change="onDurationChange()"
+                     mm-disable="!mmPermission"></mm-text>
+        </mm-row>
+    </span>
+  </span>
+  <mm-grid ng-if="mmEntityType == 'advertiser' && !isAdvertiserEnhanced && displayViewabilityProperties"
+    cols="columns"
+    items="itemsSettings"
+    enable-column-resize="true"
+    grid-height="150">
+  </mm-grid>
+  <mm-grid ng-if="((mmEntityType == 'advertiser' && isAdvertiserEnhanced) || mmEntityType == 'campaign') && displayViewabilityProperties"
+    cols="columnsAdv"
+    items="itemsSettings"
+    enable-column-resize="true"
+    grid-height="150">
+  </mm-grid>
+</mm-mini-section>

@@ -1,0 +1,37 @@
+<div class="editContainer" xmlns="http://www.w3.org/1999/html">
+<!-- Essentials Start -->
+<mm-row>
+    <div class="mm-entity-fields-container">
+        <mm-row>
+            <div class="mm-entity-fields-container-single">
+              <span ng-include="'media/views/campaign/campaignEssential.html'"> </span>
+            </div>
+        </mm-row>
+    </div>
+    <div class="mm-entity-info-box-container-right">
+        <span ng-include="'media/views/campaign/campaignInfoBox.html'"></span>
+    </div>
+</mm-row>
+<!-- Essentials End -->
+<mm-row>
+    <div class="mm-entity-fields-container-single">
+      <span ng-include="'media/views/campaign/campaignSettings.html'"></span>
+      <!--Contacts -->
+      <div mm-contacts
+           mm-toggle-expanded="togglesStatus.contacts"
+           mm-model="editObject.adminSettings.defaultContacts"
+           mm-error="invalidContacts"
+           mm-account-id="editObject.relationsBag.parents.account.id"
+           mm-is-edit-mode="isEditMode"
+           mm-display-sizmek="true"
+           mm-display-media="true"
+           mm-display-creative="true"
+           mm-display-site="true"
+           mm-edit-site="true"
+           mm-contacts-tab-error="isTabValid.contacts"
+           mm-tab-handler="tabHandler.contacts"
+           mm-is-campaign="true">
+      </div>
+    </div>
+</mm-row>
+</div>

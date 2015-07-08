@@ -1,0 +1,37 @@
+<div class="upload-close shareCsbModal">
+	<div class="mmmodal-header">
+		<div class="close">
+			<div class="close-button" ng-click="close()"></div>
+		</div>
+		<div class="mmmodal-title">Share {{count>0 ? count+' ads' : ' ad'}}</div>
+	</div>
+	<div class="mmmodal-body">
+    <div class="csbAlertSuccess" ng-show="commonObject.isCopied && !commonObject.isHide">
+	    <i class="fa fa-check-circle iconImg"></i>
+	    <span>Link was copied successfully</span>
+	    <button class="close" ng-click="hideCopiedDiv()" type="button" >×</button>
+    </div>
+		<ul class="share-form" ng-switch="isLinkGenerated">
+		<li ng-switch-when="false" class="access-pwd">
+				<label>Preview Access Password (optional)</label>
+
+				<div class="input-wrapper">
+					<input type="text" ng-model="shareinfo.password" placeholder="Optional"/>
+				</div>
+			</li>
+			<li ng-switch-when="true">
+				<label>Link to Preview</label>
+				<div class="input-wrapper">
+					<input type="text" ng-model="previewLink" onfocus="this.select();" onmouseup="return false;"/>
+				</div>
+			</li>
+		</ul>
+	</div>
+	<div class="clear"></div>
+	<div class="modal-footer">
+		<!--<a clip-copy="getTextToCopy()" ng-if="isLinkGenerated" ng-click="showCopiedDiv()" class="copyClip" >Copy to Clipboard</a>-->
+		<button class="mm-save-button btn btn-primary" ng-if="!isLinkGenerated" ng-click="generateLink()">GENERATE LINK</button>
+		<button class="mm-save-button btn btn-primary" ng-if="isLinkGenerated" ng-click="sendEmail()">SHARE VIA EMAIL</button>
+		<button class="mm-discard-button btn btn-warning" ng-click="close()">CANCEL</button>
+	</div>
+</div>

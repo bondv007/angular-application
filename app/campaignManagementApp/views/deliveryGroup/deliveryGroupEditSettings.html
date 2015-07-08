@@ -1,0 +1,101 @@
+<mm-toggle-container mm-caption="Settings" start-open="settings.open">
+
+	<tabset justified="false">
+		<!--General-->
+		<tab select="toggleDG(false)">
+			<tab-heading>General</tab-heading>
+			<!--Default Serve-->
+			<mm-row>
+				<mm-radiobutton
+						mm-caption="Default Serve:"
+						mm-label-layout-class="col-md-3"
+						mm-model="defaultServeRadioButton"
+						mm-vertical="true"
+						mm-selected="mainEntityEdit.servingSetting.serveDefaultImage"></mm-radiobutton>
+			</mm-row>
+		</tab>
+
+		<!--Frequency Capping-->
+		<tab select="toggleDG(true)" class="{{!errorMinimumTimeBetweenAds.text || errorMinimumTimeBetweenAds.text == '' ? '' : 'tabWithErrors'}}">
+			<tab-heading>Frequency Capping</tab-heading>
+
+			<!--Impressions per User-->
+			<mm-row>
+				<mm-checkbox
+						mm-caption="Limit to:"
+            mm-control-layout-class="col-md-4"
+						mm-model="FrequencyCapping.impressionsPerUser"
+						mm-change="onImpressionsPerUserClick()">
+				</mm-checkbox>
+				<mm-multiselect
+            mm-layout-type="custom"
+						mm-control-layout-class="col-md-12"
+            mm-outer-control-class="col-md-4"
+						mm-show-label="false"
+						mm-data-model="impressionsPerUserDD"
+						mm-model="mainEntityEdit.servingSetting.impressionsPerUser"></mm-multiselect>
+				<mm-label
+						mm-model="'Impressions per User'"
+						mm-show-label="false"
+            mm-layout-type="custom"
+            mm-outer-control-class="col-md-4"
+						mm-control-layout-class="col-md-12"></mm-label>
+			</mm-row>
+			<!--Impressions per User per Day-->
+			<mm-row>
+				<mm-checkbox
+						mm-caption="Limit to:"
+						mm-control-layout-class="col-md-4"
+						mm-model="FrequencyCapping.impressionsPerDay"
+						mm-change="onImpressionsPerDayClick()"></mm-checkbox>
+				<mm-multiselect
+            mm-layout-type="custom"
+            mm-control-layout-class="col-md-12"
+            mm-outer-control-class="col-md-4"
+						mm-show-label="false"
+						mm-data-model="impressionsPerUserPerDayDD"
+						mm-model="mainEntityEdit.servingSetting.impressionsPerDay"></mm-multiselect>
+				<mm-label
+						mm-model="'Impressions per User per Day'"
+            mm-layout-type="custom"
+            mm-outer-control-class="col-md-4"
+            mm-control-layout-class="col-md-12"
+						mm-show-label="false"></mm-label>
+			</mm-row>
+			<!--Minimum Time Between Ads-->
+			<mm-row>
+				<mm-checkbox
+						mm-model="FrequencyCapping.minimumTimeBetweenAds"
+						mm-control-layout-class="col-md-4"
+						mm-change="onTimeBetweenAdsClick()"
+						mm-caption="Minimum Time Between Ads:"></mm-checkbox>
+				<mm-text
+						mm-model="timeBetweenAds.value"
+						mm-control-layout-class="col-md-4"
+						mm-placeholder="Enter time"
+						mm-show-label="false"
+						mm-error="errorMinimumTimeBetweenAds.text"
+						text-tooltip="Enter time"></mm-text>
+				<mm-multiselect
+						mm-show-label="false"
+						mm-control-layout-class="col-md-4"
+						mm-data-model="timeOptions"
+						mm-model="selectedTimeUnit.id"></mm-multiselect>
+			</mm-row>
+			<!--Frequency Capping Level-->
+			<mm-row>
+				<mm-radiobutton
+						mm-caption="Frequency Capping Level:"
+						mm-control-layout-class="col-md-6"
+            mm-outer-control-class="col-md-12"
+            mm-layout-type="custom"
+						mm-vertical="true"
+						mm-model="frequencyCappingLevel"
+						mm-selected="mainEntityEdit.servingSetting.frequencyCappingLevel"></mm-radiobutton>
+			</mm-row>
+
+		</tab>
+
+	</tabset>
+
+</mm-toggle-container>

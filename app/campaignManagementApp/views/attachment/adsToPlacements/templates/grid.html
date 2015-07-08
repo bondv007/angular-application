@@ -1,0 +1,46 @@
+<span ng-if="gridData.length > 0">
+			<mm-row>
+				<div class="mm-entity-fields-container-single adContainerDetails">
+					<mm-row>
+						<mm-label class="subTitle"
+											mm-model="'Attachment  Summary'"
+											mm-layout-type="custom"
+											mm-label-width="0"
+											mm-show-label="false"></mm-label>
+					</mm-row>
+				</div>
+			</mm-row>
+		<table class="attachAdsToPlacementsTable" border="1px">
+			<tr>
+				<th class="column header" ng-repeat="column in gridColumns" ng-class="{'alignCheckBoxParent':column.isCheckbox}">
+					<span ng-if="!column.isCheckbox" ng-bind="column.name | T"></span>
+					<span ng-if="column.isCheckbox">
+						<mm-check-box mm-label-width="0"
+												 mm-model="parentAdCheckBox.selected"
+												 mm-layout-type="custom"
+												 mm-custom-control-width="0"
+												 mm-change="onParentCbChange()">
+						</mm-check-box>
+					</span>
+				</th>
+			</tr>
+			<tr ng-repeat="placement in gridData">
+				<td class="centerMiddleText column" ng-bind="placement.id"></td>
+				<td class="cellEllipsis centerMiddleText column" ng-bind="placement.name"></td>
+				<td class="centerMiddleText column" ng-bind="placement.size"></td>
+				<td class="centerMiddleText column" ng-bind="placement.uiPlacementType"></td>
+				<td class="centerMiddleText column" style="padding-left: 22px">
+					<div ng-repeat="ad in placement.adsToAttach">
+								<mm-check-box mm-label-width="0"
+														 mm-model="ad.isSelected"
+														 mm-layout-type="custom"
+														 mm-custom-control-width="0"
+														 mm-change="onAdCBChange()">
+								</mm-check-box>
+					</div>
+				</td>
+				<td class="column"><div class="gap" ng-repeat="ad in placement.adsToAttach" ng-bind="ad.id"></div></td>
+				<td class="column"><div class="cellEllipsis gap" ng-repeat="ad in placement.adsToAttach" ng-bind="ad.name"></div></td>
+			</tr>
+		</table>
+	</span>

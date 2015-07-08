@@ -1,0 +1,47 @@
+<div class="mmGrid-buttons-line">
+    <div class="row">
+        <ul class="col-sm-12">
+            <li style="display: inline-block">
+                <div class="btn-group">
+                    <button ng-click="addToGrid()" class="new-btn" type="button" style="height: 30px;" id="addGroup">Add</button>
+                    <button ng-click="removeFromGrid()" class="new-btn" type="button" style="height: 30px;" id="removeGroup">Remove</button>
+                </div>
+            </li>
+            <li style="display:inline-block">
+                <input type="text"
+                       ng-model="search.groups"
+                       typeahead="group for group in searchGroups($viewValue)"
+                       typeahead-on-select="onSearchSelect($item, $model, $label)"
+                       class="mm-text-box mm-control-medium"
+                       placeholder="Search for group">
+            </li>
+        </ul>
+    </div>
+</div>
+<mm-row class="clearfix">
+
+    <mm-grid
+            mm-id="groups_grid"
+            show-selection-checkbox="true"
+            items="groups"
+            selected-items="selectedGroups"
+            grid-height="250"
+            grid-width="490"
+            cols="columns"
+            is-cell-edit="true"
+            show-footer="true"
+            is-sort="true"
+            is-single-select="false"
+            filtered-items=""
+            is-groupable="false"
+            show-filter="true"
+            enable-column-resize="false"
+            is-column-reorder="true"
+            is-column-freeze="true"
+            is-show-menu="false"
+            is-show-tool-tip="true"
+            is-central-grid="false"
+            is-grid-toolbar="false"
+            is-grid-loading="isGridLoading">
+    </mm-grid>
+</mm-row>

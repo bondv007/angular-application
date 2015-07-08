@@ -1,0 +1,181 @@
+<div class="mdxUI mdxUIContainer" ng-class="{ 'active' : showUI, 'mdx3': csb.config.env == 'mdx3' }">
+
+    <div class="header">
+        <h1>Geo Targeting <span ng-click="cancelChanges()" class="pull-right glyphicon glyphicon-remove"></span></h1>
+    </div>
+
+    <div class="body-wrapper">
+
+        <div class="body clearfix">
+
+            <div class="form-group" ng-show="errorText" style="padding-left:  0 !important; padding-right: 0 !important;">
+                <div class="csb-alert alert alert-danger">{{errorText}}</div>
+            </div>
+
+            <div class="form-group col-md-12" style="padding-left:  0 !important; padding-right: 0 !important;">
+                <label for="decision_name" class="control-label" mm-is-required="true">Decision Rule Name:</label>
+                <input class="form-control" type="text" id="decision_name" name="decision_name" ng-model="name" maxlength="200">
+            </div>
+
+            <div class="form-group col-md-12" style="padding-left:  0 !important; padding-right: 0 !important;">
+                <label for="decision_type">Decision Rule Type:</label>
+                <select class="form-control" id="decision_type" name="decision_type" ng-model="ruleType">
+                    <option value="yes-no">Yes-No</option>
+                    <option value="multi">Multiple Yes branches</option>
+                </select>
+            </div>
+
+            <!-- Nav tabs -->
+            <!-- USING THE ANGULAR-UI TAB DIRECTIVE -->
+            <tabset type="tabs" class="nav-sizmek-tabs">
+
+                <!-- Countries tab -->
+                <tab heading="Countries">
+
+                    <filtered-select list-to-choose-from="countries" list-chosen="selectedCountries" label="Countries" filter-name="geoItemName" filter-id="geoItemID" item-name-key="geoItemName" item-id-key="geoItemID"></filtered-select>
+
+                </tab>
+
+                <!-- States/Regions tab -->
+                <tab heading="States/Regions">
+
+                    <div class="col-md-12 form-group">
+                        <select class="form-control" ng-model="selected.stateCountry" ng-options="country.geoItemName for country in stateCountries" ng-change="pickStateCountry( selected.stateCountry.geoItemID )" ng-disabled="!stateCountries">
+                            <option value="">Select Country..</option>
+                        </select>
+                    </div>
+
+                    <filtered-select list-to-choose-from="states" list-chosen="selectedStates" label="States" filter-name="geoItemName" filter-id="geoItemID" item-name-key="geoItemName" item-id-key="geoItemID"></filtered-select>
+
+                </tab>
+
+                <!-- Cities tab -->
+                <tab heading="Cities">
+
+                    <div class="col-md-12 form-group">
+                        <select class="form-control" ng-model="selected.cityCountry" ng-options="country.geoItemName for country in cityCountries" ng-change="pickCityCountry( selected.cityCountry.geoItemID )" ng-disabled="!cityCountries">
+                            <option value="">Select Country..</option>
+                        </select>
+                    </div>
+
+                    <div class="col-md-12 form-group">
+                        <select class="form-control" ng-model="selected.cityState" ng-options="state.geoItemName for state in cityStates" ng-change="pickCityState( selected.cityState.geoItemID )" ng-disabled="!cityStates">
+                            <option value="">Select State..</option>
+                        </select>
+                    </div>
+
+                    <filtered-select list-to-choose-from="cities" list-chosen="selectedCities" label="Cities" filter-name="geoItemName" filter-id="geoItemID" item-name-key="geoItemName" item-id-key="geoItemID"></filtered-select>
+
+                </tab>
+
+                <!-- Nielsen DMA Tab -->
+                <tab heading="Nielsen DMA">
+
+                    <div class="col-md-12 form-group">
+                        <select class="form-control" ng-model="selected.nielsenCountry" ng-options="country.geoItemName for country in nielsenCountries" ng-change="pickNielsenCountry( selected.nielsenCountry.geoItemID )" ng-disabled="!nielsenCountries">
+                            <option value="">Select Country..</option>
+                        </select>
+                    </div>
+
+                    <div class="col-md-12 form-group">
+                        <select class="form-control" ng-model="selected.nielsenState" ng-options="state.geoItemName for state in nielsenStates" ng-change="pickNielsenState( selected.nielsenState.geoItemID )" ng-disabled="!nielsenStates">
+                            <option value="">Select State..</option>
+                        </select>
+                    </div>
+
+                    <filtered-select list-to-choose-from="nielsen" list-chosen="selectedNielsen" label="Nielsen DMA" filter-name="geoItemName" filter-id="geoItemID" item-name-key="geoItemName" item-id-key="geoItemID"></filtered-select>
+
+                </tab>
+
+
+
+                <!-- Area Codes Tab -->
+                <tab heading="Area Codes">
+
+                    <div class="col-md-12 form-group">
+                        <select class="form-control" ng-model="selected.areaCodeCountry" ng-options="country.geoItemName for country in areaCodeCountries" ng-change="pickAreaCodeCountry( selected.areaCodeCountry.geoItemID )" ng-disabled="!areaCodeCountries">
+                            <option value="">Select Country..</option>
+                        </select>
+                    </div>
+
+                    <div class="col-md-12 form-group">
+                        <select class="form-control" ng-model="selected.areaCodeState" ng-options="state.geoItemName for state in areaCodeStates" ng-change="pickAreaCodeState( selected.areaCodeState.geoItemID )" ng-disabled="!areaCodeStates">
+                            <option value="">Select State..</option>
+                        </select>
+                    </div>
+
+                    <filtered-select list-to-choose-from="areaCodes" list-chosen="selectedAreaCodes" label="Area Codes" filter-name="geoItemName" filter-id="geoItemID" item-name-key="geoItemName" item-id-key="geoItemID"></filtered-select>
+
+                </tab>
+
+                <!-- Postal codes Tab -->
+                <tab heading="Postal Codes (Zip)">
+
+                    <div class="col-md-12 form-group">
+                        <select class="form-control" ng-model="selected.postalCodeCountry" ng-options="country.geoItemName for country in postalCodeCountries track by country.geoItemID" ng-disabled="!postalCodeCountries">
+                            <option value="">Select Country..</option>
+                        </select>
+                    </div>
+
+                    <div class="col-md-12" ng-show="selected.postalCodeCountry">
+                        <label>Postal Codes (Zip):</label>
+                        <textarea rows="5" class="form-control" ng-model="postalCodes.selected" ></textarea>
+                        <p class="text-primary">NOTE: Separate codes with commas.</p>
+                    </div>
+
+                </tab>
+
+
+                <!-- ISP Tab -->
+                <tab heading="ISP">
+
+                    <div class="col-md-12 form-group">
+                        <select class="form-control" ng-model="selected.ISPCountry" ng-options="country.geoItemName for country in ISPCountries" ng-change="pickISPCountry( selected.ISPCountry.geoItemID )" ng-disabled="!ISPCountries">
+                            <option value="">Select Country..</option>
+                        </select>
+                    </div>
+
+                    <filtered-select list-to-choose-from="ISPs" list-chosen="selectedISPs" label="ISPs" filter-name="geoItemName" filter-id="geoItemID" item-name-key="geoItemName" item-id-key="geoItemID"></filtered-select>
+
+                </tab>
+
+            </tabset>
+
+            <div class="footer">
+                <div class="form-buttons pull-right">
+                    <button class="btn mdx-btn mdx-save-btn" ng-click="save(model)">Save</button>
+                    <button class="btn mdx-btn mdx-close-btn" ng-click="cancelChanges()">Cancel Changes</button>
+                </div>
+            </div>
+
+
+        <div class="col-md-12">
+
+            <h4>Summary</h4>
+            <div ng-repeat="country in selectedCountries">
+                From {{ country.geoItemName }} (Country)
+            </div>
+            <div ng-repeat="state in selectedStates">
+                From {{ state.geoItemName }} (State)
+            </div>
+            <div ng-repeat="city in selectedCities">
+                From {{ city.geoItemName }} (City)
+            </div>
+            <div ng-repeat="nielsen in selectedNielsen">
+                From {{ nielsen.geoItemName }} (Nielsen)
+            </div>
+            <div ng-repeat="areaCode in selectedAreaCodes">
+                From {{ areaCode.geoItemName }} (Area Code)
+            </div>
+            <div ng-if="postalCodes.selected">
+                From {{ postalCodes.selected }} (Postal Codes)
+            </div>
+            <div ng-repeat="isp in selectedISPs">
+                From {{ isp.geoItemName }} (ISP)
+            </div>
+
+        </div>
+
+    </div>
+</div>
+</div>

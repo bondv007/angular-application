@@ -1,0 +1,50 @@
+<div class="editContainer">
+	<div class="mm-entity-fields-container-single">
+		<mm-row>
+			<mm-text mm-is-required="true"
+							 mm-model="editObject.name"
+							 mm-placeholder="Enter Package Name"
+							 mm-error="packageNameError.text"
+							 mm-caption="Name"
+							 text-tooltip="Enter package name"
+							 mm-show-edit-mode="newMode"
+							 mm-label-width="{{labelWidth}}"
+							 mm-layout-type="medium"></mm-text>
+		</mm-row>
+		<mm-row>
+			<mm-label mm-show-label="true"
+								mm-model="campaignName"
+								mm-error="error.campaign"
+								mm-caption="Campaign"
+								mm-label-width="{{labelWidth}}"
+								mm-layout-type="medium"></mm-label>
+		</mm-row>
+		<mm-row>
+      <mm-drop-down ng-if="!isEditMode"
+        mm-error="packageSiteError.text"
+        mm-label-width="{{labelWidth}}"
+        mm-layout-type="medium"
+        mm-is-edit-mode="!newMode"
+        mm-disable="false"
+        mm-is-required="true"
+        mm-caption="Site"
+        lazy-type="'sites/global'"
+        mm-placeholder="Select site"
+        mm-model="editObject.siteId"
+        show-search-box="true">
+      </mm-drop-down>
+      <mm-label ng-if="isEditMode"
+        mm-show-label="true"
+        mm-model="editObject.siteId"
+        mm-caption="Site Id"
+        mm-label-width="{{labelWidth}}"
+        mm-layout-type="medium">
+      </mm-label>
+		</mm-row>
+		<div class="mm-entity-fields-container-single">
+			<mm-toggle-container mm-caption="Serving and Cost" start-open="servingAndCostDisplay">
+					<div ng-include="'campaignManagementApp/views/templates/servingAndCost.html'"></div>
+		</mm-toggle-container>
+		</div>
+	</div>
+</div>

@@ -1,0 +1,57 @@
+<div class="essentialContainer">
+	<div class="essential_bar_position">
+		<div id="'dg_toggle_button_'{{mmId}}" ng-class="{'dgToggleOpen':deliveryGroup.dgToggleOpen.open,'dgToggleClose':!deliveryGroup.dgToggleOpen.open}"
+				 ng-click="deliveryGroup.dgToggleOpen.open = !deliveryGroup.dgToggleOpen.open;hideTree.isFirstTime = false;"></div>
+		<div class="buttonDivider"></div>
+		<div class="essential_elements">
+			<mm-check-box
+          mm-id="dg_select_dg_checkbox_{{mmId}}"
+					mm-change="onDgSelected()"
+					ng-class="{'select_all_MM2':isMM2, 'select_all_MMNext':!isMM2}"
+					mm-model="deliveryGroup.selected"
+					mm-layout-type="custom"
+					mm-custom-control-width="0"
+					mm-show-label="false">
+			</mm-check-box>
+			<mm-text
+          mm-id="dg_dg_name_textbox_{{mmId}}"
+					mm-placeholder="dg_Enter_Name"
+					class="dg_name"
+					mm-error="deliveryGroup.errors.errorDgName.text"
+					mm-layout-type="custom"
+					mm-custom-control-width="100"
+					mm-label-width="0"
+					mm-model="deliveryGroup.name"
+          mm-disable="!deliveryGroup.isSupportedDg"
+          mm-show-as-label="true"
+          title="{{deliveryGroup.name}}">
+			</mm-text>
+			<mm-label
+          mm-id="dg_dg_id_label_{{mmId}}"
+					class="textPosition"
+					mm-model="deliveryGroup.id"
+					mm-layout-type="custom"
+					mm-custom-control-width="110"
+					mm-label-width="0">
+			</mm-label>
+			<mm-label
+          mm-id="dg_dg_dimension_label_{{mmId}}"
+					class="textPosition"
+					mm-model="deliveryGroup.dimension"
+					mm-layout-type="custom"
+					mm-custom-control-width="110"
+					mm-label-width="0">
+			</mm-label>
+			<mm-label
+          mm-id="dg_dg_placement_type_label_{{mmId}}"
+					class="textPosition"
+					mm-model="deliveryGroup.uiPlacementType"
+					mm-layout-type="custom"
+					mm-custom-control-width="110"
+					mm-label-width="0">
+			</mm-label>
+		</div>
+	</div>
+</div>
+
+

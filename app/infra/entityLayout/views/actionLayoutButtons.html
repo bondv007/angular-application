@@ -1,0 +1,79 @@
+<!--For permanent order buttons -->
+<span ng-if="!entityLayoutInfraButtons.order">
+  <!--Additional buttons-->
+  <span data-ng-if="entityLayoutAdditionalInfraButtons" data-ng-repeat="additionalButton in entityLayoutAdditionalInfraButtons">
+    <!--Simple Button-->
+    <button ng-if="additionalButton.func != ''"
+            type="button"
+            mm-id="{{additionalButton.name.toLowerCase()}}"
+            ng-class="{'primaryButton':additionalButton.isPrimary,
+                     'secondaryButton':!additionalButton.isPrimary,
+                     'primaryButtonDisabled':!$root.isDirtyEntity || additionalButton.isDisabled}"
+            ng-click="additionalButton.func()">{{additionalButton.name | uppercase}}</button>
+    <!--DropDown Button-->
+    <div ng-if="additionalButton.nodes.length > 0" dropdown class="dropDownSaveMenu">
+      <button type="button"
+              mm-id="{{additionalButton.name.toLowerCase()}}"
+              ng-class="{'primaryButton':additionalButton.isPrimary, 'secondaryButton':!additionalButton.isPrimary}"
+              class="dropdown-toggle">{{additionalButton.name | uppercase }} &nbsp;<span class="caret"></span></button>
+      <ul ng-if="!additionalButton.func" class="dropdown-menu-additional">
+        <li ng-repeat="actionNode in additionalButton.nodes" class="btn-menu-save dropDownSaveMenuBorder">
+          <a ng-click="actionNode.func()" class="btn-menu-save"  >
+            <span mm-id="{{actionNode.name.toLowerCase()}}" class="dropDownSaveMenuTitle">{{actionNode.name | T }}</span>
+            <br/>
+            <span mm-id="{{actionNode.description.toLowerCase()}}" class="dropDownSaveMenuText">{{actionNode.description | T}}</span>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </span>
+	<!--Discard Button-->
+	<button ng-if="entityLayoutInfraButtons.discardButton !== undefined"
+          type="button"
+          mm-id="{{entityLayoutInfraButtons.discardButton.name.toLowerCase()}}"
+          ng-class="{'primaryButton':entityLayoutInfraButtons.discardButton.isPrimary,
+                       'secondaryButton':!entityLayoutInfraButtons.discardButton.isPrimary}"
+          ng-click="discard(entityLayoutInfraButtons.discardButton.func)">
+    {{($root.isDirtyEntity) ? entityLayoutInfraButtons.discardButton.name : 'close' | uppercase}}
+  </button>
+	<!--Save Button-->
+	<button ng-if="entityLayoutInfraButtons.saveButton !== undefined && entityLayoutInfraButtons.saveButton.func != ''"
+          type="button"
+          mm-id="{{entityLayoutInfraButtons.saveButton.name.toLowerCase()}}"
+          ng-class="{'primaryButton':entityLayoutInfraButtons.saveButton.isPrimary,
+				           'secondaryButton':!entityLayoutInfraButtons.saveButton.isPrimary,
+				           'primaryButtonDisabled':!$root.isDirtyEntity || entityLayoutInfraButtons.saveButton.isDisabled}"
+          ng-click="save(entityLayoutInfraButtons.saveButton.func)">{{entityLayoutInfraButtons.saveButton.name | uppercase}}</button>
+	<!--DropDown Save Button-->
+	<div ng-if="entityLayoutInfraButtons.saveButton.nodes.length > 0" dropdown class="dropDownSaveMenu">
+    <button ng-if="entityLayoutInfraButtons.saveButton !== undefined"
+            type="button"
+						mm-id="{{entityLayoutInfraButtons.saveButton.name.toLowerCase()}}"
+						ng-class="{'primaryButton':entityLayoutInfraButtons.saveButton.isPrimary, 'secondaryButton':!entityLayoutInfraButtons.saveButton.isPrimary}"
+            class="dropdown-toggle">{{entityLayoutInfraButtons.saveButton.name | uppercase }} &nbsp;<span class="caret"></span></button>
+    <ul ng-if="!entityLayoutInfraButtons.saveButton.func" class="dropdown-menu-save">
+      <li ng-repeat="actionNode in entityLayoutInfraButtons.saveButton.nodes" class="btn-menu-save dropDownSaveMenuBorder">
+        <a ng-click="actionNode.func()" class="btn-menu-save"  >
+          <span mm-id="{{actionNode.name.toLowerCase()}}" class="dropDownSaveMenuTitle">{{actionNode.name | T }}</span>
+          <br/>
+          <span mm-id="{{actionNode.description.toLowerCase()}}" class="dropDownSaveMenuText">{{actionNode.description | T}}</span>
+        </a>
+      </li>
+    </ul>
+  </div>
+	<!--Attach Button-->
+	<button
+      ng-disabled="entityLayoutInfraButtons.attachButton.disable"
+      ng-if="entityLayoutInfraButtons.attachButton !== undefined"
+      type="button"
+      ng-class="{'primaryButton':entityLayoutInfraButtons.attachButton.isPrimary, 'secondaryButton':!entityLayoutInfraButtons.attachButton.isPrimary,'primaryButtonDisabled':entityLayoutInfraButtons.attachButton.disable}"
+      ng-click="attach(entityLayoutInfraButtons.attachButton.func)">{{entityLayoutInfraButtons.attachButton.name | T | uppercase }}</button>
+</span>
+
+<!--For order buttons-->
+<span data-ng-if="entityLayoutInfraButtons.order" data-ng-repeat="button in entityLayoutInfraButtons.order">
+	<button
+      type="button"
+      ng-class="{'primaryButton':button.isPrimary, 'secondaryButton':!button.isPrimary}"
+      ng-click="onClick(button.func,button.name)">{{button.name | uppercase}}</button>
+</span>

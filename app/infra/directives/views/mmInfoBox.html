@@ -1,0 +1,7 @@
+<div ng-class="(isImageExist || inforceImageBox) && !isEntral ? 'mm-summary-box-full': 'mm-summary-box-half'">
+    <div class="mm-image-box" ng-if="imageSource" ng-style="{minHeight: heightText}">
+        <img class="mm-image-container" ng-src="{{imageSource}}" ng-style="{minHeight: heightText}"/>
+    </div>
+    <div class="mm-info-box" ng-style="{minHeight: heightText}" ng-transclude></div>
+</div>
+

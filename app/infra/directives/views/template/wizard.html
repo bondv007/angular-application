@@ -1,0 +1,5 @@
+<div class="wizard">
+	<div ng-include="'infra/directives/views/template/wizard/wizardSteps.html'"></div>
+	<div class="stepView" ng-include="wizardSteps[currentStep.index].templatePath"></div>
+	<div ng-include="'infra/directives/views/template/wizard/wizardFooter.html'"></div>
+</div>

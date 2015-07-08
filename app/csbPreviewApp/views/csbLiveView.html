@@ -1,0 +1,377 @@
+<div class="pageSlide">
+  <header class="top-nav-bar live-View-header" data-min-width="1510">
+    <div class="container-fluid">
+      <div class="col-sm-12">
+        <ul class="topBar-action pull-left">
+          <li>
+            <h2 class="pull-left" ng-click="redirectToOriginalView()" style="cursor:pointer;">
+
+              <a class="back_arrow_left"><i class="fa fa-chevron-left"></i></a>
+              All ads
+            </h2>
+
+
+            <div ng-if="tagSaveMessage.length>0" class="alert-changeSaved">{{tagSaveMessage}}</div>
+          </li>
+          <li>
+            <label class="label-control filterSrchLabel">Search</label>
+
+            <div class="search-bar">
+              <div class="filter-select" ng-click="hideAllPanels(); searchActionOnLiveView=!searchActionOnLiveView">
+                {{selectedSearchActionOnLiveView}}<i class="fa fa-caret-down"></i>
+
+                <div class="filterSelectDown" ng-show="searchActionOnLiveView">
+                  <ul>
+                    <li ng-repeat="action in searchActions"><a
+                        ng-class="{'active':action.isSelected}" ng-click="setSearchActionOnLiveView(action)">{{action.name}}</a>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+              <input ng-model="searchCriteria.searchLiveView" type="text" class="form-control col-xs-10"/>
+              <button class="search-btn "><i class="fa fa-search"></i></button>
+            </div>
+        </ul>
+
+
+        <!--<div class="search-bar col-sm-4">-->
+        <!--<input ng-model="searchLiveView" type="text" class="form-control"/>-->
+        <!--<button class="search-btn"><i class="fa fa-search"></i></button>-->
+        <!--</div>-->
+
+
+        <ul class="singleAds-btns">
+          <li><a ng-click="showShareDialog()" class="shareAll"><i class="cbs_shareIcon"></i>
+            {{selectedCheckBoxCountOnLiveView()>0 ?'Share ('+selectedCountOnLiveView+')':'Share All'}}</a></li>
+
+          <li><a ng-click="replay()" class="replayAll"><i class="fa fa-repeat"></i> {{selectedCountOnLiveView>0
+            ?'Replay ('+selectedCountOnLiveView+')':'Replay All'}}</a>
+          </li>
+          <!--<li><a ng-click="toggleSetupDialogOnLiveView()"><i class="fa fa-wrench"></i> Setup</a>-->
+
+          <!--<div class="bg-setup" style="z-index:9999;" ng-if="showSetupDialogOnLiveView">-->
+          <!--<ul>-->
+          <!--<li><a ng-click="toggleBackgroundColorDivOnLiveView()"><i class="fa fa-delicious"></i>Background-->
+          <!--Color</a>-->
+
+          <!--<div class="bg-url" ng-if="showBackgroundColorDivOnLiveView">-->
+
+          <!--<ul class="color-List">-->
+          <!--<li ng-click="chooseColor(backgroundColorClasses[0])" ng-class="backgroundColorClasses[0]"></li>-->
+          <!--<li ng-click="chooseColor(backgroundColorClasses[1])" ng-class="backgroundColorClasses[1]"></li>-->
+          <!--<li ng-click="chooseColor(backgroundColorClasses[2])" ng-class="backgroundColorClasses[2]"></li>-->
+          <!--<li ng-click="chooseColor(backgroundColorClasses[3])" ng-class="backgroundColorClasses[3]"></li>-->
+          <!--</ul>-->
+          <!--<button ng-click="applyBackgroundColorOnLiveView()" class="button-class">Apply</button>-->
+          <!--</div>-->
+          <!--</li>-->
+          <!--</ul>-->
+          <!--</div>-->
+          <!--</li>-->
+          <li><a ng-click="togglePlayAndImageMode()" class="showImage"><i
+              ng-class="{'fa fa-picture-o':showPlayMode,'fa fa-play-circle':!showPlayMode}"></i>{{showPlayMode?'Show
+            Default Image':'Show playing ad'}}</a></li>
+          <!--<li class="seprator">&nbsp;</li>-->
+          <!--<li>Grouped By Dimension</li>-->
+        </ul>
+
+        <div class="shareAdd-popup shareAll" style="z-index:9999;" ng-if="showShareAdDialogOnLiveView">
+          <h3>Share Ad's Assets <a ng-click="toggleShareAdDialogOnLiveView()" class="pull-right close"><i
+              class="fa fa-times-circle"></i></a></h3>
+          <ul class="share-form">
+            <li>
+              <label>Link to share</label>
+
+              <div class="input-wrapper">
+                <input type="text" ng-model="previewLink"/>
+                <button class="button-class">Copy url</button>
+              </div>
+            </li>
+            <li class="access-pwd">
+              <label>Preview Access Password (optional)</label>
+
+              <div class="input-wrapper">
+                <input type="text" ng-model="shareinfo.password"/>
+              </div>
+            </li>
+            <li class="strength-row">
+              <label>Strength</label>
+              <ul class="strengths">
+                <li class="active"></li>
+                <li class="active"></li>
+                <li class="active"></li>
+                <li></li>
+              </ul>
+            </li>
+          </ul>
+          <div class="clear"></div>
+          <div class="text-right popup-footer">
+            <button ng-click="toggleShareAdDialogOnTileView()" class="button-class gray">Cancel</button>
+            <button ng-click="sendEmail();" class="button-class yellow">Generate url to share
+            </button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </header>
+  <div ng-style="{'height':containerHeight}" class="tileContainer">
+    <div class="live-preview-page">
+      <div class="live-preview-page-inner" ng-style="{'min-height':windowHeight+'px'}">
+        <div class="filtering-section" ng-if="searchCriteria.searchLiveView!=''">
+          <div class="inner-section">
+            <div class="left-heading"> FILTERING RESULTS</div>
+            <div class="right-tag-section">
+              <a class="tags">
+                <div class="left-section">
+                  <span class="tagText">{{searchCriteria.searchLiveView}}</span>
+                </div>
+                <span><i ng-click="clearSearchOnLiveView()" class="fa fa-times"></i> </span><!-- end ngIf: !isMDX2 -->
+              </a>
+            </div>
+          </div>
+        </div>
+        <section class="titles-container new-title-cont" ng-repeat="adGroup in adDimensionGroups track by adGroup.key">
+          <div class="container-fluid">
+            <div class="liveViewContainer">
+              <div class="size-title">
+                <!--<input type="checkbox" ng-click="toggleCheckBoxesOnLiveView(adGroup)"-->
+                <!--class="selectAll-titles-checkbox" ng-model="adGroup.isSelectAllOnLIveView"/>-->
+                <div class='check-wrap'>
+                  <input type="checkbox" ng-click="toggleCheckBoxesOnLiveView(adGroup)" ng-model="adGroup.isSelectAllOnLIveView"/>
+                  <label ng-click='toggleCheckBoxesOnLiveView(adGroup)' class='mmGrid-customCheckbox'>
+                    <i class='glyphicon glyphicon-ok'></i></i></label>
+                </div>
+                <h4>{{adGroup.key}}</h4>
+
+                <div ng-show="getHiddenAdsOnLiveView(adGroup)>0" class="view-info-box">
+                    <div style="cursor: pointer;" ng-click="showHiddenAdsOnLiveView(adGroup)" ng-if="getHiddenAdsOnLiveView(adGroup)>0">
+                        <span>Hiding {{getHiddenAdsOnLiveView(adGroup)}} Ads</span>
+                        <i class="fa fa-eye pull-right"></i>
+                    </div>
+                    <!--<div style="cursor: pointer;" ng-if="searchCriteria.searchLiveView!=''">
+                        <span>Filtering Results : {{searchCriteria.searchLiveView}}</span>
+                        <i ng-click="clearSearchOnLiveView()" class="fa fa-times pull-right"></i>
+                    </div>-->
+                </div>
+                <!--<button class="button-class" ng-click="adGroup.toggleZoomOptionsContainer()">100% <i class="fa fa-angle-down"></i>-->
+                <!--</button>-->
+
+                <!--<div class="zoom-effect" ng-if="adGroup.showZoomOptionsContainer">-->
+                <!--<div class="zoom-slider">-->
+                <!--<a href="#" class="pull-left"><i class="fa fa-plus-circle"></i></a>-->
+                <!--<a href="#" class="pull-right"><i class="fa fa-minus-circle"></i></a>-->
+                <!--<ul class="slider-event">-->
+                <!--<li class="active"></li>-->
+                <!--<li></li>-->
+                <!--<li></li>-->
+                <!--<li></li>-->
+                <!--</ul>-->
+
+                <!--</div>-->
+                <!--<ul class="singleAds-btns">-->
+                <!--<li><a ng-click="adGroup.toggleZoomOptionsContainer()">Cancel</a></li>-->
+                <!--<li><a ng-click="adGroup.toggleZoomOptionsContainer()">Ok</a></li>-->
+                <!--</ul>-->
+
+                <!--</div>-->
+                <div class="clear"></div>
+              </div>
+              <ul class="ads-tiles multipleAds">
+                <li ng-click="ad.isCheckedOnLiveView=!ad.isCheckedOnLiveView"
+                    ng-class="{'selected':ad.isCheckedOnLiveView,'changeView':ad.adWidth<300,'set-width':ad.adWidth>=300 && ad.adWidth<=399}"
+                    ng-style="{'width':adGroup.tileWidth}" ng-show="!ad.isHide" class="add-tile" ng-repeat="ad in adGroup.ads track by $index">
+                  <div class="tages-sec">
+                    <div class='check-wrap'><input type="checkbox" ng-model="ad.isCheckedOnLiveView"/>
+                      <label class='mmGrid-customCheckbox'><i class='glyphicon glyphicon-ok'></i></i></label>
+                    </div>
+                    <ul class="tags">
+                      <li ng-class="{'active':ad.showAddTagContainer}" class="addtag add-plus"
+                          ng-click="$event.stopPropagation()">
+                        <a ng-click="toggleAddTagContainer(ad)">
+                          <i class="fa" ng-class="{'fa-minus':ad.showAddTagContainer,'fa-plus':!ad.showAddTagContainer}"></i>
+                          Add Tag</a>
+
+                        <div ng-click="$event.stopPropagation()" class="tags-dropdown add-tags-dropdown someHover"
+                             ng-show="ad.showAddTagContainer">
+
+                          <div class="add-tag-head">
+                            <div class="search-bar">
+                              <input type="text" class="form-control" placeholder="Search..." ng-model="ad.searchTag">
+                              <button class="search-btn"><i class="fa fa-search"></i></button>
+                            </div>
+                            <div class="create_new" ng-click="ad.isCreateNewClicked=!ad.isCreateNewClicked">
+                              Add New
+                              <div class="comingSoon" ng-show="ad.isCreateNewClicked">Coming Soon</div>
+                            </div>
+                          </div>
+
+                          <ul>
+                            <li ng-repeat="tag in systemTags | filter:ad.searchTag">
+                              <div class='check-wrap'><input type="checkbox" ng-checked="ad.tagIds().indexOf(tag.id)!=-1"/>
+                                <label ng-click="tag.addDeleteTagToAd(ad)" class='mmGrid-customCheckbox'>
+                                  <i class='glyphicon glyphicon-ok'></i>
+                                </label>
+                              </div>
+                              <a class="color-{{tag.tagColor}} color-bg-none" ng-click="">
+                                <i class="fa fa-tag color-{{tag.tagColor}}"></i>
+                                <span class="tagText color-{{tag.tagColor}} color-bg-none">{{tag.tagName}}</span>
+                              </a>
+                            </li>
+                          </ul>
+                        </div>
+                      </li>
+                      <li class="tag-seprator"></li>
+                      <li ng-click="$event.stopPropagation()" tooltip="{{adTag.toolTip}}"
+                          ng-repeat="adTag in ad.tags | limitTo:maxTagOnHeader">
+                        <a ng-click="adTag.toggleClick();searchByTagOnLiveView(adTag)"
+                           data-ng-class="{'active':adTag.isClicked}" class="color-{{adTag.tagColor}}">
+                          <div class="left-section">
+                            <i class="fa fa-tag"></i><span class="tagText">{{adTag.tagName}}</span>
+                          </div>
+                          <span ng-if="!isMDX2" ng-click="removeTag(ad,adTag)" class="delete-button">
+                           <i class="fa fa-times"></i> </span>
+                        </a>
+                      </li>
+                      <li ng-click="$event.stopPropagation()" ng-if="ad.tags.length > maxTagOnHeader">
+                        <div ng-click="ad.newTagCounter=0" class="more-tooltip" ng-if="ad.newTagCounter>0">
+                          +{{ad.newTagCounter}}
+                        </div>
+                        <a ng-click="ad.showMoreTagsContainer=!ad.showMoreTagsContainer"
+                           class="color-dark-blue more-tag">
+                          <div class="left-section more-tag-big">
+                            <i class="fa fa-tag moreTage"></i><span class="tagText"> More tag</span>
+                          </div>
+                        </a>
+
+                        <div class="tags-dropdown moreTage-dropdown" ng-show="ad.showMoreTagsContainer">
+                          <ul>
+                            <!--<li ng-click="t.toggleClick();searchByTagOnLiveView(t)" data-ng-class="{'active':t.isClicked}"-->
+                            <!--class="color-{{t.tagColor}}" ng-repeat="t in ad.tags | startFrom:maxTagOnHeader"><span-->
+                            <!--class="tagText">{{t.tagName}}</span><i class="fa fa-tag"></i> <span-->
+                            <!--ng-if="!isMDX2" ng-click="removeTag(ad,t)" class="delete-button">X</span></li>-->
+                            <li ng-click="$event.stopPropagation()"
+                                ng-repeat="adTag in ad.tags | startFrom:maxTagOnHeader">
+                              <a ng-click="adTag.toggleClick();searchByTagOnLiveView(adTag)"
+                                 data-ng-class="{'active':adTag.isClicked}" class="color-{{adTag.tagColor}}">
+                                <div class="left-section">
+                                  <i class="fa fa-tag"></i><span class="tagText">{{adTag.tagName}}</span>
+                                </div>
+                                <span ng-if="!isMDX2" ng-click="removeTag(ad,adTag)" class="delete-button">
+                                  <i class="fa fa-times"></i>
+                                </span>
+                              </a>
+                            </li>
+                          </ul>
+                        </div>
+                      </li>
+                      <!--<li tooltip="{{adTag.toolTip}}" ng-repeat="adTag in ad.tags"><a-->
+                      <!--ng-click="searchByTagOnLiveView(adTag.tagName)"> <span><i class="fa fa-tag"></i>{{adTag.tagName}}</span> </a></li>-->
+                    </ul>
+                  </div>
+                  <div ng-class="{'figure-imgIframe':ad.playAd,'figure-img':!ad.playAd}">
+                    <!--<iframe id="{{ad.id}}" manage-iframe-content attachStyles
+                            ng-if="ad.playAd && ad.adFormat != 'In-Stream Video' && ad.adFormat != 'InStreamAd'  && ad.adFormat != 'InStreamInteractiveAd'" ng-style="frameStyle"
+                            style="border-left: 0px; border-top: 0px; border-right: 0px; border-bottom: 0px"
+                            scrolling="no"
+                            width="{{adGroup.width}}" height="{{adGroup.height}}"
+                            srcdoc="{{renderAdForPlay(ad.id, ad.defaultImage.asset.imageContext.width, ad.defaultImage.asset.imageContext.height)}}"
+                            </iframe>-->
+
+                    <iframe id="{{ad.id}}"
+                            ng-if="ad.playAd && ad.adFormat != 'In-Stream Video' && ad.adFormat != 'InStreamAd'  && ad.adFormat != 'InStreamInteractiveAd'" ng-style="frameStyle"
+                            style="border-left: 0px; border-top: 0px; border-right: 0px; border-bottom: 0px"
+                            scrolling="no"
+                            width="{{adGroup.width}}" height="{{adGroup.height}}"
+                            src="{{ad.displayTag}}">
+                    </iframe>
+                    <iframe id="{{ad.id}}" manage-iframe-content attachStyles
+                            ng-if="ad.playAd && (ad.adFormat == 'In-Stream Video' || ad.adFormat == 'InStreamAd' || ad.adFormat == 'InStreamInteractiveAd')"
+                            ng-style="frameStyle"
+                            style="border-left: 0px; border-top: 0px; border-right: 0px; border-bottom: 0px"
+                            scrolling="no"
+                            width="{{adGroup.width}}" height="{{adGroup.height}}"
+                            src="{{ad.displayTag}}"></iframe>
+                    <img ng-if="!ad.playAd" ng-src="{{getImage(ad)}}"/>
+                  </div>
+                  <div class="ads-discrip" ng-switch="ad.adWidth>=300">
+                    <p ng-switch-when="true" ng-style="{'width':adGroup.calculateWidth()}">{{ad.name}}</p>
+
+                    <p ng-switch-when="false">{{ad.name}}</p>
+                    <ul ng-click="$event.stopPropagation()" class="actions">
+                      <li ng-click="toggleShowMoreAction(ad, 'showMoreAction')"><a><i class="fa fa-ellipsis-h"></i></a>
+
+                        <div class="filterSelectDown" ng-show="ad.showMoreAction">
+                          <ul>
+                            <li ng-if="!isMDX2">
+                              <a
+                                ng-click="ad.showMoreAction=false;ad.isTestClicked=true;ad.isRefreshClicked=false;redirectToAdPreview(ad.id)">
+                                <i ng-class="{'colorWhite':ad.isTestClicked}" class="fa fa-pencil-square-o"></i> Test Ad
+                              </a>
+                            </li>
+                            <li>
+                              <a ng-click="refreshSingle(ad);showMoreAction=false;ad.isTestClicked=false;ad.isRefreshClicked=true">
+                                <i ng-class="{'colorWhite':ad.isRefreshClicked}" class="fa fa-repeat"></i>
+                                Refresh</a>
+                            </li>
+                          </ul>
+                        </div>
+                      </li>
+                      <li>
+                        <a ng-click="hideAllPanels();ad.isHide=true"><i class="fa fa-eye-slash"></i></a>
+                      </li>
+                      <li>
+                        <a ng-click="hideAllPanels();ad.playAd=!ad.playAd">
+                        <i ng-class="{'fa fa-picture-o':ad.playAd,'fa fa-play-circle':!ad.playAd}"></i></a>
+                      </li>
+                      <li>
+                        <a ng-click="toggleDetailBoxes(ad,'showAdDetailBoxOnLiveView')">
+                          <i class="fa fa-info-circle" ng-class="{'yellow-clr':ad.showAdDetailBoxOnLiveView}"></i>
+                        </a>
+                        <div ng-click="$event.stopPropagation()" ng-switch="ad.clickthrough" class="ads-info-box live-view"
+                             ng-class="{'opacity':ad.showAdDetailBoxOnLiveView}"
+                             ng-show="ad.showAdDetailBoxOnLiveView">
+                          <span class="close-ads-info" ng-click="ad.showAdDetailBoxOnLiveView=!ad.showAdDetailBoxOnLiveView">X</span>
+
+                          <p><label>Name:</label><span>{{ad.name}}</span></p>
+                          <p><label>ID:</label><span>{{ad.id}}</span></p>
+                          <p ng-if="ad.masterAdId"><label>Master Ad:</label><span>{{ad.masterAdId}}</span></p>
+                          <p><label>Size:</label><span>{{ad.size}}</span></p>
+                          <p><label>Dimensions:</label><span>{{ad.adDimension}}</span></p>
+                          <p><label>Format:</label><span>{{ad.viewAdType}}</span></p>
+                          <p><label>Clickthrough:</label><span ng-switch-when="">-</span><span ng-switch-default>
+                            <a href="{{ad.clickthrough}}">{{ad.clickthrough}}</a></span>
+                          </p>
+                        </div>
+                      </li>
+                      <!--<li><a ng-click="ad.showCommentBoxOnLiveView=!ad.showCommentBoxOnLiveView"><i class="fa fa-comments"></i> 1</a>-->
+                      <!--</li>-->
+                    </ul>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </section>
+        <div class="clear"></div>
+        <div class="paginationDv">
+          <!--<pagination class="pull-right" ng-show="filtered.filteredPlayingAds.length>pageSize" items-per-page="pageSize"-->
+          <!--boundary-links="true"-->
+          <!--page="currentPage"-->
+          <!--max-size="maxSize"-->
+          <!--total-items="filtered.filteredPlayingAds.length"-->
+          <!--ng-model="currentPage"-->
+          <!--class="pagination-sm"-->
+          <!--on-select-page="onPageSelect(page)">-->
+          <!--</pagination>-->
+          <div class="yellow-section">
+            Showing {{totalShowing}} of {{filtered.filteredPlayingAds.length}} Ads
+            <input ng-if="totalShowing<filtered.filteredPlayingAds.length" type="button" value="Load more"
+                   ng-click="loadMore()">
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>

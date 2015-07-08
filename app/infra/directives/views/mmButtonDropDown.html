@@ -1,0 +1,13 @@
+<div ng-class="{'open':isOpen}" class="mainButtonDropDown btn-group" dropdown is-open="status.isopen">
+	<button ng-attr-id="{{mmModel.name}}" ng-click="mmModel.disable || (isOpen = !isOpen)" type="button" ng-class="{'buttonDropDown':!mmModel.disable && !mmModel.disabledByLogic ,'buttonDropDownDisable':mmModel.disable || mmModel.disabledByLogic,'openMode':isOpen && !mmModel.disable  }" ng-disabled="disabled" ng-style="mmStyle">
+		{{mmModel.name|T}} <span class="caret"></span>
+	</button>
+	<ul ng-if="!mmModel.disable" class="dropdown-menu" role="menu">
+		<li  data-ng-repeat="item in mmModel.items">
+			<a ng-attr-id="{{mmModel.name}}{{item.name}}"
+                ng-class="{'centralMasterToolBarButtonDropDown': !mmModel.disable,
+                    'disableCentralMasterToolBarButtonDropDown': mmModel.disable}"
+				 ng-click="changeOpenModeState(); actionInvoke(item.func)">{{item.name | T}}</a>
+		</li>
+	</ul>
+</div>

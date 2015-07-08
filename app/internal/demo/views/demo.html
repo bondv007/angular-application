@@ -1,0 +1,128 @@
+<mm-row>
+	<mm-label mm-show-label="true" mm-model="demoModel.name" mm-placeholder="Enter Name" mm-error="error.name"
+						mm-caption="{{'Account Name' | T}}"></mm-label>
+	<mm-text mm-model="demoModel.name" mm-placeholder="Enter Name" mm-error="error.name"
+					 mm-caption="Advertiser 2nd Name" text-tooltip="Enter name"></mm-text>
+	<mm-text mm-model="demoModel.url" mm-error="error.name" mm-caption="Link Demo"
+           mm-is-link="true"></mm-text>
+</mm-row>
+<mm-row>
+	<mm-check-box mm-disable="true" mm-model="cbNotSelected.selected" mm-caption="CheckBox Demo" mm-is-required="true"
+							 mm-disabled="false"></mm-check-box>
+	<mm-label mm-model="advertiserModelSelected" mm-caption="Selected Value:"></mm-label>
+</mm-row>
+<mm-row>
+
+	<mm-radiobutton mm-model="radioButtons" mm-visible="true" mm-is-required="true" mm-is-vertical="false"
+									mm-disabled="false" mm-selected="radioSelected" mm-model-id="text"></mm-radiobutton>
+	<mm-label mm-model="radioButtons.valueList[radioSelected].text" mm-caption="Selected Value:"></mm-label>
+</mm-row>
+<mm-row>
+	<mm-radiobutton mm-model="radioButtons" mm-visible="true" mm-is-required="false" mm-disabled="true"
+									mm-is-vertical="true" mm-selected="radioSelected" mm-model-id="text"></mm-radiobutton>
+	<mm-label mm-model="radioButtons.valueList[radioSelected].text" mm-caption="Selected Value:"></mm-label>
+</mm-row>
+<mm-row>
+	<mm-datepicker mm-model="date" mm-caption="Date:" mm-from="This Date:"></mm-datepicker>
+</mm-row>
+<mm-row>
+	<mm-datepicker mm-model="date" is-range="true" mm-caption="Date:" mm-from="FromText:" mm-to="ToText:"
+								 mm-range-delimiter="-"></mm-datepicker>
+</mm-row>
+
+<mm-row>
+	<mm-text mm-model="advertiserModel.id" mm-placeholder="Enter Link" mm-error="error.name"
+           mm-is-link="true"
+					 mm-caption="Link Demo"></mm-text>
+	<mm-label mm-model="advertiserModel.name" mm-placeholder="Enter Name" mm-error="error.name"
+						mm-caption="Sample Name"></mm-label>
+</mm-row>
+<mm-row>
+<!--  First -->
+	<mm-drop-down mm-error="error.name" mm-caption="Advertiser Option" mm-data-model="demoModel.listOfOptions" mm-disable="true"
+									mm-model="demoModel.optionSingle2"></mm-drop-down>
+	<mm-drop-down mm-error="error.name" mm-caption="Advertiser Option" mm-disable="false"
+									mm-data-model="demoModel.listOfOptions" mm-model="demoModel.optionSingle"
+									show-search-box></mm-drop-down>
+</mm-row>
+<!--  Second -->
+<mm-row>
+	<mm-drop-down mm-error="error.name" mm-caption="Advertiser Option 2"  mm-disable="show"
+									mm-data-model="demoModel.listOfOptions" mm-model="demoModel.optionMulti"
+									control-type="multi"></mm-drop-down>
+	<mm-drop-down mm-error="error.name" mm-caption="Advertiser Option 2"  mm-edit-multiple = "true" mm-disable="notshow"
+									mm-data-model="demoModel.listOfOptions" mm-model="demoModel.optionMulti2" control-type="multi"
+									show-search-box></mm-drop-down>
+	<mm-button mm-caption="Save" mm-action="clicked()" mm-class="mm-btn-save" mm-disable="false"></mm-button>
+</mm-row>
+<!--  Third -->
+<mm-row>
+	<mm-drop-down mm-error="error.name" mm-caption="Advertiser Option 3" mm-data-model="demoModel.listOfOptionsMultiple"  mm-edit-multiple = "true"
+									mm-model="demoModel.optionSingle2"></mm-drop-down>
+	<mm-drop-down mm-error="error.name" mm-caption="Advertiser Option 3"  mm-edit-multiple = "true"
+									mm-data-model="demoModel.listOfOptionsMultiple" mm-model="demoModel.optionSingle"
+									show-search-box></mm-drop-down>
+</mm-row>
+<br>
+<br>
+<mm-row>
+	<mm-check-box mm-model="cbNotSelected.selected" mm-caption="CheckBox Demo" mm-visible=true mm-is-required=true
+							 mm-disabled=false></mm-check-box>
+	<span>{{cbNotSelected.selected}}</span>
+</mm-row>
+<br>
+<mm-row>
+	<mm-radiobutton mm-model="radioButtons" mm-visible="true" mm-is-required="true" mm-disabled ="false" mm-edit-multiple = "true"
+									mm-selected="radioSelected" mm-model-id="text" mm-caption="Radio button:"></mm-radiobutton>
+	radioButtons Selected Value: {{radioSelected}}
+</mm-row>
+<br>
+<mm-row>
+	<mm-datepicker mm-model="date" mm-caption="Date:" mm-from="This Date:"></mm-datepicker>
+</mm-row>
+<mm-row>
+	<mm-datepicker mm-model="date" is-range="true" mm-caption="Date:" mm-from="FromText:" mm-to="ToText:"
+								 mm-range-delimiter="-"></mm-datepicker>
+</mm-row>
+<br>
+<mm-row>
+	<mm-row-container>
+		<mm-toggle-container mm-caption="Toggle With Tabs" mm-is-dirty="dirtyFlags.tab1 + dirtyFlags.tab2"
+												 mm-error="error.name" start-open="showToggle">
+			<mm-row>
+				<mm-two-columns>
+					<tabset>
+						<tab heading="1st tab" class="{{dirtyFlags.tab1>0?'dirty':''}}">
+							<mm-row>
+								<mm-text mm-model="demoModel.url" mm-error="error.name" mm-caption="Link Demo"
+                         mm-is-link="true"
+												 mm-is-dirty="dirtyFlags.tab1"></mm-text>
+							</mm-row>
+						</tab>
+						<tab heading="2nd tab" class="{{dirtyFlags.tab2>0?'dirty':''}}">
+							<mm-row>
+								<mm-text mm-model="demoModel.name" mm-placeholder="Enter Name" mm-error="error.name"
+												 mm-caption="Advertiser Name" mm-is-dirty-counter="dirtyFlags.tab2"></mm-text>
+							</mm-row>
+						</tab>
+					</tabset>
+				</mm-two-columns>
+				<mm-two-columns>
+					<mm-toggle-container mm-caption="Toggle" mm-is-dirty="dirtyFlags.tab1" mm-error="error.name"
+															 start-open="showToggle">
+						<mm-row>
+							<mm-text mm-model="demoModel.url" mm-error="error.name" mm-caption="Link Demo"
+                       mm-is-link="true"
+											 mm-is-dirty="dirtyFlags.tab1"></mm-text>
+						</mm-row>
+					</mm-toggle-container>
+				</mm-two-columns>
+			</mm-row>
+		</mm-toggle-container>
+	</mm-row-container>
+</mm-row>
+<br><br>
+<mm-row>
+	<mm-row-container>
+	</mm-row-container>
+</mm-row>

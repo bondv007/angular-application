@@ -1,0 +1,45 @@
+.addBannerButton{
+  background-color:$cWhite;
+  border: 1px solid;
+  border-radius: 0;
+}
+
+.newBannerSizeLink{
+  color: $cMain;
+  font-family: arial, sans-serif;
+  font-size: 13px;
+  &:hover {
+    color: $cMain;
+    text-decoration: underline;
+    cursor: pointer;
+  }
+}
+
+.newSectionLink{
+  color: $cMain;
+  font-family: arial, sans-serif;
+  font-size: 13px;
+  position: relative;
+  top: 8px;
+  &:hover {
+    color: $cMain;
+    text-decoration: underline;
+    cursor: pointer;
+  }
+}
+
+.tag-generation-note{
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  width: 148px;
+  border: 1px solid $cFourth;
+  background-color: rgba(255,255,255,.95);
+  box-shadow: 0 1px 4px rgba(0,0,0,.2);
+  padding: 14px;
+  font-family: Ariel;
+  font-size: 13px;
+  color: $cSecondary;
+  opacity: 0.75;
+  line-height: 20px;
+}

@@ -1,0 +1,24 @@
+<div class="ioActionButtons ioActionBar">
+    <div class="pull-left">
+        <mm-row>
+            <button type="button" class="centralMasterToolBarButton"
+                    ng-click="exportToPDFButtonClick()">Export to PDF</button>
+            <button type="button" class="centralMasterToolBarButton"
+                    ng-click="disableButtonClick()" mm-has-permission="{{ioEnableDisablePermission}}">Disable</button>
+            <button type="button" class="centralMasterToolBarButton"
+                    ng-click="enableButtonClick()" mm-has-permission="{{ioEnableDisablePermission}}">Enable</button>
+            <button type="button"
+                    ng-class="{'centralMasterToolBarButton': $root.isDirtyEntity, 'disableCentralMasterToolBarButton': !$root.isDirtyEntity}"
+                    ng-click="saveButtonClick()" mm-has-permission="{{ioEditPermission}}">Save and Close</button>
+            <button type="button" class="centralMasterToolBarButton"
+                    ng-click="closeButtonClick()">Close</button>
+        </mm-row>
+    </div>
+    <div class="pull-right" mm-has-permission="{{ioSignPermission}}" ng-if="ioDetails.statusId != 8">
+        <mm-row>
+            <mm-button mm-btn-type="save" mm-action="acceptButtonClick()" mm-caption="ACCEPT" mm-disable="!disclaimer.checked"></mm-button>
+            <mm-button mm-btn-type="cancel" mm-action="declineButtonClick()" mm-caption="DECLINE" mm-disable="!disclaimer.checked"></mm-button>
+        </mm-row>
+    </div>
+</div>
+

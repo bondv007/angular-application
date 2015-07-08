@@ -1,0 +1,38 @@
+<div ui-tree-handle ng-class="{'selectedBackgroundColor':item.selected}">
+	<!--Drag Icon-->
+	<div class="dragIcon middleElement"></div>
+
+	<!--Open\Close Icon Container-->
+	<a data-nodrag class="middleElement wrapContainerToggleIcon" ng-click="toggle(item)" >
+		<div ng-class="{'containerOpenIcon':!collapsed && !!item.subContainers, containerCloseIcon:collapsed && !!item.subContainers}" class="middleElement containerOpenIconDim"></div>
+	</a>
+
+	<!--Check Box []-->
+	<div data-nodrag class="mm_checkbox middleElement" ng-model="item.selected" ng-click="item.selected=!item.selected; onParentSelected(item)">
+		<span ng-class="{'selectedCB': item.selected}"></span>
+	</div>
+
+	<!--Item Type Icon-->
+	<div ng-if="!!item.subContainers" class="middleElement" ng-class="{'subContainerOpenIcon':!collapsed, 'subContainerCloseIcon':!!collapsed}"></div>
+	<div ng-if="!item.subContainers" class="middleElement adIcon"></div>
+
+	<!--ID + Name-->
+	<div class="middleElement itemIdText" ng-bind="item.masterAdId"></div>
+	<div class="middleElement itemName">
+		<mm-text
+				ng-if="!!item.subContainers"
+				mm-show-label="false"
+				mm-model="item.name"
+				mm-show-edit-mode="essentialArea.dgName.open"
+				mm-placeholder="Enter name"
+				mm-layout-type="custom"
+				mm-label-width="0"
+				mm-custom-control-width="100">
+		</mm-text>
+	<div class="itemNameText" ng-if="!item.subContainers" ng-bind="item.name"></div>
+	</div>
+
+	<!--Weight-->
+	<div data-nodrag class="middleElement weightContainer" ng-include="'campaignManagementApp/directives/dg/tree/templates/rotation/dgRotationDecision.html'"></div>
+</div>
+

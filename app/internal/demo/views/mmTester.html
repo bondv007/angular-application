@@ -1,0 +1,120 @@
+<div class="editContainer">
+  <mm-row>
+    <mm-drop-down mm-caption="Account to Add"
+                  mm-data-model="accounts"
+                  mm-model="demoModel.accountIds"
+                  mm-layout-type="medium"
+                  mm-select-change-func="addAccount()"
+                  new-entity-type="account"
+                  entity-obj="entityObj"
+                  mm-show-add-new="true"
+                  show-search-box></mm-drop-down>
+  </mm-row>
+  <mm-row>
+    <mm-grid
+      show-selection-checkbox="true"
+      items="mmModel.accounts"
+      selected-items="mmModel.selectedAccounts"
+      grid-height="350"
+      grid-width="480"
+      cols="mmModel.columns"
+      show-footer="true"
+      is-sort="true"
+      is-single-select="false"
+      is-groupable="false"
+      show-filter="false"
+      enable-column-resize="true"
+      is-column-reorder="true"
+      is-column-freeze="true"
+      is-show-menu="false"
+      is-show-tool-tip="true"
+      is-central-grid="false"
+      is-grid-toolbar="false"
+      is-grid-loading="false"
+      grid-button-actions="mmModel.contactsGridButtonActions">
+    </mm-grid>
+  </mm-row>
+  <!--{{demoModel.vertical}}-->
+  <!--<br/><br/>-->
+  <!--<mm-row>-->
+    <!--<mm-select-list mm-data-model="verticals"-->
+                    <!--mm-model="demoModel.newVerticals"-->
+                    <!--mm-available-title="TOTAL GEOS">-->
+    <!--</mm-select-list>-->
+  <!--</mm-row>-->
+  <!--<mm-row>-->
+    <!--<mm-auto-complete id="ex1"-->
+                      <!--placeholder="Search countries"-->
+                      <!--pause="100"-->
+                      <!--selected-object="demoModel.vertical"-->
+                      <!--local-data="verticals"-->
+                      <!--search-fields="name"-->
+                      <!--title-field="name"-->
+                      <!--minlength="2"-->
+                      <!--clear-selected="true"-->
+                      <!--text-no-results="Geo not supported"-->
+                      <!--class="mm-auto-complete"/>-->
+  <!--</mm-row>-->
+  <!--<mm-row>-->
+    <!--<mm-text mm-model="demoModel.name"-->
+             <!--mm-is-edit-mode="false"-->
+             <!--mm-label-width="0"-->
+             <!--mm-tab-index="3"></mm-text>-->
+  <!--</mm-row>-->
+  <!--<mm-row>-->
+    <!--<mm-text mm-model="demoModel.name"-->
+             <!--mm-is-edit-mode="false"-->
+             <!--mm-label-width="0"-->
+             <!--mm-tab-index="2"></mm-text>-->
+  <!--</mm-row>-->
+  <!--<mm-row>-->
+    <!--<mm-text mm-model="demoModel.name"-->
+             <!--mm-is-edit-mode="false"-->
+             <!--mm-label-width="0"-->
+             <!--mm-tab-index="4"></mm-text>-->
+  <!--</mm-row>-->
+  <!--<mm-row>-->
+    <!--<mm-text mm-model="demoModel.name"-->
+             <!--mm-is-edit-mode="false"-->
+             <!--mm-label-width="0"-->
+             <!--mm-tab-index="1"></mm-text>-->
+  <!--</mm-row>-->
+  <!--<mm-row>-->
+    <!--<mm-drop-down mm-caption="Account Name"-->
+                  <!--mm-data-model="verticals"-->
+                  <!--mm-model="demoModel.new"-->
+                  <!--control-type="multi"-->
+                  <!--mm-layout-type="medium"-->
+                  <!--show-search-box-->
+                  <!--show-add-new></mm-drop-down>-->
+    <!--<mm-drop-down mm-caption="Account Name"-->
+                  <!--mm-data-model="accounts"-->
+                  <!--lazy-type="'accounts|global'"-->
+                  <!--mm-model="demoModel.accountIds"-->
+                  <!--control-type="multi"-->
+                  <!--mm-layout-type="medium"-->
+                  <!--show-add-new></mm-drop-down>-->
+  <!--</mm-row>-->
+  <!--<mm-row>-->
+    <!--<mm-drop-down mm-caption="Account Name"-->
+                  <!--mm-data-model="accounts"-->
+                  <!--lazy-type="'accounts|global'"-->
+                  <!--mm-model="demoModel.accountIds"-->
+                  <!--control-type="multi"-->
+                  <!--mm-layout-type="medium"-->
+                  <!--show-search-box></mm-drop-down>-->
+    <!--<mm-drop-down mm-caption="Account Name"-->
+                  <!--mm-data-model="accounts"-->
+                  <!--lazy-type="'accounts|global'"-->
+                  <!--mm-model="demoModel.accountIds"-->
+                  <!--control-type="multi"-->
+                  <!--mm-layout-type="medium"></mm-drop-down>-->
+  <!--</mm-row>-->
+
+  <!--<mm-row>-->
+    <!--<mm-select-list mm-data-model="assetTypes"-->
+                    <!--mm-model="demoModel.assets"-->
+                    <!--mm-show-type>-->
+    <!--</mm-select-list>-->
+  <!--</mm-row>-->
+</div>

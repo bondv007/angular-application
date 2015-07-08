@@ -1,0 +1,59 @@
+<!--<central central-data-object="centralDataObject" entity-id="entityId"></central>-->
+<!--action toolbar-->
+<div>
+    <div class="advancedSearchButtonCenterlize advancedSearchButtons" style="padding-left: 10px;">
+        <div>
+            <button ng-repeat="acFunc in displayData.dataObj.centralActions" type="button" class="centralMasterToolBarButton"
+                    ng-click="centralActionInvoke(acFunc.func, displayData.dataObj.centralList)">{{acFunc.name}}</button>
+        </div>
+    </div>
+</div>
+<!--view select-->
+<div class="btn-group">
+    <div class="span"></div>
+    <button ng-click="displayData.isGrid = false" type="button" href="javascript:void(0)" class="centralViewByButton" title="Friendly"><p class="glyphicon glyphicon-tasks"></p></button>
+    <button ng-click="displayData.isGrid = true" type="button" href="javascript:void(0)" class="centralViewByButton" title="Grid"><p class="glyphicon glyphicon-align-justify"></p></button>
+</div>
+<!--display data-->
+<div ng-init="dataObj=centralDataObject[index]" style="position: relative;height: 100%;">
+    <!--search assets-->
+    <div>
+        <input type="text" class="form-control" ng-model="dataObj.filterByText" ng-change="changeStringFilter(index)" placeholder="{{dataObj.searchPlaceHolderText}}">
+    </div>
+    <!--list info-->
+    <p>{{dataObj.filteredList.length}} {{dataObj.name}}</p>
+    <div class="mmStretched" style="top:55px;">
+        <!--friendly format-->
+        <div class="mmStretched" ng-show="!displayData.isGrid">
+            <div ng-if="dataObj.isEditable" class="mmStretched">
+                <div style="position:absolute;top:0;bottom:0;left:0;right:50%;">
+                    <scroller scroller-repeater="item in dataObj.filteredList" item-height="75">
+                        <div ng-include="'infra/central/views/centralRow.html'" ng-click="changeChildData(index, item)"></div>
+                    </scroller>
+                </div>
+                <div style="position:absolute;top:0;bottom:0;left:50%;right:0;">
+                    <div class="mmstretched">
+                        <entity-layout entity-type="dataObj.type" entity-id="dataObj.selectedItem.id" entity-actions="editButtons" hide-go-to="true" start-minimized="true"></entity-layout>
+                    </div>
+                </div>
+            </div>
+            <div ng-if="!dataObj.isEditable" class="mmStretched">
+                <!--<scroller scroller-repeater="item in dataObj.filteredList" item-height="41" changeable-height="true" item-changed-height="75">-->
+                <scroller scroller-repeater="item in dataObj.filteredList" item-height="75">
+                    <div ng-include="'infra/central/views/centralRow.html'" ng-click="changeChildData(index, item)"></div>
+                </scroller>
+            </div>
+        </div>
+        <!--grid format-->
+        <div ng-show="displayData.isGrid">
+            <table class="table table-hover table-striped">
+                <thead>
+                <tr><th ng-repeat="index in dataObj.userMetaData">{{dataObj.listMetaData[index].text}}</th></tr>
+                </thead>
+                <tbody>
+                <tr ng-repeat="item in dataObj.filteredList" ng-include="'infra/central/views/centralGridRow.html'"></tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,426 @@
+
+<div ng-show="!showSPinner" class="row">
+
+<div class="modal-header">
+	<div ng-switch="ad.id">
+		<h3 ng-switch-when="undefined">Create New Ad</h3>
+		<h3 ng-switch-when="0">Create New Ad</h3>
+	</div>
+</div>
+<div class="modal-body">
+<!--<div ng-controller="adEditCtrl">
+  <div ng-show="isAfterSave">{{saveMessage}}</div>
+  <h3><i class="glyphicon glyphicon-star"></i> Ad: {{ad.id}} / {{ad.name}}</h3>
+   <div>
+			<button type="button" class="btn btn-default">GOTO</button>
+			<div class="btn-group">
+				<button type="button" class="btn btn-default">SETTINGS</button>
+				<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+
+					<span class="caret"></span>
+				</button>
+				<ul class="dropdown-menu" role="menu">
+					<li><a href="#">Duplicate Ad</a></li>
+					<li><a href="#">Archive Ad</a></li>
+					<li><a href="#">Delete Ad</a></li>
+					<li><a href="#">Change Ad Format</a></li>
+					<li><a href="#">History</a></li>
+					<li><a href="#/spa/adsCentral/{{ad.id}}">CENTRAL</a></li>
+				</ul>
+			</div>
+
+			<button type="button" class="btn btn-default">PREVIEW</button>
+			<button type="button" class="btn btn-default">ASSIGN</button>
+			<button type="button" class="btn btn-default">GENERATE TEST TAG</button>
+			<button type="button" class="btn btn-default" ng-click="cancel()">CANCEL</button>
+			<button type="submit" class="btn btn-default" ng-click="save()">SAVE</button>
+
+
+
+
+
+
+    </div>-->
+    <div style="padding-top: 30px">
+      <div style="float: left;width: 50%">
+        <table cellpadding="5">
+          <tr>
+            <td style="white-space: nowrap"><label for="adName">* Ad Name</label></td>
+            <td>
+              <mm-essential  mm-type="text" ng-model="ad.name" mm-max-length="15" mm-size="250" mm-is-required="false"
+                mm-placeholder="Enter Name" mm-tooltip="Ad Name"></mm-essential>
+            </td>
+          </tr>
+          <tr>
+            <td style="white-space: nowrap"><label for="adFormat">* Ad Format</label></td>
+            <td>
+              <span mm-essential mm-type="select" mm-select-data="adFormats" mm-size="250" mm-options="format.id as format.name for format" ng-model="ad.type"
+                    mm-placeholder="Enter Ad Format" mm-onchange="adFormatChanged()" mm-is-required="true" mm-tooltip="Ad Format"></span>
+            </td>
+          </tr>
+          <tr>
+            <td style="white-space: nowrap"><label for="adStatus">Ad Status</label></td>
+            <td>
+              <span mm-essential mm-type="select" mm-select-data="adStatuses" mm-size="250" mm-options="status.id as status.name for status" ng-model="ad.adStatus"
+                mm-placeholder="Enter Ad Status" mm-is-required="true" mm-tooltip="Ad Status"></span>
+            </td>
+          </tr>
+          <tr>
+            <td><label>Account</label></td>
+            <td>
+              {{ad.accountId}} | My Account
+            </td>
+          </tr>
+          <tr>
+
+            <td><label>Campaign</label></td>
+            <td>
+              <span mm-essential mm-type="select" mm-select-data="campaigns" mm-size="250" mm-options="campaign.id as campaign.name for campaign" ng-model="ad.campaignId"
+                mm-placeholder="Enter Campaign" mm-is-required="true" mm-tooltip="Campaign" mm-link="spa.campaign({ campaignId: ad.campaignId })"></span>
+            </td>
+          </tr>
+          <tr>
+            <td style="white-space: nowrap"><label>Last Update</label></td>
+            <td>
+            {{ad.lastUpdatedBy}} | My User | {{ad.lastUpdateOn | date:'medium' }}
+            </td>
+            </tr>
+            </table>
+          </div>
+
+          <div ng-show="ad.type == 'StandardBannerAd'" style="float: right;width: 50%">
+            <div style="border:1px solid gray;padding: 20px;width: 500px;height: 420px">
+              <div>
+                <i ng-class="{'glyphicon glyphicon-ok-circle' : ad.adStatus == '1', 'glyphicon glyphicon-ban-circle' : ad.adStatus != '1'}"></i>&nbsp;
+                Dimensions: 400X175&nbsp;Size: 25KB
+            <div><img ng-src="{{tempResourcePath}}/tmpStdBanner.jpg" style="width: 450px" alt=""/></div>
+          </div>
+          <div style="padding-top: 20px;display: block">
+            <div class="form-group">
+              <label for="toolTip" class="col-sm-2 control-label" style="white-space: nowrap">Tool Tip:</label>
+              <div class="col-sm-10">
+                <textarea name="toolTip" id="toolTip" cols="30" rows="3" class="form-control" ng-model="ad.tooltip"></textarea>&nbsp;
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div style="clear: both">&nbsp;</div>
+      <div>
+				<mm-toggle-container mm-caption="Creative Assets">
+          <tabset>
+            <tab>
+              <tab-heading>Base </tab-heading>
+              <div style="padding: 30px">
+                <table class="table table-hover table-striped">
+                  <thead>
+                    <tr>
+											<th style="width:150px">Type</th>
+                      <th>ID</th>
+                      <th>Asset Type</th>
+                      <th>File</th>
+                      <th></th>
+                      <th>Size</th>
+                    </tr>
+                  </thead>
+                    <tbody>
+                      <tr ng-click="select(ad.defaultImage)">
+					    <td>Default Image</td>
+                        <td>{{ad.defaultImage.displayId}}</td>
+                        <td>{{getAsset(ad.defaultImage.assetId).type}}</td>
+                        <td>{{getAsset(ad.defaultImage.assetId).fileName}}</td>
+                        <td>
+                          <a class="glyphicon glyphicon-file" ng-click="assignAsset()"></a>
+                          <a class="glyphicon glyphicon-eye-open" ng-click="openAssetPreview()"></a>&nbsp;
+                        </td>
+                        <td>{{ getAsset(ad.defaultImage.assetId).size/1024/1024|number:2 }} MB</td>
+                      </tr>
+                      <tr ng-click="select(ad.banner)">
+                        <td>Banner</td>
+                        <td>{{ad.banner.displayId}}</td>
+                        <td>{{getAsset(ad.banner.assetId).type}}</td>
+                        <td>{{getAsset(ad.banner.assetId).fileName}}</td>
+                        <td>
+                          <a class="glyphicon glyphicon-file" ng-click="assignAsset()"></a>
+                          <a class="glyphicon glyphicon-eye-open" ng-click="openAssetPreview()"></a>&nbsp;
+                        </td>
+                        <td>{{ getAsset(ad.banner.assetId).size/1024/1024|number:2 }} MB</td>
+                      </tr>
+                      <tr ng-show="ad.type == 'ExpandableBannerAd'" ng-click="select(ad.preloadImage)">
+                        <td>Preload Image</td>
+                        <td>{{ad.preloadImage.displayId}}</td>
+                        <td>{{getAsset(ad.preloadImage.assetId).type}}</td>
+                        <td>{{getAsset(ad.preloadImage.assetId).fileName}}</td>
+                        <td>
+                          <a class="glyphicon glyphicon-file" ng-click="assignAsset()"></a>
+                          <a class="glyphicon glyphicon-eye-open" ng-click="openAssetPreview()"></a>&nbsp;
+                        </td>
+                        <td>{{ getAsset(ad.preloadImage.assetId).size/1024/1024|number:2 }} MB</td>
+                      </tr>
+                    </tbody>
+                </table>
+              </div>
+            </tab>
+						<tab ng-show="ad.type == 'ExpandableBannerAd'">
+							<tab-heading>Panels <span class="badge">{{ad.panels == null ? 0 : ad.panels.length}}</span></tab-heading>
+							<div  style="padding: 30px; vertical-align: text-top">
+								<button type="button" class="btn btn-default" ng-click="assignPanel()">Add Panel</button>
+								<button type="button" class="btn btn-default" ng-click="removePanel(panel.id)">Remove Panel</button>
+								<button type="button" class="btn btn-default" ng-click="changePosition(panel.id)">Positioning</button>
+								<div class="row">
+									<div class="col-md-1" style="width: 10px"></div>
+									<div class="col-md-2" style="width: 10px"><input type="checkbox" ng-model="isChecked" ng-click="checkAll(ad.panels, isChecked)"></div>
+									<div class="col-md-3" style="width: 400px"><a ng-click="sortExpr = 'name'; reverse = !reverse">Name</a></div>
+									<div class="col-md-4" style="width: 200px"><a ng-click="sortExpr = 'asset'; reverse = !reverse">Asset</a></div>
+									<div class="col-md-5" style="width: 100px"><a ng-click="sortExpr = 'size'; reverse = !reverse">Size</a></div>
+									<!--<div class="col-md-6" style="width: 100px">Dimensions</div>-->
+									<div class="col-md-7" style="width: 120px">Default Panel</div>
+									<div class="col-md-8" style="width: 100px">Position</div>
+								</div>
+								<div class="row" ng-repeat="panel in ad.panels | orderBy:sortExpr:reverse" >
+									<div>
+										<div class="col-md-1" style="width: 10px" ng-click="showPanelData = !showPanelData" ><i ng-class="{'glyphicon glyphicon-chevron-right' : !showPanelData, 'glyphicon glyphicon-chevron-down' : showPanelData}"></i></div>
+										<div class="col-md-2" style="width: 10px"><input type="checkbox" ng-model="panel.checked"></div>
+										<div class="col-md-3" >
+                      <mm-essential  mm-type="text" ng-model="panel.name" mm-max-length="25" mm-size="250" mm-is-required="false"
+                         mm-placeholder="Enter Name" mm-tooltip="Panel Name"></mm-essential>
+											<!--<a editable-text="panel.name" e-required e-maxlength="25" e-size="30" e-placeholder="Enter Name">-->
+												<!--{{panel.name || "Enter Name" }}-->
+											<!--</a>-->
+										</div>
+										<div class="col-md-4" style="width: 200px">{{getAsset(panel.assetId).fileName}}</div>
+										<div class="col-md-5" style="width: 100px">{{ getAsset(panel.assetId).size/1024/1024|number:2 }} MB</div>
+										<!--<div class="col-md-6" style="width: 100px">{{panel.dimensions}}</div>-->
+										<div class="col-md-7" style="width: 120px ; text-align: center "><input type="checkbox" ng-model="panel.isDefault"></div>
+										<div class="col-md-8" style="width: 100px;white-space: nowrap">
+                      <mm-essential  mm-type="text" ng-model="panel.positionX" mm-max-length="25" mm-size="50" mm-is-required="false" mm-tooltip="Position X"></mm-essential>
+                        <b>X</b>
+                      <mm-essential  mm-type="text" ng-model="panel.positionY" mm-max-length="25" mm-size="50" mm-is-required="false" mm-tooltip="Position Y"></mm-essential>
+											<!--<a editable-text="panel.positionX" e-required e-maxlength="25" e-size="30" e-placeholder="Enter Y">	{{panel.positionX}}</a>-->
+											<!--<a>X</a>-->
+											<!--<a editable-text="panel.positionY" e-required e-maxlength="25" e-size="30" e-placeholder="Enter X">{{panel.positionY}}</a>-->
+										</div>
+									</div>
+									<div style="clear: both"></div>
+									<div ng-show="showPanelData" class="row" style="padding:10px" onclick="window.event.stopPropagation();">
+										<div class="col-md-10" style="background-color: #F9F9F9;padding: 10px">
+											<div class="row">
+												<div class="col-md-2"  style="width: 50px"></div>
+												<div class="col-md-2"  style="width: 150px"><b>Position Type</b></div>
+												<div class="col-md-2" style="width: 180px">
+													<select name="positionType" id="positionTypes" ng-model="panel.positionType" required ng-options="positionType.id as positionType.name for positionType in positionTypes"></select>
+												</div>
+											</div>
+											<div class="row">
+												<div class="col-md-2"  style="width: 50px"></div>
+												<div class="col-md-2" style="width: 150px"><b>Auto Expand</b></div>
+												<div class="col-md-2" style="width: 10px"><input type="checkbox" id="autoExpandCB" name="autoExpand" ng-model="panel.isAutoExpand"  style="width: 15px" required maxlength="15" />&nbsp;</div>
+												<div class="col-md-2" style="white-space: nowrap">Auto Expand, after</div>
+												<div class="col-md-2" style="width: 110px">
+													<input type="text" id="autoExpandTB" name="autoExpandTime" ng-model="panel.autoExpandTimeout"  style="width: 50px" required maxlength="150" />&nbsp;
+												</div>
+												<div class="col-md-2"style="width: 100px" >Seconds</div>
+
+											</div>
+											<div class="row">
+												<div class="col-md-2"  style="width: 50px"></div>
+												<div class="col-md-2" style="width: 150px"><b>Retractions</b></div>
+												<div class="col-md-2" style="width: 200px"><select name="retraction" id="retractions" ng-model="panel.retraction" style="width: 150px" required ng-options="retraction.id as retraction.name for retraction in retractions"></select>&nbsp;
+												</div>
+											</div>
+											<div class="row">
+												<div class="col-md-2"  style="width: 50px"></div>
+												<div class="col-md-2" style="width: 150px"><b>Transparency</b></div>
+												<div class="col-md-2" style="width: 10px"><input type="checkbox" id="transparencyCB" name="autoExpand" ng-model="panel.isTransparency"  style="width: 15px" required maxlength="15" />&nbsp;</div>
+												<div class="col-sm-2" style="width: 400px"> This Panels Background Is Transparent</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</tab>
+						<tab ng-show="ad.formatId == 2 || ad.formatId == 3">
+							<tab-heading>Additional Assets <span class="badge">{{ad.additionalAssets == null ? 0 : ad.additionalAssets.length}}</span></tab-heading>
+							<div  style="padding: 30px">
+								<button type="button" class="btn btn-default" ng-click="assignAdditionalAsset()">Add Asset</button>
+								<button type="button" class="btn btn-default" ng-click="removeAdditionalAsset()">Remove Assets</button>
+								<table class="table table-hover table-striped">
+									<thead>
+									<tr>
+										<th><input type="checkbox" ng-model="isChecked" ng-click="checkAll(ad.additionalAssets, isChecked)"></th>
+										<th><a ng-click="sortExpr = 'type'; reverse = !reverse">Asset Type</a></th>
+										<th><a ng-click="sortExpr = 'asset'; reverse = !reverse">Asset</a></th>
+										<th/>
+										<th><a ng-click="sortExpr = 'size'; reverse = !reverse">Size</a></th>
+									</tr>
+									</thead>
+									<tbody>
+									<tr ng-repeat="asset in ad.additionalAssets | orderBy:sortExpr:reverse">
+										<td style="width: 10px"><input type="checkbox" ng-model="asset.checked" /></td>
+										<td>{{getAsset(asset.assetId).type}}</td>
+										<td>{{getAsset(asset.assetId).fileName}}</td>
+										<td>
+											<a class="glyphicon glyphicon-eye-open" ng-click="openAssetPreview()"></a>&nbsp;
+										</td>
+										<td>{{ getAsset(asset.assetId).size/1024/1024|number:2 }} MB</td>
+									</tr>
+									</tbody>
+								</table>
+							</div>
+						</tab>
+						<tab>
+              <tab-heading>Scripts <span class="badge">{{scripts.length}}</span></tab-heading>
+              <div style="padding: 30px">
+                <button type="button" class="btn btn-default">ADD NEW</button>
+                <button type="button" class="btn btn-default">DELETE</button>
+                <table class="table table-hover table-striped">
+                  <thead>
+                  <tr>
+                    <th><a ng-click="sortExpr = 'name'; reverse = !reverse">Name</a></th>
+                    <th><a ng-click="sortExpr = 'eventType'; reverse = !reverse">Event Type</a></th>
+                    <th><a ng-click="sortExpr = 'description'; reverse = !reverse">Description</a></th>
+                    <th><a ng-click="sortExpr = 'inheritance'; reverse = !reverse">inheritance</a></th>
+                  </tr>
+                  </thead>
+                  <tbody>
+                  <tr ng-repeat="script in scripts | orderBy:sortExpr:reverse">
+                    <td>{{asset.name}}</td>
+                    <td>{{asset.eventType}}</td>
+                    <td>{{asset.description}}</td>
+                    <td>{{asset.inheritance}}</td>
+                  </tr>
+                  </tbody>
+                </table>
+              </div>
+            </tab>
+
+					</tabset>
+				</mm-toggle-container>
+			</div>
+
+<div style="clear: both">&nbsp;</div>
+<div>
+		<mm-toggle-container mm-caption="Clickthrough & Tracking">
+		<tabset>
+			<tab>
+				<tab-heading>Clickthrough URLs&nbsp;<span class="badge">{{ ad.clickThroughURLs == null ? 0 : ad.clickThroughURLs.length }}</span></tab-heading>
+
+				<div>&nbsp;</div>
+					<div>
+						<div class="row">
+							<div class="col-md-1" style="float: left;width: 2%"></div>
+
+							<div class="col-md-3" style="float: left;width: 14%"><b>Type</b></div>
+							<div class="col-md-4" style="float: left;width: 50%"><b>URL</b></div>
+							<div class="col-md-2" style="float: left;width: 32%"><b>Preview</b></div>
+						</div>
+						<div>&nbsp;</div>
+						<div class="row" ng-repeat="url in ad.clickThroughURLs | orderBy:sortExpr:reverse">
+							<div onclick="window.event.stopPropagation();">
+								<div class="col-md-1" style="float: left;width: 2%" ng-click="showCTUrlData = !showCTUrlData"><i ng-class="{'glyphicon glyphicon-chevron-right' : !showCTUrlData, 'glyphicon glyphicon-chevron-down' : showCTUrlData}"></i></div>
+								<div class="col-md-3" style="float: left;width: 14%">
+									<span href="#" editable-select="url.clickthroughType" e-ng-options="type.id as type.name for type in urlTypes">
+										{{ getClickthroughUrlType(url.clickthroughType).name }}
+									</span>
+								</div>
+								<div class="col-md-4" style="float: left;width: 50%">
+									<span editable-text="url.url" e-required e-maxlength="25" e-size="30" e-placeholder="Enter URL">
+										{{ url.url || "Enter URL" }}
+									</span>
+									<span style ="padding-left: 10px" ng-show="url.url == '' && saveActionClicked">URL is required.</span>
+								</div>
+
+								<div class="col-md-2" style="float: left;width: 32%"><a href="{{ url.url | parseUrl }}" target="_blank">Preview</a></div>
+							</div>
+							<div style="clear: both"></div>
+							<div ng-show="showCTUrlData" class="row" style="padding:10px" onclick="window.event.stopPropagation();">
+								<div class="col-md-10" style="background-color: #F9F9F9;padding: 10px">
+									<div class="row">
+										<div class="col-md-2">Target Window</div>
+										<div class="col-md-2">
+											<select ng-model="url.targetWindowType" ng-options="type.id as type.name for type in targetWindowTypes"></select>
+										</div>
+									</div>
+									<div class="row">
+										<div class="col-md-2">New Window Options</div>
+										<div class="col-md-2">
+											<input type="checkbox" ng-model="url.isShowAddressBar"/>&nbsp;Show Address Bar<br />
+											<input type="checkbox" ng-model="url.isShowMenuBar"/>&nbsp;Show Menu Bar<br />
+											<input type="checkbox" ng-model="url.isCloseAllAdParts"/>&nbsp;Close All Ad Parts
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+
+			</tab>
+		</tabset>
+		</mm-toggle-container>
+</div>
+
+<div style="clear: both">&nbsp;</div>
+<div>
+		<mm-toggle-container mm-caption="Settings">
+		<tabset>
+			<tab heading="General">
+				<div style="padding: 30px">
+				<table>
+					<tr ng-show="ad.formatId < 3">
+						<td style="white-space: nowrap ; "><label>Alt. Text</label></td>
+						<td>
+              <span editable-text="ad.alternateText" e-maxlength="25" e-size="30" e-placeholder="Type Alt. Text" ng-class="{'editable-dirty': isDirty('alternateText')}">
+                {{ ad.alternateText || "Type Alt. Text" }}
+              </span>
+						</td>
+					</tr>
+					<!-- Donwload cuurntly not needed
+					 <tr ng-show="ad.formatId > 1">
+						<td style="white-space: nowrap"><label for="downloadMode">Download Mode</label></td>
+						<td>
+              <span href="#"  editable-select="ad.downloadMode" e-multiple e-ng-options="downloadMode.id as downloadMode.name for downloadMode in downloadModes"  ng-class="{'editable-dirty': isDirty('downloadMode')}">
+								<span ng-if="!ad.downloadMode"> "Select Method"</span>
+								<span ng-if="ad.downloadMode.length>0" ng-repeat="k in ad.downloadMode"> {{downloadModes[k -1 ].name}}, </span>
+              </span>
+						</td>
+					</tr> -->
+					<tr ng-show="ad.formatId == 2">
+						<td style="white-space: nowrap"><label for="hide">Hide</label></td>
+						<td>
+              <span href="#"  editable-select="ad.hide" e-multiple e-ng-options="hide.id as hide.name for hide in hides"  ng-class="{'editable-dirty': isDirty('hide')}">
+								<span ng-if="!ad.hide"> "Select Hide Elements"</span>
+								<span ng-if="ad.hide.length>0" ng-repeat="k in ad.hide"> {{hides[k -1 ].name}}, </span>
+              </span>
+						</td>
+					</tr>
+					<tr ng-show="ad.formatId > 1" >
+						<td style="white-space: nowrap"><label for="videoStartMethod">Video Start Method</label></td>
+						<td style="white-space: nowrap"><label for="videoStartOn">Video starts on</label></td>
+						<td>
+							<input type="radio" class="myradio" name="amount" value="0" />User Start
+							<input type="radio" class="myradio" name="amount" value="1" />Auto Start
+						</td>
+					</tr>
+
+				</table>
+				</div>
+			</tab>
+			<tab heading="Tagging">
+				<div style="padding: 30px">
+					Tagging
+				</div>
+			</tab>
+			<tab heading="Classifications">
+				<div style="padding: 30px">
+					Classifications
+				</div>
+			</tab>
+		</tabset>
+		</mm-toggle-container>
+		</div>
+
+</div>
+
+</div>
+</div>
+

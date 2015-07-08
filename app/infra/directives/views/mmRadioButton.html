@@ -1,0 +1,14 @@
+<mm-control>
+  <div ng-repeat="(key, option)  in mmModel">
+    <div  ng-model="$parent.mmSelected" ng-value="option.Id" ng-required="isRequired" ng-disabled="option.isDisabled ? option.isDisabled : isDisabled" ng-click="onClick(option.Id, option.isDisabled)"
+          class="mm_radioButton" ng-class="{'disableRB': option.isDisabled ? option.isDisabled : isDisabled, 'isMouseHoverRB': mmModel[key].mouseIsOverRB}">
+      <div span ng-class="{'selectedRB': option.Id == mmSelected && !option.isDisabled, 'disableSelectedRB': option.Id == mmSelected && (option.isDisabled ? option.isDisabled : isDisabled)}"></div>
+    </div>
+    <div ng-mouseover="onMouseOver(key, option.isDisabled)"
+          ng-mouseleave="onMouseOut(key, option.isDisabled)"
+          ng-class="{'disableRadioButtonLabel': option.isDisabled ? option.isDisabled : isDisabled}"
+          class="radioButtonLabel"
+          ng-click="onClick(option.Id, option.isDisabled)"
+          width="{{labelWidth}}">{{option.name}}</div>
+  </div>
+</mm-control>

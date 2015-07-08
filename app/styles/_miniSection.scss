@@ -1,0 +1,75 @@
+.mainMiniSection {
+
+  margin: 12px 15px 12px 12px;
+  @mixin headerIcon{
+    display: inline-block;
+    width: 13px;
+    height: 6px;
+    position: relative;
+    bottom: 1px;
+    background-repeat: no-repeat;
+  }
+
+  .wrapHeaderIcon {
+    background-color: $cWhite;
+    position: relative;
+    top: 9px;
+    padding-right: 6px;
+    padding-bottom: 3px;
+    z-index: 10;
+    .closeIcon {
+      @include headerIcon;
+      background-image: image-url('si_expand.png');
+    }
+
+    .openIcon {
+      @include headerIcon;
+      background-image: image-url('si_collapse.png');
+    }
+
+    .headerText {
+      display: inline-block;
+      font-family: "Titillium Semibold";
+      font-size: 12px;
+      color: $cSecondary;
+      text-transform: uppercase;
+    }
+
+    &:hover {
+      cursor: pointer;
+    }
+
+    &:hover .closeIcon {
+      background-image: image-url('si_expand_main.png');
+    }
+
+    &:hover .openIcon {
+      background-image: image-url('si_collapse_main.png');
+    }
+
+    &:hover .headerText {
+      color: $cMain;
+    }
+  }
+
+  .border {
+    border: 1px solid $cFourth;
+    min-height: 30px;
+    margin: 0;
+    padding: 14px;
+    transition: width 2s;
+
+  }
+
+  .mainContent{
+    padding-top: 10px;
+  }
+
+  .closeMode{
+    display: none;
+  }
+}
+.mainMiniSectionDisabled {
+  @extend .mainMiniSection;
+  pointer-events: none;
+}

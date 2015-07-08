@@ -1,0 +1,33 @@
+<table class="attachAdsTable" border="1">
+	<tr>
+		<th class="header" ng-repeat="column in gridColumns">
+			<span ng-if="!column.subGroup" ng-bind="column.name | T"></span>
+			<span ng-if="column.subGroup">
+				<table>
+					<tr>
+						<th class="sgHeaders" ng-bind="column.name | T"></th>
+						<th class="sgHeaders" ng-bind="'Sub Group Rotation' | T"></th>
+						<th class="sgHeaders" ng-bind="'Start Date' | T"></th>
+						<th class="sgHeaders" ng-bind="'End Date' | T"></th>
+						<th class="sgHeaders" ng-bind="'Master Ad ID' | T"></th>
+						<th class="sgHeaders" ng-bind="'Master Ad Name' | T"></th>
+						<th class="sgHeaders" ng-bind="'Rotation Value' | T"></th>
+					</tr>
+				</table>
+			</span>
+		</th>
+	</tr>
+	<tr ng-repeat="dg in deliveryGroups">
+		<td class="cellEllipsis" ng-bind="dg.name"></td>
+		<td class="cellEllipsis" ng-bind="dg.id"></td>
+		<td class="cellEllipsis" ng-bind="(dg.width && dg.height)?dg.width +'X' + dg.height:'&nbsp;-'"></td>
+		<td class="cellEllipsis" ng-bind="selected.placementType"></td>
+		<td class="" ng-if="isScheduledSwap()">
+			<div ng-bind="'Time Based' | T"></div>
+			<del ng-bind="dg.oldUIRotationType | T"></del>
+		</td>
+		<td style="padding: 0">
+			<span ng-include="'campaignManagementApp/views/deliveryGroup/smartAttachDgsToAds/attachAd/templates/sgs.html'"></span>
+		</td>
+	</tr>
+</table>

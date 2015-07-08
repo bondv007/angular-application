@@ -1,0 +1,16 @@
+<mm-row>
+  <mm-check-box mm-model="ad.panelsSettings.preloadPanels"
+                mm-caption="Pre-load Panels"
+                mm-description="Load panels when ad is loaded"
+                mm-label-width="{{labelWidth2}}"
+                mm-edit-multiple="isMultiple != undefined && isMultiple.indexOf('preloadPanels') != -1"
+                mm-disable="controlStatus.panelsNotfound"></mm-check-box>
+</mm-row>
+<mm-row>
+  <mm-check-box mm-model="ad.panelsSettings.multiplePanels"
+                mm-caption="Multiple Panels"
+                mm-description="Show Single Panel at a Time"
+                mm-label-width="{{labelWidth2}}"
+                mm-edit-multiple="isMultiple != undefined && isMultiple.indexOf('multiplePanels') != -1"
+                mm-disable="controlStatus.panelsNotfound"></mm-check-box>
+</mm-row>

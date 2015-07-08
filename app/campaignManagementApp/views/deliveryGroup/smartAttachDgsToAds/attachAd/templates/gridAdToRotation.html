@@ -1,0 +1,26 @@
+<table class="attachAdsTable" border="1px">
+	<tr>
+		<th class="header" ng-repeat="column in gridColumns" ng-bind="column.name | T"></th>
+	</tr>
+	<tr ng-repeat="dg in deliveryGroups">
+		<td class="cellEllipsis" ng-bind="dg.name"></td>
+		<td class="cellEllipsis" ng-bind="dg.id"></td>
+		<td class="cellEllipsis" ng-bind="(dg.width && dg.height)?dg.width +'X' + dg.height:''"></td>
+		<td class="cellEllipsis" ng-bind="selected.placementType"></td>
+		<td class="rotationColumn">
+			<mm-drop-down
+					mm-layout-type="custom"
+					mm-custom-control-width="140"
+					mm-show-label="false"
+					mm-select-change-func="onGridRotationChange(dg)"
+					mm-data-model="rotations"
+					mm-option-id="type"
+					mm-model="dg.rootContainer.childRotationType"></mm-drop-down>
+		</td>
+		<td><div class="itemGap cellEllipsis cell" ng-class="{highlightAd:ad.isNew}" ng-repeat="ad in dg.rootContainer.subContainers" ng-bind-html="ad.type == 'AdContainer'?ad.name:'&nbsp;'"></div></td>
+		<td><div class="itemGap cell" ng-repeat="ad in dg.rootContainer.subContainers" ng-class="{highlightAd:ad.isNew}" ng-bind-html="ad.type != 'AdContainer'?ad.masterAdId:'&nbsp;'"></div></td>
+		<td><div class="itemGap cellEllipsis cell" ng-repeat="ad in dg.rootContainer.subContainers" ng-class="{highlightAd:ad.isNew}" ng-bind-html="ad.type != 'AdContainer'?mapIdToNameAds[ad.masterAdId]:'&nbsp;'"></div></td>
+		<td><div class="itemGap cell" ng-repeat="ad in dg.rootContainer.subContainers" ng-class="{highlightAd:ad.isNew}" ng-bind="ad.type == 'AdContainer' ? mapRotationType[ad.childRotationType]:'&nbsp;'"></div></td>
+		<td ng-include="'campaignManagementApp/views/deliveryGroup/smartAttachDgsToAds/attachAd/gridRotationColumn.html'"></td>
+	</tr>
+</table>

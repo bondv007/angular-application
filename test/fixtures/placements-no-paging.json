@@ -1,0 +1,527 @@
+{
+  "metadata": {
+    "total": 4,
+    "types": null
+  },
+  "debug": null,
+  "error": null,
+  "result": [
+    {
+      "type": "InBannerPlacement",
+      "id": "HRA8OE",
+      "clientRefId": null,
+      "relationsBag": {
+        "parents": {
+          "account": {
+            "id": "HRA0ZI",
+            "name": "QAAutoAccount5beb1036-7434-4019-b358-e915ecf84d85"
+          },
+          "advertiser": null,
+          "brand": null,
+          "campaign": {
+            "id": "HRA0R3",
+            "name": "QAAutoCampaignb6058145-9d11-4f40-b555-722022cef53f"
+          }
+        },
+        "children": {
+          "advertisers": {
+            "count": 0
+          },
+          "brands": {
+            "count": 0
+          },
+          "campaigns": {
+            "count": 0
+          },
+          "users": {
+            "count": 0
+          }
+        },
+        "creativeAccountContact": false
+      },
+      "uiPermissions": [
+        {
+          "id": "ZIK0ZI",
+          "name": "(2) Grant ClientServices Zone."
+        },
+        {
+          "id": "ZIK0ZG",
+          "name": "(4) Grant RND Zone."
+        },
+        {
+          "id": "ZIK0ZJ",
+          "name": "(1) Grant AccountAdministrator Zone."
+        },
+        {
+          "id": "ZIK0ZH",
+          "name": "(3) Grant Billing Zone."
+        },
+        {
+          "id": "ZIK0ZF",
+          "name": "(5) Grant SystemAdministrator Zone."
+        }
+      ],
+      "version": null,
+      "createdBy": "HRA0RS",
+      "createdByName": null,
+      "createdOn": 1424189823263,
+      "lastUpdatedBy": "HRA0RS",
+      "lastUpdatedByName": null,
+      "lastUpdateOn": 1424189823263,
+      "status": "New",
+      "name": "placement2",
+      "campaignId": "HRA0R3",
+      "campaignName": null,
+      "siteId": "HRA0IL",
+      "sectionId": "HRA0IL",
+      "placementType": "IN_BANNER",
+      "packageId": "HRA8K1",
+      "servingAndCostData": null,
+      "adsToAttach": null,
+      "selectedContacts": null,
+      "tagBuilderParams": {
+        "type": "TagBuilderParams",
+        "id": null,
+        "clientRefId": null,
+        "relationsBag": null,
+        "uiPermissions": null,
+        "version": null,
+        "placementId": null,
+        "builderTagTypes": null,
+        "siteServing": {
+          "secureServingProtocol": "HTTP",
+          "lineIdToken": null,
+          "customToken": null,
+          "serverDomainName": "192.168.4.169",
+          "cacheBustingToken": null,
+          "publisherCustomParam": null,
+          "minZIndex": null,
+          "impTracking": null,
+          "clickTracking": null,
+          "escapeNoScript": false,
+          "generateMultipleTags": false,
+          "generateIMGTag": false,
+          "firstPartyAdIdToken": null
+        }
+      },
+      "servingEnabled": false,
+      "analyticsData": null,
+      "adEnableBaseUrl": "",
+      "testImpressions": 1000,
+      "targetingValue": "",
+      "disableCookies": false,
+      "startTimeOfDay": 0,
+      "endTimeOfDay": 0,
+      "controlOverDelivery": false,
+      "collectWebPage": false,
+      "impressionForWholePlacement": -1,
+      "flightTargetingInfo": "",
+      "mobileApplicationAdEnabler": "None",
+      "supportMobileApplications": false,
+      "pluId": 0,
+      "bannerSize": {
+        "type": "APIBannerSize",
+        "id": null,
+        "clientRefId": null,
+        "relationsBag": null,
+        "uiPermissions": null,
+        "version": null,
+        "width": 300,
+        "height": 250
+      },
+      "placementMV": false,
+      "hardStop": false,
+      "asyncMode": false,
+      "bandwidth": false,
+      "adBlocking": false,
+      "supportMobileApplication": false
+    },
+    {
+      "type": "InBannerPlacement",
+      "id": "HRA8OD",
+      "clientRefId": null,
+      "relationsBag": {
+        "parents": {
+          "account": {
+            "id": "HRA0ZI",
+            "name": "QAAutoAccount5beb1036-7434-4019-b358-e915ecf84d85"
+          },
+          "advertiser": null,
+          "brand": null,
+          "campaign": {
+            "id": "HRA0R3",
+            "name": "QAAutoCampaignb6058145-9d11-4f40-b555-722022cef53f"
+          }
+        },
+        "children": {
+          "advertisers": {
+            "count": 0
+          },
+          "brands": {
+            "count": 0
+          },
+          "campaigns": {
+            "count": 0
+          },
+          "users": {
+            "count": 0
+          }
+        },
+        "creativeAccountContact": false
+      },
+      "uiPermissions": [
+        {
+          "id": "ZIK0ZI",
+          "name": "(2) Grant ClientServices Zone."
+        },
+        {
+          "id": "ZIK0ZG",
+          "name": "(4) Grant RND Zone."
+        },
+        {
+          "id": "ZIK0ZJ",
+          "name": "(1) Grant AccountAdministrator Zone."
+        },
+        {
+          "id": "ZIK0ZH",
+          "name": "(3) Grant Billing Zone."
+        },
+        {
+          "id": "ZIK0ZF",
+          "name": "(5) Grant SystemAdministrator Zone."
+        }
+      ],
+      "version": null,
+      "createdBy": "HRA0RS",
+      "createdByName": null,
+      "createdOn": 1424189734358,
+      "lastUpdatedBy": "HRA0RS",
+      "lastUpdatedByName": null,
+      "lastUpdateOn": 1424189734358,
+      "status": "New",
+      "name": "placement",
+      "campaignId": "HRA0R3",
+      "campaignName": null,
+      "siteId": "HRA0IO",
+      "sectionId": "HRA0IO",
+      "placementType": "IN_BANNER",
+      "packageId": "HRA8K0",
+      "servingAndCostData": null,
+      "adsToAttach": null,
+      "selectedContacts": null,
+      "tagBuilderParams": {
+        "type": "TagBuilderParams",
+        "id": null,
+        "clientRefId": null,
+        "relationsBag": null,
+        "uiPermissions": null,
+        "version": null,
+        "placementId": null,
+        "builderTagTypes": null,
+        "siteServing": {
+          "secureServingProtocol": "HTTP",
+          "lineIdToken": null,
+          "customToken": null,
+          "serverDomainName": "192.168.4.169",
+          "cacheBustingToken": null,
+          "publisherCustomParam": null,
+          "minZIndex": null,
+          "impTracking": null,
+          "clickTracking": null,
+          "escapeNoScript": false,
+          "generateMultipleTags": false,
+          "generateIMGTag": false,
+          "firstPartyAdIdToken": null
+        }
+      },
+      "servingEnabled": false,
+      "analyticsData": null,
+      "adEnableBaseUrl": "",
+      "testImpressions": 1000,
+      "targetingValue": "",
+      "disableCookies": false,
+      "startTimeOfDay": 0,
+      "endTimeOfDay": 0,
+      "controlOverDelivery": false,
+      "collectWebPage": false,
+      "impressionForWholePlacement": -1,
+      "flightTargetingInfo": "",
+      "mobileApplicationAdEnabler": "None",
+      "supportMobileApplications": false,
+      "pluId": 0,
+      "bannerSize": {
+        "type": "APIBannerSize",
+        "id": null,
+        "clientRefId": null,
+        "relationsBag": null,
+        "uiPermissions": null,
+        "version": null,
+        "width": 300,
+        "height": 250
+      },
+      "placementMV": false,
+      "hardStop": false,
+      "asyncMode": false,
+      "bandwidth": false,
+      "adBlocking": false,
+      "supportMobileApplication": false
+    },
+    {
+      "type": "InBannerPlacement",
+      "id": "HRA8OC",
+      "clientRefId": null,
+      "relationsBag": {
+        "parents": {
+          "account": null,
+          "advertiser": null,
+          "brand": null,
+          "campaign": {
+            "id": "HRA0R3",
+            "name": "QAAutoCampaignb6058145-9d11-4f40-b555-722022cef53f"
+          }
+        },
+        "children": {
+          "advertisers": {
+            "count": 0
+          },
+          "brands": {
+            "count": 0
+          },
+          "campaigns": {
+            "count": 0
+          },
+          "users": {
+            "count": 0
+          }
+        },
+        "creativeAccountContact": false
+      },
+      "uiPermissions": [
+        {
+          "id": "ZIK0ZI",
+          "name": "(2) Grant ClientServices Zone."
+        },
+        {
+          "id": "ZIK0ZG",
+          "name": "(4) Grant RND Zone."
+        },
+        {
+          "id": "ZIK0ZJ",
+          "name": "(1) Grant AccountAdministrator Zone."
+        },
+        {
+          "id": "ZIK0ZH",
+          "name": "(3) Grant Billing Zone."
+        },
+        {
+          "id": "ZIK0ZF",
+          "name": "(5) Grant SystemAdministrator Zone."
+        }
+      ],
+      "version": null,
+      "createdBy": "ZACHI2",
+      "createdByName": null,
+      "createdOn": 1424188261448,
+      "lastUpdatedBy": "ZACHI2",
+      "lastUpdatedByName": null,
+      "lastUpdateOn": 1424188584034,
+      "status": "New",
+      "name": "newPlacement",
+      "campaignId": "HRA0R3",
+      "campaignName": null,
+      "siteId": "HRA0IO",
+      "sectionId": "HRA0IO",
+      "placementType": "IN_BANNER",
+      "packageId": "HRA8JZ",
+      "servingAndCostData": null,
+      "adsToAttach": null,
+      "selectedContacts": null,
+      "tagBuilderParams": {
+        "type": "TagBuilderParams",
+        "id": null,
+        "clientRefId": null,
+        "relationsBag": null,
+        "uiPermissions": null,
+        "version": null,
+        "placementId": null,
+        "builderTagTypes": null,
+        "siteServing": {
+          "secureServingProtocol": "HTTP",
+          "lineIdToken": null,
+          "customToken": null,
+          "serverDomainName": "192.168.4.169",
+          "cacheBustingToken": null,
+          "publisherCustomParam": null,
+          "minZIndex": null,
+          "impTracking": null,
+          "clickTracking": null,
+          "escapeNoScript": false,
+          "generateMultipleTags": false,
+          "generateIMGTag": false,
+          "firstPartyAdIdToken": null
+        }
+      },
+      "servingEnabled": true,
+      "analyticsData": null,
+      "adEnableBaseUrl": "",
+      "testImpressions": 1000,
+      "targetingValue": "",
+      "disableCookies": false,
+      "startTimeOfDay": 0,
+      "endTimeOfDay": 0,
+      "controlOverDelivery": false,
+      "collectWebPage": false,
+      "impressionForWholePlacement": -1,
+      "flightTargetingInfo": "",
+      "mobileApplicationAdEnabler": "None",
+      "supportMobileApplications": false,
+      "pluId": 0,
+      "bannerSize": {
+        "type": "APIBannerSize",
+        "id": null,
+        "clientRefId": null,
+        "relationsBag": null,
+        "uiPermissions": null,
+        "version": null,
+        "width": 300,
+        "height": 250
+      },
+      "placementMV": false,
+      "hardStop": false,
+      "asyncMode": false,
+      "bandwidth": false,
+      "adBlocking": false,
+      "supportMobileApplication": false
+    },
+    {
+      "type": "InBannerPlacement",
+      "id": "HRA8OB",
+      "clientRefId": null,
+      "relationsBag": {
+        "parents": {
+          "account": {
+            "id": "HRA0ZI",
+            "name": "QAAutoAccount5beb1036-7434-4019-b358-e915ecf84d85"
+          },
+          "advertiser": null,
+          "brand": null,
+          "campaign": {
+            "id": "HRA0R3",
+            "name": "QAAutoCampaignb6058145-9d11-4f40-b555-722022cef53f"
+          }
+        },
+        "children": {
+          "advertisers": {
+            "count": 0
+          },
+          "brands": {
+            "count": 0
+          },
+          "campaigns": {
+            "count": 0
+          },
+          "users": {
+            "count": 0
+          }
+        },
+        "creativeAccountContact": false
+      },
+      "uiPermissions": [
+        {
+          "id": "ZIK0ZI",
+          "name": "(2) Grant ClientServices Zone."
+        },
+        {
+          "id": "ZIK0ZG",
+          "name": "(4) Grant RND Zone."
+        },
+        {
+          "id": "ZIK0ZJ",
+          "name": "(1) Grant AccountAdministrator Zone."
+        },
+        {
+          "id": "ZIK0ZH",
+          "name": "(3) Grant Billing Zone."
+        },
+        {
+          "id": "ZIK0ZF",
+          "name": "(5) Grant SystemAdministrator Zone."
+        }
+      ],
+      "version": null,
+      "createdBy": "ZACHI2",
+      "createdByName": null,
+      "createdOn": 1424187168779,
+      "lastUpdatedBy": "ZACHI2",
+      "lastUpdatedByName": null,
+      "lastUpdateOn": 1424187168779,
+      "status": "Published",
+      "name": "QA- automation",
+      "campaignId": "HRA0R3",
+      "campaignName": null,
+      "siteId": "HRA0S9",
+      "sectionId": "HRA0QD",
+      "placementType": "IN_BANNER",
+      "packageId": "HRA8JY",
+      "servingAndCostData": null,
+      "adsToAttach": null,
+      "selectedContacts": null,
+      "tagBuilderParams": {
+        "type": "TagBuilderParams",
+        "id": null,
+        "clientRefId": null,
+        "relationsBag": null,
+        "uiPermissions": null,
+        "version": null,
+        "placementId": null,
+        "builderTagTypes": null,
+        "siteServing": {
+          "secureServingProtocol": "HTTP",
+          "lineIdToken": null,
+          "customToken": null,
+          "serverDomainName": "192.168.4.169",
+          "cacheBustingToken": null,
+          "publisherCustomParam": null,
+          "minZIndex": null,
+          "impTracking": null,
+          "clickTracking": null,
+          "escapeNoScript": false,
+          "generateMultipleTags": false,
+          "generateIMGTag": false,
+          "firstPartyAdIdToken": null
+        }
+      },
+      "servingEnabled": true,
+      "analyticsData": null,
+      "adEnableBaseUrl": "",
+      "testImpressions": 1000,
+      "targetingValue": "",
+      "disableCookies": false,
+      "startTimeOfDay": 0,
+      "endTimeOfDay": 0,
+      "controlOverDelivery": false,
+      "collectWebPage": false,
+      "impressionForWholePlacement": -1,
+      "flightTargetingInfo": "",
+      "mobileApplicationAdEnabler": "None",
+      "supportMobileApplications": false,
+      "pluId": 0,
+      "bannerSize": {
+        "type": "APIBannerSize",
+        "id": null,
+        "clientRefId": null,
+        "relationsBag": null,
+        "uiPermissions": null,
+        "version": null,
+        "width": 300,
+        "height": 250
+      },
+      "placementMV": false,
+      "hardStop": false,
+      "asyncMode": false,
+      "bandwidth": false,
+      "adBlocking": false,
+      "supportMobileApplication": false
+    }
+  ]
+}

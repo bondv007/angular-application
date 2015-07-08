@@ -1,0 +1,14 @@
+<mm-toggle-container mm-caption="Ads" start-open="adsArea.open">
+	<div id="adsAreaFrame" class="mainFrame">
+	<div class="subMainFrame">
+		<!--Buttons-->
+		<div ng-include="'campaignManagementApp/views/deliveryGroup/dgAdAreaButtons.html'"></div>
+		<!--Active Ads-->
+		<div data-ng-include="'campaignManagementApp/views/deliveryGroup/dgActiveAds.html'"></div>
+		<!--Default Ads-->
+		<div ng-if="!mainEntityEdit.servingSetting.serveDefaultImage" data-ng-include="'campaignManagementApp/views/deliveryGroup/dgDefaultAds.html'"></div>
+		<!--Draft Ads-->
+		<div data-ng-include="'campaignManagementApp/views/deliveryGroup/dgDraftAds.html'"></div>
+	</div>
+</div>
+</mm-toggle-container>

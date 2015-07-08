@@ -1,0 +1,11 @@
+<div ng-model='draftAds' data-drop="{{true}}" jqyoui-droppable="{onDrop:'dropAdToDraft()'}">
+	<div class="strikeWithText">
+		<span> <input ng-click="onSelectDraftArea()" ng-model="draftAreaCB.isSelected" type="checkbox"/> {{'Draft Area' | T}}</span>
+	</div>
+	<div>
+		<div class="dropArea">
+			<h5 class="dragAdsText" ng-bind-html="'Use this area while you work on the delivery group set up. <br/> Ads in this area will not be served.' | T"></h5>
+		</div>
+		<div ng-repeat="container in draftAds | reverse" ng-include="'campaignManagementApp/views/deliveryGroup/dgAdSubGroupDecision.html'"></div>
+	</div>
+</div>

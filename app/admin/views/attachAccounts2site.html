@@ -1,0 +1,37 @@
+<div class="mmStretchedWithScroll">
+  <tabset justified="false">
+    <tab select="toggleAccount(false)" heading="{{'Existing Sites' | T}}">
+      <mm-searchable-list mm-data-model="accounts" mm-model="selectedAccounts.ids"></mm-searchable-list>
+    </tab>
+    <tab select="toggleAccount(true)" heading="{{'New Account' | T}}">
+      <mm-row>
+        <div class="mm-entity-fields-container-single" style="margin-top: 5px">
+          <mm-row>
+            <mm-text mm-model="newAccount.name"
+                     mm-placeholder="Enter Name"
+                     mm-error="validation.name"
+                     mm-caption="{{'Name' | T}}:"
+                     mm-is-required="true"
+                     mm-is-edit-mode="isEditMode"
+                     mm-change="onNameChanged()"
+                     mm-show-edit-mode="createNewAccount"
+                     mm-label-width="{{labelWidth}}"
+                     mm-layout-type="medium">
+            </mm-text>
+          </mm-row>
+          <mm-row>
+            <mm-drop-down mm-error="error.name"
+                            mm-caption="Status"
+                            mm-data-model="accountStatuses"
+                            mm-model="newAccount.status"
+                            mm-error="validation.status"
+                            mm-is-edit-mode="isEditMode"
+                            mm-label-width="{{labelWidth}}"
+                            mm-layout-type="medium">></mm-drop-down>
+          </mm-row>
+        </div>
+        <mm-external-id></mm-external-id>
+      </mm-row>
+    </tab>
+  </tabset>
+</div>

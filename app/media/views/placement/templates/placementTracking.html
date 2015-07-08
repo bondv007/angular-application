@@ -1,0 +1,27 @@
+<mm-row>
+  <div ng-if="placementEdit.placementType=='TRACKING_ONLY'" class="mm-entity-fields-container-single">
+    <mm-toggle-container mm-id="trackingAndMapping" mm-caption="Tracking Ads" start-open="trackingAdsToggleOpen">
+      <mm-row>
+        <mm-grid cols="placementTrackingSetting.columns"
+                 is-cell-edit="true"
+                 is-single-select="false"
+                 is-sort="true"
+                 show-footer="false"
+                 is-groupable="false"
+                 show-selection-checkbox="true"
+                 show-filter="false"
+                 enable-column-resize="true"
+                 is-column-reorder="false"
+                 is-column-freeze="false"
+                 is-show-menu="false"
+                 grid-height="200"
+                 is-central-grid="false"
+                 is-grid-loading="false"
+                 grid-button-actions="placementTrackingSetting.actions"
+                 generic-validation-handler="trackingAdsValidationHandler"
+                 selected-row-handler="onTrackingAdRowSelected">
+        </mm-grid>
+      </mm-row>
+    </mm-toggle-container>
+  </div>
+</mm-row>

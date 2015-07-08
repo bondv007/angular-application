@@ -1,0 +1,14 @@
+<div class="centralHeader">
+    <div class="centralHeaderTitle" ng-show="!groupedColumn">{{ ::dataObj.name + 's' }}</div>
+    <div class="centralHeaderMenuIcons">
+    	<span ng-show="!groupedColumn" ng-include="'infra/central/views/centralDropDownOptions.html'"></span>
+    </div>
+    <div style="display:table-cell;">
+    <span class="searchContainer inner-addon" ng-init="focusSearchBox = centralIndex == 0">
+	    <input id="searchTextBox{{dataObj.type + centralIndex}}" mm-focus="focusSearchBox" type="text" class="form-control" ng-model="dataObj.filterByText" ng-change="changeStringFilter(centralIndex)" placeholder="{{'Search...' | T}}" style="height: 28px;"/>
+    </span>
+    </div>
+    <div ng-if="centralDataObject.length>1&&!groupedColumn" style="display:table-cell;">
+        <a ng-click="addRemoveCentralColumn(centralIndex, false)"><i class="arrowLeftIcon"></i></a>
+    </div>
+</div>

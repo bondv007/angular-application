@@ -1,0 +1,15 @@
+<div ng-show="dataObj.centralList.length>0&&(!dataObj.filteredList||dataObj.filteredList.length==0)" class="centralGridColumnPlaceHolder">
+	<div class="emptyStateText emptyStatePlaceHolder">
+		<span>NO {{::dataObj.name|uppercase}}S FOUND FOR </span>
+		<span ng-if="dataObj.parentSelectedItem.name">{{dataObj.parentSelectedItem.name}} </span>
+		<span ng-if="dataObj.parentSelectedItem.name&&dataObj.filterByText">AND </span>
+		<span ng-if="dataObj.filterByText">'{{dataObj.filterByText}}'</span>
+	</div>
+</div>
+<div ng-show="!dataObj.centralList||dataObj.centralList.length==0" class="centralColumnResizePosition">
+	<div class="emptyStatePlaceHolder">
+		<span class="emptyStateText">NO {{::dataObj.name|uppercase}}S YET</span>
+		<span class="emptyStateText" ng-if="!dataObj.hideAddButton" > | </span>
+		<a ng-if="!dataObj.hideAddButton" class="emptyStateLink" ng-click="displayData.dataObj=dataObj;(displayData.dataObj.allowNewInEntral) ? addNewEntity() : addNewEntityFullPage();">CREATE NEW {{::dataObj.name|uppercase}}</a>
+	</div>
+</div>

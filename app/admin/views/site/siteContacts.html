@@ -1,0 +1,37 @@
+<mm-toggle-container mm-caption="Contacts" start-open="togglesStatus.contacts">
+	<mm-row>
+	<mm-grid
+			show-selection-checkbox="true"
+			items="editObject.siteContacts.siteContacts"
+			selected-items="contacts.selectedItems"
+			grid-height="250"
+			cols="contacts.columns"
+			is-cell-edit="true"
+			show-footer="true"
+			is-sort="true"
+			is-single-select="false"
+			is-groupable="false"
+			show-filter="false"
+			enable-column-resize="true"
+			is-column-reorder="true"
+			is-column-freeze="true"
+			is-show-menu="false"
+			is-central-grid="false"
+			is-grid-toolbar="false"
+			after-selection-change="afterSelectionChanged"
+			grid-button-actions="contacts.gridButtonActions"
+			generic-validation-handler="contacts.errorHandler"
+			selected-row-handler="selectNewRowHandler">
+	</mm-grid>
+	</mm-row>
+	<mm-row>
+		<mm-drop-down mm-caption="Email Notifications Time Zone"
+									mm-model="editObject.defaultTimeZone"
+									mm-data-model="GMTOffset"
+									mm-is-required="{{!isRequired}}"
+									mm-label-width="{{labelWidth}}"
+									mm-layout-type="custom"
+									mm-custom-control-width="{{labelWidth}}"
+									mm-tab-index="2"></mm-drop-down>
+	</mm-row>
+</mm-toggle-container>

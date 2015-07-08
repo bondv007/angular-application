@@ -1,0 +1,335 @@
+@media screen and (min-width: 768px){
+  .topMenuNavBar {
+  z-index: 1000;
+  position: absolute;
+  top: 0;
+  height: $header-height;
+  right: 0;
+  left: 0;
+  overflow: visible;
+
+  /*Logo*/
+  .navbar {
+    border: 0;
+    .navbar-header {
+      .navbar-brand {
+        background: image-url('Logo.png') no-repeat 94px 16px;
+        width: 208px;
+        height: $header-height;
+        position: relative;
+        right: 74px;
+        bottom: 8px;
+      }
+    }
+  }
+
+  /*Main nav button*/
+  .mainNavBarButtons {
+    position: relative;
+    right: 78px;
+    height: $header-height;
+    li {
+      a {
+        span {
+          position: relative;
+        }
+        @include tMenuTitlesButtons;
+        &:hover {
+          background-color: $cWhiteNavHover;
+        }
+        &:active {
+          background-color: rgba(255, 255, 255, 0.2);
+        }
+      }
+    }
+  }
+
+  .rightNavBarContainer {
+    height: $header-height;
+    width: 133px;
+    margin-right: 5px;
+
+    /*Nav Bar Search*/
+    .mainNavBarSearch {
+      position: relative;
+      top: 5px;
+      right: 285px;
+      .form-control {
+        border-radius: 0;
+        height: 24px;
+        background-color: $cSecondary;
+        border: 1px solid $cFourth;
+        color: rgba(255, 255, 255, 0.8);
+        width: 240px;
+        &:focus {
+          outline: 0;
+          box-shadow: none;
+        }
+      }
+    }
+
+    /*Right Nav Buttons*/
+    .rightNavButtons {
+      position: relative;
+      bottom: 24px;
+      padding-top: 7px;
+      height: $header-height;
+    }
+
+    .rightNavButtons > li > a {
+      &:hover {
+        background-color: $cWhiteNavHover;
+      }
+      &:active {
+        background-color: rgba(255, 255, 255, 0.2);
+      }
+    }
+
+    .dropdown-toggle {
+      @include tMenuTitles;
+      padding-left: 15px !important;
+      padding-right: 15px !important;
+      height: $header-height;
+    }
+
+    .dropdown-menu {
+      border: 0;
+      border-radius: 0;
+      box-shadow: 0 0 0;
+      .dropdown-header {
+        @include tMenuGroupTitles;
+        padding: 16px 20px 8px 20px;
+        cursor: default;
+      }
+      .divider {
+        margin: 4px 0;
+      }
+      li {
+        a {
+          @include tMenuLinks;
+        }
+      }
+    }
+
+    @mixin leftNavIcons {
+      width: 16px;
+      height: 16px;
+      position: relative;
+      top: 2px;
+    }
+
+    .si_help {
+      background-image: image-url('si_help.png');
+      @include leftNavIcons;
+      width: 10px;
+    }
+
+    .si_globe {
+      background-image: image-url('si_globe.png');
+      @include leftNavIcons;
+    }
+
+    .si_user {
+      background-image: image-url('si_user.png');
+      @include leftNavIcons;
+    }
+  }
+}
+}
+@media screen and (min-width: 100px) and (max-width: 767px) {
+
+  .mainNavBarButtons {
+    left: 130px;
+    bottom: 34px;
+    position: relative;
+    right: 78px;
+    li {
+      a {
+        span {
+          position: relative;
+          top: 1px;
+        }
+        @include tMenuTitlesButtons;
+        &:hover {
+          background-color: $cWhiteNavHover;
+        }
+        &:active {
+          background-color: rgba(255, 255, 255, 0.2);
+        }
+      }
+    }
+  }
+
+  .navbar-nav {
+    float: left;
+    margin: 0;
+  }
+
+  .navbar-nav > li {
+    float: left;
+  }
+
+  .navbar-form {
+    width: auto;
+    border: 0;
+    margin-left: 0;
+    margin-right: 0;
+    padding-top: 0;
+    padding-bottom: 0;
+    box-shadow: none;
+  }
+
+  .navbar-right {
+    float: right !important;
+  }
+
+  .form-inline .form-group, .navbar-form .form-group {
+    display: inline-block;
+    margin-bottom: 0;
+    vertical-align: middle;
+  }
+
+  .form-inline .form-control, .navbar-form .form-control {
+    display: inline-block;
+  }
+
+  .topMenuNavBar {
+    position: absolute;
+    top: 0;
+    height: $header-height;
+    right: 0;
+    left: 0;
+    overflow: visible;
+
+    /*Logo*/
+    .navbar {
+      border: 0;
+      .navbar-header {
+        .navbar-brand {
+          background: image-url('Logo.png') no-repeat 94px 16px;
+          width: 208px;
+          height: $header-height;
+          position: relative;
+          right: 74px;
+          bottom: 8px;
+        }
+      }
+    }
+
+    /*Main nav button*/
+    .mainNavBarButtons {
+      position: relative;
+      right: 78px;
+      li {
+        a {
+          span {
+            position: relative;
+            top: 1px;
+          }
+          @include tMenuTitlesButtons;
+          &:hover {
+            background-color: $cWhiteNavHover;
+          }
+          &:active {
+            background-color: rgba(255, 255, 255, 0.2);
+          }
+        }
+      }
+    }
+
+    .rightNavBarContainer {
+      height: $header-height;
+      width: 133px;
+      margin-right: 5px;
+
+      /*Nav Bar Search*/
+      .mainNavBarSearch {
+        position: relative;
+        top: -29px;
+        right: 285px;
+        .form-control {
+          border-radius: 0;
+          height: 24px;
+          background-color: $cSecondary;
+          border: 1px solid $cFourth;
+          color: rgba(255, 255, 255, 0.8);
+          width: 240px;
+          &:focus {
+            outline: 0;
+            box-shadow: none;
+          }
+        }
+      }
+
+      /*Right Nav Buttons*/
+      .rightNavButtons {
+        position: relative;
+        bottom: 57px;
+        height: $header-height;
+      }
+
+      .rightNavButtons > li > a {
+        &:hover {
+          background-color: $cWhiteNavHover;
+        }
+        &:active {
+          background-color: rgba(255, 255, 255, 0.2);
+        }
+      }
+
+      .dropdown-toggle {
+        @include tMenuTitles;
+        padding-left: 15px !important;
+        padding-right: 15px !important;
+        height: $header-height;
+      }
+
+      .dropdown-menu {
+        border: 0;
+        border-radius: 0;
+        box-shadow: 0 0 0;
+        .dropdown-header {
+          @include tMenuGroupTitles;
+          padding: 16px 20px 8px 20px;
+          cursor: default;
+        }
+        .divider {
+          margin: 4px 0;
+        }
+        li {
+          a {
+            @include tMenuLinks;
+          }
+        }
+      }
+
+      @mixin leftNavIcons {
+        width: 16px;
+        height: 16px;
+        position: relative;
+        top: 2px;
+      }
+
+      .si_help {
+        background-image: image-url('si_help.png');
+        @include leftNavIcons;
+        width: 10px;
+      }
+
+      .si_globe {
+        background-image: image-url('si_globe.png');
+        @include leftNavIcons;
+      }
+
+      .si_user {
+        background-image: image-url('si_user.png');
+        @include leftNavIcons;
+      }
+    }
+  }
+}
+
+
+.active-li{
+  color: #faf000 !important;
+}

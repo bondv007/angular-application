@@ -1,0 +1,24 @@
+<div class="upload-close shareCsbModal new-folder-modal">
+    <div class="mmmodal-header">
+        <div class="close">
+            <div class="close-button" ng-click="close(false)"></div>
+        </div>
+        <div class="mmmodal-title">RENAME</div>
+    </div>
+    <div class="mmmodal-body">
+        <ul class="share-form">
+            <li>
+                <label>{{commonModel.renameFolder.type}} NAME</label>
+
+                <div class="input-wrapper">
+                    <input type="text" focus ng-model="commonModel.renameFolder.name" ng-keypress="trackEvent($event,renameFolder,commonModel.renameFolder)" />
+                </div>
+            </li>
+        </ul>
+    </div>
+    <div class="clear"></div>
+    <div class="modal-footer">
+        <button class="mm-save-button btn btn-primary" ng-click="renameFolder(commonModel.renameFolder)">RENAME</button>
+        <button class="mm-discard-button btn btn-warning" ng-click="close(false)">CANCEL</button>
+    </div>
+</div>

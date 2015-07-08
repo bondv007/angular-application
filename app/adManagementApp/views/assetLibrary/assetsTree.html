@@ -1,0 +1,21 @@
+<div class="folder-search-area" >
+    <div class="treeview-wrapper-div">
+
+        <button ng-click="toggleTree()" class="arrow-btn"><i ng-class="{'fa assets-icon-Tree_view':!commonModel.isShowTree,'fa fa-angle-left':commonModel.isShowTree}"></i>
+
+        </button>
+      <div ng-show="commonModel.isShowTree">
+        <mm-tree-view
+                class="assetLibTree"
+                data="commonModel.foldersData"
+                rename-node-handler="renameNodeHandler"
+                new-node-handler="newNodeHandler"
+                selected-node-handler="selectedNodeHandler"
+                drag-drop-handler="dragDropHandler"
+                current-parent-id="{{commonModel.selectedParentId}}"
+                tree-id="dvTreeViewAssetLibrary"
+                can-drag-drop="false">
+        </mm-tree-view>
+       </div>
+    </div>
+</div>

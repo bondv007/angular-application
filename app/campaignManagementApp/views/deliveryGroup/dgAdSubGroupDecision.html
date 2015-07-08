@@ -1,0 +1,10 @@
+<div data-drag="{{true}}"  ng-model="container" jqyoui-draggable="{index:{{$index}},animate:false,placeholder:'keep',onStart : 'onStartDrag(container,parentContainer)'}"
+		 data-jqyoui-options="{cursor: 'move',cursorAt: { top: 50, left: 50 },revert:'invalid', scroll:true, appendTo:'body',
+		  containment:'window', helper:'clone'}">
+	<div ng-if="container.type=='DeliveryGroupAd' && (container.rotationSetting.enabled || !hideDisabled.val)">
+		<div ng-include="'campaignManagementApp/views/deliveryGroup/dgAd.html'"></div>
+	</div>
+	<div ng-if="container.type=='AdContainer'">
+		<div ng-include="'campaignManagementApp/views/deliveryGroup/dgSubGroup.html'"></div>
+	</div>
+</div>

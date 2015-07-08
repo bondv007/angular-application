@@ -1,0 +1,10 @@
+<div ng-if="!commonModel.isSearchView" class="emptyStatePlaceHolder">
+  <span class="emptyStateText">NO ASSETS YET</span>
+  <span class="emptyStateText" ng-if="!dataObj.hideAddButton" > | </span>
+  <a class="emptyStateLink" ng-click="showUploadAssetModal()">ADD NEW ASSET</a>
+</div>
+<div ng-if="commonModel.isSearchView" class="emptyStatePlaceHolder">
+  <span class="emptyStateText">NO MATCHING ASSETS</span>
+  <span class="emptyStateText" ng-if="!dataObj.hideAddButton" > | </span>
+  <span class="emptyStateSupportText" ng-click="showUploadAssetModal()">ENTER A NEW SEARCH TERM</span>
+</div>

@@ -1,0 +1,71 @@
+<div class="entityActionsBar">
+  <div class="pull-left">
+    <div>
+      <button class="centralMasterToolBarButton" id="al_upload"  ng-click="showUploadAssetModal()">
+        Upload
+      </button>
+
+      <button class="centralMasterToolBarButton" id="al_new" ng-disabled="commonModel.checkedFolders.length > 0" ng-click="showNewModal()">
+        New Folder
+      </button>
+      <button class="centralMasterToolBarButton"  id="al_edit" ng-click="showEditModal()" ng-disabled="commonModel.checkedAssets.length != 1">
+        Edit
+      </button>
+      <button class="centralMasterToolBarButton"  id="al_move" ng-click="showDestinationForMove();"
+      ng-disabled="commonModel.checkedAssets.length == 0 || (commonModel.selectedParentId == '1' && commonModel.checkedFolders.length > 0)">
+        Move
+      </button>
+      <button class="centralMasterToolBarButton" id="al_rename" ng-click="showRenameModal()" ng-disabled="commonModel.selectedParentId == '1'">
+        Rename
+      </button>
+      <a class="centralMasterToolBarButton" id="al_download" ng-disabled="commonModel.checkedAssets.length != 1">
+        Download
+      </a>
+      <button class="centralMasterToolBarButton" id="al_delete" ng-disabled="true" ng-show="false">
+        Delete
+      </button>
+
+
+    </div>
+  </div>
+</div>
+<div class="centralMainTable">
+  <div class="centralHeader">
+    <span class="centralHeaderTitle"> Assets </span>
+      <span ng-include="'adManagementApp/views/assetLibrary/assetsLibraryDropdownOptions.html'">
+        <!--div class="btn-group">
+          <button class="cleanButton dropdown-toggle" type="button" role="menu">
+            <div class="settingsIcon"></div>
+          </button>
+          <ul class="dropdown-menu" style="cursor: pointer;">
+            <li class="dropdown" ng-mouseover="displayViewSubMenu = true"
+                ng-mouseleave="displayViewSubMenu = false">View
+              <div class="arrowRight"></div>
+              &lt;!&ndash; ngIf: displayViewSubMenu &ndash;&gt;
+            </li>
+            <li class="dropdown" ng-mouseover="displayViewSubMenu1 = true"
+                ng-mouseleave="displayViewSubMenu1 = false">Sort
+              <div class="arrowRight"></div>
+              &lt;!&ndash; ngIf: displayViewSubMenu1 &ndash;&gt;
+            </li>
+            <li class="dropdown" ng-mouseover="displayViewSubMenu2 = true"
+                ng-mouseleave="displayViewSubMenu2 = false">Group By
+              <div class="arrowRight"></div>
+              &lt;!&ndash; ngIf: displayViewSubMenu2 &ndash;&gt;
+            </li>
+          </ul>
+      </div>-->
+      </span>
+    <span class="searchIcon" ng-click="showSearchBox=!showSearchBox"></span>
+
+      <span class="searchContainer inner-addon right-addon" ng-show="showSearchBox" style="height: 28px;"
+            ng-init="showSearchBox =1;  centralIndex == 0 && displayData.selectedShowBys.length == 1">
+        <input tree-id="dvTreeView" mm-focus="showSearchBox"
+               class="form-control"
+               ng-model="commonModel.searchText"
+               ng-keypress="($event.which === 13)?getSearchData():0"
+               placeholder="Search: Id, Name or type" style="height: 28px;" type="text">
+        <a class="cross-icon" ng-show="commonModel.searchText.length>0" ng-click="clearAssetSearch()"><i class="fa fa-times"></i></a>
+      </span>
+  </div>
+</div>

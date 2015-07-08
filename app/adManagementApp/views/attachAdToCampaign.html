@@ -1,0 +1,48 @@
+
+    <div class="mmmodal-header">
+        <div class="close">
+            <div class="close-button" ng-click="cancel()" data-dismiss="modal"></div>
+        </div>
+        <div class="mmmodal-title" >{{'ASSIGN TO CAMPAIGN'|T}}</div>
+    </div>
+    <div class="mmmodal-body upload-entry">
+    <div class="mmmodal-content">
+    <mm-row>
+			<input class="searchContainer col-md-6" type="text" ng-model="grid.filterText" ng-blur="setDataModel(true)" placeholder="Search..."  />
+	</mm-row>
+    <mm-row>
+					<mm-grid
+						items="grid.campaigns"
+						selected-items="grid.selectedCampaigns"
+						filtered-items="filteredItemCount"
+						cols="campaignsColumns"
+						is-cell-edit="false"
+						is-show-menu="false"
+						is-single-select="true"
+						is-sort="true"
+						show-footer="true"
+						show-group-panel="false"
+						show-selection-checkbox="true"
+						show-filter="false"
+						filter-text = "grid.filterText"
+						enable-column-resize="true"
+						is-column-reorder = "false"
+						is-grid-toolbar="true"
+						is-central-grid="false"
+						enable-selected-row-selection ="true"
+            selected-row-handler="selectedRow"
+						grid-height="380px"
+            paging-handler="gridScrollHandler">
+						<!--after-selection-change="rowSelectFromGrid"-->
+						</mm-grid>
+				</mm-row>
+        </div>
+    </div>
+    <div class="modal-footer">
+
+    <button class="mm-save-button btn btn-primary" ng-class="{'mm-disabled-button':!buttonStatus.disableConfirmButton}"  type="button" mm-id="done" ng-click="save()">
+        {{'DONE'|T}}
+    </button>
+    <button class="mm-discard-button btn btn-default" type="button" ng-click="cancel()" mm-id="cancel">{{'CANCEL'|T}}</button>
+</div>
+</div>

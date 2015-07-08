@@ -1,0 +1,431 @@
+<div id="adPreviewContainer" class="AdPreviewOpt AssetPrevOpt">
+
+  <div class="csbPreviewCls ng-scope">
+    <div class="ng-scope" ng-if="true">
+      <header class="top-nav-bar live-View-header">
+        <div class="container-fluid">
+          <div class="col-sm-12">
+            <ul class="topBar-action pull-left">
+              <li>
+                <h2 style="cursor: pointer;" ng-if="adId != '' " ng-click="redirectToAd()" class="pull-left">
+                  <a ng-click="" class="back_arrow_left"><i class="fa fa-chevron-left"></i></a> {{ad.name}}
+                </h2>
+              </li>
+              <li>
+                <label class="label-control filterSrchLabel">{{asset.title}}</label>
+              </li>
+            </ul>
+            <ul class="singleAds-btns">
+
+              <li>
+                <div class="btn-group">
+                  <a ng-class="{'active':showEditCanvasOptionDropDown.val}"
+                     ng-click="showEditCanvasOptionDropDown.val=!showEditCanvasOptionDropDown.val"
+                     class="shareAll drop-btn">Edit canvas <span class="caret"></span></a>
+                  <ul class="add-pre-dropdown-menu" ng-show="showEditCanvasOptionDropDown.val">
+                    <li ng-if="!adPreviewCommonModel.enableDrag">
+                      <a ng-click="setDrag(true,$event)">
+                        <i class="preview-icon-positioning"></i> Enable Asset Positioning
+                      </a>
+                    </li>
+                    <li ng-if="adPreviewCommonModel.enableDrag">
+                      <a ng-click="setDrag(false,$event)">
+                        <i class="preview-icon-positioning"></i> Disable Asset Positioning
+                      </a>
+                    </li>
+                  </ul>
+                </div>
+              </li>
+
+              <li>
+                <a ng-click="openDefaultAccordion()" class="DebugLink"><i class="preview-icon-debug"></i> Debug</a>
+              </li>
+            </ul>
+
+            <!-- ngIf: showShareAdDialogOnLiveView -->
+
+          </div>
+        </div>
+      </header>
+      <div ng-style="{'background':adPreviewCommonModel.currentlySetColor}" style="transition-duration: 0.7s;"
+           ng-style="{'height':containerHeight}" class="tileContainer slide-left">
+        <section ng-style="{'background':adPreviewCommonModel.currentlySetColor}" id="previewSection"
+                 class="titles-container new-title-cont ng-scope">
+
+          <!--<a ng-if="adPreviewCommonModel.enableDrag" ng-click="adPreviewCommonModel.enableDrag=!adPreviewCommonModel.enableDrag"
+             class="disable-add-btn">Disable Asset Positioning</a>
+          <a ng-if="!adPreviewCommonModel.enableDrag" ng-click="adPreviewCommonModel.enableDrag=!adPreviewCommonModel.enableDrag"
+             class="disable-add-btn">Enable Asset Positioning</a>-->
+
+          <div ng-style="{'height':containerHeight}" class="container-fluid moverStyle">
+              <div  ng-style="{'width':asset.width+6, 'left': marginLeft,'top' : marginTop}" enable="adPreviewCommonModel.enableDrag" mm-draggable container=".csbPreviewCls"
+                   ng-class="{'mover' : adPreviewCommonModel.enableDrag, 'hideHover' : !adPreviewCommonModel.enableDrag}">
+                <div  ng-if="!isSWFAsset">
+                  <img height="{{asset.height}}" ng-src="{{asset.thumbnails[0].url}}" />
+                </div>
+                <div ng-if="isSWFAsset">
+                  <mm-flash width="{{asset.width}}" height="{{asset.height}}" src="{{asset.storagePath | trustUrl}}"> </mm-flash>
+                  <div style="clear:both;"></div>
+                </div>
+                <!-- Modal -->
+              </div>
+             
+          </div>
+
+          <div class="overlay-popup" ng-show="showShareItemDialog || showTestSiteDialog || showBackgroundColorDialog"></div>
+        </section>
+        <!-- end ngRepeat: adGroup in adDimensionGroups track by adGroup.key -->
+
+      </div>
+
+
+      <div ng-class="{'active':adPreviewCommonModel.isDebugClicked}" class="addside-option">
+
+        <!--<h3 class="truncate">{{asset.title}}</h3>-->
+
+        <div class="panel-group" id="accordion">
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <h4 class="panel-title">
+                <a ng-click="manageSideBar(sectionType.general,showGeneralSection)">
+                <i class="preview-icon-generalinfo"></i>
+                <i class="fright fa" ng-class="{'fa-angle-down':!showGeneralSection,'fa-angle-up':showGeneralSection}"></i>
+                ASSET DETAILS </a>
+              </h4>
+            </div>
+            <div ng-show="showGeneralSection" class="panel-collapse in" >
+              <div class="panel-body" ng-style="{'height':panelHeight}">
+
+                <ul class="general-info">
+                  <li>
+                    <label>Name:</label>
+                    <div class="value">
+                      {{asset.title}}
+                    </div>
+                  </li>
+                  <li>
+                    <label>Type:</label>
+                    <div class="value">
+                      {{asset.mediaType}}
+                    </div>
+                  </li>
+                  <li>
+                    <label>File Size:</label>
+                    <div class="value">
+                      {{asset.size}}
+                    </div>
+                  </li>
+                  <li ng-if="asset.mediaType=='IMAGE' || asset.mediaType=='FLASH' || asset.mediaType=='VIDEO'">
+                    <label>Dimensions:</label>
+                    <div class="value">
+                      {{asset.dimension}}
+                    </div>
+                  </li>
+                  <li ng-if="asset.mediaType=='FLASH' || asset.mediaType=='VIDEO' || asset.mediaType=='AUDIO'">
+                    <label>Duration:</label>
+                    <div class="value">
+                      {{asset.formatContext.duration}}
+                    </div>
+                  </li>
+
+                </ul>
+                <ul class="general-info no-border">
+                  <!--<li ng-if="asset.mediaType=='FLASH'">
+                      <label>Workshop Version:</label>
+                      <div class="value">
+                          {{asset.assetMetadata[0].workshopVersion}}
+                      </div>
+                  </li>-->
+                  <!--<li ng-if="selectedAsset.mediaType=='AUDIO'">
+                    <label>Encoding:</label>
+                    <div class="value">
+                      from audiStreamContext??
+                    </div>
+                  </li>-->
+                  <li ng-if="asset.mediaType=='FLASH'">
+                    <label>Flash Version:</label>
+                    <div class="value">
+                      {{ad.flashVersion}}
+                    </div>
+                  </li>
+                  <li ng-if="asset.mediaType=='FLASH'">
+                    <label>AS Version:</label>
+                    <div class="value">
+                      {{asset.swfContext.asversion}}
+                    </div>
+                  </li>
+                  <li ng-if="asset.mediaType=='VIDEO'">
+                    <label>Frame rate:</label>
+                    <div class="value">
+                      {{asset.videoStreamContext.frameRate}}
+                    </div>
+                  </li>
+                  <li ng-if="asset.mediaType=='FLASH'">
+                    <label>Frame rate:</label>
+                    <div class="value">
+                      {{asset.swfContext.frameRate}}
+                    </div>
+                  </li>
+                  <li ng-if="asset.mediaType=='VIDEO' || asset.mediaType=='AUDIO'">
+                    <label>Bitrate:</label>
+                    <div class="value">
+                      {{asset.formatContext.bitRate}}
+                    </div>
+                  </li>
+                  <!--<li ng-if="asset.mediaType=='VIDEO'">
+                      <label>Video Codec:</label>
+                      <div class="value">
+                          {{asset.videoStreamContext.codec}}
+                      </div>
+                  </li>
+                  <li ng-if="asset.mediaType=='VIDEO'">
+                      <label>Audio Codec:</label>
+                      <div class="value">
+                          {{asset.audioStreamContext.codec}}
+                      </div>
+                  </li>-->
+                  <!--<li ng-if="asset.mediaType=='AUDIO'">
+                    <label>Audio Codec:</label>
+                    <div class="value">
+                      {{asset.audioStreamContext.encoding}}
+                    </div>
+                  </li>-->
+                  <li ng-if="asset.mediaType=='FLASH'">
+                    <label>EB Version:</label>
+                    <div class="value">
+                      {{asset.swfContext.ebVersion}}
+                    </div>
+                  </li>
+                  <li ng-if="asset.mediaType=='FLASH'">
+                    <label>EB DC Version:</label>
+                    <div class="value">
+                      {{asset.swfContext.ebDcVersion}}
+                    </div>
+                  </li>
+                  <li ng-if="asset.mediaType=='FLASH'">
+                    <label>Compressed:</label>
+                    <div class="value">
+                      {{asset.swfContext.isCompressed}}
+                    </div>
+                  </li>
+                  <li ng-if="asset.mediaType=='FLASH'">
+                    <label>Include SV:</label>
+                    <div class="value">
+                      {{asset.swfContext.includeSV}}
+                    </div>
+                  </li>
+                  <li ng-if="asset.mediaType=='FLASH'">
+                    <label>Mobile:</label>
+                    <div class="value">
+                      {{asset.swfContext.isMobile}}
+                    </div>
+                  </li>
+                  <li ng-if="asset.mediaType=='FLASH'">
+                    <label>EB Standard Exists:</label>
+                    <div class="value">
+                      {{asset.swfContext.isEBStdExist}}
+                    </div>
+                  </li>
+                  <li ng-if="asset.mediaType=='FLASH'">
+                    <label>Includes Dynamic CI Name:</label>
+                    <div class="value">
+                      {{selectedAsset.swfContext.includeDynamicCIName}}
+                    </div>
+                  </li>
+                  <li ng-if="asset.mediaType=='FLASH'">
+                    <label>Background Color:</label>
+                    <div class="value">
+                      {{asset.swfContext.backgroundColor}}
+                    </div>
+                  </li>
+                  <li ng-if="asset.mediaType=='FLASH'">
+                    <label>X and Y Position:</label>
+                    <div class="value">
+                      {{asset.swfContext.simpleExpX}} , {{asset.swfContext.simpleExpY}}
+                    </div>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div class="panel panel-default interation-monitor" ng-if="isSWFAsset">
+            <div class="panel-heading">
+              <h4 class="panel-title">
+                <a data-toggle="collapse" data-parent="#accordion"
+                   ng-click="manageSideBar(sectionType.interactionMonitor,showInteractionMonitor)">
+                  <i class="fright fa"
+                     ng-class="{'fa-angle-down':!showInteractionMonitor,'fa-angle-up':showInteractionMonitor}"></i>
+                  <i ng-click="openSeparateWindow()" class="fright preview-icon-pop_up"></i>
+                  <i class="preview-icon-interactionmonitor"></i>
+                  INTERACTION MONITOR</a>
+              </h4>
+            </div>
+            <div ng-show="showInteractionMonitor" class="panel-collapse ad-preview-asset-Panel">
+
+              <div class="panel-body" ng-style="{'height':panelHeight}">
+                <div class="top-head-box">
+
+                  <a ng-show="showButtons" ng-click="showButtons=false;" class="search-btn2">
+                    <i id="srchIco" class="preview-icon-search"></i>
+                  </a>
+
+                  <div ng-show="showButtons" class="search-box-hide">
+                    <button type="button" class="btns" ng-click="clearInteractions()">
+                      Clear
+                    </button>
+                    <!--<button type="button" class="btns">
+                        <i class="fa fa-share"></i> To Excel
+                    </button>-->
+                  </div>
+                  <div ng-show="!showButtons" class="search-box-hide">
+                    <div class="search-bar-outer">
+                      <div class="search-bar2">
+                        <div ng-click="showFilters=!showFilters" class="filter-select">
+                          {{selectedFilter}} <i class="fa fa-caret-down"></i>
+                          <div class="filterSelectDown" ng-show="showFilters">
+                            <ul>
+                              <li ng-repeat="filter in searchFilters">
+                                <a ng-class="{'active':filter.isSelected}" ng-click="setSearchFilter(filter)">
+                                  {{filter.name}}</a>
+                              </li>
+                            </ul>
+                          </div>
+                        </div>
+                        <input click-elem-id="srchIco" autofocus
+                               type="text"
+                               class="form-control col-xs-10"
+                               ng-model="searchCriteria.searchText"
+                               style="">
+                        <a class="cross-icon" ng-show="searchCriteria.searchText.length>0" ng-click="searchCriteria.searchText='';">
+                          <i class="preview-icon-close1"></i></a>
+                        <button class="search-btn" ng-click="adPreviewCommonModel.showButtons=!adPreviewCommonModel.showButtons;">
+                          <i class="preview-icon-search"></i></button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="columns">
+                  <div class="col">
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  </div>
+                  <div class="col">
+                    Name
+                  </div>
+                </div>
+                <div class="user-list">
+                  <ul>
+                    <li ng-repeat="d in filteredData track by $index">
+                      <a ng-click="loadInteractionDetails(d)" ng-class="{'select':d.number==selectedInteraction.number}">
+                        <i class="panel-icon fa" ng-class="{'fa-user': !selectedInteraction.user, 'fa-android': selectedInteraction.user}"></i>
+                        <span class="panel-descrip">{{d.action}}</span>
+                      </a>
+
+                      <div class="qinfo">
+                        <span>Type: {{d.command}}</span>
+                        <span>Start Time: {{d.time}}</span>
+                      </div>
+                    </li>
+                  </ul>
+
+                </div>
+                <div class="total">
+                  Total Interactions: {{filteredData.length}}
+                </div>
+
+                <div class="additional-info" ng-class="{'disable-data-active': filteredData.length==0}">
+
+                  <div class="disable-data">
+                    <div class="disable-data-inner"><span>No details to display </span> <i class="preview-icon-interactionmonitor"></i>
+                    </div>
+                  </div>
+
+                  <div class="add-inner-sec">
+                    <div class="col-md-12 total-asset">
+                      <div class="icon"><span ng-if="selectedInteraction" class="panel-icon fa" ng-class="{'fa-user': !selectedInteraction.user, 'fa-android': selectedInteraction.user}"></span></div>
+                      <div class="col-md-8 link" ng-if="selectedInteraction">
+                        {{selectedInteraction.action}}
+                      </div>
+                      <div class="col-md-8 link" ng-if="!selectedInteraction">
+                        Interaction Details
+                      </div>
+                      <span class="arrows" ng-if="filteredData.length > 2">
+                        <a ng-click="loadIM(true)"><i class="preview-icon-back"></i></a>
+                        <a ng-click="loadIM(false)"><i class="preview-icon-back flipped"></i></a>
+                      </span>
+                    </div>
+                    <div ng-style="{'height':bottomClassHeight}" class="col-md-12 bottom-list">
+
+                      <ul class="general-info pdt0">
+                        <li>
+                          <label>Name:</label>
+                          <div class="value">
+                            <span tooltip-popup-delay="500" tooltip-placement="bottom" tooltip="{{selectedInteraction.command}}" tooltip-trigger="mouseenter" tooltip-animation="false">{{selectedInteraction.action}}</span>
+                          </div>
+                        </li>
+                        <!--<li>
+                          <label>Type:</label>
+                          <div class="value">
+                            {{selectedInteraction.command}}
+                          </div>
+                        </li>-->
+                        <li>
+                          <label>Generator:</label>
+                          <div class="value" ng-if="selectedInteraction" >
+                            <i class="panel-icon fa" ng-class="{'fa-user': !selectedInteraction.user, 'fa-android': selectedInteraction.user}"></i>
+                            <span ng-if="!selectedInteraction.user">&nbsp;&nbsp;&nbsp; User</span><span ng-if="selectedInteraction.user">&nbsp;&nbsp;&nbsp; Automatic</span>
+                          </div>
+                        </li>
+
+                      </ul>
+                      <ul class="general-info no-border">
+                        <li>
+                          <label>Ad Part:</label>
+                          <div class="value">
+                            <span class="long" tooltip-popup-delay="500" tooltip-placement="part" tooltip="{{selectedInteraction.part | T}}" tooltip-trigger="mouseenter" tooltip-animation="false">{{selectedInteraction.part}}</span>
+                          </div>
+                        </li>
+                        <li>
+                          <label>Parameters:</label>
+                          <div class="value">
+                            {{selectedInteraction.args}}
+                          </div>
+                        </li>
+                        <!--<li>-->
+                        <!--<label>Ad Name:</label>-->
+                        <!--<div class="value">-->
+                        <!--{{ad.name}}-->
+                        <!--</div>-->
+                        <!--</li>-->
+                        <li>
+                          <label>Start Time:</label>
+
+                          <div class="value">
+                            {{selectedInteraction.time}}
+                          </div>
+                        </li>
+
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<script type="text/javascript">
+  $(document).ready(function () {
+    $(".add-tags .add").click(function () {
+      $('.add-tags .add-tags-box').toggle();
+    });
+
+    $(".AdPreviewOpt .search-btn2").click(function () {
+      $(this).parents().find('.AdPreviewOpt .addside-option .search-box-hide,.csbPreviewCls .addside-option .search-bar').toggle();
+    });
+  });
+
+</script>

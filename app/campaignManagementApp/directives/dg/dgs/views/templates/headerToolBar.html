@@ -1,0 +1,12 @@
+<div class="dgs_header_wrapper elementHeaderToolBarMenu miniheader">
+    <div class="btn-strip">
+        <!--Entity Layout Title-->
+        <div ng-include="'infra/entityLayout/views/entityLayoutTitle.html'" class="mainEntityLayoutTitle"></div>
+        <div class="entityLayoutButtons dgs_entityLayoutButtons">
+            <button ng-disabled="!$root.isDirtyEntity" id="dgs_discard_button" type="button"
+                    ng-class="{'dgs_header_buttons_MM2':isMM2, dgs_header_buttons_MMNext:!isMM2,'secondaryButtonDisabled':!$root.isDirtyEntity}" class="secondaryButton" ng-click="discard()">{{"discard" | uppercase | T}}</button>
+            <button ng-disabled="!$root.isDirtyEntity" id="dgs_save_button" type="button"
+                    ng-class="{'dgs_header_buttons_MM2':isMM2, dgs_header_buttons_MMNext:!isMM2,'primaryButtonDisabled':!$root.isDirtyEntity}" class="primaryButton" ng-click="save()">	{{"SAVE" | uppercase | T}}</button>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,4 @@
+Search: <input type="text" ui-event="{ focus : 'focusCallback()' }" ng-model="searchTerm"/>
+<input class="btn btn-default" type="button" value="Add" ng-click="addRow()" style="top: -5px;position: relative;">
+<div ng-grid="gridOptions" style="width: 800px; height: 600px; border: 1px solid rgb(212,212,212);"></div>
+<div>Show {{gridOptions.ngGrid.filteredRows.length}} out of {{campaigns.length}}</div>

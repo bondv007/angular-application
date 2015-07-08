@@ -1,0 +1,17 @@
+<html>
+<head></head>
+<body>
+<script>var gfEbPreview = true;</script>
+<script>function getResParams(){return ebResPosParams;}</script>
+<script>
+  var querystring = window.location.search.substring(1);
+  querystring = decodeURI(querystring);
+  var parts = querystring.split("||");
+  var scr = '';
+  for (var i = 0; i < parts.length; i++){
+    scr += parts[i];
+  }
+  document.write(scr);
+</script>
+</body>
+</html>

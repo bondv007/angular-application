@@ -1,0 +1,67 @@
+<div class="container-fluid">
+  <div class="col-sm-12">
+    <ul class="topBar-action pull-left">
+      <li>
+        <h2 ng-if="showAllAdsLink" style="cursor: pointer;" ng-click="redirectToAllAds()" class="pull-left"><a
+          ng-click=""
+          class="back_arrow_left"><i
+          class="fa fa-angle-left"></i>
+        </a> All ads</h2>
+      </li>
+      <li>
+        <label class="label-control filterSrchLabel">{{ad.name}}</label>
+      </li>
+    </ul>
+
+    <ul class="singleAds-btns">
+      <li>
+        <div class="btn-group">
+          <a ng-class="{'active':showEditCanvasOptionDropDown}"
+             ng-click="showEditCanvasOptionDropDown=!showEditCanvasOptionDropDown"
+             class="shareAll drop-btn">Edit canvas <span class="caret"></span></a>
+          <ul class="add-pre-dropdown-menu" ng-show="showEditCanvasOptionDropDown">
+            <li>
+              <a ng-click="adPreviewCommonModel.showTestSiteDialog=!adPreviewCommonModel.showTestSiteDialog;
+                              showEditCanvasOptionDropDown=false;
+                              adPreviewCommonModel.showApplyBackgroundColorDialog=false;">
+                <i class="preview-icon-globe"></i> Test On a Site
+              </a>
+            </li>
+            <li>
+              <a ng-click="adPreviewCommonModel.showBackgroundColorDialog=!adPreviewCommonModel.showBackgroundColorDialog;
+                                              showEditCanvasOptionDropDown=false;
+                                              adPreviewCommonModel.showTestSiteDialog=false;">
+                <i class="preview-icon-backgroung"></i> Set Background
+              </a>
+            </li>
+            <li ng-if="!adPreviewCommonModel.enableDrag">
+              <a ng-click="adPreviewCommonModel.enableDrag=true; showEditCanvasOptionDropDown=false">
+                <i class="preview-icon-positioning"></i> Enable Ad Positioning
+              </a>
+            </li>
+            <li ng-if="adPreviewCommonModel.enableDrag">
+              <a ng-click="adPreviewCommonModel.enableDrag=false; showEditCanvasOptionDropDown=false">
+                <i class="preview-icon-positioning"></i> Disable Ad Positioning
+              </a>
+            </li>
+          </ul>
+        </div>
+      </li>
+
+      <!-- <li>
+        <a ng-class="{'active':adPreviewCommonModel.showShareItemDialog}"
+           ng-click="showPreviewShareDialog()" class="replyAll ng-binding">
+          <i  class="preview-icon-share"></i> Share
+        </a>
+      </li> -->
+      <li>
+        <a ng-click="openDefaultAccordion()" class="DebugLink">
+          <i class="preview-icon-debug"></i> Debug
+        </a>
+      </li>
+    </ul>
+
+    <!-- ngIf: showShareAdDialogOnLiveView -->
+
+  </div>
+</div>

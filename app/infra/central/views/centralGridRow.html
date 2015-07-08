@@ -1,0 +1,44 @@
+<div ng-attr-ui-tree-node="{{dataObj.isDraggable}}"
+     ng-style="{'margin-right':(item.isSelected && displayData.showEdit && displayData.currentSelectedItem == item) ? '8px' : '0px'}" style="margin-bottom: 0 !important"
+     class="centralFriendlyGridCube" ng-mouseover="item.isOver=true" ng-mouseout="item.isOver=false" ng-model="dataObj.filteredList"
+     ng-class="{'centralRowSelected': item.isSelected, 'centralRowCurrentSelected': displayData.currentSelectedItem == item, 'centralDragRowOver':dataObj.isDraggable}">
+  <div ng-show="dataObj.selectedItem == item && dataObj.indexLocation < centralDataObject.length" class="centralRowParent">&nbsp</div>
+  <div style="height: 30px;">
+    <div class="centralGridRow" ng-class="{'centralDrag': dataObj.isDraggable}" style="width: 10px;"></div>
+    <div class="centralGridRow" style="width:30px;">
+      <div data-nodrag ng-if="!dataObj.hideRowCheckbox" class="centralRowCheckBoxMarker" style="top:3px;padding-top: 0;">
+        <div ng-show="item.id!=-1&&item.id!=-2" ng-model="item.isSelected" ng-click="item.isSelected=!item.isSelected;selectRowCheckBox(dataObj, item);" class="mm_checkbox">
+          <span ng-class="{'selectedCB': item.isSelected}"></span>
+        </div>
+      </div>
+    </div>
+    <div class="centralGridRowWrap" ng-dblclick="rowDoubleCLick(dataObj, item)" ng-click="selectGridRow(centralIndex, item)" style="position: absolute;left:40px;right:0;top:0;bottom: 0;">
+      <div class="centralGridRow" ng-click="openEntralOnLinkClick(dataObj, item)" style="position: absolute;left:0;right:0;top:0;">
+        <div ng-repeat="col in dataObj.gridData.columnDefs" ng-style="{width: getColumnWidth(dataObj, col)}"
+             class="{{col.uniqueName}}" style="position:relative;line-height: 30px;height: 30px;display: inline-block;">
+          <div class="centralGridRowText">
+						<span ng-switch on="col.type" ng-init="itemValue=getInnerField(item, col)">
+							<span ng-switch-when="date" title="{{itemData | date : 'dd/MM/yyyy'}}">{{getInnerField(item, col) | date : 'dd/MM/yyyy'}}</span>
+							<!--may cause performance issues-->
+							<span ng-switch-when="link" title="{{getInnerField(item, col)}}">
+								<a ng-show="item.isOver" ui-sref="{{col.linkTemplate}}({ {{col.linkForeignKey}}: getInnerMember(item, col.linkForeignKeyValue) })">{{getInnerField(item, col)}}</a>
+								<span ng-hide="item.isOver">{{getInnerField(item, col)}}</span>
+							</span>
+							<span ng-switch-when="enum" title="{{enums[col.enumName][itemData]}}">{{(getInnerField(item, col) && enums[col.enumName] ? enums[col.enumName].getName(getInnerField(item, col)) : '')}}</span>
+							<span ng-switch-default>
+                <span ng-if="col.field=='name'&&!dataObj.isDraggable&&dataObj.isEditable">
+                  <a title="{{getInnerField(item, col)}}" ng-click="selectGridRow(centralIndex, item);rowDoubleCLick(dataObj, item)">{{getInnerField(item, col)}}</a>
+                </span>
+								<span ng-if="(col.field!='name'&&col.field!='id')||(col.field=='name'&&!dataObj.isEditable)||(col.field=='id'&&itemValue!=-1&&itemValue!=-2)||dataObj.isDraggable" ng-class="{'centralGridRowId':col.field=='id'&&!dataObj.isDraggable}" title="{{getInnerField(item, col)}}">{{getInnerField(item, col)}}</span>
+							</span>
+						</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="centralFriendlyGridItemButtons" ng-if="item.id!=-1&&item.id!=-2">
+    <!--<a ng-show="item.isOver" class="centralFriendlyGridItemIcon centralGoToEntityIcon" ui-sref="{{dataObj.editPageURL}}({ {{dataObj.foreignKey}}: item.id })"></a>&nbsp;-->
+  </div>
+</div>
+<div ng-if="item.isSelected && displayData.showEdit && displayData.currentSelectedItem == item" class="centralFriendlyGridSelectedArrow"></div>

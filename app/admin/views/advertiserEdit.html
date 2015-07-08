@@ -1,0 +1,83 @@
+<!-- position in negative horizontal place -->
+<div class="relationship-dropdown" ng-show="isEditMode && !isEntral">
+  Advertiser:
+  <select ng-model="selectedEditItem" ng-change="updateSelectedItem()" ng-options="a._displayName for a in listItems">
+  </select>
+</div>
+<div class="editContainer">
+  <mm-row>
+    <div class="mm-entity-fields-container-single">
+      <mm-row ng-if="!entityRoot">
+        <mm-label mm-model="parentName"
+                  mm-caption="Advertiser Name"
+                  mm-layout-type="medium"
+                  mm-label-width="{{labelWidth}}"></mm-label>
+      </mm-row>
+      <mm-row ng-if="entityRoot" >
+        <mm-text mm-is-edit-mode="isEditMode"
+                 mm-model="editObject.name"
+                 mm-placeholder="Enter Name"
+                 mm-is-required="true"
+                 mm-error="validation.name"
+                 mm-caption="Advertiser Name"
+                 mm-label-width="{{labelWidth}}"
+                 text-tooltip="Enter name"
+                 mm-layout-type="medium"
+                 mm-change="onNameChange()"></mm-text>
+      </mm-row>
+      <mm-row ng-if="!entityRoot">
+        <mm-text mm-is-edit-mode="isEditMode"
+                 mm-model="editObject.name"
+                 mm-placeholder="Enter Name"
+                 mm-is-required="true"
+                 mm-error="validation.name"
+                 mm-caption="Advertiser Display Name"
+                 mm-label-width="{{labelWidth}}"
+                 text-tooltip="Enter name"
+                 mm-layout-type="medium"
+                 mm-change="onNameChange()"></mm-text>
+      </mm-row>
+      <mm-row>
+        <mm-drop-down mm-is-edit-mode="isEditMode"
+                        mm-caption="Vertical"
+                        mm-data-model="verticals"
+                        mm-is-required="true"
+                        mm-error="validation.vertical"
+                        mm-label-width="{{labelWidth}}"
+                        mm-model="editObject.vertical"
+                        mm-layout-type="medium"
+                        mm-select-change-func="onVerticalSelected()"></mm-drop-down>
+      </mm-row>
+      <mm-row>
+        <mm-drop-down mm-caption="Advertiser Status"
+                        mm-is-edit-mode="isEditMode"
+                        mm-data-model="advertiserStatuses"
+                        mm-is-required="true"
+                        mm-error="validation.status"
+                        mm-label-width="{{labelWidth}}"
+                        mm-layout-type="medium"
+                        mm-model="editObject.status"></mm-drop-down>
+      </mm-row>
+    </div>
+  </mm-row>
+      <!--TODO currently not in use due to missing server side implementation -->
+      <!--<mm-row>
+        <mm-label mm-placeholder="Me"
+                  mm-caption="Last Updated By"
+                  mm-label-width="{{labelWidth}}"></mm-label>
+      </mm-row>
+      <mm-row>
+        <mm-label mm-placeholder="Then"
+                  mm-caption="Last Updated On"
+                  mm-label-width="{{labelWidth}}"></mm-label>
+      </mm-row>-->
+
+	<mm-external-id></mm-external-id>
+
+	<!-- Contacts section, will be display only if entity is Advertiser (AA contacts)-->
+	<mm-contacts
+				ng-if="isAccountAdvertiserEntity"
+				mm-model="editContacts"
+			  mm-error="invalidContacts">
+	</mm-contacts>
+</div>

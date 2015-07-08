@@ -1,0 +1,10 @@
+<span ng-class="{'wizardButtonContainer':!mmModel.disable, 'wizardButtonContainerDisableMode':mmModel.disable}">
+	<button
+			type="button"
+			class="mm-btn-discard wizardButton"
+			ng-class="{'primaryButton':mmModel.isPrimary, 'secondaryButton':!mmModel.isPrimary, 'disabledButton':mmModel.disable}">
+	<span ng-if="mmModel.isLeftIcon != 'undefined' && mmModel.isLeftIcon" class="{{mmModel.cssIconName}}"></span>
+		<span ng-bind="mmModel.name | T"></span>
+		<span ng-if="mmModel.isLeftIcon != 'undefined' && !mmModel.isLeftIcon" class="{{mmModel.cssIconName}}"></span>
+	</button>
+</span>

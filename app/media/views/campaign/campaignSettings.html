@@ -1,0 +1,51 @@
+<mm-toggle-container
+		mm-caption="Settings"
+		start-open="togglesStatus.settings">
+
+	<tabset justified="false">
+		<!-- Campaign Setup -->
+		<tab heading="Campaign Setup"
+				 id="campaignSetupTab"
+				 active="tabHandler.settings.campaign.isActive"
+				 ng-attr-class="{{isTabValid.settings.campaign ? '' : 'tabWithErrors'}}">
+			<mm-campaign-settings
+					mm-model="editObject.adminSettings.campaignSettings"
+					mm-label-width="{{labelWidth}}"
+					mm-is-required="{{!isRequired}}"
+					mm-hide-data-access="!isRequired"
+					mm-disable-trafficking-mode="!!editObject.placementAdsCount && isEditMode"
+					has-permission="editCampaign"
+          mm-on-trafficking-mode-change="onTraffickingModeChange()">
+			</mm-campaign-settings>
+		</tab>
+		<!-- Privacy -->
+		<tab heading="Privacy"
+				 id="privacyTab"
+				 active="tabHandler.settings.privacy.isActive"
+				 ng-attr-class="{{isTabValid.settings.privacy ? '' : 'tabWithErrors'}}">
+			<mm-row>
+				<mm-check-box
+						mm-model="editObject.adminSettings.privacy.disableCookies"
+						mm-description="Disable Cookies"
+						mm-caption="Cookies"
+						mm-layout-type="medium"
+						mm-label-width="{{labelWidth}}"
+						mm-disable="!editCampaign"></mm-check-box>
+			</mm-row>
+		</tab>
+		<!-- Analytics -->
+		<tab heading="Analytics"
+				 id="analyticsTab"
+				 active="tabHandler.settings.analytics.isActive"
+				 ng-attr-class="{{isTabValid.settings.analytics ? '' : 'tabWithErrors'}}">
+			<mm-analytics
+					mm-model="editObject.analyticsSettings"
+					mm-entity-type="campaign"
+					mm-account="editObject.accountAnalyticsSettings"
+					mm-advertiser="editObject.advertiserAnalyticsSettings"
+					mm-parent-id="editObject.relationsBag.parents.advertiser.id"
+					mm-permission="editCampaign">
+			</mm-analytics>
+		</tab>
+	</tabset>
+</mm-toggle-container>

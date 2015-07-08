@@ -1,0 +1,26 @@
+<div ng-class="mmControlClass"
+     class="mm-radio"
+     ng-style="mmControlWidth"
+     style="float: left"
+     id="{{::mmId}">
+    <div ng-repeat="(key, option)  in mmModel" ng-class="{ 'mm-radio-inline': !mmIsVertical }">
+      <div  ng-model="$parent.mmSelected"
+              ng-value="option.id"
+              ng-disabled="option.isDisabled ? option.isDisabled : mmDisable"
+              ng-click="onClick(option.id, option.isDisabled)"
+              id="{{::mmId + $index}}"
+              class="mm_radioButton"
+              tabindex="{{mmTabIndex}}"
+              ng-keypress="onKeyPress($event, option.id, option.isDisabled)"
+              ng-class="{'disableRB': option.isDisabled ? option.isDisabled : mmDisable, 'isMouseHoverRB': mmModel[key].mouseIsOverRB}">
+            <div span ng-class="{'selectedRB': option.id == mmSelected && !option.isDisabled, 'disableSelectedRB': option.id == mmSelected &&
+                          (option.isDisabled ? option.isDisabled : mmDisable)}"></div>
+        </div>
+        <div ng-mouseover="onMouseOver(key, option.isDisabled)"
+             ng-mouseleave="onMouseOut(key, option.isDisabled)"
+             ng-class="{'disableRadioButtonLabel': option.isDisabled ? option.isDisabled : mmDisable}"
+             class="radioButtonLabel"
+             ng-click="onClick(option.id, option.isDisabled)"
+             width="{{labelWidth}}">{{option.name}}</div>
+    </div>
+</div>

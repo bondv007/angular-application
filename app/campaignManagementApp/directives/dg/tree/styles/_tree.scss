@@ -1,0 +1,307 @@
+$emptyTop: 155px;
+$rowHeight: 30px;
+
+@mixin itemTypeIconDim {
+  width: 22px;
+  height: 18px;
+}
+
+@mixin itemTypeIcon {
+  @include itemTypeIconDim;
+  margin-left: 10px;
+}
+
+@mixin dragIconDim {
+  width: 6px;
+  height: 22px;
+}
+
+@mixin itemFont {
+  font-family: arial, sans-serif;
+  font-size: 12px;
+  color: $cSecondary;
+  font-weight: normal;
+}
+
+@mixin itemEllipsis {
+  white-space: nowrap;
+  max-width: 280px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+@mixin defaultServeRotationFont {
+  font-family: arial, sans-serif;
+  font-size: 13px;
+  color: $cSecondary;
+  font-weight: normal;
+}
+
+.angular-ui-tree-handle {
+  color: #7c9eb2;
+  padding: 0;
+  line-height: 30px;
+  height: $rowHeight;
+}
+
+.angular-ui-tree-handle:hover {
+  color: #438eb9;
+  border-color: #dce2e8;
+  .dragIcon {
+    @include dragIconDim;
+    background-image: image-url('drag.png');
+  }
+}
+
+.angular-ui-tree-placeholder {
+  background: #e3e9f4;
+  border: 2px dashed $cFourth;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  width: 95% !important;
+  margin: 0 32px !important;
+}
+
+.angular-ui-tree-empty {
+  background: #e3e9f4 !important;
+  border: 2px dashed $cFourth !important;
+  -webkit-box-sizing: border-box !important;
+  -moz-box-sizing: border-box !important;
+  box-sizing: border-box !important;
+  min-height: 30px !important;
+  position: relative;
+  bottom: 20px;
+  text-align: center;
+  padding: 10px;
+  font-family: "Titillium";
+  font-size: 16px;
+  color: #5f6d83;
+  &:before {
+    content: "DROP ADS HERE";
+  }
+}
+
+.angular-ui-tree-nodes .angular-ui-tree-nodes {
+  padding-left: 24px !important;
+}
+
+.angular-ui-tree-drag {
+  .highlightAdWrapper {
+    background-color: #e3e9f4 !important;
+  }
+}
+
+.emptyContainer {
+  position: relative;
+  top: 180px;
+  .emptyStateTextPosition {
+    position: relative;
+    text-align: center;
+    bottom: 23px;
+  }
+
+  .emptyStateIcon {
+    position: relative;
+    margin: auto;
+    width: 307px;
+    height: 70px;
+    background-image: image-url('empty_drag_image.png');
+  }
+}
+
+.treeContainer {
+  background-color: #ffffff;
+  width: 100%;
+  min-height: 540px;
+  padding: 20px 10px 10px 10px;
+}
+
+.middleElement {
+  position: relative;
+  top: 0;
+  vertical-align: middle;
+  display: inline-table;
+}
+
+.item {
+  opacity: inherit;
+}
+
+.disableItem {
+  background-color: $cWhite;
+  opacity: 0.6;
+}
+
+.itemName {
+  margin-left: 10px;
+}
+
+.dragIcon {
+  @include dragIconDim;
+}
+
+.notVisibleDragIcon {
+  @include dragIconDim;
+}
+
+.wrapContainerToggleIcon {
+  width: 20px;
+  height: 29px;
+  text-align: center;
+}
+
+.containerOpenIconDim {
+  width: 6px;
+  height: 9px;
+}
+
+.containerOpenIcon {
+  top: 3px;
+  background-image: image-url('si_tree_open_main.png');
+}
+
+.containerCloseIcon {
+  top: 3px;
+  background-image: image-url('si_tree_main.png');
+}
+
+.subContainerOpenIcon {
+  @include itemTypeIcon;
+  background-image: image-url('folder_open_icon.png');
+}
+
+.subContainerCloseIcon {
+  @include itemTypeIcon;
+  background-image: image-url('folder_closed_icon.png');
+}
+
+.defaultServeIcon {
+  @include itemTypeIcon;
+  background-image: image-url('blank_icon.png');
+}
+
+.adIcon {
+  @include itemTypeIcon;
+  background-image: image-url('treeImage_icon.png');
+}
+
+.weightContainer {
+  float: right;
+}
+
+.rootRotationPosition {
+  left: 58px;
+  position: relative;
+}
+
+.extend-mm-row {
+  height: $rowHeight;
+  display: block;
+  position: relative;
+  left: 5px;
+}
+
+.rotationPosition {
+  position: relative;
+  left: 58px;
+}
+
+.itemIdText {
+  @include itemFont;
+  opacity: 0.75;
+  margin-left: 9px;
+}
+
+.defaultServeRotationText {
+  opacity: 0.75;
+  @include defaultServeRotationFont;
+}
+
+.defaultServeRotationFirstMatchingText {
+  @include defaultServeRotationFont;
+  margin-left: 4px;
+}
+
+.itemNameText {
+  @include itemFont;
+  @include itemEllipsis;
+  margin-left: 16px;
+}
+
+.selectedBackgroundColor {
+  background: $cFifth !important;
+  background-color: $cFifth !important;
+}
+
+.rootRotationText {
+  margin-top: 4px;
+  display: block;
+  float: left;
+  opacity: 0.75;
+  font-family: arial, sans-serif;
+  font-size: 13px;
+  color: #0d2a4d;
+}
+
+.adOrSubGroupRow {
+  height: 30px;
+  margin-bottom: 0 !important;
+}
+
+.dgTree_removeListNumber {
+  list-style: none;
+}
+
+.highlightAdWrapper {
+  display: inline-block
+}
+
+.selectedCBWrapper {
+  .selectedCB {
+    left: 0;
+    top: 0;
+  }
+}
+
+.tree_sub_group_TextBox {
+  border: 1px solid $cWhite;
+  height: 24px;
+  width: 200px;
+  padding: 6px 12px;
+  &:hover {
+    border: 1px solid $cFourth;
+  }
+  &:focus {
+    outline: 0;
+    border: 1px solid $cSecondary;
+  }
+}
+
+.tree_sub_group_TextBox_Disable {
+  border: 1px solid $cWhite;
+  height: 24px;
+  width: 200px;
+  padding: 6px 12px;
+  background-color: $cWhite;
+}
+
+@mixin dg_totalWeightedText{
+  font-family: arial, sans-serif;
+  font-size: 12px;
+}
+
+.dg_totalWeightedTitle {
+  top: 3px;
+  position: relative;
+}
+
+.dg_root_totalWeightedValue {
+  margin-right: 7px;
+  @include dg_totalWeightedText;
+}
+
+.dg_totalWeightedValue {
+  margin-right: 12px;
+  @include dg_totalWeightedText;
+}

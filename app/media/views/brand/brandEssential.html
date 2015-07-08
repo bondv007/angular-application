@@ -1,0 +1,68 @@
+<mm-row>
+	<mm-text mm-is-edit-mode="isEditMode"
+					 mm-caption="Name"
+					 mm-model="editObject.name"
+					 mm-placeholder="Enter Name"
+					 mm-is-required="{{isRequired}}"
+					 mm-error="validation.brandName"
+					 mm-label-width="{{labelWidth}}"
+					 text-tooltip="Enter name"
+					 mm-layout-type="medium"
+					 mm-change="onBrandNameChange()"></mm-text>
+</mm-row>
+<mm-row>
+	<mm-drop-down mm-is-edit-mode="isEditMode"
+								mm-caption="Vertical"
+								mm-model="editObject.vertical"
+								mm-data-model="verticals"
+								mm-is-required="{{isRequired}}"
+								mm-error="validation.vertical"
+								mm-label-width="{{labelWidth}}"
+								mm-layout-type="medium"
+								mm-select-change-func="onVerticalSelected()"></mm-drop-down>
+</mm-row>
+<span ng-if="!isModal">
+	<mm-row ng-if="inContext || isEditMode">
+		<mm-label mm-is-edit-mode="isEditMode"
+							mm-model="editObject.relationsBag.parents.advertiser.name"
+							mm-caption="Advertiser"
+							mm-is-required="{{isRequired}}"
+							mm-error="validation.advertiserName"
+							mm-layout-type="medium"
+							mm-label-width="{{labelWidth}}"></mm-label>
+	</mm-row>
+					<mm-row ng-if="!isEditMode && !inContext">
+						<mm-drop-down mm-caption="Advertiser"
+													mm-data-model="advertisers"
+                          lazy-type="lazyTypeParams"
+													mm-is-edit-mode="isEditMode"
+													mm-model="editObject.relationsBag.parents.advertiser.id"
+													mm-is-required="true"
+													mm-select-change-func="onAdvertiserSelected()"
+													show-search-box
+													mm-error="validation.advertiser"
+													mm-label-width="{{labelWidth}}"
+													mm-layout-type="medium"
+                          mm-show-add-new="true"
+													new-entity-type="advertiser"
+													entity-obj="entityObj"></mm-drop-down><!--lazy-type="'advertisers'"-->
+					</mm-row>
+	<mm-row ng-if="isEditMode && centralLinks.campaigns.hasPermission">
+		<mm-text mm-caption="Campaigns"
+						 mm-label-width="{{labelWidth}}"
+						 mm-layout-type="small"
+						 mm-custom-control-width="0"
+						 mm-is-required="{{!isRequired}}"
+						 mm-show-as-label="showAsLabel.central"
+						 mm-entity-type="{{'brand'}}"
+						 mm-is-custom-link="true"
+						 mm-custom-link="{{centralLinks.campaigns.link}}"
+						 mm-entity-id="editObject.id"
+						 mm-input-type="link"
+						 mm-is-link="true"
+						 mm-simple-link="'true'"
+						 mm-disable="true"
+						 mm-model="centralLinks.campaigns.text"></mm-text>
+	</mm-row>
+</span>
+

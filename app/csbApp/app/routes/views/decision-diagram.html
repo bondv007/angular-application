@@ -1,0 +1,167 @@
+<!-- this should be the location for the route html -->
+
+<!-- include the common header -->
+<div ng-include="'csbApp/app/routes/views/header.html'" ng-if="csb.config.env == 'mdx2'"></div>
+
+<div class="container-fluid page-content" ng-show="csb.params" ng-class="{'mdx3': csb.config.env == 'mdx3'}">
+
+  <div class="sidebar-bg" ng-if="csb.params.permissions.edit"></div>
+
+  <div class="sidebar" ng-if="csb.params.permissions.edit">
+    <!--<div class="form-group has-feedback">-->
+    <!--<label class="control-label sr-only" for="filter">Hidden Search</label>-->
+    <!--<input id="filter" name="filter" type="text" class="form-control" ng-model="searchNav.name" placeholder="Search">-->
+    <!--<span class="glyphcsb-icon glyphicon-search form-control-feedback"></span>-->
+    <!--</div>-->
+    <div ng-controller="navCtrl" class="graph-nav">
+      <div class="sidebar-groups">
+        <div ng-click="hideDecisionMenu = !hideDecisionMenu" ng-show="decisionRules.navItems"
+             class="sidebar-groups-label">
+          <h4>{{decisionRules.title}} <span class="pull-right glyphicon glyphicon-chevron-up"
+                                            ng-class="{ 'rotate-180': hideDecisionMenu }"></span></h4>
+        </div>
+        <ul class="nav nav-stacked" ng-show="decisionRules.navItems" ng-class="{ 'hide-menu': hideDecisionMenu }">
+          <li ng-repeat="item in decisionRules.navItems"
+              id="{{item.id}}"
+              data-graph-id="{{item.graphId}}"
+              data-drag="{{item.draggable}}"
+              jqyoui-draggable="{ onStart: 'onClickNavItem', onStop: 'onUnclickNavItem' }"
+              title="{{item.tool_tip}}"
+              data-jqyoui-options="getDragOptions(item.graphId)"
+              ng-model="decisionNav"
+              class="nav-item decision-rules no-margin left_menu_hover_item">
+            <i class="csb-icon csb-icon-{{item.icon}}"></i> {{item.name}}
+          </li>
+        </ul>
+      </div>
+
+      <div class="sidebar-groups">
+        <div ng-click="hideThirdPartyMenu = !hideThirdPartyMenu" ng-show="thirdPartyTargeting.navItems"
+             class="sidebar-groups-label ">
+          <h4>{{ thirdPartyTargeting.title }} <span class="pull-right glyphicon glyphicon-chevron-up"
+                                                    ng-class="{ 'rotate-180': hideThirdPartyMenu }"></span></h4>
+        </div>
+        <ul class="nav nav-stacked nav-third-party" ng-show="thirdPartyTargeting.navItems"
+            ng-class="{ 'hide-menu': hideThirdPartyMenu }">
+          <li ng-repeat="item in thirdPartyTargeting.navItems"
+              data-graph-id="{{item.graphId}}"
+              data-drag="{{item.draggable}}"
+              jqyoui-draggable="{ onStart: 'onClickNavItem', onStop: 'onUnclickNavItem' }"
+              data-jqyoui-options="getDragOptions(item.graphId)"
+              ng-model="decisionNav"
+              class="left_menu_hover_item nav-item no-margin">
+            <!--<span class="glyphicon glyphicon-{{item.icon}}"></span>-->
+            <i class="csb-icon csb-icon-{{item.icon}}"></i> {{item.name}}
+          </li>
+        </ul>
+      </div>
+
+      <div class="sidebar-groups">
+        <div ng-click="hideSketchingMenu = !hideSketchingMenu" ng-show="sketchingTools.navItems"
+             class="sidebar-groups-label">
+          <h4>{{ sketchingTools.title }} <span class="pull-right glyphicon glyphicon-chevron-up"
+                                               ng-class="{ 'rotate-180': hideSketchingMenu }"></span></h4>
+        </div>
+        <ul class="nav nav-stacked nav-sketching-tools" ng-show="sketchingTools.navItems"
+            ng-class="{ 'hide-menu': hideSketchingMenu }">
+          <li ng-repeat="item in sketchingTools.navItems"
+              data-graph-id="{{item.graphId}}"
+              data-drag="{{item.draggable}}"
+              jqyoui-draggable="{ onStart: 'onClickNavItem', onStop: 'onUnclickNavItem' }"
+              data-jqyoui-options="getDragOptions(item.graphId)"
+              ng-model="decisionNav"
+              class="nav-item no-margin">
+            <i title="{{ item.name }}" class="csb-icon csb-icon-{{item.icon}}"></i>
+          </li>
+        </ul>
+      </div>
+
+      <div class="sidebar-groups">
+        <div ng-click="hideTemplatesMenu = !hideTemplatesMenu" title="{{ decisionTemplates.toolTip }}"
+             class="sidebar-groups-label">
+          <h4>{{ decisionTemplates.title }} <span class="pull-right glyphicon glyphicon-chevron-up"
+                                                  ng-class="{ 'rotate-180': hideTemplatesMenu }"></span></h4>
+        </div>
+        <div class="template-loading-text" ng-hide="templates"><i class="spin-360 glyphicon glyphicon-refresh"></i>
+          Loading templates
+        </div>
+        <ul class="nav nav-stacked nav-templates" ng-show="templates.length"
+            ng-class="{ 'hide-menu': hideTemplatesMenu }"
+            ng-style="templateMenuHeight">
+          <li class="left_menu_hover_item nav-item decision-diagram-templates" ng-repeat="template in templates">
+            <span class="decision-diagram-template-name"
+                  ng-class="{ 'active' : appService.selectedStrategy.id == template.id }"
+                  title="Load Template: {{ template.decisionDiagramName }}" ng-click="setTemplateAsModel( template )">{{ template.decisionDiagramName }}</span>
+            <span delete-decision-diagram-template diagram-id="template.id" templates="templates"><i
+                class="pull-right csb-icon csb-icon-remove-btn"></i></span>
+          </li>
+        </ul>
+        <div class="template-loading-text" ng-show="templates.length == 0">No Templates Available</div>
+      </div>
+
+    </div>
+
+  </div>
+
+  <!-- canvas -->
+  <div class="main" ng-controller="canvasCtrl" ng-class="{ 'no-sidebar': !csb.params.permissions.edit }">
+
+    <div class="canvas"
+         jqyoui-droppable="{onDrop:'onDrop'}"
+         data-jqyoui-options="dropOptions"
+         data-drop="true">
+
+      <!-- decision tree directive -->
+      <div ng-if="csb.config.shouldShowDiagram" id="decision-tree" class="decision-tree-canvas" decision-tree></div>
+
+    </div>
+
+  </div>
+  <div footer-toolbar ng-if="csb.params.permissions.edit"></div>
+</div>
+
+<!-- right control UI -->
+<div ng-if="csb.params.permissions.edit">
+
+  <!-- PASS ANYTHING NEEDED THROUGH ATTRS AND MAKE SURE DIRECTIVE BRINGS IT INTO SCOPE -->
+
+  <!-- static retargeting panel directive -->
+  <div static-retargeting-panel decision="panelFactory.decisionModel" show-panel="panelFactory.showPanelUI"
+       ng-if="panelFactory.showPanelUI == panelFactory.diagramTypes.STATIC_RETARGETING" close-panel-ui="panelFactory.closePanelUI()"></div>
+
+  <!-- geo targeting panel directive -->
+  <div geo-targeting-panel decision="panelFactory.decisionModel" show-panel="panelFactory.showPanelUI"
+       ng-if="panelFactory.showPanelUI == panelFactory.diagramTypes.GEO_TARGETING && csb.config.env == 'mdx2'" close-panel-ui="panelFactory.closePanelUI()"></div>
+
+  <!-- geo targeting panel directive - WITH GLOBAL SEARCH -->
+  <div geo-targeting-global-search-panel decision="panelFactory.decisionModel" show-panel="panelFactory.showPanelUI"
+       ng-if="panelFactory.showPanelUI == panelFactory.diagramTypes.GEO_TARGETING && csb.config.env == 'mdx3'" close-panel-ui="panelFactory.closePanelUI()"></div>
+
+   <!--dynamic retargeting panel directive-->
+  <div dynamic-retargeting-panel decision="panelFactory.decisionModel" show-panel="panelFactory.showPanelUI"
+       ng-if="panelFactory.showPanelUI == panelFactory.diagramTypes.DYNAMIC_RETARGETING" close-panel-ui="panelFactory.closePanelUI()"></div>
+
+  <!-- site keywords panel directive -->
+  <div site-keywords-panel decision="panelFactory.decisionModel" show-panel="panelFactory.showPanelUI"
+       ng-if="panelFactory.showPanelUI == panelFactory.diagramTypes.SITE_KEYWORDS" close-panel-ui="panelFactory.closePanelUI()"></div>
+
+  <!-- contextual targeting panel directive -->
+  <div contextual-targeting-panel decision="panelFactory.decisionModel" show-panel="panelFactory.showPanelUI"
+       ng-if="panelFactory.showPanelUI == panelFactory.diagramTypes.CONTEXTUAL_TARGETING" close-panel-ui="panelFactory.closePanelUI()"></div>
+
+  <!-- audience segment panel directive -->
+  <div audience-segment-panel decision="panelFactory.decisionModel" show-panel="panelFactory.showPanelUI"
+       ng-if="panelFactory.showPanelUI == panelFactory.diagramTypes.AUDIENCE_SEGMENT" close-panel-ui="panelFactory.closePanelUI()"></div>
+
+  <!-- note panel directive -->
+  <div note-panel selected-note="panelFactory.selectedNote" decision="panelFactory.decisionModel"
+       ng-if="panelFactory.showPanelUI == panelFactory.diagramTypes.SKETCHING_TOOLS_NOTE" show-panel="panelFactory.showPanelUI" close-panel-ui="panelFactory.closePanelUI()"></div>
+
+  <!-- text box panel directive -->
+  <div text-box-panel selected-text-box="panelFactory.selectedTextBox" decision="panelFactory.decisionModel"
+       ng-if="panelFactory.showPanelUI == panelFactory.diagramTypes.SKETCHING_TOOLS_TEXT_BOX" show-panel="panelFactory.showPanelUI" close-panel-ui="panelFactory.closePanelUI()"></div>
+
+  <!-- external audience segment panel -->
+  <div external-audience-panel decision="panelFactory.decisionModel" show-panel="panelFactory.showPanelUI"
+       ng-if="panelFactory.showPanelUI == panelFactory.diagramTypes.THIRD_PARTY_TARGETING" close-panel-ui="panelFactory.closePanelUI()"></div>
+</div>

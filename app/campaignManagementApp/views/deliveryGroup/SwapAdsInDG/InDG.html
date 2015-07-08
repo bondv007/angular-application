@@ -1,0 +1,34 @@
+<div class="swapDG">
+    <div class="replaceDGText">
+        <div>{{'Replace Delivery Group Master Ad :' |  T}} {{swapad}}</div>
+        <div>{{'With Campaign Master Ad :' | T}} {{withad}}</div>
+        {{'Select the delivery groups in which to replace the master ad.' | T}}
+    </div>
+    <div class="replaceDgAd_searchTextBox_wrapper">
+      <input id="replace_ad_in_dg_filter_text_box" title="{{filterToolTip | T}}" type="text" ng-model="filterDg" class="csb_searchTextBox form-control replaceDgAd_Filter_input" placeholder="{{'Search...'| T}}"/>
+    </div>
+    <mm-grid
+      mm-grid-id="replace_ad_in_dg_grid"
+      class="replaceDgAd_Grid"
+      items="InDGItems"
+      selected-items="selectedItemsInDG"
+      cols="DGColumns"
+      is-grid-loading="isGridLoading"
+      filter-text="filterDg"
+      show-selection-checkbox="true"
+      grid-height="400"
+      show-footer="true"
+      is-sort="true"
+      is-single-select="false"
+      is-groupable="false"
+      show-filter="false"
+      enable-column-resize="true"
+      is-column-reorder="true"
+      is-column-freeze="true"
+      is-show-menu="false"
+      is-show-tool-tip="true"
+      is-central-grid="false"
+      enable-selected-row-selection ="true"
+      is-grid-toolbar="false">
+    </mm-grid>
+</div>

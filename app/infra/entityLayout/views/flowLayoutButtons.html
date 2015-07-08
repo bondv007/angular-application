@@ -1,0 +1,13 @@
+<div ng-repeat="acFunc in entityLayoutButtons" class="btn-group">
+  <button mm-id="{{acFunc.name.toLowerCase()}}" type="button" class="btn dropdown-toggle"
+					ng-class="{'disableButton':acFunc.isDisabled, 'selectedMenuButton': acFunc.name.toLowerCase() == selectedView.toLowerCase()}"
+					ng-click="acFunc.func();setParentMenu(entityActions.parentMenuItem)"
+					ng-disabled="acFunc.isDisabled || (isNewMode && acFunc.name.toLowerCase() != 'setup')">{{acFunc.name | T}}</button>
+  <ul ng-if="acFunc.views&& acFunc.views.length > 0 && !acFunc.preventOpenMenu && !isNewMode" class="dropdown-menu flowLayoutLists" style="padding: 0;border: none;box-shadow: 2px 3px 4px rgba(0,0,0,.2);">
+    <li ng-disabled="true" ng-repeat="viewNode in acFunc.views" style="position: relative;height: 30px;">
+			<a mm-id="{{viewNode.name.toLowerCase()}}" ng-click="setSelectedView(acFunc.name)" class="click" ui-sref="{{viewNode.ref}}">{{viewNode.name |	T}}</a>
+			<div ng-if="!$last" style="height:1px;background-image:linear-gradient(to right,rgba(13,42,77,0.1),rgba(255,255,255,0.1))"></div>
+		</li>
+  </ul>
+</div>
+

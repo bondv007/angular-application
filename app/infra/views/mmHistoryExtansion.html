@@ -1,0 +1,24 @@
+<div class="gridExpansionRow">
+
+	<div class="expansionBg"></div>
+	<div class="expansionInnerHistory">
+        <table class="table table-hover table-striped" style="table-layout:fixed">
+        <tr>
+			<th class="header">{{'Field' | T}}</th>
+            <th class="header">{{'Old Value' | T}}</th>
+            <th class="header">{{'New Value' | T}}</th>
+		</tr>
+		<tr ng-repeat="extansion in row.entity['extansions']">
+            <td style="margin: 3px">
+				{{extansion.field | T}}
+			</td>
+			<td style="margin: 3px; overflow: auto">
+				{{extansion.oldValue}}
+			</td>
+			<td style="margin: 3px; overflow: auto">
+				{{extansion.newValue}}
+			</td>
+		</tr>
+	</table>
+	</div>
+</div>

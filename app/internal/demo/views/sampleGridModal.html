@@ -1,0 +1,33 @@
+Filter Grid: <input type="text" ng-model="filterOptions.filterText">
+<!--<button ng-click="rowLocked == !rowLocked">Toggle Row Lock</button>-->
+<button ng-click="rowOptions.enableRowSelection = false">Lock Row Selection</button>
+<button ng-click="rowOptions.enableRowSelection = true">Unlock Row Selection</button>
+
+<br/>
+<br/>
+<mm-grid
+	items="data"
+	cols="columnDefs"
+	selected-items="item.selectedItems"
+	filtered-items="filteredItemCount"
+	is-cell-edit="true"
+	is-single-select="true"
+	is-sort="false"
+	is-column-freeze="false"
+	show-footer="true"
+	is-groupable="false"
+	enable-column-resize="true"
+	show-selection-checkbox="true"
+	show-filter="false"
+	is-show-menu="false"
+	grid-height="400"
+	grid-width="800"
+	is-central-grid="false"
+	filter-text="filterOptions.filterText"
+	enable-row-selection="rowOptions.enableRowSelection">
+</mm-grid>
+<mm-row>
+	<p>Total Items: <span>{{data.length}}</span><br>
+		Selected Items: <span>{{item.selectedItems.length}}</span><br>
+		Filtered Items: <span>{{filteredItemCount}}</span></p>
+</mm-row>

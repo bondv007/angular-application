@@ -1,0 +1,52 @@
+<span ng-if="isMM2">
+  <div ng-include="'csbApp/app/routes/views/header.html'"></div>
+  <mm-alert class="alertMessagePositionCenter"></mm-alert>
+</span>
+
+<div ng-class="{'trafficking_container_mm2':isMM2, 'trafficking_container_mmNext':!isMM2}">
+  <table class="trafficking_table_container" cellspaicing="0" cellpadding="0">
+    <tr class="traffickingFirstRow">
+      <td ng-show="!collapsible.open" class="funnelCollapsibleColumn" rowspan="2">
+        <div id="csb_funnel_collapsible" ng-click="collapsible.open = !collapsible.open" ng-include="'csbApp/app/routes/views/openFunnel.html'"></div>
+        <div class="funnelCloseState"></div>
+      </td>
+      <td ng-show="collapsible.open" class="trafficking_topBorder_separator">
+        <trafficking-header mm-filter-id="funnel" mm-collapsible-state="collapsible" mm-title="TARGET AUDIENCES" mm-filter="filter.funnel" mm-buttons="funnelButtons"></trafficking-header>
+      </td>
+      <td class="trafficking_topBorder_separator">
+        <trafficking-header mm-filter-id="dgs" ng-show="!collapsible.open" mm-title="DELIVERY GROUPS" mm-filter="filter.dgs" mm-buttons="funnelButtons"></trafficking-header>
+        <trafficking-header mm-filter-id="dgs" ng-show="collapsible.open" mm-title="DELIVERY GROUPS" mm-filter="filter.dgs"></trafficking-header>
+      </td>
+      <td class="trafficking_separator_with_dgs_ads" rowspan="2">
+        <div class="trafficking_separator_with_dgs_ads_div"></div>
+      </td>
+      <td class="trafficking_ads_column trafficking_topBorder_separator" rowspan="2">
+        <trafficking-header mm-title="TARGET AUDIENCES" mm-filter="filter.funnel" mm-buttons="funnelButtons"></trafficking-header>
+        <div class="central-wrap">
+          <trafficking-right-sidebar entity-id="entityId" entity-type="entityType"
+                                     ad-data-object="adDataObject"></trafficking-right-sidebar>
+        </div>
+      </td>
+    </tr>
+    <tr class="trafficking_row_container">
+      <td ng-show="collapsible.open" class="trafficking_funnel_column">
+        <div id="funnelView" class="sidebar-funnel trafficking_funnel_row">
+          <div id="targetAudienceList">
+            <audience-segments filter="filter"></audience-segments>
+          </div>
+        </div>
+      </td>
+      <td class="trafficking_dgs_column" >
+        <div class="trafficking_dgs_row">
+          <div ng-show="!funnel.isTargetAudienceSelected" class="centered-div message">
+            <span class="selectTargetAudienceText"
+                  ng-bind="'CLICK A TARGET AUDIENCE TO VIEW DELIVERY GROUPS' | T"></span>
+            <i class="selectTargetAudienceIcon centered"></i>
+          </div>
+          <delivery-groups ng-show="funnel.isTargetAudienceSelected" campaign-id="{{entityId}}"
+                           dgs-service-exist="dgsServiceExist.exist" ads="masterAds" filter="filter" dgs="dgs"></delivery-groups>
+        </div>
+      </td>
+    </tr>
+  </table>
+</div>

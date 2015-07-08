@@ -1,0 +1,66 @@
+<div class="modal-dialog">
+    <div class="modal-content">
+        <div class="mmmodal-header">
+            <div class="close">
+                <div ng-click="adPreviewCommonModel.showShareItemDialog=false" class="close-button"></div>
+            </div>
+            <div class="mmmodal-title">Share selected Items</div>
+        </div>
+
+        <div ng-show="showGenerateUrlPortion || !showSendEmailPortion" class="modal-body">
+            <div class="row">
+                <div class="col-sm-7">
+                    <label>Access Password (optional)</label>
+                    <input type="password" class="form-control">
+                </div>
+                <!--<div class="col-sm-5 strenth-outer">
+                    <label>Strength:</label>
+
+                    <div class="strenth">
+                        <span class="fill"></span>
+                        <span class="fill"></span>
+                        <span class="fill"></span>
+                        <span></span>
+                        <span></span>
+                    </div>
+                </div>-->
+            </div>
+
+        </div>
+        <div ng-show="showGenerateUrlPortion || !showSendEmailPortion" class="modal-footer">
+            <button type="button" class="btn btn-default" ng-click="adPreviewCommonModel.showShareItemDialog=false">
+                Cancel
+            </button>
+            <button type="button" class="btn btn-primary"
+                    ng-click="showSendEmailPortion=true;showGenerateUrlPortion=false">
+                Generate URL To share
+            </button>
+        </div>
+
+        <div ng-show="showSendEmailPortion && !showGenerateUrlPortion" class="modal-body">
+
+            <label>Link to share</label>
+
+            <div class="input-group">
+
+                <input ng-model="adPreviewCommonModel.previewLink" type="text" class="form-control"
+                       placeholder="">
+							<!--<span class="input-group-btn">
+								<button clip-copy="getTextToCopy()" class="btn btn-default" type="button">
+                                    Copy Url!
+                                </button> </span>-->
+            </div>
+
+        </div>
+        <div ng-show="showSendEmailPortion && !showGenerateUrlPortion" class="modal-footer">
+            <button type="button" class="btn btn-default"
+                    ng-click="showSendEmailPortion=false;showGenerateUrlPortion=true">
+                Cancel
+            </button>
+            <button ng-click="sendEmail()" type="button" class="btn btn-primary">
+                Share link via mail
+            </button>
+        </div>
+
+    </div>
+</div>

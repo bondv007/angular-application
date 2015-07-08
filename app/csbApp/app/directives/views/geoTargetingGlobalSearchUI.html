@@ -1,0 +1,91 @@
+<div class="mdxUI mdxUIContainer" ng-class="{ 'active' : showUI, 'mdx3': csb.config.env == 'mdx3' }">
+  <div class="header">
+    <h1>Geo Targeting <span ng-click="cancelChanges()" class="pull-right glyphicon glyphicon-remove"></span></h1>
+  </div>
+  <div class="body-wrapper">
+    <div class="body clearfix">
+      <div class="form-group" ng-show="errorText">
+        <div class="csb-alert alert alert-danger">{{errorText}}</div>
+      </div>
+      <mm-row>
+        <mm-text
+            mm-layout-type="custom"
+            mm-custom-control-width="356"
+            mm-label-width="200"
+            mm-is-required="true"
+            mm-caption="Decision Rule Name:"
+            mm-model="name.text"
+            mm-custom-label-padding="0"
+            ></mm-text>
+      </mm-row>
+      <mm-row>
+        <mm-drop-down
+            mm-layout-type="custom"
+            mm-custom-control-width="356"
+            mm-caption="Decision Rule Type:"
+            mm-data-model="ruleTypeOptions"
+            mm-model="ruleType.id"
+            mm-select-change-func="changeRuleType()"
+            mm-custom-label-padding="0">
+        </mm-drop-down>
+      </mm-row>
+      <!--<div class="form-group col-md-12" style="padding-left:  0 !important; padding-right: 0 !important;">        -->
+        <!--<label for="decision_name" class="control-label" mm-is-required="true">Decision Rule Name:</label>-->
+        <!--<input class="form-control" type="text" id="decision_name" name="decision_name" ng-model="name" maxlength="200">-->
+      <!--</div>-->
+      <!--<div class="form-group col-md-12" style="padding-left:  0 !important; padding-right: 0 !important;">-->
+        <!--<label for="decision_type">Decision Rule Type:</label>-->
+        <!--<select class="form-control" id="decision_type" name="decision_type" ng-model="ruleType">-->
+          <!--<option value="yes-no">Yes-No</option>-->
+          <!--<option value="multi">Multiple Yes branches</option>-->
+        <!--</select>-->
+      <!--</div>-->
+      <mm-row>
+        <mm-auto-complete id="ex2"
+                          placeholder="Search geo"
+                          pause="100"
+                          mm-width="356"
+                          selected-object="geoModel.selectedGeo"
+                          remote-url="geo"
+                          remote-url-data-field="result"
+                          title-field="name"
+                          type-field="type"
+                          minlength="2"
+                          clear-selected="true"
+                          text-no-results="Geo not supported"
+                          class="mm-auto-complete"
+                          use-title-manipulator
+                          title-manipulator="generateGeoTitle(data)"
+                          match-class="angucomplete-match"/>
+      </mm-row>
+      <mm-row>
+        <mm-grid show-selection-checkbox="true"
+                 items="geoModel.gridAddedGeos"
+                 selected-items="geoModel.gridSelectedGeos"
+                 grid-height="350"
+                 grid-width="356"
+                 cols="geoGrid.columns"
+                 show-footer="true"
+                 is-sort="true"
+                 is-single-select="false"
+                 is-groupable="false"
+                 show-filter="false"
+                 enable-column-resize="true"
+                 is-column-reorder="true"
+                 is-column-freeze="true"
+                 is-show-menu="false"
+                 is-show-tool-tip="true"
+                 is-central-grid="false"
+                 is-grid-toolbar="false"
+                 is-grid-loading="false">
+        </mm-grid>
+      </mm-row>
+      <div class="footer">
+        <div class="form-buttons pull-right">
+          <button class="btn mdx-btn mdx-save-btn" ng-click="save(model)">Save</button>
+          <button class="btn mdx-btn mdx-close-btn" ng-click="cancelChanges()">Cancel Changes</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
